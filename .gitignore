@@ -11,3 +11,10 @@ __pycache__/
 *.tsbuildinfo
 .wrangler/
 .dev.vars
+
+# Generated from content/content.json by scripts/build-resume-files.mjs (runs before dev and build)
+/public/resume.md
+/public/resume.txt
+/public/resume.json
+/public/llms.txt
+/public/cli

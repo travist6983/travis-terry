@@ -164,22 +164,24 @@ export function Ask() {
   return (
     <section id="ask" className="sec ask" aria-labelledby="ask-title">
       <div className="wrap wrap--narrow">
-        <h2 id="ask-title" className="display display--sm">{t(s.title)}</h2>
-        <p className="lede">{t(s.intro)}</p>
-        <p className="fine">
-          {t(s.classifierLine)} {t(s.noLiveModel)}
-        </p>
+        <div className="sec__head">
+          <span className="glass badge"><span className="badge__dot" aria-hidden="true" />Claude · grounded in my resume</span>
+          <h2 id="ask-title" className="h2">{t(s.title)}</h2>
+          <p className="lede">{t(s.intro)}</p>
+          <p className="fine">{t(s.classifierLine)}</p>
+        </div>
         {pending && <Needed>{pending.replace(/^NEEDED FROM TRAVIS:\s*/, '')}</Needed>}
 
-        <div className="term">
+        <div className="glass chat">
+          <span className="glow glow--accent" aria-hidden="true" style={{ right: -100, top: -140, width: 320, height: 320, opacity: 0.16 }} />
           <form
-            className="term__form"
+            className="chat__form"
             onSubmit={(e) => {
               e.preventDefault();
               if (q.trim()) run(q.trim());
             }}
           >
-            <label htmlFor="ask-input" className="term__prompt">
+            <label htmlFor="ask-input" className="chat__prompt">
               <span className="sr-only">{t(s.inputLabel)}</span>
               <span aria-hidden="true">$ ask</span>
             </label>
@@ -193,53 +195,51 @@ export function Ask() {
               placeholder={t(s.placeholder)}
               autoComplete="off"
             />
-            <button type="submit">{t(s.submit)}</button>
+            <button type="submit" className="btn btn--accent">{t(s.submit)}</button>
           </form>
-          <div className="term__out" aria-live="polite">
+          <div className="chat__out" aria-live="polite">
+            {!reply && <div className="chat__empty">Pick a question below, or type your own.</div>}
             {reply && asked && (
               <>
-                <p className="term__q">› {asked}</p>
-                {reply.kind === 'loading' && <p className="term__a term__loading">Searching my resume<span>...</span></p>}
-                {reply.kind === 'fixed' && (
-                  <>
-                    <p className="term__a">{reply.entry.answer}</p>
-                    <p className="term__src">
-                      {t(s.sourceLabel)} <a href={`#${reply.entry.sourceSection}`}>{sectionTitle(reply.entry.sourceSection)}</a> · approved answer
-                    </p>
-                  </>
-                )}
-                {reply.kind === 'ai' && (
-                  <>
-                    <p className="term__a">{reply.answer}</p>
-                    <p className="term__src">
-                      AI answer from {reply.sources.length} source{reply.sources.length > 1 ? 's' : ''}:{' '}
-                      {reply.sources.map((src, i) => (
-                        <span key={src.id}>
-                          {i > 0 && ', '}
-                          <a href={`#${src.section}`}>{src.title}</a>
-                        </span>
-                      ))}
-                    </p>
-                  </>
-                )}
-                {reply.kind === 'fallback' && (
-                  <p className="term__a">
-                    {reply.note ? `${reply.note.replace(/Email me\.?$/, '')}` : t(s.fallback).replace(/Email me\.?$/, '')}
-                    <EmailLink>Email me.</EmailLink>
-                  </p>
-                )}
+                <p className="bubble bubble--me">{asked}</p>
+                <div className="bubble bubble--them">
+                  {reply.kind === 'loading' && <p className="chat__loading">Searching my resume<span>...</span></p>}
+                  {reply.kind === 'fixed' && (
+                    <>
+                      <p>{reply.entry.answer}</p>
+                      <div className="srcs">
+                        <span className="kick kick--mute">SOURCE:</span>
+                        <a href={`#${reply.entry.sourceSection}`}>{sectionTitle(reply.entry.sourceSection)}</a>
+                      </div>
+                    </>
+                  )}
+                  {reply.kind === 'ai' && (
+                    <>
+                      <p>{reply.answer}</p>
+                      <div className="srcs">
+                        <span className="kick kick--mute">SOURCES:</span>
+                        {reply.sources.map((src) => <a key={src.id} href={`#${src.section}`}>{src.title.replace(/^(Q&A|Project|Career|Interview): /, '')}</a>)}
+                      </div>
+                    </>
+                  )}
+                  {reply.kind === 'fallback' && (
+                    <>
+                      <p>{reply.note ? reply.note.replace(/Email me\.?$/, '').trim() : t(s.fallback).replace(/Email me\.?$/, '').trim()}</p>
+                      <EmailLink className="btn btn--accent btn--sm">Email me</EmailLink>
+                    </>
+                  )}
+                </div>
               </>
             )}
           </div>
         </div>
         <div ref={widgetEl} className="turnstile" />
-        {live && <p className="fine">Rate limited and checked for bots by Cloudflare Turnstile. If the AI is unavailable, my approved answers fill in.</p>}
         <div className="chips">
           {suggestions.map((e) => (
             <button
               key={e.id}
               type="button"
-              className="chip"
+              className="glass chip"
               onClick={() => {
                 setQ(e.question);
                 run(e.question);
@@ -249,6 +249,7 @@ export function Ask() {
             </button>
           ))}
         </div>
+        {live && <p className="fine">Rate limited and checked for bots by Cloudflare Turnstile. If the AI is unavailable, my approved answers fill in.</p>}
       </div>
     </section>
   );

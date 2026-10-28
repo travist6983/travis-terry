@@ -235,6 +235,7 @@ Interface labels with no factual claim. Listed so nothing in content.json is una
 | footer.curl.lead | Prefer a terminal? |  |
 | footer.howBuilt | How this site was built | /how-this-site-was-built |
 | footer.resumeTxt | resume.txt | /resume.txt |
+| footer.resumeMd | resume.md | /resume.md |
 | footer.resumeJson | resume.json | /resume.json |
 | footer.llmsTxt | llms.txt | /llms.txt |
 

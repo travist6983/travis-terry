@@ -1,11 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import { JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 import { content, person, t } from '@/lib/content';
 import './globals.css';
-
-// Downloaded at build and self-hosted: no runtime requests to Google.
-const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
-const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
 
 const m = content.meta;
 
@@ -13,13 +8,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(t(m.canonical)),
   title: t(m.title),
   description: t(m.description),
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    // Machine-readable resumes, generated from content.json by scripts/build-resume-files.mjs
+    types: { 'text/markdown': '/resume.md', 'text/plain': '/resume.txt', 'application/json': '/resume.json' },
+  },
   openGraph: { type: 'website', url: t(m.canonical), title: t(m.og.title), description: t(m.og.description) },
   twitter: { card: 'summary_large_image', title: t(m.og.title), description: t(m.twitter?.description ?? m.og.description) },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: '#e6e9ef',
 };
 
 const jsonLd = {
@@ -34,7 +33,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-motion="on" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-motion="on" suppressHydrationWarning>
       {/* browser extensions add attributes to <body> before React hydrates */}
       <body suppressHydrationWarning>
         {children}

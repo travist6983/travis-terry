@@ -50,10 +50,10 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 export function KillSwitch({ variant = 'nav' }: { variant?: 'nav' | 'panel' }) {
   const { on, toggle } = useMotion();
   const mc = section('header').motionControl;
-  return (
+  const button = (
     <button
       type="button"
-      className={`kill kill--${variant}`}
+      className={`kill kill--${variant} ${variant === 'nav' ? 'glass' : ''}`}
       aria-pressed={!on}
       aria-label={t(mc.ariaLabel)}
       onClick={toggle}
@@ -64,6 +64,44 @@ export function KillSwitch({ variant = 'nav' }: { variant?: 'nav' | 'panel' }) {
       <span className="kill__label">{on ? t(mc.pauseLabel) : t(mc.statusPaused)}</span>
     </button>
   );
+  if (variant === 'nav') return button;
+  return (
+    <div className="killbox">
+      {button}
+      <div className="tags tags--sm">
+        {['bug loop', 'feature loop', 'regression lane'].map((l) => (
+          <span key={l} className={`tag tag--mono ${on ? 'is-run' : 'is-stop'}`}>
+            <span className="tag__dot" aria-hidden="true" />
+            {l} · {on ? 'running' : 'paused'}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Nav scroll spy: the lens follows the section in view ---------- */
+
+export function ScrollSpy() {
+  useEffect(() => {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-spy]'));
+    const targets = links.map((l) => document.getElementById(l.dataset.spy!)).filter(Boolean) as HTMLElement[];
+    let raf = 0;
+    const tick = () => {
+      raf = 0;
+      const y = window.innerHeight * 0.35;
+      let cur: string | null = null;
+      for (const el of targets) if (el.getBoundingClientRect().top <= y) cur = el.id;
+      links.forEach((l) => l.classList.toggle('is-on', l.dataset.spy === (cur ?? 'sixty')));
+    };
+    const on = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+    tick();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
+  return null;
 }
 
 /* ---------- Smooth scroll (off with the kill switch) ---------- */
@@ -185,5 +223,34 @@ export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
     <span data-count={to} aria-hidden="true">
       {shown}
     </span>
+  );
+}
+
+/* ---------- Footer: copy the curl command ---------- */
+
+export function CopyCommand({ command }: { command: string }) {
+  const [done, setDone] = useState(false);
+  return (
+    <div className="term-line">
+      <code>
+        <span className="term-line__ps" aria-hidden="true">$ </span>
+        {command}
+      </code>
+      <button
+        type="button"
+        className="btn btn--accent btn--sm"
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(command);
+            setDone(true);
+            setTimeout(() => setDone(false), 1600);
+          } catch {
+            /* clipboard blocked: the command is still selectable */
+          }
+        }}
+      >
+        {done ? 'Copied' : 'Copy'}
+      </button>
+    </div>
   );
 }
