@@ -122,7 +122,12 @@ function buildTicket(svg: SVGSVGElement, track: SVGPathElement, line: SVGPathEle
     const margin = (wrapBox.right - 12 + W) / 2;
 
     const pts: Pt[] = [];
+    // Phones hide the backlog, so the route starts at the hero copy instead of the bug card
+    const heroCopy = thin ? act.querySelector('.hero__copy') : null;
+    if (heroCopy) pts.push({ x: 14, y: rel(heroCopy, act).top });
     act.querySelectorAll<HTMLElement>('[data-route]').forEach((el) => {
+      // A hidden anchor (the backlog card on phones) has no box; its rect would track the scroll position
+      if (!el.getClientRects().length) return;
       const r = rel(el, act);
       const spec = el.dataset.route!;
       const at = el.dataset.routeAt ?? 'center';

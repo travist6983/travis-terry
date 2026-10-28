@@ -59,14 +59,14 @@
     },
     "canonical": {
       "id": "meta.canonical",
-      "text": "https://travisjterry.com",
+      "text": "https://travisjterry.dev",
       "src": [
         "decisions:Domain"
       ]
     },
     "og": {
       "type": "website",
-      "url": "https://travisjterry.com",
+      "url": "https://travisjterry.dev",
       "title": {
         "id": "meta.og.title",
         "text": "Travis Terry, Staff Software Engineer",
@@ -1841,14 +1841,14 @@
       "mailto": {
         "subject": {
           "id": "contact.mailto.subject",
-          "text": "Hello from travisjterry.com",
+          "text": "Hello from travisjterry.dev",
           "src": [
             "ui"
           ]
         },
         "subjectWithRef": {
           "id": "contact.mailto.subjectWithRef",
-          "text": "Hello from travisjterry.com (ref: {ref})",
+          "text": "Hello from travisjterry.dev (ref: {ref})",
           "src": [
             "ui"
           ],
@@ -1876,7 +1876,7 @@
         },
         "command": {
           "id": "footer.curl.command",
-          "text": "curl -sL travisjterry.com/cli",
+          "text": "curl -sL travisjterry.dev/cli",
           "src": [
             "brief:HARD_RULE_10",
             "decisions:Q17",
