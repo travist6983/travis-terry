@@ -41,6 +41,10 @@ for (const s of content.sections) {
   if (s.id === 'career') {
     for (const e of s.entries) add(`career-${e.slug}`, `Career: ${e.company.text}`, 'career', [`${e.company.text} (${e.location.text})`, ...e.roles.map((r) => r.text), ...facts([e.context, e.progression, e.highlights])]);
     add('career-education', 'Education', 'career', facts(s.education));
+    // One timeline chunk so "first job", "how long", and "most recent" questions retrieve the dated history.
+    const oldestFirst = [...s.entries].reverse();
+    add('career-timeline', 'Career timeline: first job to most recent job, with dates', 'career', oldestFirst.map((e, i) =>
+      `${i === 0 ? 'First job' : i === oldestFirst.length - 1 ? 'Most recent job' : `Job ${i + 1}`}: ${e.company.text}. ${e.roles.map((r) => r.text).join('; ')}.`));
   } else if (s.id === 'independent') {
     for (const c of s.cards) add(`project-${c.slug}`, `Project: ${c.name.text}`, 'independent', facts(c));
   } else if (['header', 'footer', 'ask', 'recommendations'].includes(s.id)) {
