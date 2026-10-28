@@ -1,0 +1,156 @@
+/*
+  Direction A, Workbench (recommended in docs/BRAND.md).
+  Source of truth: docs/design-tokens.json. Contrast: scripts/check-contrast.py.
+  Theme follows the visitor's preference (DECISIONS Q12). No toggle, no forced theme.
+  Fonts are self-hosted woff2 files copied into /fonts at build. No runtime Google Fonts.
+*/
+
+@font-face { font-family: "Fraunces"; src: url("/fonts/fraunces-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fraunces"; src: url("/fonts/fraunces-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("/fonts/public-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("/fonts/public-sans-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Public Sans"; src: url("/fonts/public-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
+:root {
+  color-scheme: light dark;
+
+  /* Color, light */
+  --bg-warm: #F3EADB;
+  --bg-cool: #E3EAED;
+  --surface: #FFFCF6;
+  --surface-2: #F8F1E5;
+  --ink: #1C1814;
+  --ink-2: #4A4238;
+  --ink-3: #675D51;
+  --rule: #DCD1BF;
+  --link: #94330F;
+  --accent: #1C1814;
+  --on-accent: #FFFCF6;
+  --bug: #B3261E;
+  --on-bug: #FFFFFF;
+  --bug-text: #A2241C;
+  --merged: #1C7A4B;
+  --merged-text: #17683F;
+  --merged-glow: #2FBF71;
+  --verifier: #3A57A0;
+  --focus: #94330F;
+  --track: #3A332B;
+  --pending: #8A7E6E;
+  --chaos-1: #F0C9A2;
+  --chaos-2: #E9D8A8;
+  --chaos-3: #E8C0B5;
+  --card: #FFF8EC;
+  --calm-tile: #D5E1E6;
+  --needed-bg: #FFD60A;
+  --needed-ink: #111111;
+
+  /* Type */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --size-display: clamp(3rem, 1.9rem + 4.6vw, 6rem);
+  --size-h2: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --size-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --size-lede: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --size-body: 1.0625rem;
+  --size-small: 0.9375rem;
+  --size-mono: 0.8125rem;
+  --size-proof: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  --lh-display: 1;
+  --lh-heading: 1.15;
+  --lh-body: 1.55;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+  --max: 76rem;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --ticket-notch: 7px;
+  --stroke-track: 2px;
+  --stroke-station: 1.5px;
+  --stroke-focus: 2px;
+
+  /* Motion */
+  --dur-state-step: 200ms;
+  --dur-born: 600ms;
+  --dur-merge: 1000ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Layers */
+  --z-backdrop: -1;
+  --z-track: 0;
+  --z-content: 1;
+  --z-ticket: 5;
+  --z-header: 10;
+  --z-mobile-bar: 10;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-warm: #1B1712;
+    --bg-cool: #11171A;
+    --surface: #231E19;
+    --surface-2: #2B251F;
+    --ink: #F2EBDF;
+    --ink-2: #D3C8B7;
+    --ink-3: #ADA190;
+    --rule: #3B332B;
+    --link: #F2A578;
+    --accent: #F2EBDF;
+    --on-accent: #1B1712;
+    --bug: #CC3B2F;
+    --on-bug: #FFFFFF;
+    --bug-text: #FF8B7B;
+    --merged: #45C485;
+    --merged-text: #6FD8A0;
+    --merged-glow: #45C485;
+    --verifier: #93AEF3;
+    --focus: #F2A578;
+    --track: #C9BEAD;
+    --pending: #7D7263;
+    --chaos-1: #5A3A22;
+    --chaos-2: #4F4424;
+    --chaos-3: #57302A;
+    --card: #2E2720;
+    --calm-tile: #1E2A2F;
+    /* needed-bg and needed-ink stay the same in both modes */
+  }
+}
+
+/* Per-frame properties are registered and do not inherit (docs/RESEARCH.md 4.5 rule 6). */
+@property --rim-x { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+
+/* Base usage */
+html { background: var(--bg-warm); color: var(--ink); font-family: var(--font-body); font-size: 100%; line-height: var(--lh-body); }
+:focus-visible { outline: var(--stroke-focus) solid var(--focus); outline-offset: 2px; }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+
+/* The NEEDED FROM TRAVIS callout. Same in light and dark. A build check blocks launch while any exist. */
+.needed {
+  display: block;
+  padding: 5px;
+  background: repeating-linear-gradient(-45deg, var(--needed-bg) 0 10px, var(--needed-ink) 10px 20px);
+  border-radius: var(--radius-sm);
+}
+.needed > span {
+  display: block;
+  background: var(--needed-bg);
+  color: var(--needed-ink);
+  font: 700 var(--size-mono) / 1.35 var(--font-mono);
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+}

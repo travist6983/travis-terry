@@ -1,0 +1,1969 @@
+{
+  "_meta": {
+    "status": "Phase 1 draft. Not approved. Travis reviews every string before build.",
+    "drafted": "2026-10-27",
+    "sourceOfTruth": "private/source/resume-2026.txt (cite as resume L<n>, numbered with cat -n)",
+    "srcKeys": {
+      "resume L<n>": "Line n of private/source/resume-2026.txt",
+      "brief:HEADLINE_PROOF": "HEADLINE_PROOF block in private/BUILD_PROMPT.md (the only numbers allowed as counted moments)",
+      "brief:CORRECTIONS": "CORRECTIONS block in private/BUILD_PROMPT.md",
+      "brief:HARD_RULE_<n> / brief:PHASE1_A / brief:PHASE4": "Site-behavior statements taken from Travis's brief. These describe the site, not Travis, and must be verified in Phase 5 QA.",
+      "decisions:<topic>": "Row <topic> in private/DECISIONS.md",
+      "ui": "Interface label with no factual claim",
+      "decisions:Q<n>": "The bullet in the 'Answers to Phase 1 questions' section of private/DECISIONS.md that answers question n of private/QUESTIONS.md"
+    },
+    "rules": [
+      "Every item with confirm: true shows its confirmText ([NEEDED FROM TRAVIS: ...]) visibly, as the placeholderStyle callout, until Travis supplies the fact: in place of text when text is null, otherwise right after the text or link label. A link with confirm: true, or with a null href, renders as plain text, never as a link.",
+      "Atlas UP and EOS One systems are described in the past tense, so nothing reads as current employment.",
+      "Hedge words (about, roughly, an estimated) are part of the fact. Never drop them, including during count-up animations.",
+      "The phone number is intentionally absent from this file (decisions:Phone). It appears only in the generated resume.pdf.",
+      "The email address is stored split and must be assembled client-side; never write the full address into static HTML.",
+      "No logos. Every company, product, and vendor name is plain text.",
+      "This file is framework-agnostic data. It works the same for a React build or a plain HTML build.",
+      "Public NEEDED FROM TRAVIS text names only what Travis needs to supply or approve. Private findings behind a placeholder stay in /private.",
+      "Ask My Resume entries with approved: false are treated as the fallback, and ask.approvalStatus shows until every entry is approved."
+    ],
+    "sectionOrder": [
+      "header",
+      "hero",
+      "sixty",
+      "pipeline",
+      "safety",
+      "mcp",
+      "platform",
+      "independent",
+      "career",
+      "ask",
+      "recommendations",
+      "contact",
+      "footer"
+    ]
+  },
+  "meta": {
+    "lang": "en",
+    "title": {
+      "id": "meta.title",
+      "text": "Travis Terry | Staff Software Engineer, Agentic AI Engineering",
+      "src": [
+        "resume L1",
+        "resume L2"
+      ]
+    },
+    "description": {
+      "id": "meta.description",
+      "text": "Staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work.",
+      "src": [
+        "resume L6",
+        "brief:HEADLINE_PROOF"
+      ]
+    },
+    "canonical": {
+      "id": "meta.canonical",
+      "text": "https://travisjterry.com",
+      "src": [
+        "decisions:Domain"
+      ]
+    },
+    "og": {
+      "type": "website",
+      "url": "https://travisjterry.com",
+      "title": {
+        "id": "meta.og.title",
+        "text": "Travis Terry, Staff Software Engineer",
+        "src": [
+          "resume L1",
+          "resume L2"
+        ]
+      },
+      "description": {
+        "id": "meta.og.description",
+        "text": "I make AI agents do real, verified engineering work. At Atlas UP I was the sole author of a 30+ skill Claude Code system and used it to clear 100+ bugs and about 25 features in about six weeks.",
+        "src": [
+          "resume L6",
+          "resume L18",
+          "resume L23",
+          "brief:HEADLINE_PROOF"
+        ]
+      },
+      "image": {
+        "path": "/og.png",
+        "id": "meta.og.imageAlt",
+        "text": "Travis Terry, Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "src": [
+          "resume L1",
+          "resume L2"
+        ],
+        "note": "OG image is designed in Phase 2. Alt text must match the text drawn in the image."
+      }
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": {
+        "id": "meta.twitter.title",
+        "text": "Travis Terry, Staff Software Engineer",
+        "src": [
+          "resume L1",
+          "resume L2"
+        ]
+      },
+      "description": {
+        "id": "meta.twitter.description",
+        "text": "I make AI agents do real, verified engineering work. At Atlas UP I was the sole author of a 30+ skill Claude Code system and used it to clear 100+ bugs and about 25 features in about six weeks.",
+        "src": [
+          "resume L6",
+          "resume L18",
+          "resume L23",
+          "brief:HEADLINE_PROOF"
+        ]
+      }
+    }
+  },
+  "person": {
+    "name": {
+      "id": "person.name",
+      "text": "Travis Terry",
+      "src": [
+        "resume L1"
+      ]
+    },
+    "title": {
+      "id": "person.title",
+      "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+      "src": [
+        "resume L2",
+        "decisions:Title line"
+      ]
+    },
+    "location": {
+      "id": "person.location",
+      "text": "Sterling Heights, MI (Remote or Metro Detroit)",
+      "src": [
+        "resume L3",
+        "decisions:Q44"
+      ]
+    },
+    "email": {
+      "id": "person.email",
+      "user": "travisjterry",
+      "domain": "gmail.com",
+      "src": [
+        "resume L3"
+      ],
+      "note": "Assemble client-side for the mailto link. Do not render the joined address in static HTML."
+    },
+    "linkedin": {
+      "id": "person.linkedin",
+      "text": "linkedin.com/in/travisjterry",
+      "href": "https://www.linkedin.com/in/travisjterry",
+      "src": [
+        "resume L3"
+      ]
+    },
+    "github": {
+      "id": "person.github",
+      "text": "github.com/travist6983",
+      "href": "https://github.com/travist6983",
+      "src": [
+        "decisions:Extras",
+        "decisions:Q21"
+      ]
+    },
+    "headshot": {
+      "id": "person.headshot",
+      "text": null,
+      "path": null,
+      "confirm": true,
+      "confirmText": "[NEEDED FROM TRAVIS: headshot photo, square, 800px or larger]",
+      "src": [
+        "decisions:Extras"
+      ]
+    }
+  },
+  "ticket": {
+    "visualTag": {
+      "id": "ticket.visualTag",
+      "text": "Illustration",
+      "src": [
+        "ui"
+      ],
+      "note": "Persistent real-text tag on the traveling ticket and on the PR card at every stage, in the motion, static, mobile, and print layouts (brief:HARD_RULE_2)."
+    }
+  },
+  "ticketState": {
+    "_note": "Names follow the DRAFT STATE MAP in private/BUILD_PROMPT.md. Final visuals are decided in Phase 2 and Phase 3. Every section must read fully with zero motion.",
+    "header": {
+      "mapName": "(not in map)",
+      "state": "none",
+      "description": "Header sits outside the track. It holds the real Pause motion control."
+    },
+    "hero": {
+      "mapName": "Hero",
+      "state": "backlog-bug",
+      "description": "A cluttered backlog column of abstract ticket cards. Our ticket is red and flagged bug. As scrolling begins it lifts out of the column onto the track. Cards carry no IDs, titles, names, avatars, or PR number. The only card text is 'bug' and the Illustration tag. The hero.visualLabel sits beside the column as real text."
+    },
+    "sixty": {
+      "mapName": "60-Second Version",
+      "state": "paused-detail-panel",
+      "description": "The track pauses. The ticket sits beside the summary like a ticket detail panel. The panel shows only this section's real text and the Illustration tag: no ID, key, title, assignee, reporter, sprint, priority, avatar, or other person field."
+    },
+    "pipeline": {
+      "mapName": "The Pipeline",
+      "state": "pipeline-stations",
+      "stages": [
+        "reproduce",
+        "fix",
+        "verify",
+        "regression",
+        "review",
+        "opened-pr"
+      ],
+      "description": "One station per step. Reproduce, Fix, Verify (second agent marker with a fresh context badge), Regression, Review, Opened PR (ticket becomes a PR card). The PR card has no PR number, branch, repo, author, or avatar; before and after thumbnails are abstract shapes, never video or app images."
+    },
+    "safety": {
+      "mapName": "The Safety Model",
+      "state": "gate",
+      "description": "The track passes a gate. A billing / auth lane stops at a human-approval checkpoint, a single retry meter fills to a cap line, and the drawn kill switch is the real control. The retry meter is one continuous bar with no discrete units, numbers, tier names, or tier count, so no cap or tier count can be read from it."
+    },
+    "mcp": {
+      "mapName": "MCP Server",
+      "state": "classifier-branch",
+      "description": "The track branches into tool lanes. A classifier node routes a question to one lane. A delete lane is visibly fenced off."
+    },
+    "platform": {
+      "mapName": "Platform and Leadership",
+      "state": "component-grid",
+      "description": "The track runs through a calm grid of abstract component tiles. Small markers join the track behind the ticket to show team adoption. Markers have no initials or avatars; their count is decorative and never equals a team size stated on the site (3, 5, 9, or 35)."
+    },
+    "independent": {
+      "mapName": "Independent Work",
+      "state": "side-tracks",
+      "description": "Two side tracks branch off to the FoundrKids and Pocket Chronicle panels and rejoin."
+    },
+    "career": {
+      "mapName": "Career Log",
+      "state": "commit-log",
+      "description": "The track becomes a vertical commit log. Each role is a commit with date range and title. Older commits are dimmer."
+    },
+    "ask": {
+      "mapName": "Ask My Resume",
+      "state": "terminal-panel",
+      "description": "A terminal-styled panel beside the track."
+    },
+    "recommendations": {
+      "mapName": "Recommendations (if present)",
+      "state": "signed-commits",
+      "description": "Only rendered when recommendations.enabled is true. Signed-commit style quotes as real HTML text."
+    },
+    "contact": {
+      "mapName": "Contact",
+      "state": "merged-green",
+      "description": "The PR's checks pass, it merges, and its status light turns green. The glow lands on the contact CTAs. Ready for review. The PR card carries no PR number, IDs, titles, names, or avatars. Its only text is the merged status and the Illustration tag."
+    },
+    "footer": {
+      "mapName": "Footer",
+      "state": "static",
+      "description": "Static."
+    }
+  },
+  "sections": [
+    {
+      "id": "header",
+      "wordmark": {
+        "id": "header.wordmark",
+        "text": "Travis Terry",
+        "src": [
+          "resume L1"
+        ],
+        "note": "Wordmark styling is chosen in Phase 2."
+      },
+      "skipLink": {
+        "id": "header.skipLink",
+        "text": "Skip to content",
+        "href": "#hero",
+        "src": [
+          "ui"
+        ]
+      },
+      "nav": [
+        {
+          "id": "header.nav.sixty",
+          "text": "60-second version",
+          "href": "#sixty",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.pipeline",
+          "text": "Pipeline",
+          "href": "#pipeline",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.safety",
+          "text": "Safety",
+          "href": "#safety",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.mcp",
+          "text": "MCP",
+          "href": "#mcp",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.platform",
+          "text": "Platform",
+          "href": "#platform",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.independent",
+          "text": "Independent work",
+          "href": "#independent",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.career",
+          "text": "Career",
+          "href": "#career",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.ask",
+          "text": "Ask",
+          "href": "#ask",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.nav.recommendations",
+          "text": "Recommendations",
+          "href": "#recommendations",
+          "src": [
+            "ui"
+          ],
+          "showWhen": "recommendations.enabled"
+        },
+        {
+          "id": "header.nav.contact",
+          "text": "Contact",
+          "href": "#contact",
+          "src": [
+            "ui"
+          ]
+        }
+      ],
+      "resumePdf": {
+        "id": "header.resumePdf",
+        "text": "Resume PDF",
+        "href": "/resume.pdf",
+        "src": [
+          "ui"
+        ]
+      },
+      "motionControl": {
+        "pauseLabel": {
+          "id": "header.motion.pause",
+          "text": "Pause motion",
+          "src": [
+            "ui"
+          ],
+          "note": "The label never changes. aria-pressed carries the state (true while motion is paused). Do not swap the label."
+        },
+        "ariaLabel": {
+          "id": "header.motion.aria",
+          "text": "Pause all motion on this site",
+          "src": [
+            "ui"
+          ]
+        },
+        "statusPaused": {
+          "id": "header.motion.statusPaused",
+          "text": "Motion paused",
+          "src": [
+            "ui"
+          ],
+          "note": "Optional visible state text beside the control. The button label stays Pause motion."
+        },
+        "statusOn": {
+          "id": "header.motion.statusOn",
+          "text": "Motion on",
+          "src": [
+            "ui"
+          ]
+        }
+      },
+      "mobileBar": [
+        {
+          "id": "header.mobileBar.email",
+          "text": "Email",
+          "hrefFrom": "person.email",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.mobileBar.linkedin",
+          "text": "LinkedIn",
+          "hrefFrom": "person.linkedin",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.mobileBar.resume",
+          "text": "Resume PDF",
+          "href": "/resume.pdf",
+          "src": [
+            "ui"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "h1": {
+        "id": "hero.h1",
+        "text": "Travis Terry",
+        "src": [
+          "resume L1"
+        ]
+      },
+      "titleLine": {
+        "id": "hero.titleLine",
+        "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "src": [
+          "resume L2",
+          "decisions:Title line"
+        ]
+      },
+      "location": {
+        "id": "hero.location",
+        "text": "Sterling Heights, MI (Remote or Metro Detroit)",
+        "src": [
+          "resume L3",
+          "decisions:Q44"
+        ]
+      },
+      "value": {
+        "id": "hero.value",
+        "text": "I make AI agents do real, verified engineering work: at Atlas UP my loops took tickets from reproduction to an opened pull request, and billing and auth always stopped for a human.",
+        "src": [
+          "resume L6",
+          "resume L21",
+          "resume L24",
+          "resume L18"
+        ]
+      },
+      "proof": {
+        "_note": "Exactly three, drawn only from HEADLINE_PROOF. Real HTML text first; any count-up keeps the hedge word visible at every frame.",
+        "items": [
+          {
+            "id": "hero.proof.1",
+            "prefix": "",
+            "num": 15,
+            "suffix": "+",
+            "value": "15+",
+            "label": "years building production web applications",
+            "text": "15+ years building production web applications",
+            "src": [
+              "resume L6",
+              "brief:HEADLINE_PROOF"
+            ]
+          },
+          {
+            "id": "hero.proof.2",
+            "prefix": "",
+            "num": 30,
+            "suffix": "+",
+            "value": "30+",
+            "label": "Claude Code skills I wrote as sole author of an agentic engineering system",
+            "text": "30+ Claude Code skills, sole author",
+            "src": [
+              "resume L21",
+              "brief:HEADLINE_PROOF"
+            ]
+          },
+          {
+            "id": "hero.proof.3",
+            "prefix": "about",
+            "num": 10000,
+            "suffix": "",
+            "value": "about 10,000",
+            "label": "monthly active users on the Vue platform I owned",
+            "text": "about 10,000 monthly active users on EOS One",
+            "src": [
+              "resume L28",
+              "brief:HEADLINE_PROOF"
+            ]
+          }
+        ],
+        "context": {
+          "id": "hero.proof.context",
+          "text": "The bug, acceptance, and regression results are in The Pipeline below.",
+          "src": [
+            "ui"
+          ]
+        }
+      },
+      "visualLabel": {
+        "id": "hero.visualLabel",
+        "text": "Illustrative recreation with synthetic data",
+        "src": [
+          "ui"
+        ],
+        "note": "Real text beside the backlog column, in the motion, static, mobile, and print layouts (brief:HARD_RULE_2)."
+      },
+      "ctas": [
+        {
+          "id": "hero.cta.resume",
+          "text": "Download Resume (PDF)",
+          "href": "/resume.pdf",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "hero.cta.email",
+          "text": "Email",
+          "hrefFrom": "person.email",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "hero.cta.linkedin",
+          "text": "LinkedIn",
+          "hrefFrom": "person.linkedin",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "hero.cta.book",
+          "text": "Book a Call",
+          "href": "https://cal.com/travis-terry-vwjxkq/30min",
+          "src": [
+            "decisions:Booking"
+          ]
+        }
+      ],
+      "sixtyLink": {
+        "id": "hero.sixtyLink",
+        "text": "60-second version",
+        "href": "#sixty",
+        "src": [
+          "ui"
+        ]
+      }
+    },
+    {
+      "id": "sixty",
+      "title": {
+        "id": "sixty.title",
+        "text": "The 60-Second Version",
+        "src": [
+          "ui"
+        ]
+      },
+      "titleLine": {
+        "id": "sixty.titleLine",
+        "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "src": [
+          "resume L2",
+          "decisions:Title line"
+        ]
+      },
+      "focus": {
+        "id": "sixty.focus",
+        "text": "15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work.",
+        "src": [
+          "resume L6",
+          "brief:HEADLINE_PROOF"
+        ]
+      },
+      "achievementsHeading": {
+        "id": "sixty.achievementsHeading",
+        "text": "Top five",
+        "src": [
+          "ui"
+        ]
+      },
+      "achievements": [
+        {
+          "id": "sixty.achievement.1",
+          "text": "Sole author of an agentic engineering system at Atlas UP: 30+ Claude Code skills chained into loops that took a ticket from reproduction to a verified, opened pull request.",
+          "src": [
+            "resume L21",
+            "resume L6",
+            "brief:HEADLINE_PROOF"
+          ]
+        },
+        {
+          "id": "sixty.achievement.2",
+          "text": "Used that system to clear 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back.",
+          "src": [
+            "resume L23",
+            "brief:HEADLINE_PROOF",
+            "decisions:Q35"
+          ]
+        },
+        {
+          "id": "sixty.achievement.3",
+          "text": "Designed the safety model: a separate agent verified every fix with fresh context, retries were capped by risk tier, billing and auth always stopped for a human, and a global kill switch paused all loops.",
+          "src": [
+            "resume L24"
+          ]
+        },
+        {
+          "id": "sixty.achievement.4",
+          "text": "Core contributor on the team that built EOS One's production MCP server, letting customers connect Claude, ChatGPT, and Grok to their data, with deletes kept out of LLM reach.",
+          "src": [
+            "resume L22",
+            "resume L10"
+          ]
+        },
+        {
+          "id": "sixty.achievement.5",
+          "text": "Owned the Vue frontend platform for EOS One, about 10,000 monthly active users; consolidated it into a single npm monorepo and maintained a 150+ component library.",
+          "src": [
+            "resume L28",
+            "brief:HEADLINE_PROOF"
+          ]
+        }
+      ],
+      "stackHeading": {
+        "id": "sixty.stackHeading",
+        "text": "Stack",
+        "src": [
+          "ui"
+        ]
+      },
+      "stack": [
+        {
+          "id": "sixty.stack.agentic",
+          "label": "Agentic AI",
+          "text": "MCP server development, Claude Code (custom skills, commands, autonomous loops), Cursor, verifier agents, LLM-based code review, AI-driven test execution, multi-provider model routing",
+          "src": [
+            "resume L9"
+          ]
+        },
+        {
+          "id": "sixty.stack.frontend",
+          "label": "Frontend",
+          "text": "Vue 2 and 3, JavaScript, HTML5, CSS3 and SCSS, Vite, npm monorepo, design tokens, accessibility, Swift (iOS)",
+          "src": [
+            "resume L11"
+          ]
+        },
+        {
+          "id": "sixty.stack.backend",
+          "label": "Backend",
+          "text": "C# and .NET REST APIs, SignalR, Python and FastAPI, Node.js, PostgreSQL, Redis, Cosmos DB, SQL Server",
+          "src": [
+            "resume L12"
+          ]
+        },
+        {
+          "id": "sixty.stack.cloud",
+          "label": "Cloud, CI/CD, and testing",
+          "text": "Azure DevOps Pipelines, GitHub Actions, Fly.io, Neon, Playwright, Vitest, TestRail",
+          "src": [
+            "resume L13"
+          ]
+        }
+      ],
+      "availabilityHeading": {
+        "id": "sixty.availabilityHeading",
+        "text": "Availability",
+        "src": [
+          "ui"
+        ]
+      },
+      "availability": {
+        "id": "sixty.availability",
+        "text": "Available now. Sterling Heights, MI. Open to remote, or on-site and hybrid in Metro Detroit.",
+        "src": [
+          "resume L3",
+          "decisions:Q44",
+          "decisions:Q49"
+        ],
+        "dynamicDate": "Render client-side as \"Available now (as of <today>)\". Turn off when hired."
+      },
+      "resumeLink": {
+        "id": "sixty.resumeLink",
+        "text": "Download Resume (PDF)",
+        "href": "/resume.pdf",
+        "src": [
+          "ui"
+        ]
+      }
+    },
+    {
+      "id": "pipeline",
+      "title": {
+        "id": "pipeline.title",
+        "text": "The Pipeline",
+        "src": [
+          "ui"
+        ]
+      },
+      "kicker": {
+        "id": "pipeline.kicker",
+        "text": "Atlas UP, June 2025 to October 2026",
+        "src": [
+          "resume L18",
+          "resume L19"
+        ]
+      },
+      "intro": {
+        "id": "pipeline.intro",
+        "text": "At Atlas UP I was the sole author of an agentic engineering system: 30+ Claude Code skills chained into loops that took a Jira ticket from reproduction to a verified, opened pull request.",
+        "src": [
+          "resume L6",
+          "resume L21"
+        ]
+      },
+      "visualLabel": {
+        "id": "pipeline.visualLabel",
+        "text": "Illustrative recreation with synthetic data",
+        "src": [
+          "ui"
+        ]
+      },
+      "visualNote": {
+        "id": "pipeline.visualNote",
+        "text": "The ticket, track, and stations are original drawings. No real tickets, code, prompts, or screenshots appear here.",
+        "src": [
+          "brief:HARD_RULE_2"
+        ]
+      },
+      "stages": [
+        {
+          "id": "pipeline.stage.reproduce",
+          "stage": "reproduce",
+          "label": "Reproduce",
+          "text": "The loop started by reproducing the ticket.",
+          "src": [
+            "resume L21"
+          ]
+        },
+        {
+          "id": "pipeline.stage.fix",
+          "stage": "fix",
+          "label": "Fix",
+          "text": "Next, the loop made the fix.",
+          "src": [
+            "resume L21"
+          ]
+        },
+        {
+          "id": "pipeline.stage.verify",
+          "stage": "verify",
+          "label": "Verify",
+          "badge": "fresh context",
+          "text": "A separate agent, not the one that wrote the fix, verified every fix with fresh context.",
+          "src": [
+            "resume L24",
+            "resume L21"
+          ]
+        },
+        {
+          "id": "pipeline.stage.regression",
+          "stage": "regression",
+          "label": "Regression",
+          "text": "The change then ran through regression.",
+          "src": [
+            "resume L21"
+          ],
+          "aside": {
+            "id": "pipeline.stage.regression.aside",
+            "label": "Related: release regression",
+            "text": "At the release level, I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. It cut a full regression cycle from about a week to 8 to 10 hours and removed QA as the release bottleneck.",
+            "src": [
+              "resume L26",
+              "brief:HEADLINE_PROOF"
+            ]
+          }
+        },
+        {
+          "id": "pipeline.stage.review",
+          "stage": "review",
+          "label": "Review",
+          "text": "Then came a review step.",
+          "src": [
+            "resume L21"
+          ],
+          "aside": {
+            "id": "pipeline.stage.review.aside",
+            "label": "Related: PR review agent",
+            "text": "I also built an autonomous pull request review agent on Azure DevOps. It reviewed open PRs at their latest commit and posted severity-ranked findings, encoding team standards so I was no longer the mandatory manual review gate.",
+            "src": [
+              "resume L25"
+            ]
+          }
+        },
+        {
+          "id": "pipeline.stage.openedPr",
+          "stage": "opened-pr",
+          "label": "Opened PR",
+          "text": "The loop ended with an opened pull request that included before and after videos.",
+          "src": [
+            "resume L21"
+          ]
+        }
+      ],
+      "visualLabels": {
+        "_note": "Generic labels for the illustrative visual only. No real ticket titles, tool names, or data.",
+        "ticketFlag": {
+          "id": "pipeline.visual.ticketFlag",
+          "text": "bug",
+          "src": [
+            "ui"
+          ]
+        },
+        "findingLevels": [
+          {
+            "id": "pipeline.visual.finding.high",
+            "text": "high",
+            "src": [
+              "ui"
+            ]
+          },
+          {
+            "id": "pipeline.visual.finding.medium",
+            "text": "medium",
+            "src": [
+              "ui"
+            ]
+          },
+          {
+            "id": "pipeline.visual.finding.low",
+            "text": "low",
+            "src": [
+              "ui"
+            ]
+          }
+        ]
+      },
+      "result": {
+        "id": "pipeline.result",
+        "text": "I used the system to clear a backlog of 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back.",
+        "src": [
+          "resume L23",
+          "brief:HEADLINE_PROOF",
+          "decisions:Q35"
+        ]
+      }
+    },
+    {
+      "id": "safety",
+      "title": {
+        "id": "safety.title",
+        "text": "The Safety Model",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "safety.intro",
+        "text": "I designed the safety model, and every automated action ran inside it.",
+        "src": [
+          "resume L24",
+          "resume L6"
+        ]
+      },
+      "visualLabel": {
+        "id": "safety.visualLabel",
+        "text": "Illustrative recreation with synthetic data",
+        "src": [
+          "ui"
+        ]
+      },
+      "visualNote": {
+        "id": "safety.visualNote",
+        "text": "The gate, lanes, and retry meter are original drawings. No real limits, tiers, or settings are shown.",
+        "src": [
+          "brief:HARD_RULE_2"
+        ]
+      },
+      "items": [
+        {
+          "id": "safety.item.gates",
+          "label": "Approval gates",
+          "text": "Sensitive areas such as billing and auth always stopped for a human.",
+          "src": [
+            "resume L24",
+            "resume L10"
+          ]
+        },
+        {
+          "id": "safety.item.retries",
+          "label": "Risk-tiered retries",
+          "text": "Retries were capped by risk tier.",
+          "src": [
+            "resume L24",
+            "resume L10"
+          ]
+        },
+        {
+          "id": "safety.item.verifier",
+          "label": "Verifier agent",
+          "text": "A separate agent verified every fix with fresh context.",
+          "src": [
+            "resume L24"
+          ]
+        },
+        {
+          "id": "safety.item.killSwitch",
+          "label": "Global kill switch",
+          "text": "A global kill switch paused all loops.",
+          "src": [
+            "resume L24"
+          ]
+        }
+      ],
+      "visualLabels": {
+        "lane": {
+          "id": "safety.visual.lane",
+          "text": "billing / auth",
+          "src": [
+            "resume L24"
+          ]
+        },
+        "checkpoint": {
+          "id": "safety.visual.checkpoint",
+          "text": "human approval",
+          "src": [
+            "resume L10",
+            "resume L24"
+          ]
+        },
+        "retryCap": {
+          "id": "safety.visual.retryCap",
+          "text": "retry cap by risk tier",
+          "src": [
+            "resume L24",
+            "resume L10"
+          ]
+        }
+      },
+      "killSwitchControl": {
+        "heading": {
+          "id": "safety.killSwitch.heading",
+          "text": "Try the kill switch",
+          "src": [
+            "ui"
+          ]
+        },
+        "text": {
+          "id": "safety.killSwitch.text",
+          "text": "This site has one too. Pause motion stops every animation and smooth scroll and switches to a static layout. Your choice is remembered on this device, and if your system asks for reduced motion, the site starts paused.",
+          "src": [
+            "brief:HARD_RULE_7"
+          ],
+          "verifyIn": "Phase 5 QA"
+        },
+        "controlRef": "header.motionControl"
+      }
+    },
+    {
+      "id": "mcp",
+      "title": {
+        "id": "mcp.title",
+        "text": "MCP Server",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "mcp.intro",
+        "text": "I was a core contributor on the team that built a production MCP server for EOS One. It let customers connect Claude, ChatGPT, and Grok to their EOS One data.",
+        "src": [
+          "resume L22",
+          "resume L6"
+        ]
+      },
+      "classifier": {
+        "id": "mcp.classifier",
+        "text": "A question classifier routed each request to the right tool.",
+        "src": [
+          "resume L22"
+        ]
+      },
+      "destructive": {
+        "id": "mcp.destructive",
+        "text": "Destructive actions, like deletes, were deliberately excluded, so they had to happen in the app, never through an LLM.",
+        "src": [
+          "resume L22",
+          "resume L10"
+        ]
+      },
+      "visualLabel": {
+        "id": "mcp.visualLabel",
+        "text": "Illustrative recreation with synthetic data",
+        "src": [
+          "ui"
+        ]
+      },
+      "visualLabels": {
+        "question": {
+          "id": "mcp.visual.question",
+          "text": "question",
+          "src": [
+            "ui"
+          ]
+        },
+        "classifier": {
+          "id": "mcp.visual.classifier",
+          "text": "classifier",
+          "src": [
+            "ui"
+          ]
+        },
+        "toolLane": {
+          "id": "mcp.visual.toolLane",
+          "text": "tool",
+          "src": [
+            "ui"
+          ]
+        },
+        "deleteLane": {
+          "id": "mcp.visual.deleteLane",
+          "text": "delete: in the app only",
+          "src": [
+            "resume L22"
+          ]
+        }
+      }
+    },
+    {
+      "id": "platform",
+      "title": {
+        "id": "platform.title",
+        "text": "Platform and Leadership",
+        "src": [
+          "ui"
+        ]
+      },
+      "platformHeading": {
+        "id": "platform.platformHeading",
+        "text": "Platform",
+        "src": [
+          "ui"
+        ]
+      },
+      "vue": {
+        "id": "platform.vue",
+        "text": "I owned the Vue frontend platform for EOS One, an AI business operating system with about 10,000 monthly active users.",
+        "src": [
+          "resume L28",
+          "brief:HEADLINE_PROOF"
+        ]
+      },
+      "stack": {
+        "id": "platform.stack",
+        "text": "The platform ran on Vue, C# and .NET, SignalR, Redis, Cosmos DB, and Python microservices.",
+        "src": [
+          "resume L28"
+        ]
+      },
+      "monorepo": {
+        "id": "platform.monorepo",
+        "text": "I consolidated it into a single npm monorepo and maintained a 150+ component library, which I had built from the ground up, and moved roughly 80% of it to design tokens.",
+        "src": [
+          "resume L28",
+          "resume L34",
+          "decisions:Q38",
+          "decisions:Q39"
+        ]
+      },
+      "library": {
+        "id": "platform.library",
+        "text": "Earlier, at EOS Worldwide, I built the EOS One component library from the ground up, establishing the frontend architecture, patterns, and standards the product still runs on.",
+        "src": [
+          "resume L34"
+        ]
+      },
+      "shipping": {
+        "id": "platform.shipping",
+        "text": "At Atlas UP we ran a weekly release train and used Ship/Show/Ask, so changes reached production almost daily on Azure DevOps Pipelines.",
+        "src": [
+          "resume L13",
+          "resume L29",
+          "decisions:Q37"
+        ]
+      },
+      "leadershipHeading": {
+        "id": "platform.leadershipHeading",
+        "text": "Leadership",
+        "src": [
+          "ui"
+        ]
+      },
+      "review": {
+        "id": "platform.review",
+        "text": "At EOS Worldwide, as the sole senior engineer on a predominantly junior frontend team, I personally reviewed every frontend pull request and used review as the main lever for raising the team's baseline.",
+        "src": [
+          "resume L35",
+          "resume L32"
+        ]
+      },
+      "mentoring": {
+        "id": "platform.mentoring",
+        "text": "After my promotion to Staff Frontend Software Engineer, Lead, I led three direct reports with one on ones and growth planning alongside hands-on delivery.",
+        "src": [
+          "resume L36",
+          "resume L33",
+          "decisions:Q40"
+        ]
+      },
+      "mentorship": {
+        "id": "platform.mentorship",
+        "text": "I have a track record of mentoring engineers into independent contributors.",
+        "src": [
+          "resume L6",
+          "resume L15"
+        ]
+      },
+      "adoption": {
+        "id": "platform.adoption",
+        "text": "At Atlas UP, I led the team's AI adoption from Cursor to Claude Code to autonomous loops. The rest of the team adopted the skills after seeing the delivery rate.",
+        "src": [
+          "resume L27",
+          "resume L18"
+        ]
+      },
+      "standards": {
+        "id": "platform.standards",
+        "text": "At Atlas UP, I encoded team standards into the PR review agent described in The Pipeline.",
+        "src": [
+          "resume L25",
+          "resume L15",
+          "resume L18"
+        ]
+      },
+      "retention": {
+        "id": "platform.retention",
+        "text": "I was retained as one of three staff engineers when the post-acquisition team went from 35 people to 9.",
+        "src": [
+          "resume L30"
+        ]
+      },
+      "visualLabel": {
+        "id": "platform.visualLabel",
+        "text": "Illustrative recreation with synthetic data",
+        "src": [
+          "ui"
+        ],
+        "note": "Real text beside the component grid and team markers, in the motion, static, mobile, and print layouts (brief:HARD_RULE_2)."
+      },
+      "visualNote": {
+        "id": "platform.visualNote",
+        "text": "Component tiles and team markers are abstract shapes, not real components or people.",
+        "src": [
+          "ui"
+        ]
+      }
+    },
+    {
+      "id": "independent",
+      "title": {
+        "id": "independent.title",
+        "text": "Independent Work",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "independent.intro",
+        "text": "I built two AI products on my own: FoundrKids, an AI maker-learning platform in pre-launch, and Pocket Chronicle, a native iOS app I shipped to the App Store and later retired.",
+        "src": [
+          "resume L56",
+          "resume L57",
+          "resume L62",
+          "decisions:Q31",
+          "decisions:Q34"
+        ]
+      },
+      "cards": [
+        {
+          "slug": "foundrkids",
+          "name": {
+            "id": "independent.foundrkids.name",
+            "text": "FoundrKids",
+            "src": [
+              "resume L56"
+            ]
+          },
+          "role": {
+            "id": "independent.foundrkids.role",
+            "text": "Founder and Sole Engineer",
+            "src": [
+              "resume L56"
+            ]
+          },
+          "dates": {
+            "id": "independent.foundrkids.dates",
+            "text": "February 2026 to Present",
+            "src": [
+              "decisions:FoundrKids start"
+            ]
+          },
+          "status": {
+            "id": "independent.foundrkids.status",
+            "text": "In pre-launch",
+            "src": [
+              "resume L57"
+            ]
+          },
+          "summary": {
+            "id": "independent.foundrkids.summary",
+            "text": "An AI maker-learning platform for kids 7 to 15: a chat coach guides build missions while parents track safety.",
+            "src": [
+              "resume L57"
+            ]
+          },
+          "stats": [
+            {
+              "id": "independent.foundrkids.stat.endpoints",
+              "value": "140+",
+              "label": "API endpoints",
+              "text": "140+ API endpoints",
+              "src": [
+                "resume L58",
+                "brief:HEADLINE_PROOF"
+              ]
+            },
+            {
+              "id": "independent.foundrkids.stat.tests",
+              "value": "about 2,500",
+              "label": "tests",
+              "text": "about 2,500 tests",
+              "src": [
+                "resume L58",
+                "brief:HEADLINE_PROOF"
+              ]
+            }
+          ],
+          "points": [
+            {
+              "id": "independent.foundrkids.build",
+              "text": "I built the full stack solo: three Vue 3 apps, a FastAPI backend with 140+ endpoints, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine.",
+              "src": [
+                "resume L58"
+              ]
+            },
+            {
+              "id": "independent.foundrkids.safety",
+              "text": "Every model call goes through a six-layer safety pipeline: blocklist, OpenAI moderation, prompt scaffolding, the model, a streaming sentence buffer, and a PII-redacting output filter. It fails closed; critical events end the session and alert the parent.",
+              "src": [
+                "resume L59"
+              ]
+            },
+            {
+              "id": "independent.foundrkids.routing",
+              "text": "Cost-controlled model routing sends work to Anthropic or OpenAI by mission tier, with cross-vendor failover and a monthly spend cap per household.",
+              "src": [
+                "resume L60"
+              ]
+            },
+            {
+              "id": "independent.foundrkids.coppa",
+              "text": "COPPA is built into the data layer: verified parental consent, a 90-day chat purge, real child deletion, and a tamper-proof audit log.",
+              "src": [
+                "resume L61"
+              ]
+            }
+          ],
+          "links": [
+            {
+              "id": "independent.foundrkids.caseStudy",
+              "text": "Read the case study",
+              "href": "/work/foundrkids",
+              "src": [
+                "ui"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "pocket-chronicle",
+          "name": {
+            "id": "independent.pocketChronicle.name",
+            "text": "Pocket Chronicle",
+            "src": [
+              "decisions:Pocket Chronicle"
+            ],
+            "note": "The resume (L62) and HEADLINE_PROOF spell this with a trailing s. That is a typo; always use the singular."
+          },
+          "type": {
+            "id": "independent.pocketChronicle.type",
+            "text": "Native iOS app",
+            "src": [
+              "resume L62"
+            ]
+          },
+          "dates": {
+            "id": "independent.pocketChronicle.dates",
+            "text": "2026",
+            "src": [
+              "resume L62"
+            ]
+          },
+          "status": {
+            "id": "independent.pocketChronicle.status",
+            "text": "Shipped to the App Store in 2026, now retired. It worked end to end but did not find users, so I shut it down rather than keep paying to run the backend.",
+            "src": [
+              "decisions:Pocket Chronicle",
+              "decisions:Q31",
+              "decisions:Q61"
+            ]
+          },
+          "summary": {
+            "id": "independent.pocketChronicle.summary",
+            "text": "A family memory app I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack.",
+            "src": [
+              "resume L63",
+              "decisions:Q32"
+            ]
+          },
+          "stats": [
+            {
+              "id": "independent.pocketChronicle.stat.tests",
+              "value": "about 2,700",
+              "label": "automated tests",
+              "text": "about 2,700 automated tests",
+              "src": [
+                "resume L65",
+                "brief:HEADLINE_PROOF"
+              ]
+            },
+            {
+              "id": "independent.pocketChronicle.stat.prs",
+              "value": "200+",
+              "label": "merged PRs",
+              "text": "200+ merged PRs",
+              "src": [
+                "resume L65",
+                "brief:HEADLINE_PROOF"
+              ]
+            }
+          ],
+          "points": [
+            {
+              "id": "independent.pocketChronicle.stack",
+              "text": "Stack: SwiftUI and SwiftData with offline-first sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models; FastAPI and async SQLAlchemy on Postgres, deployed to Fly.io.",
+              "src": [
+                "resume L64"
+              ]
+            },
+            {
+              "id": "independent.pocketChronicle.quality",
+              "text": "Quality: about 2,700 automated tests, 200+ merged PRs, and a written spec and decision log behind every change.",
+              "src": [
+                "resume L65"
+              ]
+            }
+          ],
+          "links": [
+            {
+              "id": "independent.pocketChronicle.caseStudy",
+              "text": "Read the case study",
+              "href": "/work/pocket-chronicle",
+              "src": [
+                "ui"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "career",
+      "title": {
+        "id": "career.title",
+        "text": "Career Log",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "career.intro",
+        "text": "Each role is a branch that merged into main. Oldest first, ending at HEAD.",
+        "src": [
+          "ui"
+        ]
+      },
+      "entries": [
+        {
+          "slug": "atlas-up",
+          "company": {
+            "id": "career.atlasUp.company",
+            "text": "Atlas UP Inc.",
+            "src": [
+              "resume L18"
+            ]
+          },
+          "location": {
+            "id": "career.atlasUp.location",
+            "text": "Remote",
+            "src": [
+              "resume L18"
+            ]
+          },
+          "roles": [
+            {
+              "id": "career.atlasUp.role.1",
+              "title": "Staff Software Engineer",
+              "dates": "June 2025 to October 2026",
+              "text": "Staff Software Engineer, June 2025 to October 2026",
+              "src": [
+                "resume L19"
+              ]
+            }
+          ],
+          "context": {
+            "id": "career.atlasUp.context",
+            "text": "Joined through Atlas UP's acquisition of EOS One from EOS Worldwide, with continuous ownership of the product since February 2023.",
+            "src": [
+              "resume L20"
+            ]
+          },
+          "highlights": [
+            {
+              "id": "career.atlasUp.h1",
+              "text": "Sole author of a 30+ skill Claude Code system that took tickets from reproduction to a verified, opened pull request.",
+              "src": [
+                "resume L6",
+                "resume L21"
+              ],
+              "see": "#pipeline"
+            },
+            {
+              "id": "career.atlasUp.h2",
+              "text": "Designed the safety model: verifier agent, risk-tiered retries, human approval for billing and auth, and a global kill switch.",
+              "src": [
+                "resume L24"
+              ],
+              "see": "#safety"
+            },
+            {
+              "id": "career.atlasUp.h3",
+              "text": "Core contributor on the team that built EOS One's production MCP server.",
+              "src": [
+                "resume L22"
+              ],
+              "see": "#mcp"
+            },
+            {
+              "id": "career.atlasUp.h4",
+              "text": "Owned the Vue frontend platform for EOS One, about 10,000 monthly active users.",
+              "src": [
+                "resume L28",
+                "brief:HEADLINE_PROOF"
+              ],
+              "see": "#platform"
+            }
+          ]
+        },
+        {
+          "slug": "eos-worldwide",
+          "company": {
+            "id": "career.eos.company",
+            "text": "EOS Worldwide",
+            "src": [
+              "resume L32"
+            ]
+          },
+          "location": {
+            "id": "career.eos.location",
+            "text": "Remote",
+            "src": [
+              "resume L32"
+            ]
+          },
+          "roles": [
+            {
+              "id": "career.eos.role.1",
+              "title": "Staff Frontend Software Engineer, Lead",
+              "dates": "Dec 2024 to June 2025",
+              "text": "Staff Frontend Software Engineer, Lead, Dec 2024 to June 2025",
+              "src": [
+                "brief:CORRECTIONS",
+                "resume L33"
+              ]
+            },
+            {
+              "id": "career.eos.role.2",
+              "title": "Senior Frontend Developer",
+              "dates": "Feb 2023 to Dec 2024",
+              "text": "Senior Frontend Developer, Feb 2023 to Dec 2024",
+              "src": [
+                "brief:CORRECTIONS",
+                "resume L33"
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "id": "career.eos.h1",
+              "text": "Built the EOS One component library from the ground up, establishing the frontend architecture, patterns, and standards the product still runs on.",
+              "src": [
+                "resume L34"
+              ]
+            },
+            {
+              "id": "career.eos.h2",
+              "text": "Promoted to Staff Frontend Software Engineer, Lead; led three direct reports with one on ones and growth planning alongside hands-on delivery.",
+              "src": [
+                "resume L36",
+                "resume L33",
+                "decisions:Q40"
+              ]
+            },
+            {
+              "id": "career.eos.h3",
+              "text": "Expanded from frontend into full-stack delivery as AI tooling matured, contributing across the C# API surface and Python services instead of handing work off.",
+              "src": [
+                "resume L37"
+              ]
+            },
+            {
+              "id": "career.eos.h4",
+              "text": "Built AI-powered product features, including voice-activated note-taking and automation inside the meetings platform; added Vitest unit testing and CI/CD quality checks.",
+              "src": [
+                "resume L38"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "qualfon",
+          "company": {
+            "id": "career.qualfon.company",
+            "text": "Qualfon (formerly Dialog Direct and Budco)",
+            "src": [
+              "resume L40"
+            ]
+          },
+          "location": {
+            "id": "career.qualfon.location",
+            "text": "Highland Park, MI",
+            "src": [
+              "resume L40"
+            ]
+          },
+          "roles": [
+            {
+              "id": "career.qualfon.role.1",
+              "title": "Senior Developer",
+              "dates": "April 2011 to February 2023",
+              "text": "Senior Developer, April 2011 to February 2023",
+              "src": [
+                "resume L41"
+              ]
+            }
+          ],
+          "progression": {
+            "id": "career.qualfon.progression",
+            "text": "Progressed from Email Marketing Coordinator to WordPress Developer, NetSuite Developer, NetSuite Team Lead, and Senior Developer.",
+            "src": [
+              "resume L42"
+            ]
+          },
+          "highlights": [
+            {
+              "id": "career.qualfon.h1",
+              "text": "Built and maintained roughly 15 NetSuite and SuiteCommerce B2B instances serving an estimated 100,000 users.",
+              "src": [
+                "resume L43"
+              ]
+            },
+            {
+              "id": "career.qualfon.h2",
+              "text": "Built a multi-tenant Vue and C# ecommerce platform that deployed customer-specific instances from a shared core, and led its frontend migration from Vue 2 to Vue 3.",
+              "src": [
+                "resume L43",
+                "resume L44"
+              ]
+            },
+            {
+              "id": "career.qualfon.h3",
+              "text": "Led the NetSuite team with five direct reports, owning delivery, technical direction, and client-facing requirements work.",
+              "src": [
+                "resume L45"
+              ]
+            },
+            {
+              "id": "career.qualfon.h4",
+              "text": "Wrote data integrations connecting on-premise Oracle databases to NetSuite, Salesforce, and internal APIs using Jitterbit.",
+              "src": [
+                "resume L46"
+              ]
+            },
+            {
+              "id": "career.qualfon.h5",
+              "text": "Built and analyzed performance and load tests across web and mobile applications, tracing bottlenecks from IIS servers down to slow SQL.",
+              "src": [
+                "resume L47"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "skbk",
+          "company": {
+            "id": "career.skbk.company",
+            "text": "SKBK Sotheby's International Realty",
+            "src": [
+              "resume L50"
+            ]
+          },
+          "location": {
+            "id": "career.skbk.location",
+            "text": "Birmingham, MI",
+            "src": [
+              "resume L50"
+            ]
+          },
+          "roles": [
+            {
+              "id": "career.skbk.role.1",
+              "title": "Developer and Systems Operations",
+              "dates": "June 2006 to March 2011",
+              "text": "Developer and Systems Operations, June 2006 to March 2011",
+              "src": [
+                "resume L51"
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "id": "career.skbk.h1",
+              "text": "Maintained the public website and MLS listing feeds (IDX and RETS), and built agent-facing intranet tools in PHP and MySQL.",
+              "src": [
+                "resume L52"
+              ]
+            },
+            {
+              "id": "career.skbk.h2",
+              "text": "Handled SEO, analytics, and all company IT assets including Windows Server, Exchange, and network hardware.",
+              "src": [
+                "resume L53"
+              ]
+            }
+          ]
+        }
+      ],
+      "education": {
+        "heading": {
+          "id": "career.education.heading",
+          "text": "Education",
+          "src": [
+            "ui"
+          ]
+        },
+        "entry": {
+          "id": "career.education.entry",
+          "school": "ITT Technical Institute",
+          "location": "Troy, MI",
+          "degree": "Associate of Applied Science, Computer Science",
+          "text": "ITT Technical Institute, Troy, MI. Associate of Applied Science, Computer Science.",
+          "src": [
+            "resume L67"
+          ],
+          "note": "No graduation year on the resume. Do not add one."
+        }
+      }
+    },
+    {
+      "id": "ask",
+      "title": {
+        "id": "ask.title",
+        "text": "Ask My Resume",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "ask.intro",
+        "text": "Ask a question about my work. Every answer here is one I approved, and each shows the section it comes from.",
+        "src": [
+          "brief:HARD_RULE_11",
+          "decisions:Q46"
+        ],
+        "verifyIn": "Phase 5 QA"
+      },
+      "classifierLine": {
+        "id": "ask.classifierLine",
+        "text": "The idea comes from the question classifier in the EOS One MCP server I helped build, which routed each request to the right tool.",
+        "src": [
+          "resume L22",
+          "resume L6",
+          "brief:HARD_RULE_11"
+        ]
+      },
+      "noLiveModel": {
+        "id": "ask.noLiveModel",
+        "text": "No live AI model runs here.",
+        "src": [
+          "brief:HARD_RULE_11"
+        ],
+        "verifyIn": "Phase 5 QA"
+      },
+      "approvalStatus": {
+        "id": "ask.approvalStatus",
+        "text": null,
+        "confirm": true,
+        "confirmText": "[NEEDED FROM TRAVIS: approve each Ask My Resume answer]",
+        "src": [
+          "brief:PHASE1_A"
+        ],
+        "note": "Rendered above the answer region until every entry in content/ask-my-resume.json has approved: true. Until then, the classifier treats each unapproved entry as the fallback, so ask.intro stays true."
+      },
+      "inputLabel": {
+        "id": "ask.inputLabel",
+        "text": "Your question",
+        "src": [
+          "ui"
+        ]
+      },
+      "placeholder": {
+        "id": "ask.placeholder",
+        "text": "Try: what did your agentic pipeline do?",
+        "src": [
+          "ui"
+        ]
+      },
+      "submit": {
+        "id": "ask.submit",
+        "text": "Ask",
+        "src": [
+          "ui"
+        ]
+      },
+      "sourceLabel": {
+        "id": "ask.sourceLabel",
+        "text": "Source:",
+        "src": [
+          "ui"
+        ]
+      },
+      "fallback": {
+        "id": "ask.fallback",
+        "text": "I don't have that here. Email me.",
+        "src": [
+          "brief:HARD_RULE_11"
+        ],
+        "linkFrom": "person.email"
+      },
+      "answersRef": "content/ask-my-resume.json",
+      "answersNote": "Questions and answers live in content/ask-my-resume.json. Every answer there is [NEEDED FROM TRAVIS: approve each Ask My Resume answer] until approved: each entry carries approved: false, and the classifier returns the fallback for an unapproved entry (see ask.approvalStatus). An entry with fallbackOnly: true always shows the fallback, and a why-did-you-leave question reaches its answer only when it names Atlas UP (departureRoutes). An entry won only through contextKeywords shows its contextAnswer when it has one. Answers render in an aria-live region with the label Source: and the names of the entry's sourceSections. The site never echoes the matched question text, and never shows an entry with suggest: false as a suggested or example question."
+    },
+    {
+      "id": "recommendations",
+      "enabled": false,
+      "note": "Off by default (decisions:Recommendations). Travis is asking people. Only real, attributed recommendations with written permission go here. While enabled is false, render nothing: no heading, no empty state, and no nav link.",
+      "title": {
+        "id": "recommendations.title",
+        "text": "Recommendations",
+        "src": [
+          "ui"
+        ]
+      },
+      "items": []
+    },
+    {
+      "id": "contact",
+      "heading": {
+        "id": "contact.heading",
+        "text": "Ready for review.",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "contact.intro",
+        "text": "If you're hiring for agentic AI engineering, AI applications, or web platform work, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit.",
+        "src": [
+          "resume L2",
+          "decisions:Q44"
+        ]
+      },
+      "links": [
+        {
+          "id": "contact.email",
+          "text": "Email",
+          "hrefFrom": "person.email",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "contact.linkedin",
+          "text": "LinkedIn",
+          "hrefFrom": "person.linkedin",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "contact.book",
+          "text": "Book a Call",
+          "href": "https://cal.com/travis-terry-vwjxkq/30min",
+          "src": [
+            "decisions:Booking"
+          ]
+        },
+        {
+          "id": "contact.resume",
+          "text": "Download Resume (PDF)",
+          "href": "/resume.pdf",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "contact.github",
+          "text": "github.com/travist6983",
+          "hrefFrom": "person.github",
+          "src": [
+            "decisions:Extras",
+            "decisions:Q21"
+          ],
+          "href": "https://github.com/travist6983"
+        }
+      ],
+      "mailto": {
+        "subject": {
+          "id": "contact.mailto.subject",
+          "text": "Hello from travisjterry.com",
+          "src": [
+            "ui"
+          ]
+        },
+        "subjectWithRef": {
+          "id": "contact.mailto.subjectWithRef",
+          "text": "Hello from travisjterry.com (ref: {ref})",
+          "src": [
+            "ui"
+          ],
+          "note": "{ref} is the visitor's ?ref=<tag> value (decisions:Analytics)."
+        }
+      },
+      "mergedStatus": {
+        "id": "contact.mergedStatus",
+        "text": "Merged. All checks passed.",
+        "src": [
+          "ui"
+        ],
+        "note": "Label on the illustrative PR card only. It is the site's story ending, not a claim about the Atlas UP system."
+      }
+    },
+    {
+      "id": "footer",
+      "curl": {
+        "lead": {
+          "id": "footer.curl.lead",
+          "text": "Prefer a terminal?",
+          "src": [
+            "ui"
+          ]
+        },
+        "command": {
+          "id": "footer.curl.command",
+          "text": "curl -sL travisjterry.com/cli",
+          "src": [
+            "brief:HARD_RULE_10",
+            "decisions:Q17",
+            "decisions:Domain"
+          ],
+          "verifyIn": "Phase 5 QA"
+        }
+      },
+      "howBuilt": {
+        "id": "footer.howBuilt",
+        "text": "How this site was built",
+        "href": "/how-this-site-was-built",
+        "src": [
+          "ui"
+        ]
+      },
+      "machineReadable": [
+        {
+          "id": "footer.resumeTxt",
+          "text": "resume.txt",
+          "href": "/resume.txt",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "footer.resumeJson",
+          "text": "resume.json",
+          "href": "/resume.json",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "footer.llmsTxt",
+          "text": "llms.txt",
+          "href": "/llms.txt",
+          "src": [
+            "ui"
+          ]
+        }
+      ],
+      "privacy": {
+        "id": "footer.privacy",
+        "text": "Privacy: this site sets no cookies and uses no third-party trackers. Visits are counted with Cloudflare Web Analytics, which is cookieless. Links I share with applications may carry a ?ref tag so I know which application a visit came from; it does not identify you.",
+        "src": [
+          "decisions:Analytics",
+          "brief:HARD_RULE_12"
+        ],
+        "verifyIn": "Phase 5 QA"
+      },
+      "accessibility": {
+        "id": "footer.accessibility",
+        "text": "Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Pause motion, or your system's reduced-motion setting, stops all animation. If something doesn't work for you, email me.",
+        "src": [
+          "brief:HARD_RULE_5",
+          "brief:HARD_RULE_7",
+          "brief:PHASE4"
+        ],
+        "verifyIn": "Phase 5 QA"
+      },
+      "disclosure": {
+        "id": "footer.disclosure",
+        "text": "Company, product, and tool names on this site are plain text and do not imply any sponsorship, partnership, or endorsement.",
+        "src": [
+          "brief:HARD_RULE_4"
+        ]
+      },
+      "copyright": {
+        "id": "footer.copyright",
+        "text": "© 2026 Travis Terry",
+        "src": [
+          "resume L1"
+        ]
+      }
+    }
+  ],
+  "placeholderStyle": "Every confirmText renders on the page as a loud, striped yellow NEEDED FROM TRAVIS callout naming what is missing. Launch is blocked while any remain."
+}

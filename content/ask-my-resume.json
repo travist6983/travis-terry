@@ -1,0 +1,1270 @@
+{
+  "matcher": "Deterministic keyword classifier, no LLM. Normalize the question and return the fallback if a fenced phrase appears. Next, if a departureRoutes term appears (a why-did-you-leave question), return its entry only when the question also names one of its requiresAny phrases (Atlas UP); otherwise return the fallback. Then score each entry's priorityKeywords (each matched phrase adds its word count); if any matched, the highest score wins, and a tie goes to the entry listed first. Otherwise return an entry whose question or variant matches exactly, otherwise score keywords the same way. contextKeywords only break ties between the top keyword scores, or decide when no keyword matched. Ties then go to the entry listed first. No score returns the fallback. An entry won only through contextKeywords shows its contextAnswer when it has one. An entry with approved: false is treated as the fallback, so only answers Travis has approved are ever shown. An entry with fallbackOnly: true always returns the fallback; it exists only so its questions are caught before other entries' keywords. Every other answer shows its sourceSections. Entries with suggest: false are never shown as suggested or example questions, and the matched question text is never echoed back.",
+  "fallback": "I don't have that here. Email me.",
+  "fencedTerms": [
+    "salary",
+    "compensation",
+    "pay range",
+    "pay expectations",
+    "hourly rate",
+    "source code",
+    "show me the code",
+    "see the code",
+    "share the code",
+    "the prompts",
+    "your prompts",
+    "system prompt",
+    "prompt text",
+    "skill file",
+    "skill files",
+    "screenshot",
+    "screenshots",
+    "customer data",
+    "customer names",
+    "which customers",
+    "ticket data",
+    "tool names",
+    "internal tool",
+    "internal tools",
+    "who else",
+    "coworker",
+    "coworkers",
+    "colleague",
+    "colleagues",
+    "who did you work with",
+    "your manager",
+    "your boss",
+    "references",
+    "who owns",
+    "owned by",
+    "own your",
+    "rights to",
+    "company time",
+    "work hours",
+    "on the clock",
+    "moonlight",
+    "moonlighting",
+    "reuse",
+    "reused",
+    "take the agentic",
+    "took the agentic",
+    "still have access",
+    "atlas up skills",
+    "atlas up pipeline",
+    "atlas up code"
+  ],
+  "departureRoutes": [
+    {
+      "terms": [
+        "why did you leave",
+        "why are you leaving",
+        "why leave",
+        "why you left",
+        "reason for leaving",
+        "reason you left",
+        "why did you quit"
+      ],
+      "requiresAny": [
+        "atlas up",
+        "atlasup"
+      ],
+      "entry": "whats-next"
+    }
+  ],
+  "entries": [
+    {
+      "id": "about-you",
+      "question": "Tell me about yourself.",
+      "variants": [
+        "Give me the short version.",
+        "Who are you?",
+        "How many years of experience do you have?",
+        "What's your background?",
+        "Why should we hire you?"
+      ],
+      "keywords": [
+        "ai experience",
+        "experience with ai",
+        "walk me through your resume",
+        "walk me through your background",
+        "walk me through your career"
+      ],
+      "contextKeywords": [
+        "about yourself",
+        "tell me about you",
+        "who are you",
+        "introduce yourself",
+        "elevator pitch",
+        "short version",
+        "60 second",
+        "sixty second",
+        "summary",
+        "summarize",
+        "overview",
+        "years of experience",
+        "how many years",
+        "how long have you been",
+        "why should we hire",
+        "why hire you",
+        "about your experience"
+      ],
+      "answer": "I'm a staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work. At Atlas UP I was the sole author of a 30+ skill Claude Code system that took tickets from reproduction to a verified, opened pull request. I also owned the Vue frontend platform for EOS One, built two AI products on my own, and have a track record of mentoring engineers into independent contributors.",
+      "sourceSections": [
+        "sixty",
+        "platform",
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "current-role",
+      "question": "What is your current role?",
+      "variants": [
+        "What do you do now?",
+        "Where do you work?",
+        "What was your most recent job?",
+        "What's your title?",
+        "What did you do at Atlas UP?",
+        "What is your title?"
+      ],
+      "keywords": [
+        "current role",
+        "current job",
+        "current position",
+        "current title",
+        "current employer",
+        "most recent role",
+        "most recent job",
+        "last role",
+        "last job",
+        "previous role",
+        "previous job",
+        "latest role",
+        "present role",
+        "where do you work",
+        "where did you work last",
+        "who do you work for"
+      ],
+      "contextKeywords": [
+        "atlas up",
+        "atlasup",
+        "job title",
+        "your title"
+      ],
+      "answer": "My most recent role was Staff Software Engineer at Atlas UP, from June 2025 to October 2026. I joined through Atlas UP's acquisition of EOS One from EOS Worldwide and had owned the product continuously since February 2023. There I owned the Vue frontend platform for EOS One and built the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
+      "contextAnswer": "At Atlas UP I was a Staff Software Engineer. I owned the Vue frontend platform for EOS One and built the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
+      "sourceSections": [
+        "career",
+        "pipeline"
+      ],
+      "approved": false
+    },
+    {
+      "id": "looking-for",
+      "question": "What kind of role are you looking for?",
+      "variants": [
+        "What are you looking for?",
+        "What's your ideal role?",
+        "What roles are you targeting?"
+      ],
+      "keywords": [
+        "looking for",
+        "role are you",
+        "roles are you",
+        "kind of role",
+        "type of role",
+        "ideal role",
+        "ideal job",
+        "next role",
+        "next job",
+        "target role",
+        "target roles",
+        "targeting",
+        "positions are you",
+        "kind of job",
+        "job search",
+        "seeking"
+      ],
+      "answer": "I'm looking for roles in agentic AI engineering, AI applications, or web platform work. I'm open to remote roles, or on-site and hybrid roles in Metro Detroit.",
+      "sourceSections": [
+        "sixty"
+      ],
+      "approved": false
+    },
+    {
+      "id": "whats-next",
+      "question": "What are you looking for next?",
+      "variants": [
+        "Why are you looking for a new role?",
+        "Why are you on the market?"
+      ],
+      "keywords": [
+        "why are you looking",
+        "you on the market",
+        "whats next for you",
+        "whats next in your career"
+      ],
+      "answer": "I'm focused on what's next: a role in agentic AI engineering, AI applications, or web platform work.",
+      "sourceSections": [
+        "sixty"
+      ],
+      "suggest": false,
+      "approved": false
+    },
+    {
+      "id": "agentic-system",
+      "question": "What did the agentic system actually do?",
+      "variants": [
+        "How did the Claude Code system work?",
+        "Walk me through the ticket to PR loop.",
+        "What were the Claude Code skills?",
+        "What is the pipeline?"
+      ],
+      "keywords": [
+        "agentic system",
+        "agentic",
+        "agent system",
+        "ai agents",
+        "pipeline",
+        "claude code",
+        "claude code skills",
+        "30+ skills",
+        "30 skills",
+        "skill system",
+        "ticket to pr",
+        "ticket to pull request",
+        "jira",
+        "autonomous loops",
+        "loops",
+        "loop",
+        "reproduction",
+        "reproduce",
+        "harness",
+        "agent workflow",
+        "orchestration",
+        "claude"
+      ],
+      "contextKeywords": [
+        "agents"
+      ],
+      "answer": "I was the sole author of an agentic engineering system at Atlas UP: 30+ Claude Code skills chained into loops. Given a Jira ticket, the loops ran reproduction, the fix, independent verification, regression, and review, then opened a pull request with before and after videos. The pipeline drawn on this page is an illustrative recreation with generic data.",
+      "sourceSections": [
+        "pipeline"
+      ],
+      "approved": false
+    },
+    {
+      "id": "biggest-result",
+      "question": "What's your biggest result?",
+      "variants": [
+        "What are you most proud of?",
+        "What impact did you have?",
+        "What numbers can you share?"
+      ],
+      "keywords": [
+        "biggest result",
+        "biggest win",
+        "biggest accomplishment",
+        "biggest achievement",
+        "biggest impact",
+        "proudest",
+        "most proud",
+        "proud of",
+        "results",
+        "results at",
+        "impact",
+        "impact at",
+        "accomplish",
+        "accomplished",
+        "accomplishment",
+        "accomplishments",
+        "achievements",
+        "achievement",
+        "metrics",
+        "numbers",
+        "how many bugs",
+        "100 bugs",
+        "100+ bugs",
+        "backlog",
+        "95",
+        "acceptance rate",
+        "first pass",
+        "bounced back",
+        "six weeks",
+        "outcomes"
+      ],
+      "answer": "Using my agentic system at Atlas UP, I cleared a backlog of 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back. The AI regression lane I built also cut a full regression cycle from about a week to 8 to 10 hours.",
+      "sourceSections": [
+        "pipeline"
+      ],
+      "approved": false
+    },
+    {
+      "id": "foundrkids-safety",
+      "question": "How do you keep an AI product safe for kids?",
+      "variants": [
+        "How does FoundrKids handle moderation?",
+        "What is the six-layer safety pipeline?",
+        "How do you handle COPPA?"
+      ],
+      "keywords": [
+        "kids",
+        "kid",
+        "children",
+        "child",
+        "child safety",
+        "kids safe",
+        "safe for kids",
+        "safety for kids",
+        "safe for children",
+        "foundrkids safe",
+        "foundrkids safety",
+        "kids app",
+        "coppa",
+        "moderation",
+        "handle moderation",
+        "content moderation",
+        "pii",
+        "parental consent",
+        "parents",
+        "parent",
+        "six layer",
+        "safety pipeline",
+        "fails closed",
+        "fail closed",
+        "blocklist",
+        "audit log"
+      ],
+      "answer": "In FoundrKids, I put every model call through a six-layer safety pipeline: a blocklist, OpenAI moderation, prompt scaffolding, the model, a streaming sentence buffer, and a PII-redacting output filter. It fails closed, and critical events end the session and alert the parent. COPPA is built into the data layer: verified parental consent, a 90-day chat purge, real child deletion, and a tamper-proof audit log.",
+      "sourceSections": [
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "foundrkids",
+      "question": "What is FoundrKids?",
+      "variants": [
+        "Tell me about FoundrKids.",
+        "What is the FoundrKids stack?"
+      ],
+      "keywords": [
+        "foundrkids",
+        "foundrkids stack",
+        "foundr",
+        "foundr kids",
+        "kids platform",
+        "maker learning",
+        "learning platform",
+        "adaptive learning",
+        "learning engine",
+        "chat coach",
+        "build missions",
+        "missions",
+        "spend cap",
+        "failover",
+        "model routing",
+        "mission tier",
+        "stripe"
+      ],
+      "answer": "FoundrKids is an AI maker-learning platform for kids 7 to 15, in pre-launch: a chat coach guides build missions while parents track safety. I'm the founder and sole engineer, and I built the full stack solo: three Vue 3 apps, a FastAPI backend with 140+ endpoints, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine and about 2,500 tests. Model calls route between Anthropic and OpenAI by mission tier, with cross-vendor failover and a monthly spend cap per household.",
+      "sourceSections": [
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "safety-model",
+      "question": "How did you keep the agents safe?",
+      "variants": [
+        "What guardrails did you use?",
+        "What is the safety model?",
+        "What is the kill switch?",
+        "What happens when an agent touches billing or auth?"
+      ],
+      "keywords": [
+        "safe",
+        "safely",
+        "safety",
+        "safety model",
+        "agents safe",
+        "keep agents safe",
+        "guardrail",
+        "guardrails",
+        "kill switch",
+        "approval gate",
+        "approval gates",
+        "human approval",
+        "human in the loop",
+        "billing",
+        "auth",
+        "retry",
+        "retries",
+        "risk tier",
+        "risk tiers",
+        "risk tiered",
+        "verifier",
+        "verifier agent",
+        "fresh context",
+        "verify fixes",
+        "verify every fix",
+        "verified every fix",
+        "verification",
+        "go wrong",
+        "goes wrong",
+        "runaway",
+        "break things",
+        "breaking things",
+        "controls",
+        "breaking production",
+        "break production"
+      ],
+      "answer": "I designed the safety model that every automated action ran inside. A separate agent verified every fix with fresh context, retries were capped by risk tier, sensitive areas such as billing and auth always stopped for a human, and a global kill switch paused all loops. Separately, on the EOS One MCP server I helped build, destructive actions such as deletes were deliberately excluded, so they had to happen in the app.",
+      "sourceSections": [
+        "safety",
+        "mcp"
+      ],
+      "approved": false
+    },
+    {
+      "id": "review-ai-code",
+      "question": "How do you review AI-generated code?",
+      "variants": [
+        "Do you trust AI-written code?",
+        "What was the PR review agent?",
+        "How do you check agent output?"
+      ],
+      "keywords": [
+        "review ai",
+        "reviewing ai",
+        "ai generated",
+        "ai written",
+        "generated code",
+        "agent output",
+        "agent generated",
+        "code review",
+        "code reviews",
+        "review agent",
+        "pr review",
+        "pull request review",
+        "review process",
+        "review standards",
+        "trust ai",
+        "trust the ai",
+        "trust the code",
+        "severity ranked",
+        "reviewer",
+        "review gate",
+        "review code",
+        "review pull requests"
+      ],
+      "answer": "Two ways. In my loops, a separate agent verified every fix with fresh context, and sensitive areas such as billing and auth always stopped for a human. Separately, I built an autonomous pull request review agent on Azure DevOps that reviewed open PRs at their latest commit and posted severity-ranked findings, encoding team standards so I was no longer the mandatory manual review gate.",
+      "sourceSections": [
+        "pipeline",
+        "safety"
+      ],
+      "approved": false
+    },
+    {
+      "id": "regression-lane",
+      "question": "How did you cut regression from about a week to 8 to 10 hours?",
+      "variants": [
+        "What was the AI regression lane?",
+        "How did AI help QA?",
+        "How did you speed up regression testing?"
+      ],
+      "keywords": [
+        "regression",
+        "regression lane",
+        "regression cycle",
+        "regression testing",
+        "ai regression",
+        "qa",
+        "quality assurance",
+        "testrail",
+        "test cases",
+        "release bottleneck",
+        "blast radius",
+        "about a week",
+        "8 to 10 hours",
+        "week to hours"
+      ],
+      "answer": "I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. It cut a full regression cycle from about a week to 8 to 10 hours and removed QA as the release bottleneck.",
+      "sourceSections": [
+        "pipeline"
+      ],
+      "approved": false
+    },
+    {
+      "id": "mcp-server",
+      "question": "What was the MCP server?",
+      "variants": [
+        "Have you built an MCP server?",
+        "Tell me about your MCP work.",
+        "How did customers use EOS One from Claude or ChatGPT?"
+      ],
+      "keywords": [
+        "mcp",
+        "mcp server",
+        "model context protocol",
+        "chatgpt",
+        "grok",
+        "connect claude",
+        "llm client",
+        "llm clients",
+        "tool design",
+        "question classifier",
+        "classifier",
+        "classifier routing",
+        "destructive",
+        "destructive actions",
+        "deletes",
+        "delete",
+        "deleting",
+        "deleting data",
+        "delete customer",
+        "delete data",
+        "delete records"
+      ],
+      "answer": "I was a core contributor on the team that built a production MCP server for EOS One, which let customers connect Claude, ChatGPT, and Grok to their EOS One data. I helped build its question classifier, which routed each request to the right tool. Destructive actions such as deletes were deliberately excluded, so they had to happen in the app, never through an LLM.",
+      "sourceSections": [
+        "mcp"
+      ],
+      "approved": false
+    },
+    {
+      "id": "how-this-works",
+      "question": "Is this an AI chatbot?",
+      "variants": [
+        "How does this work?",
+        "How does Ask My Resume work?",
+        "Is there an LLM behind this?",
+        "Am I talking to a bot?"
+      ],
+      "keywords": [
+        "chatbot",
+        "this chatbot",
+        "a chatbot",
+        "this bot",
+        "a bot",
+        "are you a bot",
+        "ask my resume",
+        "is this ai",
+        "is this an ai",
+        "is this an llm",
+        "is this chatgpt",
+        "is this claude",
+        "llm behind",
+        "behind this",
+        "this classifier",
+        "deterministic",
+        "talking to",
+        "am i talking",
+        "these answers",
+        "who wrote these",
+        "this site",
+        "site built",
+        "how was this site"
+      ],
+      "answer": "No live AI model runs here. This is a deterministic question classifier: it matches your question by keywords to answers I approved, shows the section each answer comes from, and otherwise asks you to email me. It borrows the routing idea from the question classifier I helped build for the EOS One MCP server. The footer links to a page on how this whole site was built.",
+      "sourceSections": [
+        "ask",
+        "footer"
+      ],
+      "approved": false
+    },
+    {
+      "id": "ai-adoption",
+      "question": "How did you get your team to adopt AI?",
+      "variants": [
+        "Did you lead AI adoption?",
+        "Have you used Cursor?"
+      ],
+      "keywords": [
+        "ai adoption",
+        "adoption",
+        "adopt",
+        "adopted",
+        "adopting",
+        "rollout",
+        "roll out",
+        "cursor",
+        "get the team",
+        "team to use",
+        "rest of the team",
+        "bring ai",
+        "introduce ai",
+        "introduced ai",
+        "ai transformation",
+        "buy in",
+        "adopt claude code",
+        "roll out claude code",
+        "team adopt"
+      ],
+      "answer": "I led the team's AI adoption at Atlas UP, moving from Cursor to Claude Code to autonomous loops. The rest of the team adopted the skills after seeing the delivery rate.",
+      "sourceSections": [
+        "platform"
+      ],
+      "approved": false
+    },
+    {
+      "id": "leadership",
+      "question": "Tell me about your leadership experience.",
+      "variants": [
+        "Have you managed people?",
+        "How many direct reports have you had?",
+        "Do you mentor engineers?"
+      ],
+      "keywords": [
+        "leadership",
+        "leader",
+        "team lead",
+        "tech lead",
+        "lead a team",
+        "led a team",
+        "lead people",
+        "led people",
+        "manage people",
+        "managed people",
+        "managing people",
+        "people manager",
+        "management experience",
+        "direct reports",
+        "mentor",
+        "mentoring",
+        "mentored",
+        "mentorship",
+        "one on ones",
+        "grow engineers",
+        "growth planning",
+        "junior engineers",
+        "raise the bar",
+        "managed engineers",
+        "leading teams",
+        "lead teams",
+        "people have you managed",
+        "people did you manage"
+      ],
+      "answer": "I have a track record of mentoring engineers into independent contributors. At Qualfon I led the NetSuite team with five direct reports, and at EOS Worldwide I was promoted to Staff Frontend Software Engineer, Lead, and led three direct reports with one on ones and growth planning alongside hands-on delivery. There, as the sole senior engineer on a predominantly junior frontend team, I personally reviewed every frontend pull request and used review as the main lever for raising the team's baseline.",
+      "sourceSections": [
+        "platform",
+        "career"
+      ],
+      "approved": false
+    },
+    {
+      "id": "team-size",
+      "question": "How big was your team?",
+      "variants": [
+        "How many engineers were on the team?",
+        "What was the team size at Atlas UP?"
+      ],
+      "keywords": [
+        "team size",
+        "big was your team",
+        "big was the team",
+        "big is your team",
+        "big is the team",
+        "large was your team",
+        "large was the team",
+        "large is your team",
+        "how many people",
+        "how many engineers",
+        "how many developers",
+        "size of the team",
+        "size of your team",
+        "the team size",
+        "headcount",
+        "35 people",
+        "one of three"
+      ],
+      "answer": "At Atlas UP, I was retained as one of three staff engineers when the post-acquisition team went from 35 people to 9. Before that, at EOS Worldwide, I was the sole senior engineer on a predominantly junior frontend team, and after my promotion to Staff Frontend Software Engineer, Lead, I led three direct reports. At Qualfon I led the NetSuite team with five direct reports.",
+      "sourceSections": [
+        "platform",
+        "career"
+      ],
+      "approved": false
+    },
+    {
+      "id": "vue",
+      "question": "How much Vue experience do you have?",
+      "variants": [
+        "Do you know Vue 3?",
+        "Have you done a Vue 2 to Vue 3 migration?"
+      ],
+      "keywords": [
+        "vue",
+        "vuejs",
+        "vue.js",
+        "vue 2",
+        "vue 3",
+        "vue2",
+        "vue3",
+        "monthly active users",
+        "active users",
+        "mau",
+        "user base",
+        "how many users",
+        "javascript",
+        "js"
+      ],
+      "contextKeywords": [
+        "eos one"
+      ],
+      "answer": "My frontend stack is Vue 2 and 3 and JavaScript. I owned the Vue frontend platform for EOS One, an AI business operating system with about 10,000 monthly active users, after building its component library from the ground up. I also led the frontend migration of a multi-tenant ecommerce platform from Vue 2 to Vue 3 at Qualfon, and built three Vue 3 apps for FoundrKids.",
+      "sourceSections": [
+        "sixty",
+        "platform",
+        "career",
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "react",
+      "question": "Do you have React experience?",
+      "variants": [
+        "Do you know React?",
+        "Have you used Next.js?"
+      ],
+      "keywords": [
+        "react",
+        "reactjs",
+        "react.js",
+        "react native",
+        "next.js",
+        "nextjs",
+        "jsx",
+        "built with react",
+        "site built with react",
+        "built in react",
+        "built with next.js",
+        "site built with next.js"
+      ],
+      "answer": "This site is built with Next.js and React. The frontend stack on my resume is Vue 2 and 3 and JavaScript.",
+      "sourceSections": [
+        "footer",
+        "sixty"
+      ],
+      "approved": false
+    },
+    {
+      "id": "frontend-platform",
+      "question": "Tell me about the component library and frontend platform.",
+      "variants": [
+        "Have you built a design system?",
+        "What was the monorepo work?",
+        "Do you do accessibility work?"
+      ],
+      "keywords": [
+        "component library",
+        "components",
+        "component",
+        "design system",
+        "design systems",
+        "monorepo",
+        "npm monorepo",
+        "design tokens",
+        "frontend platform",
+        "frontend architecture",
+        "front end architecture",
+        "frontend",
+        "front end",
+        "accessibility",
+        "a11y",
+        "wcag",
+        "css",
+        "scss",
+        "sass",
+        "html",
+        "vite",
+        "responsive",
+        "150+ components",
+        "150 components",
+        "ui library"
+      ],
+      "contextKeywords": [
+        "eos worldwide",
+        "at eos"
+      ],
+      "answer": "I built the EOS One component library from the ground up at EOS Worldwide, setting the frontend architecture, patterns, and standards the product still runs on. At Atlas UP I consolidated the frontend into a single npm monorepo and kept maintaining that 150+ component library, moving about 80% of it to design tokens. My frontend skills also cover accessibility, HTML5, CSS3 and SCSS, and Vite.",
+      "sourceSections": [
+        "platform",
+        "career",
+        "sixty"
+      ],
+      "approved": false
+    },
+    {
+      "id": "backend-fullstack",
+      "question": "Do you have backend or full-stack experience?",
+      "variants": [
+        "Have you worked in C# and .NET?",
+        "Do you know Python?",
+        "What databases have you used?"
+      ],
+      "keywords": [
+        "backend",
+        "back end",
+        "full stack",
+        "fullstack",
+        "server side",
+        "c#",
+        ".net",
+        "dotnet",
+        "dot net",
+        "python",
+        "fastapi",
+        "node",
+        "node.js",
+        "nodejs",
+        "api",
+        "apis",
+        "rest api",
+        "rest apis",
+        "signalr",
+        "database",
+        "databases",
+        "sql",
+        "postgres",
+        "postgresql",
+        "redis",
+        "cosmos",
+        "cosmos db",
+        "mysql",
+        "oracle",
+        "sql server",
+        "pgvector",
+        "auth0",
+        "authentication"
+      ],
+      "answer": "Yes. At EOS Worldwide I expanded from frontend into full-stack delivery as AI tooling matured, contributing across the C# API surface and Python services instead of handing work off. My backend experience covers C# and .NET REST APIs, SignalR, Python and FastAPI, Node.js, and databases including PostgreSQL, SQL Server, Cosmos DB, Redis, MySQL, and Oracle. For FoundrKids I built a FastAPI backend with 140+ endpoints on Postgres with pgvector.",
+      "sourceSections": [
+        "career",
+        "sixty",
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "testing-approach",
+      "question": "What is your testing approach?",
+      "variants": [
+        "How do you test?",
+        "Have you used Playwright?",
+        "Do you write unit tests?"
+      ],
+      "keywords": [
+        "testing",
+        "testing approach",
+        "test strategy",
+        "testing strategy",
+        "how do you test",
+        "tests",
+        "unit tests",
+        "unit testing",
+        "vitest",
+        "playwright",
+        "e2e",
+        "end to end",
+        "test coverage",
+        "coverage",
+        "tdd",
+        "automated tests",
+        "load testing",
+        "load tests",
+        "performance testing"
+      ],
+      "answer": "At EOS Worldwide I added Vitest unit testing and CI/CD quality checks, and at Atlas UP I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. Earlier, at Qualfon, I built and analyzed performance and load tests, tracing bottlenecks from IIS servers down to slow SQL. FoundrKids has about 2,500 tests, and Pocket Chronicle had about 2,700 automated tests.",
+      "sourceSections": [
+        "career",
+        "pipeline",
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "endorsement",
+      "question": "Does any company on this site endorse you?",
+      "variants": [
+        "Are you endorsed by any of these companies?",
+        "Are you a partner of any vendor named here?"
+      ],
+      "priorityKeywords": [
+        "endorse",
+        "endorses",
+        "endorsed",
+        "endorsement",
+        "endorsing",
+        "partner",
+        "partnered",
+        "partnership",
+        "official partner",
+        "certified",
+        "certified by",
+        "affiliated",
+        "affiliation",
+        "sponsor you",
+        "sponsors you",
+        "sponsored by",
+        "sponsoring you",
+        "partners",
+        "ambassador",
+        "sponsor this",
+        "site sponsored",
+        "sponsored",
+        "paid by",
+        "recommend you",
+        "featured by",
+        "work for anthropic",
+        "work at anthropic",
+        "worked for anthropic",
+        "worked at anthropic",
+        "work for openai",
+        "work at openai",
+        "worked for openai",
+        "worked at openai"
+      ],
+      "keywords": [],
+      "answer": "Company, product, and tool names on this site are plain text and do not imply any sponsorship, partnership, or endorsement.",
+      "sourceSections": [
+        "footer"
+      ],
+      "suggest": false,
+      "approved": false
+    },
+    {
+      "id": "tools",
+      "question": "What tools do you use?",
+      "variants": [
+        "What's your tech stack?",
+        "What AI tools do you use?",
+        "What are your core skills?",
+        "How often did you deploy?"
+      ],
+      "keywords": [
+        "tools",
+        "what tools",
+        "tooling",
+        "ai tools",
+        "core skills",
+        "your skills",
+        "what skills",
+        "skills do you have",
+        "skill set",
+        "skillset",
+        "technologies",
+        "ci cd",
+        "cicd",
+        "devops",
+        "azure devops",
+        "github actions",
+        "pipelines",
+        "deploy",
+        "deploys",
+        "deployment",
+        "deployments",
+        "release cadence",
+        "ship to production",
+        "fly.io",
+        "azure",
+        "cloud",
+        "hosting",
+        "llms",
+        "llm",
+        "models",
+        "which models",
+        "what models",
+        "anthropic",
+        "openai"
+      ],
+      "contextKeywords": [
+        "tech stack",
+        "stack"
+      ],
+      "answer": "For agentic work I use Claude Code (custom skills, commands, and autonomous loops) and Cursor. My agentic skills also cover MCP server development and multi-provider model routing; in FoundrKids, Anthropic and OpenAI are routed by mission tier. For delivery I've used Azure DevOps Pipelines, GitHub Actions, Playwright, TestRail, and Vitest, plus Fly.io for both of my own projects and Neon for FoundrKids. At Atlas UP we ran a weekly release train on Azure DevOps Pipelines and used Ship/Show/Ask, so changes reached production almost daily.",
+      "sourceSections": [
+        "sixty",
+        "independent",
+        "platform"
+      ],
+      "approved": false
+    },
+    {
+      "id": "pocket-chronicle",
+      "question": "What is Pocket Chronicle?",
+      "variants": [
+        "Tell me about your iOS app.",
+        "Do you know Swift?",
+        "Have you shipped to the App Store?"
+      ],
+      "keywords": [
+        "pocket",
+        "pocket chronicle",
+        "pocketchronicle",
+        "ios",
+        "iphone",
+        "swift",
+        "swiftui",
+        "swiftdata",
+        "app store",
+        "mobile app",
+        "mobile apps",
+        "storekit",
+        "family memory",
+        "memory app",
+        "sign in with apple",
+        "foundation models",
+        "on device"
+      ],
+      "answer": "Pocket Chronicle is a family memory app for iOS that I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack. It used SwiftUI and SwiftData with offline-first sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models, with a FastAPI and async SQLAlchemy backend on Postgres deployed to Fly.io. It had about 2,700 automated tests, 200+ merged PRs, and a written spec and decision log behind every change. It worked end to end in the App Store, but it found no users and its backend cost money to run, so I retired it.",
+      "sourceSections": [
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "independent-projects",
+      "question": "What have you built on your own?",
+      "variants": [
+        "Do you have side projects?",
+        "What are your independent projects?"
+      ],
+      "keywords": [
+        "independent",
+        "independent projects",
+        "independent work",
+        "side project",
+        "side projects",
+        "personal project",
+        "personal projects",
+        "own projects",
+        "your own",
+        "on your own",
+        "solo",
+        "founder",
+        "founded",
+        "startup",
+        "startups",
+        "built yourself",
+        "ai products"
+      ],
+      "answer": "Two AI products I built on my own. FoundrKids is an AI maker-learning platform for kids 7 to 15, in pre-launch, where a chat coach guides build missions while parents track safety. Pocket Chronicle is a family memory app for iOS that I took from concept to the App Store in about a month by directing AI agents outside my primary stack. It worked end to end, and I later retired it because it found no users and its backend cost money to run.",
+      "sourceSections": [
+        "independent"
+      ],
+      "approved": false
+    },
+    {
+      "id": "earlier-career",
+      "question": "What did you do before EOS One?",
+      "variants": [
+        "Tell me about Qualfon.",
+        "What NetSuite experience do you have?",
+        "Have you done integrations work?"
+      ],
+      "keywords": [
+        "before eos",
+        "before eos one",
+        "before atlas",
+        "before that",
+        "earlier career",
+        "earlier in your career",
+        "career history",
+        "work history",
+        "career path",
+        "first job",
+        "how did you get started",
+        "qualfon",
+        "dialog direct",
+        "budco",
+        "netsuite",
+        "suitecommerce",
+        "salesforce",
+        "jitterbit",
+        "integrations",
+        "integration",
+        "wordpress",
+        "ecommerce",
+        "e commerce",
+        "b2b",
+        "sothebys",
+        "skbk",
+        "real estate",
+        "php"
+      ],
+      "answer": "From April 2011 to February 2023 I was at Qualfon, where I progressed from Email Marketing Coordinator to Senior Developer. I built and maintained roughly 15 NetSuite and SuiteCommerce B2B instances serving an estimated 100,000 users, plus a multi-tenant Vue and C# ecommerce platform. I also wrote Jitterbit integrations connecting on-premise Oracle databases to NetSuite, Salesforce, and internal APIs. Before that, from 2006 to 2011, I handled development and systems operations at SKBK Sotheby's International Realty.",
+      "sourceSections": [
+        "career"
+      ],
+      "approved": false
+    },
+    {
+      "id": "education",
+      "question": "What is your education?",
+      "variants": [
+        "Do you have a degree?",
+        "Where did you go to school?"
+      ],
+      "keywords": [
+        "education",
+        "degree",
+        "degrees",
+        "college",
+        "university",
+        "school",
+        "itt",
+        "itt tech",
+        "associate",
+        "associates",
+        "studied",
+        "college major",
+        "major in",
+        "did you major",
+        "diploma",
+        "bachelor",
+        "bachelors",
+        "cs degree"
+      ],
+      "answer": "I have an Associate of Applied Science in Computer Science from ITT Technical Institute in Troy, MI.",
+      "sourceSections": [
+        "career"
+      ],
+      "approved": false
+    },
+    {
+      "id": "location-remote",
+      "question": "Where are you located, and are you open to remote?",
+      "variants": [
+        "Are you open to remote work?",
+        "Where are you based?",
+        "Would you relocate?",
+        "Are you open to hybrid?",
+        "When can you start?",
+        "Are you available now?"
+      ],
+      "keywords": [
+        "remote",
+        "remotely",
+        "work from home",
+        "wfh",
+        "located",
+        "location",
+        "where are you located",
+        "where are you from",
+        "where do you live",
+        "based in",
+        "where are you based",
+        "relocate",
+        "relocation",
+        "relocating",
+        "hybrid",
+        "onsite",
+        "on site",
+        "in office",
+        "in the office",
+        "office job",
+        "michigan",
+        "detroit",
+        "sterling heights",
+        "commute",
+        "when can you start",
+        "can you start",
+        "start date",
+        "available to start",
+        "your availability",
+        "available now",
+        "notice period",
+        "how soon can you start"
+      ],
+      "answer": "I'm based in Sterling Heights, MI, and I'm available now. I'm open to remote roles, or on-site and hybrid roles in Metro Detroit. My last two roles, at EOS Worldwide and Atlas UP, were remote.",
+      "sourceSections": [
+        "sixty",
+        "career"
+      ],
+      "approved": false
+    },
+    {
+      "id": "work-authorization",
+      "question": "Are you authorized to work in the US?",
+      "variants": [
+        "Do you need visa sponsorship?",
+        "Will you need sponsorship?"
+      ],
+      "priorityKeywords": [
+        "sponsorship",
+        "to sponsor",
+        "to sponsor you",
+        "need to sponsor",
+        "us to sponsor",
+        "be sponsored",
+        "been sponsored"
+      ],
+      "keywords": [
+        "authorized",
+        "authorization",
+        "work authorization",
+        "authorized to work",
+        "sponsor",
+        "visa",
+        "h1b",
+        "h 1b",
+        "green card",
+        "citizen",
+        "citizenship",
+        "eligible to work",
+        "work permit",
+        "legally"
+      ],
+      "answer": "I don't have that here. Email me.",
+      "sourceSections": [],
+      "fallbackOnly": true,
+      "approved": false
+    },
+    {
+      "id": "contact",
+      "question": "How do I contact you?",
+      "variants": [
+        "What's your email?",
+        "How do I book a call?",
+        "Can I get your resume?",
+        "Do you have a GitHub?"
+      ],
+      "keywords": [
+        "contact",
+        "contact you",
+        "reach you",
+        "reach out",
+        "get in touch",
+        "email",
+        "e mail",
+        "email address",
+        "linkedin",
+        "github",
+        "book a call",
+        "schedule a call",
+        "a call",
+        "phone",
+        "phone number",
+        "calendar",
+        "cal.com",
+        "set up a meeting",
+        "schedule a meeting",
+        "resume pdf",
+        "pdf",
+        "download",
+        "your resume",
+        "cv",
+        "available to talk",
+        "available for a call",
+        "available for an interview",
+        "schedule an interview"
+      ],
+      "answer": "You can email me with the Email button in the contact section. I'm also on LinkedIn (linkedin.com/in/travisjterry) and GitHub (github.com/travist6983). You can book a call at cal.com/travis-terry-vwjxkq/30min or download my resume as a PDF.",
+      "sourceSections": [
+        "contact"
+      ],
+      "approved": false
+    }
+  ]
+}

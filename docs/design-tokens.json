@@ -1,0 +1,94 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Direction A, Workbench (recommended in docs/BRAND.md). Color tokens carry a light and a dark value; the site picks one with prefers-color-scheme (DECISIONS Q12). Contrast is verified by scripts/check-contrast.py, which reads this file. docs/tokens.css is the CSS form of these tokens.",
+  "color": {
+    "$description": "Text tokens (ink, ink-2, ink-3, link, bug-text, merged-text) pass 4.5:1 on surface, surface-2, and at every point of the warm to cool backdrop shift. Non-text tokens (bug, merged, verifier, focus, accent, track) pass 3:1. Tokens marked decorative carry no information and are exempt.",
+    "bg-warm": { "$type": "color", "$value": { "light": "#F3EADB", "dark": "#1B1712" }, "$description": "Backdrop, backlog chaos end. Fixed layer behind the page." },
+    "bg-cool": { "$type": "color", "$value": { "light": "#E3EAED", "dark": "#11171A" }, "$description": "Backdrop, shipped calm end. Fixed layer whose opacity is scrubbed 0 to 1 over the warm layer." },
+    "surface": { "$type": "color", "$value": { "light": "#FFFCF6", "dark": "#231E19" }, "$description": "Solid content sheet. All body text sits on a sheet." },
+    "surface-2": { "$type": "color", "$value": { "light": "#F8F1E5", "dark": "#2B251F" }, "$description": "Raised panel: ticket detail panel, stage panels, Ask terminal." },
+    "ink": { "$type": "color", "$value": { "light": "#1C1814", "dark": "#F2EBDF" }, "$description": "Primary text and headings." },
+    "ink-2": { "$type": "color", "$value": { "light": "#4A4238", "dark": "#D3C8B7" }, "$description": "Secondary text, labels. Also the dimmer commit step in the career log." },
+    "ink-3": { "$type": "color", "$value": { "light": "#675D51", "dark": "#ADA190" }, "$description": "Muted text, captions, the oldest commits. Lowest allowed text step." },
+    "rule": { "$type": "color", "$value": { "light": "#DCD1BF", "dark": "#3B332B" }, "$description": "Decorative hairlines between regions. Never the only boundary of a control." },
+    "link": { "$type": "color", "$value": { "light": "#94330F", "dark": "#F2A578" }, "$description": "Inline links (always underlined as well)." },
+    "accent": { "$type": "color", "$value": { "light": "#1C1814", "dark": "#F2EBDF" }, "$description": "Primary CTA fill (Download Resume)." },
+    "on-accent": { "$type": "color", "$value": { "light": "#FFFCF6", "dark": "#1B1712" }, "$description": "Text on accent." },
+    "bug": { "$type": "color", "$value": { "light": "#B3261E", "dark": "#CC3B2F" }, "$description": "The ticket's red bug state fill." },
+    "on-bug": { "$type": "color", "$value": { "light": "#FFFFFF", "dark": "#FFFFFF" }, "$description": "Text on the red ticket (the bug chip and Illustration tag)." },
+    "bug-text": { "$type": "color", "$value": { "light": "#A2241C", "dark": "#FF8B7B" }, "$description": "Red used as text on sheets." },
+    "merged": { "$type": "color", "$value": { "light": "#1C7A4B", "dark": "#45C485" }, "$description": "Status light green, merged state, passed checks." },
+    "merged-text": { "$type": "color", "$value": { "light": "#17683F", "dark": "#6FD8A0" }, "$description": "Green used as text on sheets." },
+    "merged-glow": { "$type": "color", "$value": { "light": "#2FBF71", "dark": "#45C485" }, "$description": "Decorative. Center color of the pre-painted merge glow; only its opacity and scale animate." },
+    "verifier": { "$type": "color", "$value": { "light": "#3A57A0", "dark": "#93AEF3" }, "$description": "The second agent marker at the Verify station. Distinct hue from bug, merged, and accent." },
+    "focus": { "$type": "color", "$value": { "light": "#94330F", "dark": "#F2A578" }, "$description": "Focus ring, 2px solid plus 2px offset." },
+    "track": { "$type": "color", "$value": { "light": "#3A332B", "dark": "#C9BEAD" }, "$description": "The pipeline track line and station outlines." },
+    "pending": { "$type": "color", "$value": { "light": "#8A7E6E", "dark": "#7D7263" }, "$description": "Decorative. The status light before checks pass; always paired with a text status." },
+    "chaos-1": { "$type": "color", "$value": { "light": "#F0C9A2", "dark": "#5A3A22" }, "$description": "Decorative backlog card tint (apricot)." },
+    "chaos-2": { "$type": "color", "$value": { "light": "#E9D8A8", "dark": "#4F4424" }, "$description": "Decorative backlog card tint (straw)." },
+    "chaos-3": { "$type": "color", "$value": { "light": "#E8C0B5", "dark": "#57302A" }, "$description": "Decorative backlog card tint (rose)." },
+    "card": { "$type": "color", "$value": { "light": "#FFF8EC", "dark": "#2E2720" }, "$description": "Decorative backlog card base." },
+    "calm-tile": { "$type": "color", "$value": { "light": "#D5E1E6", "dark": "#1E2A2F" }, "$description": "Decorative component tile in the Platform grid." },
+    "needed-bg": { "$type": "color", "$value": { "light": "#FFD60A", "dark": "#FFD60A" }, "$description": "NEEDED FROM TRAVIS callout. Same in both modes so it is never missed." },
+    "needed-ink": { "$type": "color", "$value": { "light": "#111111", "dark": "#111111" }, "$description": "Text and stripes on the callout." }
+  },
+  "font": {
+    "display": { "$type": "fontFamily", "$value": ["Fraunces", "Iowan Old Style", "Georgia", "serif"], "$description": "Self-hosted woff2 (OFL). Weights 600 (display) and 400 italic (value line). The wordmark is outlined at build, so it needs no font file." },
+    "body": { "$type": "fontFamily", "$value": ["Public Sans", "system-ui", "-apple-system", "Segoe UI", "sans-serif"], "$description": "Self-hosted woff2 (OFL). Weights 400, 600, 700." },
+    "mono": { "$type": "fontFamily", "$value": ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"], "$description": "Self-hosted woff2 (OFL). Weights 400, 600. Pipeline UI, chips, stage index, Ask terminal only." }
+  },
+  "size": {
+    "$description": "Fluid type, 390px to 1440px viewport.",
+    "display": { "$type": "dimension", "$value": "clamp(3rem, 1.9rem + 4.6vw, 6rem)" },
+    "h2": { "$type": "dimension", "$value": "clamp(2rem, 1.5rem + 2vw, 3.25rem)" },
+    "h3": { "$type": "dimension", "$value": "clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem)" },
+    "lede": { "$type": "dimension", "$value": "clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem)" },
+    "body": { "$type": "dimension", "$value": "1.0625rem" },
+    "small": { "$type": "dimension", "$value": "0.9375rem" },
+    "mono": { "$type": "dimension", "$value": "0.8125rem" },
+    "proof": { "$type": "dimension", "$value": "clamp(2rem, 1.6rem + 1.6vw, 3rem)" }
+  },
+  "lineHeight": {
+    "display": { "$type": "number", "$value": 1.0 },
+    "heading": { "$type": "number", "$value": 1.15 },
+    "body": { "$type": "number", "$value": 1.55 }
+  },
+  "space": {
+    "1": { "$type": "dimension", "$value": "0.25rem" },
+    "2": { "$type": "dimension", "$value": "0.5rem" },
+    "3": { "$type": "dimension", "$value": "0.75rem" },
+    "4": { "$type": "dimension", "$value": "1rem" },
+    "6": { "$type": "dimension", "$value": "1.5rem" },
+    "8": { "$type": "dimension", "$value": "2rem" },
+    "12": { "$type": "dimension", "$value": "3rem" },
+    "16": { "$type": "dimension", "$value": "4rem" },
+    "24": { "$type": "dimension", "$value": "6rem" },
+    "gutter": { "$type": "dimension", "$value": "clamp(1rem, 0.5rem + 2.5vw, 3rem)" },
+    "max": { "$type": "dimension", "$value": "76rem" }
+  },
+  "radius": {
+    "sm": { "$type": "dimension", "$value": "4px" },
+    "md": { "$type": "dimension", "$value": "8px" },
+    "lg": { "$type": "dimension", "$value": "14px" },
+    "ticket-notch": { "$type": "dimension", "$value": "7px", "$description": "Radius of the semicircle notches that make the ticket a physical ticket stub, not a board card." }
+  },
+  "stroke": {
+    "track": { "$type": "dimension", "$value": "2px" },
+    "station": { "$type": "dimension", "$value": "1.5px" },
+    "focus": { "$type": "dimension", "$value": "2px" }
+  },
+  "motion": {
+    "state-step": { "$type": "duration", "$value": "200ms", "$description": "Color steps at stage boundaries (data-state toggles)." },
+    "born": { "$type": "duration", "$value": "600ms", "$description": "Ticket entry in the hero." },
+    "merge": { "$type": "duration", "$value": "1000ms", "$description": "Triggered merge sequence at Contact." },
+    "ease": { "$type": "cubicBezier", "$value": [0.2, 0.7, 0.2, 1] }
+  },
+  "z": {
+    "backdrop": { "$type": "number", "$value": -1 },
+    "track": { "$type": "number", "$value": 0 },
+    "content": { "$type": "number", "$value": 1 },
+    "ticket": { "$type": "number", "$value": 5 },
+    "header": { "$type": "number", "$value": 10 },
+    "mobile-bar": { "$type": "number", "$value": 10 }
+  }
+}
