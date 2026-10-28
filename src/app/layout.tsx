@@ -13,13 +13,21 @@ export const metadata: Metadata = {
     // Machine-readable resumes, generated from content.json by scripts/build-resume-files.mjs
     types: { 'text/markdown': '/resume.md', 'text/plain': '/resume.txt', 'application/json': '/resume.json' },
   },
-  openGraph: { type: 'website', url: t(m.canonical), title: t(m.og.title), description: t(m.og.description) },
-  twitter: { card: 'summary_large_image', title: t(m.og.title), description: t(m.twitter?.description ?? m.og.description) },
+  openGraph: {
+    type: 'website',
+    url: t(m.canonical),
+    title: t(m.og.title),
+    description: t(m.og.description),
+    images: [{ url: m.og.image.path, width: 1200, height: 630, alt: t(m.og.image) }],
+  },
+  twitter: { card: 'summary_large_image', title: t(m.og.title), description: t(m.twitter?.description ?? m.og.description), images: [m.og.image.path] },
 };
 
 export const viewport: Viewport = {
   themeColor: '#e6e9ef',
 };
+
+const beacon = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -38,6 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {beacon && (
+          // Cloudflare Web Analytics: cookieless page counts. Only loads once the token is configured.
+          <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: beacon })} />
+        )}
       </body>
     </html>
   );

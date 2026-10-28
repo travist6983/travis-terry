@@ -435,6 +435,8 @@ function Footer() {
   const s = section('footer');
   const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
   const access = body(s.accessibility).replace(/email me\.?$/i, '');
+  // Until the Cloudflare Web Analytics token is set, drop the sentence that says visits are counted.
+  const privacy = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ? body(s.privacy) : body(s.privacy).replace(/\s*Visits are counted[^.]*\./, '');
   return (
     <footer className="foot">
       <div className="wrap foot__grid">
@@ -449,7 +451,7 @@ function Footer() {
           <div className="foot__cols">
             <div>
               <h3>Privacy</h3>
-              <p>{body(s.privacy)}</p>
+              <p>{privacy}</p>
             </div>
             <div>
               <h3>Accessibility</h3>
