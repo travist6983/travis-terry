@@ -122,7 +122,7 @@ export function ReleaseBar() {
       <div className={`relbar__track ${after ? 'is-after' : 'is-before'}`}>
         <div className="relbar__fill" />
         <div className="relbar__days">
-          {Array.from({ length: 7 }, (_, i) => <span key={i}>Day {i + 1}</span>)}
+          {Array.from({ length: 7 }, (_, i) => <span key={i}><span className="relbar__d">Day&nbsp;</span>{i + 1}</span>)}
         </div>
       </div>
       <div className="relbar__foot">

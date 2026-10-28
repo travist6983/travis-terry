@@ -235,11 +235,11 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .relbar__track { position: relative; height: 56px; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.4); border: 1px solid var(--soft-edge); }
 .relbar__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 6%; border-radius: 16px; background: var(--accent); transition: width 700ms cubic-bezier(.2,.8,.2,1), background 400ms ease; }
 .relbar__track.is-before .relbar__fill { width: 100%; background: rgba(255,77,18,0.55); }
-.relbar__days { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(7, 1fr); }
-.relbar__days span { display: flex; align-items: flex-end; padding: 0 0 8px 10px; font-family: var(--mono); font-size: 11px; color: var(--ink-4); }
-.relbar__days span + span { border-left: 1px solid rgba(12,18,32,0.08); }
-.relbar__track.is-after .relbar__days span:first-child { color: #fff; }
-.relbar__track.is-before .relbar__days span { color: var(--orange-ink); }
+.relbar__days { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.relbar__days > span { display: flex; align-items: flex-end; padding: 0 0 8px 10px; font-family: var(--mono); font-size: 11px; color: var(--ink-4); }
+.relbar__days > span + span { border-left: 1px solid rgba(12,18,32,0.08); }
+.relbar__track.is-after .relbar__days > span:first-child { color: #fff; }
+.relbar__track.is-before .relbar__days > span { color: var(--orange-ink); }
 
 /* ---------- Safety: stations around the route ---------- */
 .stations { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 24px; }
@@ -339,6 +339,7 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .log__loc { font-size: 15px; font-weight: 500; color: var(--ink-4); letter-spacing: 0; margin-left: 8px; }
 .log__roles { display: grid; gap: 4px; }
 .log__role b { font-weight: 600; margin-right: 6px; }
+.log__role .mono-sm { white-space: nowrap; }
 .log__ctx { font-size: 15px; color: var(--ink-4); font-style: italic; margin-top: 10px; }
 .log__edu { margin-top: 8px; padding: 16px 20px; border-radius: 16px; color: var(--ink-2); }
 .log__edu .kick { margin-right: 8px; color: var(--green); }
@@ -404,8 +405,19 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .foot__nav a:hover { color: var(--accent); }
 .foot__top { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 12px; font-weight: 600; background: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 4px 14px rgba(12,18,32,0.06); }
 @media (max-width: 760px) {
-  .foot__grid, .foot__cols { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr): the nowrap curl command must not set the column's minimum width */
+  .foot__grid, .foot__cols { grid-template-columns: minmax(0, 1fr); }
   .foot { padding-bottom: 110px; }
+  .foot__term, .foot__legal { padding: 22px 18px; }
+  .term-line { gap: 8px; padding: 5px 5px 5px 12px; }
+  /* one line at 390px; narrower phones wrap at the space instead of scrolling */
+  .term-line code { font-size: 12.5px; white-space: normal; }
+  .term-line .btn--sm { padding: 0 12px; font-size: 13px; }
+  .foot__bar { padding: 10px 12px 10px 16px; }
+  .foot__nav { flex: 1 1 100%; justify-content: space-between; gap: 4px 12px; }
+  .foot__nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  .foot__files a { height: 40px; }
+  .term-line .btn--sm { height: 40px; }
 }
 .mbar { display: none; }
 
@@ -456,7 +468,7 @@ html[data-motion='off'] .graph__main, html[data-motion='off'] .graph__branch { s
 .head.is-home .head__label { opacity: 0; }
 
 /* ======================= Pipeline (undesigned: same system) ======================= */
-.pipeline { padding-bottom: 96px; }
+.pipeline { padding-bottom: clamp(64px, 8vw, 96px); }
 .pipeline__intro { margin-bottom: 40px; display: flex; flex-direction: column; gap: 18px; }
 .pipeline__intro .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; }
 .pipeline__intro .display { font-weight: 800; font-size: clamp(40px, 5.6vw, 72px); line-height: 1; letter-spacing: -0.05em; }
@@ -487,7 +499,7 @@ html[data-motion='off'] .graph__main, html[data-motion='off'] .graph__branch { s
 .pipeline__result { font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; margin: 72px 0 0; max-width: 900px; }
 .hud { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 12px; font-family: var(--mono); }
 .hud__k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); }
-.hud__v { font-size: 34px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; min-width: 3.2ch; text-align: center; letter-spacing: -0.03em; font-family: var(--font); }
+.hud__v { flex: none; font-size: 34px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; min-width: 3.2ch; text-align: center; letter-spacing: -0.03em; font-family: var(--font); }
 
 .factory { width: 100%; height: auto; display: block; overflow: visible; }
 .floor { fill: rgba(255,255,255,0.55); stroke: rgba(255,255,255,0.9); stroke-width: 1.5; }
@@ -538,25 +550,75 @@ html[data-motion='on'] .station [data-reveal].is-in { transform: none; }
   .kill--nav { padding: 0 9px; }
   .nav__end .btn--pill { display: none; }
   .wrap { padding: 0 16px; }
+  /* Act 1 keeps a 40px gutter so the route (x = 14) and the ticket never cross text */
+  #act1 .wrap { padding-left: 40px; }
+  .ask > .wrap { padding-left: 52px; }
   .scene__inner, .mcp__grid { grid-template-columns: 1fr; }
   .scene--static .scene__visual { position: static; order: -1; }
   .rail__item + .rail__item { border-left: 0; border-top: 1px solid var(--hair); }
   .rail__item { padding: 22px 24px; }
   .headshot { width: 140px; }
+  .headshot .needed { padding: 8px 10px; font-size: 10px; }
   .backlog { display: none; }
   .graph-col { padding-left: 52px; }
   .graph-col--center { padding-left: 16px; }
-  .station { grid-template-columns: 1fr; padding-left: 28px; gap: 0; }
-  .station__dot { left: -6px; }
+  .station { grid-template-columns: 1fr; gap: 0; }
+  .station__dot { left: -26px; }
   .station--r .station__card, .station--l .station__card { grid-column: 1; }
   html[data-motion='on'] .station--l [data-reveal], html[data-motion='on'] .station--r [data-reveal] { transform: translateY(24px); }
-  .rider__card { width: 118px; scale: 0.8; translate: -14px -50%; transform-origin: left center; }
+  /* The ticket shrinks to a mini card that rides the gutter: a colored flag band and two lines */
+  .rider__card { width: 24px; height: 30px; padding: 0; gap: 3px; grid-template-columns: 1fr; align-content: start; border-radius: 7px; overflow: hidden; }
+  .rider__flag { height: 9px; padding: 0; border-radius: 0; font-size: 0; }
+  .rider__chip { display: none; }
+  .rider__card i { margin: 2px 4px 0; height: 3px; }
+  .rider__card i + i { width: auto; margin-right: 9px; }
+  .head__label { display: none; }
   .top5x__card { padding: 26px; }
   .panel, .avail { padding: 22px; }
-  .hero__ctas .btn { flex: 1 1 auto; }
+  /* Touch: segmented controls, chips and small buttons get 44px targets */
+  .seg button, .mcpx .seg button, .seg--lg button { height: 44px; }
+  .btn--sm { height: 40px; }
+  .srcs a { height: 36px; }
+  /* Stack tabs: an even 2 x 2 grid of real buttons instead of ragged wrapped text */
+  .seg--flat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; width: 100%; }
+  .seg--flat button { height: auto; min-height: 44px; padding: 6px 12px; line-height: 1.25; background: var(--soft-bg); }
+  .top5x__row { gap: 10px; padding: 14px; }
+  .top5x__stat { flex-wrap: wrap; row-gap: 4px; }
+  .avail { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 18px 16px; align-items: start; }
+  .avail__dot { margin-top: 9px; }
+  .avail__copy { min-width: 0; }
+  .avail__ctas { grid-column: 1 / -1; }
+  .panel--lg { padding: 18px; }
+  .note { padding: 16px; }
+  .hero__ctas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .hero__ctas > :first-child { grid-column: 1 / -1; }
+  .hero__ctas .btn { padding: 0 10px; }
+  .avail__ctas .btn { flex: 1 1 auto; }
+  .relbar__d { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  /* The MCP demo's state follows scroll on phones: reserve room for the longest question and result so nothing below jumps */
+  .mcpx__q { min-height: 100px; justify-content: center; }
+  .mcpx__res { min-height: 90px; }
+  .lane { min-height: 122px; justify-content: center; }
+  .chat__form { gap: 8px; padding: 8px 8px 8px 8px; }
+  .chat__form .btn { padding: 0 16px; }
+  /* the visible '$ ask' goes; the label keeps its screen-reader text */
+  .chat__prompt [aria-hidden='true'] { display: none; }
+  .chat__form input { font-size: 16px; text-overflow: ellipsis; }
+  .chips { flex-direction: column; }
+  .chip { height: auto; min-height: 44px; padding: 10px 16px; text-align: left; line-height: 1.35; }
+  .chat__out { padding: 16px 14px 20px; }
+  .bubble { font-size: 16px; }
+  .bubble--them { max-width: 100%; padding: 16px; }
+  .log__loc { display: block; margin: 6px 0 0; }
+  .merge { height: auto; min-height: 34px; padding: 7px 14px; line-height: 1.4; text-align: left; }
+  .contact__ctas { align-self: stretch; flex-direction: column; }
   .mbar { display: grid; grid-template-columns: repeat(3, 1fr); position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; background: rgba(255,255,255,0.55); -webkit-backdrop-filter: var(--glass-filter); backdrop-filter: var(--glass-filter); border: 1px solid var(--glass-edge); border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(12,18,32,0.12); }
-  .mbar a { text-align: center; padding: 14px 0; font-weight: 600; font-size: 15px; }
+  .mbar a { display: grid; place-items: center; min-height: 48px; font-weight: 600; font-size: 15px; }
   .mbar a + a { border-left: 1px solid var(--hair); }
+}
+/* Turnstile's interactive widget is a fixed 300px wide: start it at the 16px page edge on narrow phones */
+@media (max-width: 380px) {
+  .ask .turnstile { margin-left: -36px; }
 }
 
 /* ---------- Kill switch / reduced motion: everything static ---------- */

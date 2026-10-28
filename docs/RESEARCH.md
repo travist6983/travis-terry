@@ -1,6 +1,6 @@
 # Research
 
-Phase 1 recon for travisjterry.com, observed on 2026-10-27. This file covers:
+Phase 1 recon for travisjterry.dev, observed on 2026-10-27. This file covers:
 
 1. Techniques from four inspiration sites (United Carriers, Cerebrium, Linear, Apple), with evidence for how each one is built.
 2. Patterns from a scan of five personal sites: four senior or staff engineers and one interaction designer included for case study structure.

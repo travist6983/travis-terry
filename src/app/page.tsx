@@ -433,7 +433,7 @@ function Contact() {
 
 function Footer() {
   const s = section('footer');
-  const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*/, '');
+  const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
   const access = body(s.accessibility).replace(/email me\.?$/i, '');
   return (
     <footer className="foot">

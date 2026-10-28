@@ -91,7 +91,7 @@ async function turnstileOk(env: Env, token: string | undefined, ip: string) {
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const origin = req.headers.get('origin') ?? '';
-    const allowed = (env.ALLOWED_ORIGINS ?? 'https://travisjterry.com,http://localhost:3000').split(',');
+    const allowed = (env.ALLOWED_ORIGINS ?? 'https://travisjterry.dev,https://www.travisjterry.dev,http://localhost:3000').split(',');
     const cors: HeadersInit = allowed.includes(origin)
       ? { 'access-control-allow-origin': origin, 'access-control-allow-methods': 'POST, OPTIONS', 'access-control-allow-headers': 'content-type', vary: 'origin' }
       : {};

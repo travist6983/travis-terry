@@ -22,7 +22,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 |---|---|---|---|
 | meta.title | Travis Terry \| Staff Software Engineer, Agentic AI Engineering | resume L1<br>resume L2 | resume L1: "TRAVIS TERRY"<br>resume L2: "Staff Software Engineer  \|  Agentic AI Engineering" |
 | meta.description | Staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work. | resume L6<br>brief:HEADLINE_PROOF | resume L6: "Staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work."<br>brief:HEADLINE_PROOF: "15+ years building production web applications" |
-| meta.canonical | https://travisjterry.com | decisions:Domain | decisions:Domain: "travisjterry.com (owned by Travis)" |
+| meta.canonical | https://travisjterry.dev | decisions:Domain | decisions:Domain: "travisjterry.dev (owned by Travis)" |
 | meta.og.title | Travis Terry, Staff Software Engineer | resume L1<br>resume L2 | resume L1: "TRAVIS TERRY"<br>resume L2: "Staff Software Engineer" |
 | meta.og.description | I make AI agents do real, verified engineering work. At Atlas UP I was the sole author of a 30+ skill Claude Code system and used it to clear 100+ bugs and about 25 features in about six weeks. | resume L6<br>resume L18<br>resume L23<br>brief:HEADLINE_PROOF | resume L6: "making AI agents do real, verified engineering and product work" ... "At Atlas UP I was the sole author of a 30+ skill Claude Code system" ... "then used it to clear 100+ bugs"<br>resume L18: "Atlas UP Inc."<br>resume L23: "100+ bugs and roughly 25 features in about six weeks"<br>brief:HEADLINE_PROOF: "100+ bugs and about 25 features cleared in about six weeks" |
 | meta.og.imageAlt | Travis Terry, Staff Software Engineer \| Agentic AI Engineering, AI Applications, and Web Platform | resume L1<br>resume L2 | resume L1: "TRAVIS TERRY"<br>resume L2: "Staff Software Engineer  \|  Agentic AI Engineering, AI Applications, and Web Platform" |
@@ -149,13 +149,13 @@ Every factual string in `content/content.json`, and every answer sentence and su
 | contact.intro | If you're hiring for agentic AI engineering, AI applications, or web platform work, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit. | resume L2<br>decisions:Q44 | resume L2: "Agentic AI Engineering, AI Applications, and Web Platform"<br>decisions:Q44: "not "remote only": open to remote or on-site/hybrid in Metro Detroit" |
 | contact.book | Book a Call (link: https://cal.com/travis-terry-vwjxkq/30min) | decisions:Booking | decisions:Booking: "https://cal.com/travis-terry-vwjxkq/30min" |
 | contact.github | github.com/travist6983 (link: https://github.com/travist6983) | decisions:Extras<br>decisions:Q21 | decisions:Extras: "GitHub profile link (github.com/travist6983)"<br>decisions:Q21: "client concept repos and palay-magic fine public" |
-| footer.curl.command | curl -sL travisjterry.com/cli | brief:HARD_RULE_10<br>decisions:Q17<br>decisions:Domain<br>*(site behavior; verify in Phase 5 QA)* | brief:HARD_RULE_10: "curl -s [DOMAIN]/cli"<br>decisions:Q17: "Q12 to Q17 defaults accepted"<br>decisions:Domain: "travisjterry.com" |
+| footer.curl.command | curl -sL travisjterry.dev/cli | brief:HARD_RULE_10<br>decisions:Q17<br>decisions:Domain<br>*(site behavior; verify in Phase 5 QA)* | brief:HARD_RULE_10: "curl -s [DOMAIN]/cli"<br>decisions:Q17: "Q12 to Q17 defaults accepted"<br>decisions:Domain: "travisjterry.dev" |
 | footer.privacy | Privacy: this site sets no cookies and uses no third-party trackers. Visits are counted with Cloudflare Web Analytics, which is cookieless. Links I share with applications may carry a ?ref tag so I know which application a visit came from; it does not identify you. | decisions:Analytics<br>brief:HARD_RULE_12<br>*(site behavior; verify in Phase 5 QA)* | decisions:Analytics: "Cloudflare Web Analytics (cookieless beacon). ?ref=&lt;tag&gt; recorded as page path"<br>brief:HARD_RULE_12: "no third-party trackers or cookies" ... "Support ?ref=&lt;tag&gt; so each application link can be traced without identifying visitors." |
 | footer.accessibility | Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Pause motion, or your system's reduced-motion setting, stops all animation. If something doesn't work for you, email me. | brief:HARD_RULE_5<br>brief:HARD_RULE_7<br>brief:PHASE4<br>*(site behavior; verify in Phase 5 QA)* | brief:HARD_RULE_5: "All text exists in the DOM in reading order, so Ctrl+F, screen readers, and print work."<br>brief:HARD_RULE_7: "prefers-reduced-motion triggers it automatically"<br>brief:PHASE4: "real text everywhere, visible focus states, keyboard-reachable nav" |
 | footer.disclosure | Company, product, and tool names on this site are plain text and do not imply any sponsorship, partnership, or endorsement. | brief:HARD_RULE_4 | brief:HARD_RULE_4: "Names appear as plain text only. Nothing may imply endorsement by any vendor." |
 | footer.copyright | © 2026 Travis Terry | resume L1 | resume L1: "TRAVIS TERRY" |
 
-## UI labels (76)
+## UI labels (77)
 
 Interface labels with no factual claim. Listed so nothing in content.json is unaccounted for.
 
@@ -229,8 +229,8 @@ Interface labels with no factual claim. Listed so nothing in content.json is una
 | contact.email | Email | from person.email |
 | contact.linkedin | LinkedIn | from person.linkedin |
 | contact.resume | Download Resume (PDF) | /resume.pdf |
-| contact.mailto.subject | Hello from travisjterry.com |  |
-| contact.mailto.subjectWithRef | Hello from travisjterry.com (ref: {ref}) |  |
+| contact.mailto.subject | Hello from travisjterry.dev |  |
+| contact.mailto.subjectWithRef | Hello from travisjterry.dev (ref: {ref}) |  |
 | contact.mergedStatus | Merged. All checks passed. |  |
 | footer.curl.lead | Prefer a terminal? |  |
 | footer.howBuilt | How this site was built | /how-this-site-was-built |
