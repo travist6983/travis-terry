@@ -94,7 +94,11 @@ function Hero() {
           </p>
         </div>
         <div className="hero__side">
-          {headshot ? <div className="glass headshot"><Needed>{strip(headshot)}</Needed></div> : null}
+          {headshot ? (
+            <div className="glass headshot"><Needed>{strip(headshot)}</Needed></div>
+          ) : person.headshot?.path ? (
+            <img className="glass headshot headshot--photo" src={person.headshot.path} alt={t(person.headshot)} width={200} height={200} />
+          ) : null}
           <div className="backlog" aria-hidden="true">
             {Array.from({ length: 6 }, (_, i) => (
               <span
