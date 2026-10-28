@@ -72,6 +72,20 @@ type Chunk = { id: string; title: string; section: string; text: string; score: 
 const json = (body: unknown, status: number, cors: HeadersInit) =>
   new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...cors } });
 
+/** The one or two sentences of a source that share the most words with the answer, for the citation quote. */
+function excerpt(text: string, answer: string, max = 320) {
+  const words = (x: string) => new Set(x.toLowerCase().match(/[a-z0-9%]{4,}/g) ?? []);
+  const want = words(answer);
+  const sentences = text.replace(/\s+/g, ' ').match(/[^.!?]+[.!?]+["')]?|[^.!?]+$/g)?.map((x) => x.trim()).filter(Boolean) ?? [text];
+  const scored = sentences.map((x, i) => ({ x, i, n: [...words(x)].filter((w) => want.has(w)).length }));
+  const [best, next] = [...scored].sort((a, b) => b.n - a.n);
+  // a second sentence only when it backs the answer nearly as well as the first
+  const top = [best, next].filter((t, k) => t && (k === 0 || t.n >= Math.max(2, best.n * 0.6))).sort((a, b) => a.i - b.i);
+  let out = top.map((t) => t.x).join(' ');
+  if (out.length > max) out = out.slice(0, out.lastIndexOf(' ', max)) + '...';
+  return out.replace(/\s*[–—]\s*/g, ', ');
+}
+
 async function sha(text: string) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
   return [...new Uint8Array(buf)].slice(0, 12).map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -178,7 +192,7 @@ export default {
     }
     const answer = out.answer.replace(/[–—]/g, ', ');
     return json(
-      { mode: 'ai', answer, sources: cited.map((c) => ({ id: c.id, title: c.title, section: c.section })), remaining: limit - used - 1 },
+      { mode: 'ai', answer, sources: cited.map((c) => ({ id: c.id, title: c.title, section: c.section, quote: excerpt(c.text, answer) })), remaining: limit - used - 1 },
       200,
       cors,
     );

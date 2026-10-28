@@ -16,7 +16,7 @@ type Entry = {
   fallbackOnly?: boolean;
 };
 type Result = { entry: Entry | null };
-type Source = { id: string; title: string; section: string };
+type Source = { id: string; title: string; section: string; quote?: string };
 type Reply =
   | { kind: 'fixed'; entry: Entry }
   | { kind: 'ai'; answer: string; sources: Source[]; remaining?: number }
@@ -88,6 +88,7 @@ export function Ask() {
   const [q, setQ] = useState('');
   const [asked, setAsked] = useState<string | null>(null);
   const [reply, setReply] = useState<Reply | null>(null);
+  const [openSrc, setOpenSrc] = useState<string | null>(null);
   const widgetEl = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const widgetId = useRef<string | null>(null);
@@ -130,6 +131,7 @@ export function Ask() {
   async function run(question: string) {
     setAsked(question);
     setQ('');
+    setOpenSrc(null);
     const local = classify(question);
     if (!live) return setReply(local.entry ? { kind: 'fixed', entry: local.entry } : { kind: 'fallback' });
     setReply({ kind: 'loading' });
@@ -218,8 +220,36 @@ export function Ask() {
                       <p>{reply.answer}</p>
                       <div className="srcs">
                         <span className="kick kick--mute">SOURCES:</span>
-                        {reply.sources.map((src) => <a key={src.id} href={`#${src.section}`}>{src.title.replace(/^(Q&A|Project|Career|Interview): /, '')}</a>)}
+                        {reply.sources.map((src) => {
+                          const label = src.title.replace(/^(Q&A|Project|Career|Interview): /, '');
+                          if (!src.quote) return <a key={src.id} href={`#${src.section}`}>{label}</a>;
+                          const on = openSrc === src.id;
+                          return (
+                            <button
+                              key={src.id}
+                              type="button"
+                              className={`src ${on ? 'is-on' : ''}`}
+                              aria-expanded={on}
+                              aria-controls={`src-${src.id}`}
+                              onClick={() => setOpenSrc(on ? null : src.id)}
+                            >
+                              {label}
+                            </button>
+                          );
+                        })}
                       </div>
+                      {reply.sources.map((src) =>
+                        src.quote && openSrc === src.id ? (
+                          <figure key={src.id} id={`src-${src.id}`} className="srcq">
+                            <blockquote>{src.quote}</blockquote>
+                            <figcaption>
+                              <span className="kick kick--mute">FROM {src.title.replace(/^(Q&A|Project|Career|Interview): /, '').toUpperCase()}</span>
+                              <a href={`#${src.section}`}>Go to section</a>
+                            </figcaption>
+                          </figure>
+                        ) : null,
+                      )}
+                      {reply.sources.some((src) => src.quote) && !openSrc && <p className="fine srcs__hint">Click a source to see the exact text the answer came from.</p>}
                     </>
                   )}
                   {reply.kind === 'fallback' && (

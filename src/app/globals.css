@@ -375,7 +375,16 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .bubble--them { align-self: flex-start; display: flex; flex-direction: column; gap: 12px; padding: 18px 20px; border-radius: 18px 18px 18px 6px; background: var(--soft-bg); border: 1px solid rgba(255,255,255,0.85); }
 .srcs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .srcs .kick { font-size: 11px; letter-spacing: 0.06em; }
-.srcs a { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 9px; font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.8); }
+.srcs a, .src { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 9px; font-size: 13px; font-weight: 600; background: rgba(255,255,255,0.8); }
+.src { border: 1px solid transparent; font-family: var(--font); color: var(--accent-ink); cursor: pointer; }
+.src::after { content: '\201C\201D'; margin-left: 6px; font-size: 14px; opacity: 0.55; }
+.src:hover, .src.is-on { border-color: var(--accent-ink); }
+.src.is-on { background: #fff; }
+.srcq { margin: 10px 0 0; padding: 12px 14px; border-left: 3px solid var(--accent-fill); border-radius: 0 10px 10px 0; background: rgba(255,255,255,0.7); }
+.srcq blockquote { margin: 0; font-size: 14px; line-height: 1.5; }
+.srcq figcaption { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+.srcq .kick { font-size: 11px; letter-spacing: 0.06em; }
+.srcs__hint { margin-top: 6px; }
 .chat__loading span { display: inline-block; animation: blink 1s steps(2) infinite; }
 @keyframes blink { 50% { opacity: 0.2; } }
 .chips { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -594,7 +603,7 @@ html[data-motion='on'] .station [data-reveal].is-in { transform: none; }
   /* Touch: segmented controls, chips and small buttons get 44px targets */
   .seg button, .mcpx .seg button, .seg--lg button { height: 44px; }
   .btn--sm { height: 40px; }
-  .srcs a { height: 36px; }
+  .srcs a, .src { height: 36px; }
   /* Stack tabs: an even 2 x 2 grid of real buttons instead of ragged wrapped text */
   .seg--flat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; width: 100%; }
   .seg--flat button { height: auto; min-height: 44px; padding: 6px 12px; line-height: 1.25; background: var(--soft-bg); }
