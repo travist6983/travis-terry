@@ -25,8 +25,8 @@ interface Env {
 }
 
 const EMBED_MODEL = '@cf/baai/bge-base-en-v1.5';
-const MIN_SCORE = 0.6;
-const TOP_K = 6;
+const MIN_SCORE = 0.55;
+const TOP_K = 8;
 const FALLBACK = "I don't have that here. Email me.";
 
 // USD per million tokens: [input, output, cache read, cache write]
