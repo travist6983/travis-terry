@@ -625,3 +625,6 @@ html[data-motion='on'] .rail.is-in .rail__item::after, html[data-motion='off'] .
   .rail__item, .rail__item:first-child { padding: 20px 0 16px; }
   .rail__item + .rail__item { border-left: 0; border-top: 1px solid var(--line); }
 }
+.term__loading span { display: inline-block; animation: flicker 1s steps(2) infinite; }
+.turnstile:empty { display: none; }
+.turnstile { margin-top: 12px; }

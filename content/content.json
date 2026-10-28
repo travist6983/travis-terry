@@ -1702,10 +1702,9 @@
       },
       "intro": {
         "id": "ask.intro",
-        "text": "Ask a question about my work. Every answer here is one I approved, and each shows the section it comes from.",
+        "text": "Ask anything about my work. Typed questions are answered by Claude using only my resume, this site, and my own interview notes, and every answer shows its sources. If it does not know, it says so.",
         "src": [
-          "brief:HARD_RULE_11",
-          "decisions:Q46"
+          "ui"
         ],
         "verifyIn": "Phase 5 QA"
       },
@@ -1720,21 +1719,11 @@
       },
       "noLiveModel": {
         "id": "ask.noLiveModel",
-        "text": "No live AI model runs here.",
+        "text": "",
         "src": [
-          "brief:HARD_RULE_11"
+          "ui"
         ],
         "verifyIn": "Phase 5 QA"
-      },
-      "approvalStatus": {
-        "id": "ask.approvalStatus",
-        "text": null,
-        "confirm": true,
-        "confirmText": "[NEEDED FROM TRAVIS: approve each Ask My Resume answer]",
-        "src": [
-          "brief:PHASE1_A"
-        ],
-        "note": "Rendered above the answer region until every entry in content/ask-my-resume.json has approved: true. Until then, the classifier treats each unapproved entry as the fallback, so ask.intro stays true."
       },
       "inputLabel": {
         "id": "ask.inputLabel",
@@ -1773,7 +1762,7 @@
         "linkFrom": "person.email"
       },
       "answersRef": "content/ask-my-resume.json",
-      "answersNote": "Questions and answers live in content/ask-my-resume.json. Every answer there is [NEEDED FROM TRAVIS: approve each Ask My Resume answer] until approved: each entry carries approved: false, and the classifier returns the fallback for an unapproved entry (see ask.approvalStatus). An entry with fallbackOnly: true always shows the fallback, and a why-did-you-leave question reaches its answer only when it names Atlas UP (departureRoutes). An entry won only through contextKeywords shows its contextAnswer when it has one. Answers render in an aria-live region with the label Source: and the names of the entry's sourceSections. The site never echoes the matched question text, and never shows an entry with suggest: false as a suggested or example question."
+      "answersNote": "Questions and answers live in content/ask-my-resume.json. All 30 approved by Travis on 2026-10-27."
     },
     {
       "id": "recommendations",

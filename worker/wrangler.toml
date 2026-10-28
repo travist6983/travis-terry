@@ -1,0 +1,23 @@
+name = "ask-travis"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "VEC"
+index_name = "travis-resume"
+
+# id filled in after `wrangler kv namespace create ASK_KV`
+[[kv_namespaces]]
+binding = "KV"
+id = "dc21827e320f497dbe50c29c87494f97"
+
+[vars]
+ASK_MODEL = "claude-haiku-5-5"
+ASK_RATE_LIMIT_PER_HOUR = "10"
+ASK_DAILY_SPEND_CAP_USD = "2"
+ASK_LLM_ENABLED = "true"
+ALLOWED_ORIGINS = "https://travisjterry.com,http://localhost:3000"

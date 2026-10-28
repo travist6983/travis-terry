@@ -9,3 +9,5 @@ out/
 .env*
 __pycache__/
 *.tsbuildinfo
+.wrangler/
+.dev.vars

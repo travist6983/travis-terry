@@ -16,7 +16,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 - The email address is obfuscated in this public file. The phone number is not on the site at all.
 - The resume (L62) and HEADLINE_PROOF spell the iOS app with a trailing s. That is a known typo; the site uses "Pocket Chronicle" per DECISIONS.
 
-## Factual strings (136)
+## Factual strings (134)
 
 | id | sentence | source ref | exact source quote |
 |---|---|---|---|
@@ -144,9 +144,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 | career.skbk.h1 | Maintained the public website and MLS listing feeds (IDX and RETS), and built agent-facing intranet tools in PHP and MySQL. | resume L52 | resume L52: "Maintained the public website and MLS listing feeds (IDX and RETS), and built agent-facing intranet tools in PHP and MySQL." |
 | career.skbk.h2 | Handled SEO, analytics, and all company IT assets including Windows Server, Exchange, and network hardware. | resume L53 | resume L53: "Handled SEO, analytics, and all company IT assets including Windows Server, Exchange, and network hardware." |
 | career.education.entry | ITT Technical Institute, Troy, MI. Associate of Applied Science, Computer Science. | resume L67 | resume L67: "ITT Technical Institute  \|  Troy, MI  \|  Associate of Applied Science, Computer Science" |
-| ask.intro | Ask a question about my work. Every answer here is one I approved, and each shows the section it comes from. | brief:HARD_RULE_11<br>decisions:Q46<br>*(site behavior; verify in Phase 5 QA)* | brief:HARD_RULE_11: "it matches a visitor's question by keyword or intent to answers he has written and approved, shows the source section for each answer"<br>decisions:Q46: ""answers I approved"" |
 | ask.classifierLine | The idea comes from the question classifier in the EOS One MCP server I helped build, which routed each request to the right tool. | resume L22<br>resume L6<br>brief:HARD_RULE_11 | resume L22: "a question classifier routes each request to the right tool"<br>resume L6: "helped build EOS One’s production MCP server"<br>brief:HARD_RULE_11: "so call that out in one line" |
-| ask.noLiveModel | No live AI model runs here. | brief:HARD_RULE_11<br>*(site behavior; verify in Phase 5 QA)* | brief:HARD_RULE_11: "No live LLM in v1." |
 | ask.fallback | I don't have that here. Email me. | brief:HARD_RULE_11 | brief:HARD_RULE_11: "I don't have that here. Email me." |
 | contact.intro | If you're hiring for agentic AI engineering, AI applications, or web platform work, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit. | resume L2<br>decisions:Q44 | resume L2: "Agentic AI Engineering, AI Applications, and Web Platform"<br>decisions:Q44: "not "remote only": open to remote or on-site/hybrid in Metro Detroit" |
 | contact.book | Book a Call (link: https://cal.com/travis-terry-vwjxkq/30min) | decisions:Booking | decisions:Booking: "https://cal.com/travis-terry-vwjxkq/30min" |
@@ -157,7 +155,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 | footer.disclosure | Company, product, and tool names on this site are plain text and do not imply any sponsorship, partnership, or endorsement. | brief:HARD_RULE_4 | brief:HARD_RULE_4: "Names appear as plain text only. Nothing may imply endorsement by any vendor." |
 | footer.copyright | © 2026 Travis Terry | resume L1 | resume L1: "TRAVIS TERRY" |
 
-## UI labels (74)
+## UI labels (76)
 
 Interface labels with no factual claim. Listed so nothing in content.json is unaccounted for.
 
@@ -220,6 +218,8 @@ Interface labels with no factual claim. Listed so nothing in content.json is una
 | career.intro | Each role is a branch that merged into main. Oldest first, ending at HEAD. |  |
 | career.education.heading | Education |  |
 | ask.title | Ask My Resume |  |
+| ask.intro | Ask anything about my work. Typed questions are answered by Claude using only my resume, this site, and my own interview notes, and every answer shows its sources. If it does not know, it says so. |  |
+| ask.noLiveModel |  |  |
 | ask.inputLabel | Your question |  |
 | ask.placeholder | Try: what did your agentic pipeline do? |  |
 | ask.submit | Ask |  |
@@ -369,13 +369,12 @@ An entry without `suggest: false` may show its question or a variant as a sugges
 | earlier-career.q | What did you do before EOS One? | resume L34 | resume L34: "Built the EOS One component library" |
 | earlier-career.v1 | Tell me about Qualfon. | resume L40 | resume L40: "Qualfon (formerly Dialog Direct and Budco)" |
 
-## Open NEEDED FROM TRAVIS placeholders (2)
+## Open NEEDED FROM TRAVIS placeholders (1)
 
 Each renders on the site as a striped yellow NEEDED FROM TRAVIS callout until Travis supplies the fact, and a build check blocks launch while any remain. Links with a placeholder render as plain text, never as links.
 
 | id | placeholder | where it shows | resolves with |
 |---|---|---|---|
 | person.headshot | [NEEDED FROM TRAVIS: headshot photo, square, 800px or larger] | Not placed yet; Phase 2 decides placement | Image file from Travis (decisions:Extras, decisions:Q10) |
-| ask.approvalStatus | [NEEDED FROM TRAVIS: approve each Ask My Resume answer] | Ask My Resume section, above the answer region, until every entry is approved. Each entry ships with `approved: false`, which the classifier treats as the fallback | Travis approves each answer in the private review file (decisions:Q45); each approved entry then gets `approved: true` |
 
 The whole-set approval placeholder is the `ask.approvalStatus` row above. Until Travis approves an answer, the site returns the fallback for it.

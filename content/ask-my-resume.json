@@ -114,7 +114,7 @@
         "platform",
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "current-role",
@@ -157,7 +157,7 @@
         "career",
         "pipeline"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "looking-for",
@@ -189,7 +189,7 @@
       "sourceSections": [
         "sixty"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "whats-next",
@@ -209,7 +209,7 @@
         "sixty"
       ],
       "suggest": false,
-      "approved": false
+      "approved": true
     },
     {
       "id": "agentic-system",
@@ -251,7 +251,7 @@
       "sourceSections": [
         "pipeline"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "biggest-result",
@@ -297,7 +297,7 @@
       "sourceSections": [
         "pipeline"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "foundrkids-safety",
@@ -339,7 +339,7 @@
       "sourceSections": [
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "foundrkids",
@@ -371,7 +371,7 @@
       "sourceSections": [
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "safety-model",
@@ -424,7 +424,7 @@
         "safety",
         "mcp"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "review-ai-code",
@@ -463,7 +463,7 @@
         "pipeline",
         "safety"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "regression-lane",
@@ -493,7 +493,7 @@
       "sourceSections": [
         "pipeline"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "mcp-server",
@@ -530,7 +530,7 @@
       "sourceSections": [
         "mcp"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "how-this-works",
@@ -571,7 +571,7 @@
         "ask",
         "footer"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "ai-adoption",
@@ -605,7 +605,7 @@
       "sourceSections": [
         "platform"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "leadership",
@@ -650,7 +650,7 @@
         "platform",
         "career"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "team-size",
@@ -683,7 +683,7 @@
         "platform",
         "career"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "vue",
@@ -718,7 +718,7 @@
         "career",
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "react",
@@ -746,7 +746,7 @@
         "footer",
         "sixty"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "frontend-platform",
@@ -793,7 +793,7 @@
         "career",
         "sixty"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "backend-fullstack",
@@ -844,7 +844,7 @@
         "sixty",
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "testing-approach",
@@ -881,7 +881,7 @@
         "pipeline",
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "endorsement",
@@ -931,7 +931,7 @@
         "footer"
       ],
       "suggest": false,
-      "approved": false
+      "approved": true
     },
     {
       "id": "tools",
@@ -988,7 +988,7 @@
         "independent",
         "platform"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "pocket-chronicle",
@@ -1021,7 +1021,7 @@
       "sourceSections": [
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "independent-projects",
@@ -1053,7 +1053,7 @@
       "sourceSections": [
         "independent"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "earlier-career",
@@ -1097,7 +1097,7 @@
       "sourceSections": [
         "career"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "education",
@@ -1130,7 +1130,7 @@
       "sourceSections": [
         "career"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "location-remote",
@@ -1182,7 +1182,7 @@
         "sixty",
         "career"
       ],
-      "approved": false
+      "approved": true
     },
     {
       "id": "work-authorization",
@@ -1219,7 +1219,7 @@
       "answer": "I don't have that here. Email me.",
       "sourceSections": [],
       "fallbackOnly": true,
-      "approved": false
+      "approved": true
     },
     {
       "id": "contact",
@@ -1264,7 +1264,7 @@
       "sourceSections": [
         "contact"
       ],
-      "approved": false
+      "approved": true
     }
   ]
 }
