@@ -34,7 +34,7 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 - [x] **Me:** Analytics beacon is wired to the `NEXT_PUBLIC_CF_BEACON_TOKEN` repo variable. Until it's set, no beacon loads and the footer leaves out the "Visits are counted" sentence. Once you have the token: `gh variable set NEXT_PUBLIC_CF_BEACON_TOKEN` and push (or rerun the deploy).
 
 ## Your public footprint
-- [ ] **You:** Make `Rascal-Marketing` private.
+- [x] **You:** Make `Rascal-Marketing` private. Done differently: the work email was rewritten out of every branch (Oct 28). Old PR pages keep it until GitHub Support purges them.
 - [ ] **You:** Move the `journeymanwebco` lead files to a private repo.
 - [ ] **You:** Check LinkedIn titles match the site (EOS Worldwide: Staff Frontend Software Engineer, Lead).
 - [ ] **You:** Add the site URL to your LinkedIn profile.
@@ -42,5 +42,5 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 ## Final QA (Claude)
 - [x] **Me:** Lighthouse on mobile and desktop. Mobile 98 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100 (performance, accessibility, best practices, SEO). Fixed button contrast and the motion toggle's accessible name along the way.
 - [x] **Me:** Check desktop (1440px) and phone (390px) layouts, with Pause motion on, with reduced motion, and in print. Fixed doubled hero numbers in print.
-- [ ] **Me:** Confirm `curl -sL travisjterry.dev/cli`, `resume.txt`, `resume.json`, and `llms.txt` serve correctly on the live domain.
+- [x] **Me:** Confirm `curl -sL travisjterry.dev/cli`, `resume.txt`, `resume.json`, and `llms.txt` serve correctly on the live domain.
 - [ ] **Me:** Test `?ref=` tags in email links and the AI box on the live domain.
