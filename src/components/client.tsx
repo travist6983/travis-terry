@@ -55,7 +55,6 @@ export function KillSwitch({ variant = 'nav' }: { variant?: 'nav' | 'panel' }) {
       type="button"
       className={`kill kill--${variant} ${variant === 'nav' ? 'glass' : ''}`}
       aria-pressed={!on}
-      aria-label={t(mc.ariaLabel)}
       onClick={toggle}
     >
       <span className="kill__track" aria-hidden="true">

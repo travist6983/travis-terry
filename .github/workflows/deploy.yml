@@ -25,9 +25,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Public values only; set them in repo Settings > Secrets and variables > Actions > Variables.
+          NEXT_PUBLIC_ASK_API: ${{ vars.NEXT_PUBLIC_ASK_API }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_CF_BEACON_TOKEN: ${{ vars.NEXT_PUBLIC_CF_BEACON_TOKEN }}
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: dist
 
   deploy:
     needs: build

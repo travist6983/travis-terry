@@ -7,8 +7,8 @@
     "predev": "npm run resume:files",
     "dev": "next dev -p 3000",
     "prebuild": "npm run resume:files",
-    "build": "next build",
-    "start": "npx serve out -l 3000"
+    "build": "rm -rf dist && next build",
+    "start": "npx serve dist -l 3001"
   },
   "dependencies": {
     "gsap": "^3.15.0",
