@@ -173,6 +173,17 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .hero__name { margin: 0 0 20px; font-weight: 700; font-size: clamp(56px, 7.5vw, 92px); line-height: 1; letter-spacing: -0.045em; }
 .hero__value { font-size: 19px; line-height: 1.5; color: var(--ink-2); max-width: 34em; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 22px; }
+.hero__ctas .btn { font-weight: 600; transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.hero__ctas .btn--accent { box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 10px 26px rgba(10,111,214,0.32); }
+.hero__ctas .btn--accent:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 14px 32px rgba(10,111,214,0.42); }
+.hero__ctas .btn--glass { background: rgba(255,255,255,0.78); border: 1px solid rgba(12,18,32,0.1); box-shadow: inset 0 1px 0 #fff, 0 6px 18px rgba(12,18,32,0.08); }
+.hero__ctas .btn--glass:hover { background: #fff; border-color: rgba(10,111,214,0.4); color: var(--accent-ink); box-shadow: inset 0 1px 0 #fff, 0 10px 24px rgba(10,111,214,0.16); }
+.hero__ctas .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* desktop: all four calls to action on one line */
+@media (min-width: 1100px) {
+  .hero__ctas { flex-wrap: nowrap; gap: 10px; }
+  .hero__ctas .btn { padding: 0 16px; }
+}
 .hero__meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; color: var(--ink-4); }
 .hero__side { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .headshot { width: 200px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; padding: 18px; text-align: center; }
