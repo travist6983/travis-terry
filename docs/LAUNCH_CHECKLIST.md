@@ -27,7 +27,7 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 - [x] **Me:** Worker `ALLOWED_ORIGINS` updated to `travisjterry.dev` and `www.travisjterry.dev`, and redeployed.
 - [x] **You:** Set a monthly spend limit at https://console.anthropic.com/settings/limits as a backstop to the $2 daily cap.
 - [x] **You:** Run the interview (`private/interview/INTERVIEW_PROMPT.md`) and save transcripts to `private/interview/`.
-- [ ] **Me:** Load interview answers into the knowledge base (`cd worker && node scripts/ingest.mjs`). Optional for launch.
+- [x] **Me:** Load interview answers into the knowledge base (`cd worker && node scripts/ingest.mjs`). 20 of 35 answers loaded on Oct 28; the 15 marked for review stay out until their review line is set to `none` and the ingest is rerun.
 
 ## Privacy and analytics
 - [x] **You:** Create a Cloudflare Web Analytics site and share the token.
