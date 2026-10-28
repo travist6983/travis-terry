@@ -25,8 +25,8 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 ## AI box (Cloudflare Worker)
 - [x] **You:** In the Turnstile widget, add hostnames `travisjterry.dev` and `www.travisjterry.dev` (the widget was set up for `.com`). Without this the AI box can't verify visitors on the live site.
 - [x] **Me:** Worker `ALLOWED_ORIGINS` updated to `travisjterry.dev` and `www.travisjterry.dev`, and redeployed.
-- [ ] **You:** Set a monthly spend limit at https://console.anthropic.com/settings/limits as a backstop to the $2 daily cap.
-- [ ] **You:** Run the interview (`private/interview/INTERVIEW_PROMPT.md`) and save transcripts to `private/interview/`.
+- [x] **You:** Set a monthly spend limit at https://console.anthropic.com/settings/limits as a backstop to the $2 daily cap.
+- [x] **You:** Run the interview (`private/interview/INTERVIEW_PROMPT.md`) and save transcripts to `private/interview/`.
 - [ ] **Me:** Load interview answers into the knowledge base (`cd worker && node scripts/ingest.mjs`). Optional for launch.
 
 ## Privacy and analytics
@@ -35,9 +35,9 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 
 ## Your public footprint
 - [x] **You:** Make `Rascal-Marketing` private. Done differently: the work email was rewritten out of every branch (Oct 28). Old PR pages keep it until GitHub Support purges them.
-- [ ] **You:** Move the `journeymanwebco` lead files to a private repo.
-- [ ] **You:** Check LinkedIn titles match the site (EOS Worldwide: Staff Frontend Software Engineer, Lead).
-- [ ] **You:** Add the site URL to your LinkedIn profile.
+- [x] **You:** Move the `journeymanwebco` lead files to a private repo.
+- [x] **You:** Check LinkedIn titles match the site (EOS Worldwide: Staff Frontend Software Engineer, Lead).
+- [x] **You:** Add the site URL to your LinkedIn profile.
 
 ## Final QA (Claude)
 - [x] **Me:** Lighthouse on mobile and desktop. Mobile 98 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100 (performance, accessibility, best practices, SEO). Fixed button contrast and the motion toggle's accessible name along the way.
