@@ -16,7 +16,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 - The email address is obfuscated in this public file. The phone number is not on the site at all.
 - The resume (L62) and HEADLINE_PROOF spell the iOS app with a trailing s. That is a known typo; the site uses "Pocket Chronicle" per DECISIONS.
 
-## Factual strings (134)
+## Factual strings (135)
 
 | id | sentence | source ref | exact source quote |
 |---|---|---|---|
@@ -34,6 +34,7 @@ Every factual string in `content/content.json`, and every answer sentence and su
 | person.email | travisjterry [at] gmail [dot] com (stored split; assembled client-side) | resume L3 | resume L3: email address on L3 (omitted here) |
 | person.linkedin | linkedin.com/in/travisjterry (link: https://www.linkedin.com/in/travisjterry) | resume L3 | resume L3: "linkedin.com/in/travisjterry" |
 | person.github | github.com/travist6983 (link: https://github.com/travist6983) | decisions:Extras<br>decisions:Q21 | decisions:Extras: "GitHub profile link (github.com/travist6983)"<br>decisions:Q21: "client concept repos and palay-magic fine public" |
+| person.headshot | Travis Terry | resume L1<br>decisions:Extras | resume L1: "TRAVIS TERRY"<br>decisions:Extras: "headshot (Travis provides file)" |
 | header.wordmark | Travis Terry | resume L1 | resume L1: "TRAVIS TERRY" |
 | hero.h1 | Travis Terry | resume L1 | resume L1: "TRAVIS TERRY" |
 | hero.titleLine | Staff Software Engineer \| Agentic AI Engineering, AI Applications, and Web Platform | resume L2<br>decisions:Title line | resume L2: "Staff Software Engineer  \|  Agentic AI Engineering, AI Applications, and Web Platform"<br>decisions:Title line: "Resume line as-is" |
@@ -370,12 +371,11 @@ An entry without `suggest: false` may show its question or a variant as a sugges
 | earlier-career.q | What did you do before EOS One? | resume L34 | resume L34: "Built the EOS One component library" |
 | earlier-career.v1 | Tell me about Qualfon. | resume L40 | resume L40: "Qualfon (formerly Dialog Direct and Budco)" |
 
-## Open NEEDED FROM TRAVIS placeholders (1)
+## Open NEEDED FROM TRAVIS placeholders (0)
 
 Each renders on the site as a striped yellow NEEDED FROM TRAVIS callout until Travis supplies the fact, and a build check blocks launch while any remain. Links with a placeholder render as plain text, never as links.
 
 | id | placeholder | where it shows | resolves with |
 |---|---|---|---|
-| person.headshot | [NEEDED FROM TRAVIS: headshot photo, square, 800px or larger] | Not placed yet; Phase 2 decides placement | Image file from Travis (decisions:Extras, decisions:Q10) |
 
 The whole-set approval placeholder is the `ask.approvalStatus` row above. Until Travis approves an answer, the site returns the fallback for it.

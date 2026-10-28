@@ -170,13 +170,13 @@
     },
     "headshot": {
       "id": "person.headshot",
-      "text": null,
-      "path": null,
-      "confirm": true,
-      "confirmText": "[NEEDED FROM TRAVIS: headshot photo, square, 800px or larger]",
+      "text": "Travis Terry",
+      "path": "/headshot.webp",
       "src": [
+        "resume L1",
         "decisions:Extras"
-      ]
+      ],
+      "note": "text is the image alt. Cropped and resized to 480px WebP with metadata stripped."
     }
   },
   "ticket": {

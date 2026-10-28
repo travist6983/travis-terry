@@ -177,6 +177,7 @@ main, .foot, .nav, .mbar { position: relative; z-index: 1; }
 .hero__side { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .headshot { width: 200px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; padding: 18px; text-align: center; }
 .headshot .needed { margin: 0; font-size: 11px; }
+.headshot--photo { padding: 4px; object-fit: cover; }
 .backlog { width: min(360px, 100%); display: flex; flex-direction: column; gap: 10px; }
 .backlog__card { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 16px; }
 .backlog__card i { display: block; height: 6px; width: 80%; border-radius: 3px; background: rgba(12,18,32,0.09); }

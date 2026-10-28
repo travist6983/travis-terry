@@ -11,7 +11,7 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 - [x] **Me:** Send production builds to a separate folder so a build can't break the dev server again. `npm run build` now exports to `dist/`; dev keeps `.next/`.
 
 ## Launch blockers on the page
-- [ ] **You:** Headshot photo (square, 800px or larger). The yellow NEEDED box shows until it's added.
+- [x] **You:** Headshot photo (square, 800px or larger). Added as `/headshot.webp`, 480px, metadata stripped. The yellow NEEDED box shows until it's added.
 - [x] **You:** Updated resume PDF, or Claude generates a corrected one from the site. The current `resume.pdf` still has:
   - [x] "Pocket Chronicles" with an s
   - [x] FoundrKids dated "2025" (should be February 2026)
@@ -30,7 +30,7 @@ Everything needed to go live, apart from pointing the domain at GitHub Pages. Do
 - [ ] **Me:** Load interview answers into the knowledge base (`cd worker && node scripts/ingest.mjs`). Optional for launch.
 
 ## Privacy and analytics
-- [ ] **You:** Create a Cloudflare Web Analytics site and share the token.
+- [x] **You:** Create a Cloudflare Web Analytics site and share the token.
 - [x] **Me:** Analytics beacon is wired to the `NEXT_PUBLIC_CF_BEACON_TOKEN` repo variable. Until it's set, no beacon loads and the footer leaves out the "Visits are counted" sentence. Once you have the token: `gh variable set NEXT_PUBLIC_CF_BEACON_TOKEN` and push (or rerun the deploy).
 
 ## Your public footprint
