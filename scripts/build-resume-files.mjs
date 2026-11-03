@@ -52,21 +52,22 @@ const availability = t('sixty.availability');
 
 const skills = section('sixty').stack.map((s) => ({ label: s.label, text: item(s.id).text }));
 
-// Atlas UP pulls in the work the site tells across The Pipeline, Safety, MCP, and Platform sections.
+// Atlas UP pulls in the work the site tells across The Pipeline, Safety, MCP, and Platform sections,
+// in the November 2026 resume's bullet order. Employment bullets name no frontend framework.
 const highlights = {
   'atlas-up': [
-    ['career.atlasUp.h1'],
-    ['sixty.achievement.2'],
+    ['career.atlasUp.h1', 'sixty.achievement.2'],
+    ['pipeline.stage.reproduce.aside'],
     ['sixty.achievement.3'],
-    ['pipeline.stage.review.aside'],
     ['pipeline.stage.regression.aside'],
-    ['sixty.achievement.4', 'mcp.classifier'],
+    ['pipeline.stage.review.aside'],
+    ['sixty.achievement.4'],
+    ['platform.llmArchitecture'],
+    ['career.atlasUp.h4'],
+    ['platform.stack'],
     ['platform.adoption'],
-    ['sixty.achievement.5'],
-    ['platform.shipping'],
-    ['platform.retention'],
+    ['career.atlasUp.h5'],
   ],
-  'eos-worldwide': [['career.eos.h1'], ['platform.review'], ['career.eos.h2'], ['career.eos.h3'], ['career.eos.h4']],
 };
 
 const jobs = career.entries.map((e) => ({
@@ -282,7 +283,7 @@ const llms = [
   anchor('safety', t('safety.title'), t('safety.intro')),
   anchor('mcp', t('mcp.title'), t('mcp.intro')),
   anchor('career', t('career.title'), 'every role from 2006 to 2026, plus education'),
-  anchor('platform', t('platform.title'), t('platform.vue')),
+  anchor('platform', t('platform.title'), t('platform.ownership')),
   anchor('independent', t('independent.title'), t('independent.intro')),
   anchor('contact', 'Contact', t('contact.intro')),
   '',

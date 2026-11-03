@@ -108,7 +108,7 @@
         "why hire you",
         "about your experience"
       ],
-      "answer": "I'm a staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work. At Atlas UP I was the sole author of a 30+ skill Claude Code system that took tickets from reproduction to a verified, opened pull request. I also owned the Vue frontend platform for EOS One, built two AI products on my own, and have a track record of mentoring engineers into independent contributors.",
+      "answer": "I'm a senior full stack engineer with 15+ years of experience shipping production systems end to end, and I specialize in agentic engineering with real guardrails. At Atlas UP I was the sole author of a 30+ skill Claude Code system that took Jira tickets from reproduction through fix, verification, regression, and code review. I also built and owned the EOS One design system, shipped LLM features used by about 10,000 monthly active users, and mentored junior engineers toward senior roles. On my own I build AI products, including FoundrKids, a child-safe learning platform in pre-launch, and RoleHawk, an open source AI job search copilot.",
       "sourceSections": [
         "sixty",
         "platform",
@@ -143,16 +143,22 @@
         "present role",
         "where do you work",
         "where did you work last",
-        "who do you work for"
+        "who do you work for",
+        "monthly active users",
+        "active users",
+        "mau",
+        "user base",
+        "how many users"
       ],
       "contextKeywords": [
         "atlas up",
         "atlasup",
         "job title",
-        "your title"
+        "your title",
+        "eos one"
       ],
-      "answer": "My most recent role was Staff Software Engineer at Atlas UP, from June 2025 to October 2026. I joined through Atlas UP's acquisition of EOS One from EOS Worldwide and had owned the product continuously since February 2023. There I owned the Vue frontend platform for EOS One and built the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
-      "contextAnswer": "At Atlas UP I was a Staff Software Engineer. I owned the Vue frontend platform for EOS One and built the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
+      "answer": "My most recent role was Staff Software Engineer at Atlas UP, from June 2025 to October 2026. I joined through Atlas UP's acquisition of EOS One from EOS Worldwide and was retained as one of three staff engineers as the team went from 35 to 9. There I built the agentic engineering system, the PR review agent, and the AI regression lane described on this site, and owned the AI-powered Accountability Chart and V/TO builders end to end. The Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
+      "contextAnswer": "At Atlas UP I was a Staff Software Engineer. I built the agentic engineering system, the PR review agent, and the AI regression lane described on this site, and owned the AI-powered Accountability Chart and V/TO builders end to end.",
       "sourceSections": [
         "career",
         "pipeline"
@@ -185,7 +191,7 @@
         "job search",
         "seeking"
       ],
-      "answer": "I'm looking for roles in agentic AI engineering, AI applications, or web platform work. I'm open to remote roles, or on-site and hybrid roles in Metro Detroit.",
+      "answer": "I'm looking for senior full stack engineering roles, especially in agentic AI engineering and AI applications. I'm open to remote roles, or on-site and hybrid roles in Metro Detroit.",
       "sourceSections": [
         "sixty"
       ],
@@ -204,7 +210,7 @@
         "whats next for you",
         "whats next in your career"
       ],
-      "answer": "I'm focused on what's next: a role in agentic AI engineering, AI applications, or web platform work.",
+      "answer": "I'm focused on what's next: a senior full stack engineering role, especially in agentic AI engineering and AI applications.",
       "sourceSections": [
         "sixty"
       ],
@@ -247,7 +253,7 @@
       "contextKeywords": [
         "agents"
       ],
-      "answer": "I was the sole author of an agentic engineering system at Atlas UP: 30+ Claude Code skills chained into loops. Given a Jira ticket, the loops ran reproduction, the fix, independent verification, regression, and review, then opened a pull request with before and after videos. The pipeline drawn on this page is an illustrative recreation with generic data.",
+      "answer": "I was the sole author of an agentic engineering system at Atlas UP: 30+ Claude Code skills chained into loops. Given a Jira ticket, the loops ran reproduction, the fix, independent verification, regression, and review, then opened a pull request with before and after videos. The agents drove the app from a persistent knowledge base I built, and a nightly consolidation process pruned contradictions and duplicate lessons learned. The pipeline drawn on this page is an illustrative recreation with generic data.",
       "sourceSections": [
         "pipeline"
       ],
@@ -293,7 +299,7 @@
         "six weeks",
         "outcomes"
       ],
-      "answer": "Using my agentic system at Atlas UP, I cleared a backlog of 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back. The AI regression lane I built also cut a full regression cycle from about a week to 8 to 10 hours.",
+      "answer": "Using my agentic system at Atlas UP, I cleared a backlog of 100+ bugs and shipped about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass by code review and QA. The AI regression lane I built also cut regression cycles from about a week to 8 to 12 hours.",
       "sourceSections": [
         "pipeline"
       ],
@@ -365,9 +371,11 @@
         "failover",
         "model routing",
         "mission tier",
-        "stripe"
+        "stripe",
+        "entrepreneurship",
+        "ai coach"
       ],
-      "answer": "FoundrKids is an AI maker-learning platform for kids 7 to 15, in pre-launch: a chat coach guides build missions while parents track safety. I'm the founder and sole engineer, and I built the full stack solo: three Vue 3 apps, a FastAPI backend with 140+ endpoints, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine and about 2,500 tests. Model calls route between Anthropic and OpenAI by mission tier, with cross-vendor failover and a monthly spend cap per household.",
+      "answer": "FoundrKids is an AI and entrepreneurship learning platform for kids 8 to 15, in pre-launch, where an AI coach guides kids through building missions while parents track safety. I'm the founder and sole engineer, and I built the full stack solo: three Vue apps, a FastAPI backend, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine backed by about 2,500 tests. Model calls route between Anthropic and OpenAI by mission tier, with cross-vendor failover and a monthly spend cap per household.",
       "sourceSections": [
         "independent"
       ],
@@ -458,7 +466,7 @@
         "review code",
         "review pull requests"
       ],
-      "answer": "Two ways. In my loops, a separate agent verified every fix with fresh context, and sensitive areas such as billing and auth always stopped for a human. Separately, I built an autonomous pull request review agent on Azure DevOps that reviewed open PRs at their latest commit and posted severity-ranked findings, encoding team standards so I was no longer the mandatory manual review gate.",
+      "answer": "Two ways. In my loops, a separate agent verified every fix with fresh context, and sensitive areas such as billing and auth always stopped for a human. Separately, I built an autonomous pull request review agent that scanned Azure DevOps hourly and reviewed every PR for six weeks, hundreds in total, ranking findings by severity and posting fix suggestions directly on each PR.",
       "sourceSections": [
         "pipeline",
         "safety"
@@ -467,7 +475,7 @@
     },
     {
       "id": "regression-lane",
-      "question": "How did you cut regression from about a week to 8 to 10 hours?",
+      "question": "How did you cut regression from about a week to 8 to 12 hours?",
       "variants": [
         "What was the AI regression lane?",
         "How did AI help QA?",
@@ -486,10 +494,11 @@
         "release bottleneck",
         "blast radius",
         "about a week",
-        "8 to 10 hours",
-        "week to hours"
+        "8 to 12 hours",
+        "week to hours",
+        "under a day"
       ],
-      "answer": "I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. It cut a full regression cycle from about a week to 8 to 10 hours and removed QA as the release bottleneck.",
+      "answer": "I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped to each release's blast radius. It cut regression cycles from about a week to 8 to 12 hours and removed QA as the release bottleneck.",
       "sourceSections": [
         "pipeline"
       ],
@@ -526,7 +535,7 @@
         "delete data",
         "delete records"
       ],
-      "answer": "I was a core contributor on the team that built a production MCP server for EOS One, which let customers connect Claude, ChatGPT, and Grok to their EOS One data. I helped build its question classifier, which routed each request to the right tool. Destructive actions such as deletes were deliberately excluded, so they had to happen in the app, never through an LLM.",
+      "answer": "I was a core contributor on the team that built a production MCP server for EOS One, which let customers connect Claude, ChatGPT, and Grok to their EOS One data. I helped build its question classifier and tool layer; the classifier routed each request to the right tool. Destructive actions such as deletes were deliberately excluded, so they had to happen in the app, never through an LLM.",
       "sourceSections": [
         "mcp"
       ],
@@ -566,7 +575,7 @@
         "site built",
         "how was this site"
       ],
-      "answer": "No live AI model runs here. This is a deterministic question classifier: it matches your question by keywords to answers I approved, shows the section each answer comes from, and otherwise asks you to email me. It borrows the routing idea from the question classifier I helped build for the EOS One MCP server. The footer links to a page on how this whole site was built.",
+      "answer": "Typed questions go to Claude, which answers only from my resume, this site, and my own interview notes, and shows its sources. It retrieves the top 8 matches from Cloudflare Vectorize and hands off to email when the sources don't support an answer. A Cloudflare Worker keeps API keys out of the browser, with Turnstile, rate limits, and a daily spend cap, and if the AI is unavailable, the answers I approved fill in. It borrows the routing idea from the question classifier I helped build for the EOS One MCP server.",
       "sourceSections": [
         "ask",
         "footer"
@@ -601,7 +610,7 @@
         "roll out claude code",
         "team adopt"
       ],
-      "answer": "I led the team's AI adoption at Atlas UP, moving from Cursor to Claude Code to autonomous loops. The rest of the team adopted the skills after seeing the delivery rate.",
+      "answer": "I led the team's AI adoption at Atlas UP, from light Cursor use to Claude Code, prompt engineering, and ultimately autonomous agent loops and harness engineering. Teammates adopted the skills I wrote after seeing my delivery rate climb.",
       "sourceSections": [
         "platform"
       ],
@@ -645,7 +654,7 @@
         "people have you managed",
         "people did you manage"
       ],
-      "answer": "I have a track record of mentoring engineers into independent contributors. At Qualfon I led the NetSuite team with five direct reports, and at EOS Worldwide I was promoted to Staff Frontend Software Engineer, Lead, and led three direct reports with one on ones and growth planning alongside hands-on delivery. There, as the sole senior engineer on a predominantly junior frontend team, I personally reviewed every frontend pull request and used review as the main lever for raising the team's baseline.",
+      "answer": "I've mentored junior engineers toward senior roles. At Qualfon I led the NetSuite team of five direct reports, and at EOS Worldwide I was promoted to Staff Front End Engineer and managed three direct reports through one on ones and growth planning while staying hands-on in delivery. There, as one of three senior engineers on a predominantly junior team, I personally reviewed every frontend pull request and mentored four to five junior developers who were on track for senior roles by the end of their tenure. At Atlas UP I led the team's AI adoption, and teammates adopted the skills I wrote after seeing my delivery rate climb.",
       "sourceSections": [
         "platform",
         "career"
@@ -678,7 +687,7 @@
         "35 people",
         "one of three"
       ],
-      "answer": "At Atlas UP, I was retained as one of three staff engineers when the post-acquisition team went from 35 people to 9. Before that, at EOS Worldwide, I was the sole senior engineer on a predominantly junior frontend team, and after my promotion to Staff Frontend Software Engineer, Lead, I led three direct reports. At Qualfon I led the NetSuite team with five direct reports.",
+      "answer": "At Atlas UP, I was retained as one of three staff engineers when the post-acquisition team went from 35 people to 9. Before that, at EOS Worldwide, I was one of three senior engineers on a predominantly junior team, and after my promotion to Staff Front End Engineer I managed three direct reports. At Qualfon I led the NetSuite team of five direct reports.",
       "sourceSections": [
         "platform",
         "career"
@@ -690,7 +699,7 @@
       "question": "How much Vue experience do you have?",
       "variants": [
         "Do you know Vue 3?",
-        "Have you done a Vue 2 to Vue 3 migration?"
+        "Have you built apps in Vue?"
       ],
       "keywords": [
         "vue",
@@ -700,22 +709,12 @@
         "vue 3",
         "vue2",
         "vue3",
-        "monthly active users",
-        "active users",
-        "mau",
-        "user base",
-        "how many users",
         "javascript",
         "js"
       ],
-      "contextKeywords": [
-        "eos one"
-      ],
-      "answer": "My frontend stack is Vue 2 and 3 and JavaScript. I owned the Vue frontend platform for EOS One, an AI business operating system with about 10,000 monthly active users, after building its component library from the ground up. I also led the frontend migration of a multi-tenant ecommerce platform from Vue 2 to Vue 3 at Qualfon, and built three Vue 3 apps for FoundrKids.",
+      "answer": "Vue 3 is part of my frontend stack, along with React, Next.js, and TypeScript. For FoundrKids, my AI learning platform, I built three Vue apps.",
       "sourceSections": [
         "sixty",
-        "platform",
-        "career",
         "independent"
       ],
       "approved": true
@@ -741,10 +740,10 @@
         "built with next.js",
         "site built with next.js"
       ],
-      "answer": "This site is built with Next.js and React. The frontend stack on my resume is Vue 2 and 3 and JavaScript.",
+      "answer": "Yes. React, Next.js, and TypeScript are part of my frontend stack. This site is built with Next.js and React: a static Next.js 15 and React 19 export. RoleHawk, my open source AI job search copilot, uses React 18, TypeScript, and TanStack Query on the frontend.",
       "sourceSections": [
-        "footer",
-        "sixty"
+        "sixty",
+        "independent"
       ],
       "approved": true
     },
@@ -753,7 +752,7 @@
       "question": "Tell me about the component library and frontend platform.",
       "variants": [
         "Have you built a design system?",
-        "What was the monorepo work?",
+        "What was the EOS One component library?",
         "Do you do accessibility work?"
       ],
       "keywords": [
@@ -762,8 +761,6 @@
         "component",
         "design system",
         "design systems",
-        "monorepo",
-        "npm monorepo",
         "design tokens",
         "frontend platform",
         "frontend architecture",
@@ -787,7 +784,7 @@
         "eos worldwide",
         "at eos"
       ],
-      "answer": "I built the EOS One component library from the ground up at EOS Worldwide, setting the frontend architecture, patterns, and standards the product still runs on. At Atlas UP I consolidated the frontend into a single npm monorepo and kept maintaining that 150+ component library, moving about 80% of it to design tokens. My frontend skills also cover accessibility, HTML5, CSS3 and SCSS, and Vite.",
+      "answer": "At EOS Worldwide I architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on. I continued to own and extend it at Atlas UP after the acquisition. I also led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage. My frontend skills also cover accessibility, responsive layouts, HTML5, CSS3, SCSS, and Vite.",
       "sourceSections": [
         "platform",
         "career",
@@ -838,7 +835,7 @@
         "auth0",
         "authentication"
       ],
-      "answer": "Yes. At EOS Worldwide I expanded from frontend into full-stack delivery as AI tooling matured, contributing across the C# API surface and Python services instead of handing work off. My backend experience covers C# and .NET REST APIs, SignalR, Python and FastAPI, Node.js, and databases including PostgreSQL, SQL Server, Cosmos DB, Redis, MySQL, and Oracle. For FoundrKids I built a FastAPI backend with 140+ endpoints on Postgres with pgvector.",
+      "answer": "Yes. At EOS Worldwide I expanded from frontend into full stack delivery as AI tooling matured, contributing across C# APIs and services and building early Python microservices. At Atlas UP I owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend. My backend experience covers C#, .NET, REST APIs, SignalR, Python, FastAPI, Node.js, and databases including Postgres, SQL Server, Azure SQL, Cosmos DB, Redis, MySQL, and Oracle. For FoundrKids I built a FastAPI backend on Postgres with pgvector.",
       "sourceSections": [
         "career",
         "sixty",
@@ -875,7 +872,7 @@
         "load tests",
         "performance testing"
       ],
-      "answer": "At EOS Worldwide I added Vitest unit testing and CI/CD quality checks, and at Atlas UP I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. Earlier, at Qualfon, I built and analyzed performance and load tests, tracing bottlenecks from IIS servers down to slow SQL. FoundrKids has about 2,500 tests, and Pocket Chronicle had about 2,700 automated tests.",
+      "answer": "At EOS Worldwide I led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage, and at Atlas UP I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped to each release's blast radius. Earlier, at Qualfon, I built and analyzed performance and load tests, tracing bottlenecks from IIS down to slow SQL queries. FoundrKids has about 2,500 tests, and Pocket Chronicle had about 2,700 automated tests.",
       "sourceSections": [
         "career",
         "pipeline",
@@ -982,7 +979,7 @@
         "tech stack",
         "stack"
       ],
-      "answer": "For agentic work I use Claude Code (custom skills, commands, and autonomous loops) and Cursor. My agentic skills also cover MCP server development and multi-provider model routing; in FoundrKids, Anthropic and OpenAI are routed by mission tier. For delivery I've used Azure DevOps Pipelines, GitHub Actions, Playwright, TestRail, and Vitest, plus Fly.io for both of my own projects and Neon for FoundrKids. At Atlas UP we ran a weekly release train on Azure DevOps Pipelines and used Ship/Show/Ask, so changes reached production almost daily.",
+      "answer": "For agentic work I use Claude Code (custom skills, commands, and autonomous loops) and Cursor. My agentic skills also cover MCP server development and multi-provider model routing; in FoundrKids, Anthropic and OpenAI are routed by mission tier. For delivery I've used Azure Pipelines, GitHub Actions, Playwright, TestRail, and Vitest, plus Fly.io and Neon for FoundrKids, and Cloudflare Workers, Workers AI, and Vectorize for this site's Ask assistant. At Atlas UP we ran a weekly release train on Azure DevOps Pipelines and used Ship/Show/Ask, so changes reached production almost daily.",
       "sourceSections": [
         "sixty",
         "independent",
@@ -1017,7 +1014,7 @@
         "foundation models",
         "on device"
       ],
-      "answer": "Pocket Chronicle is a family memory app for iOS that I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack. It used SwiftUI and SwiftData with offline-first sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models, with a FastAPI and async SQLAlchemy backend on Postgres deployed to Fly.io. It had about 2,700 automated tests, 200+ merged PRs, and a written spec and decision log behind every change. It worked end to end in the App Store, but it found no users and its backend cost money to run, so I retired it.",
+      "answer": "Pocket Chronicle is a native iOS family memory app that I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack. It was built with SwiftUI, SwiftData with offline sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models, backed by an async FastAPI and SQLAlchemy service on Postgres, deployed to Fly.io. It had about 2,700 automated tests and 200 merged PRs, with written specs and decision logs behind every change. It worked end to end in the App Store, but it found no users and its backend cost money to run, so I retired it.",
       "sourceSections": [
         "independent"
       ],
@@ -1049,7 +1046,7 @@
         "built yourself",
         "ai products"
       ],
-      "answer": "Two AI products I built on my own. FoundrKids is an AI maker-learning platform for kids 7 to 15, in pre-launch, where a chat coach guides build missions while parents track safety. Pocket Chronicle is a family memory app for iOS that I took from concept to the App Store in about a month by directing AI agents outside my primary stack. It worked end to end, and I later retired it because it found no users and its backend cost money to run.",
+      "answer": "I've built four projects on my own. FoundrKids is an AI and entrepreneurship learning platform for kids 8 to 15, in pre-launch, where an AI coach guides kids through building missions while parents track safety. Pocket Chronicle is a native iOS family memory app that I took from concept to the App Store in about a month by directing AI agents outside my primary stack; it worked end to end, and I later retired it because it found no users and its backend cost money to run. RoleHawk is a free, open source, local-first AI job search copilot that takes users from resume to offer. And this site is a Next.js, React, and TypeScript resume site with a RAG assistant that answers from my resume.",
       "sourceSections": [
         "independent"
       ],
@@ -1093,7 +1090,7 @@
         "real estate",
         "php"
       ],
-      "answer": "From April 2011 to February 2023 I was at Qualfon, where I progressed from Email Marketing Coordinator to Senior Developer. I built and maintained roughly 15 NetSuite and SuiteCommerce B2B instances serving an estimated 100,000 users, plus a multi-tenant Vue and C# ecommerce platform. I also wrote Jitterbit integrations connecting on-premise Oracle databases to NetSuite, Salesforce, and internal APIs. Before that, from 2006 to 2011, I handled development and systems operations at SKBK Sotheby's International Realty.",
+      "answer": "From April 2011 to February 2023 I was at Qualfon, where I progressed from Email Marketing Coordinator to Senior Developer. I built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users, and was a core developer on an in-house, multi-tenant frontend and C# e-commerce platform. I also built Jitterbit data integrations connecting on-premise Oracle and SQL Server databases with NetSuite, Salesforce, and internal APIs. Before that, from 2006 to 2011, I was a developer handling systems operations at Sotheby's International Realty (SKBK).",
       "sourceSections": [
         "career"
       ],

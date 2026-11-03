@@ -117,7 +117,7 @@ export function ReleaseBar() {
             </button>
           ))}
         </div>
-        <span className="relbar__cap">{after ? '8 to 10 hours' : 'about a week'}</span>
+        <span className="relbar__cap">{after ? '8 to 12 hours' : 'about a week'}</span>
       </div>
       <div className={`relbar__track ${after ? 'is-after' : 'is-before'}`}>
         <div className="relbar__fill" />
