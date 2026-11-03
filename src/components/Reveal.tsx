@@ -6,7 +6,7 @@ import { useMotion } from './client';
 /**
  * Scroll-scrubbed scenes outside the pipeline:
  * - [data-reveal]: fades and lifts in once.
- * - .release: "about a week" strikes through as "8 to 10 hours" arrives.
+ * - .release: "about a week" strikes through as "8 to 12 hours" arrives.
  * - .contact: the PR merges and its status light turns green.
  * - page tone shifts from warm (backlog) to cool (shipped) via --tone on <html>.
  */

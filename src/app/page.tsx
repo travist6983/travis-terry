@@ -136,16 +136,21 @@ function Hero() {
 /* Top-five selector metadata: stats come from the resume lines behind each achievement. */
 const TOP_META = [
   { title: 'Agentic engineering system', stat: '30+', statLabel: 'Claude Code skills, sole author' },
-  { title: 'Six-week bug sweep', stat: '100+', statLabel: 'bugs cleared in about six weeks, roughly 95% accepted without being bounced back' },
+  { title: 'Six-week bug sweep', stat: '100+', statLabel: 'bugs cleared in about six weeks, roughly 95% of them accepted on first pass' },
   { title: 'Safety model', stat: '4', statLabel: 'safeguards: verifier agent, risk-tiered retries, human stop on billing and auth, kill switch' },
   { title: 'Production MCP server', stat: '3', statLabel: 'LLMs connected: Claude, ChatGPT, Grok' },
-  { title: 'Vue frontend platform', stat: '10,000', prefix: 'about', statLabel: 'monthly active users on EOS One' },
+  { title: 'AI builders, end to end', stat: '10,000', prefix: 'roughly', statLabel: 'monthly active users; the Accountability Chart builder became the most used AI tool' },
 ];
+/* Skills tabs: the resume's skill groups (content.json sixty.stack), split into tags. */
 const STACK = [
-  { label: 'Agentic AI', items: ['MCP server development', 'Claude Code skills', 'Custom commands', 'Autonomous loops', 'Cursor', 'Verifier agents', 'LLM code review', 'AI-driven test execution', 'Multi-provider model routing'] },
-  { label: 'Frontend', items: ['Vue 2 and 3', 'JavaScript', 'HTML5', 'CSS3 and SCSS', 'Vite', 'npm monorepo', 'Design tokens', 'Accessibility', 'Swift (iOS)'] },
-  { label: 'Backend', items: ['C# and .NET REST APIs', 'SignalR', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Redis', 'Cosmos DB', 'SQL Server'] },
-  { label: 'Cloud, CI/CD, testing', items: ['Azure DevOps Pipelines', 'GitHub Actions', 'Fly.io', 'Neon', 'Playwright', 'Vitest', 'TestRail'] },
+  { label: 'Agentic AI', items: ['Claude Code skills and commands', 'Cursor', 'Autonomous agent loops', 'Agent workflows', 'Tool orchestration', 'Verifier agents', 'LLM code review', 'AI-driven test execution', 'MCP server development', 'Tool design', 'Question classification and routing'] },
+  { label: 'LLM engineering', items: ['LLM client integrations', 'Multi-provider model routing', 'RAG', 'Embeddings and vector retrieval', 'Grounded answers', 'Prompt and context engineering', 'LLM moderation', 'Prompt-level safeguards'] },
+  { label: 'AI safety', items: ['Human approval gates for billing and auth', 'Risk-tiered retry limits', 'Global kill switches', 'Destructive actions kept out of LLM reach', 'COPPA-driven consent and moderation'] },
+  { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue 3', 'HTML5', 'CSS3', 'SCSS', 'Vite', 'npm', '150-component design system', 'Design tokens', 'Accessibility', 'Responsive layouts', 'Swift (iOS)'] },
+  { label: 'Backend and data', items: ['C#', '.NET', 'REST APIs', 'SignalR', 'Python', 'FastAPI', 'Node.js', 'Auth0', 'Stripe', 'Redis', 'Cosmos DB', 'Postgres', 'SQL Server', 'Azure SQL', 'MySQL', 'Oracle'] },
+  { label: 'Cloud, CI/CD, testing', items: ['Azure Pipelines', 'Azure App Service', 'GitHub Actions', 'Fly.io', 'Neon', 'Cloudflare Workers', 'Workers AI', 'Vectorize', 'Playwright', 'Vitest', 'TestRail', 'BrowserStack', 'Litmus', 'Daily deploys, weekly release trains'] },
+  { label: 'Integrations', items: ['Jitterbit (on prem and Harmony Cloud)', 'Salesforce', 'NetSuite', 'SuiteCommerce', 'WordPress', 'Jira and Azure DevOps APIs'] },
+  { label: 'Leadership', items: ['Engineering-wide AI adoption', 'Code review standards', 'Design system governance', 'Mentoring', 'People management'] },
 ];
 
 function Sixty() {
@@ -157,7 +162,7 @@ function Sixty() {
         <div className="sec__head">
           <Badge>60 sec read</Badge>
           <h2 id="sixty-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">15+ years building production web applications, now focused on making AI agents do <span className="accent">real, verified</span> engineering and product work.</p>
+          <p className="lede">15+ years shipping production systems end to end, specializing in agentic engineering with <span className="accent">real guardrails</span>.</p>
         </div>
         <TopFive items={top} />
         <StackTabs groups={STACK} />
@@ -190,7 +195,7 @@ function Release() {
               <span className="kick">{t(st.aside.label).toUpperCase()}</span>
               <h2 id="release-title" className="release__big">
                 <span className="release__from">about a week</span>
-                <span className="release__to">8 to 10 hours</span>
+                <span className="release__to">8 to 12 hours</span>
               </h2>
             </div>
             <p className="release__text">{t(st.aside.text)}</p>
@@ -295,7 +300,7 @@ function Mcp() {
 
 function Platform() {
   const s = section('platform');
-  const P = [['Ownership', 'vue'], ['Stack', 'stack'], ['Monorepo and tokens', 'monorepo'], ['Component library', 'library'], ['Shipping', 'shipping']];
+  const P = [['AI features', 'aiBuilders'], ['LLM architecture', 'llmArchitecture'], ['Component library', 'library'], ['Stack', 'stack'], ['Meetings AI', 'voiceNotes'], ['Testing', 'testing'], ['Shipping', 'shipping']];
   const LD = [['Code review', 'review'], ['Direct reports', 'mentoring'], ['Mentorship', 'mentorship'], ['AI adoption', 'adoption'], ['Standards as code', 'standards'], ['Retention', 'retention']];
   const pick = (arr: string[][]) => arr.map(([title, k]) => ({ title, text: t(s[k]) }));
   return (
@@ -304,7 +309,7 @@ function Platform() {
         <div className="sec__head">
           <Badge>EOS One · Atlas UP</Badge>
           <h2 id="platform-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">I owned the Vue frontend platform for EOS One, an AI business operating system with <span className="accent">about 10,000 monthly active users</span>.</p>
+          <p className="lede">I built and owned the design system for EOS One, an AI business operating system, then expanded into full stack AI work, shipping LLM features used by <span className="accent">about 10,000 monthly active users</span>.</p>
         </div>
         <div className="stat3" data-commit>
           <div className="glass statc" data-reveal>
@@ -313,10 +318,10 @@ function Platform() {
             <span className="statc__label">monthly active users on EOS One</span>
           </div>
           <div className="glass statc" data-reveal>
-            <span className="statc__num">150+</span>
+            <span className="statc__num"><span className="pre">about</span>150</span>
             <span className="statc__label">components in the library I built</span>
-            <div className="comps" aria-hidden="true">{Array.from({ length: 30 }, (_, i) => <span key={i} className={i < 24 ? 'on' : ''} />)}</div>
-            <span className="mono-sm">roughly 80% moved to design tokens</span>
+            <div className="comps" aria-hidden="true">{Array.from({ length: 30 }, (_, i) => <span key={i} className="on" />)}</div>
+            <span className="mono-sm">design-token-based styling system</span>
           </div>
           <div className="glass statc" data-reveal>
             <span className="statc__num"><span className="mute">35</span><span className="arrow">→</span>9</span>
@@ -331,13 +336,20 @@ function Platform() {
   );
 }
 
+const BRANCH: Record<string, string> = {
+  foundrkids: 'BRANCH: OPEN · PRE-LAUNCH',
+  'pocket-chronicle': 'BRANCH: RETIRED',
+  rolehawk: 'BRANCH: OPEN · OPEN SOURCE',
+  site: 'BRANCH: OPEN · LIVE',
+};
+
 function Independent() {
   const s = section('independent');
   return (
     <section id="independent" className="sec independent" aria-labelledby="independent-title">
       <div className="wrap graph-col">
         <div className="sec__head">
-          <Badge>2 products, built solo</Badge>
+          <Badge>{s.cards.length} projects, built solo</Badge>
           <h2 id="independent-title" className="h2">{t(s.title)}</h2>
           <p className="lede">{t(s.intro)}</p>
         </div>
@@ -349,18 +361,20 @@ function Independent() {
               <article key={c.slug} className={`glass project project--${c.slug}`} data-branch={retired ? 'retired' : 'open'} data-reveal>
                 <span className="glow glow--accent" aria-hidden="true" style={{ right: -100, top: -120, width: 320, height: 320, opacity: 0.14 }} />
                 <div className="project__top">
-                  <span className="kick" data-commit>{retired ? 'BRANCH: RETIRED' : 'BRANCH: OPEN · PRE-LAUNCH'}</span>
+                  <span className="kick" data-commit>{BRANCH[c.slug] ?? 'BRANCH: OPEN'}</span>
                   <span className="kick kick--mute">{t(c.role ?? c.type)} · {t(c.dates)}</span>
                 </div>
                 {dateNeed && <Needed>{strip(dateNeed)}</Needed>}
                 <h3 className="project__name">{t(c.name)}</h3>
                 <p className="project__status"><span className={`dot ${retired ? 'dot--mute' : 'dot--green'}`} aria-hidden="true" />{t(c.status)}</p>
                 <p className="project__sum">{t(c.summary)}</p>
-                <div className="project__stats">
-                  {(c.stats ?? []).map((x: Any) => (
-                    <div key={x.id}><span className="statc__num statc__num--sm">{x.value}</span><span className="statc__label">{x.label}</span></div>
-                  ))}
-                </div>
+                {c.stats?.length > 0 && (
+                  <div className="project__stats">
+                    {c.stats.map((x: Any) => (
+                      <div key={x.id}><span className="statc__num statc__num--sm">{x.value}</span><span className="statc__label">{x.label}</span></div>
+                    ))}
+                  </div>
+                )}
                 <ul className="notes notes--one">
                   {(c.points ?? []).map((p: Any) => <li key={p.id} className="note" data-commit>{t(p)}</li>)}
                 </ul>

@@ -33,7 +33,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: t(person.name) || 'Travis Terry',
-  jobTitle: 'Staff Software Engineer',
+  jobTitle: 'Senior Full Stack Engineer',
   url: t(m.canonical),
   sameAs: [person.linkedin?.href, person.github?.href].filter(Boolean),
   address: { '@type': 'PostalAddress', addressLocality: 'Sterling Heights', addressRegion: 'MI', addressCountry: 'US' },

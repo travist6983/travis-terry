@@ -2,7 +2,7 @@
   "_meta": {
     "status": "Phase 1 draft. Not approved. Travis reviews every string before build.",
     "drafted": "2026-10-27",
-    "sourceOfTruth": "private/source/resume-2026.txt (cite as resume L<n>, numbered with cat -n)",
+    "sourceOfTruth": "private/source/resume-2026-11.txt (cite as resume-nov L<n>, numbered with cat -n). It supersedes private/source/resume-2026.txt (resume L<n>) where they differ; the older file stays a source for details the new resume trims.",
     "srcKeys": {
       "resume L<n>": "Line n of private/source/resume-2026.txt",
       "brief:HEADLINE_PROOF": "HEADLINE_PROOF block in private/BUILD_PROMPT.md (the only numbers allowed as counted moments)",
@@ -10,7 +10,9 @@
       "brief:HARD_RULE_<n> / brief:PHASE1_A / brief:PHASE4": "Site-behavior statements taken from Travis's brief. These describe the site, not Travis, and must be verified in Phase 5 QA.",
       "decisions:<topic>": "Row <topic> in private/DECISIONS.md",
       "ui": "Interface label with no factual claim",
-      "decisions:Q<n>": "The bullet in the 'Answers to Phase 1 questions' section of private/DECISIONS.md that answers question n of private/QUESTIONS.md"
+      "decisions:Q<n>": "The bullet in the 'Answers to Phase 1 questions' section of private/DECISIONS.md that answers question n of private/QUESTIONS.md",
+      "resume-nov L<n>": "Line n of private/source/resume-2026-11.txt (the November 2026 resume)",
+      "decisions:Resume update": "The 'Resume update' section of private/DECISIONS.md (Travis, 2026-11-03)"
     },
     "rules": [
       "Every item with confirm: true shows its confirmText ([NEEDED FROM TRAVIS: ...]) visibly, as the placeholderStyle callout, until Travis supplies the fact: in place of text when text is null, otherwise right after the text or link label. A link with confirm: true, or with a null href, renders as plain text, never as a link.",
@@ -43,17 +45,18 @@
     "lang": "en",
     "title": {
       "id": "meta.title",
-      "text": "Travis Terry | Staff Software Engineer, Agentic AI Engineering",
+      "text": "Travis Terry | Senior Full Stack Engineer",
       "src": [
-        "resume L1",
-        "resume L2"
+        "resume-nov L1",
+        "resume-nov L2"
       ]
     },
     "description": {
       "id": "meta.description",
-      "text": "Staff engineer with 15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work.",
+      "text": "Senior full stack engineer with 15+ years of experience shipping production systems end to end, specializing in agentic engineering with real guardrails.",
       "src": [
-        "resume L6",
+        "resume-nov L4",
+        "resume-nov L5",
         "brief:HEADLINE_PROOF"
       ]
     },
@@ -69,10 +72,10 @@
       "url": "https://travisjterry.dev",
       "title": {
         "id": "meta.og.title",
-        "text": "Travis Terry, Staff Software Engineer",
+        "text": "Travis Terry, Senior Full Stack Engineer",
         "src": [
-          "resume L1",
-          "resume L2"
+          "resume-nov L1",
+          "resume-nov L2"
         ]
       },
       "description": {
@@ -88,10 +91,11 @@
       "image": {
         "path": "/og.png",
         "id": "meta.og.imageAlt",
-        "text": "Travis Terry, Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "text": "Travis Terry, Senior Full Stack Engineer | Agentic Engineering",
         "src": [
-          "resume L1",
-          "resume L2"
+          "resume-nov L1",
+          "resume-nov L2",
+          "resume-nov L5"
         ],
         "note": "OG image is designed in Phase 2. Alt text must match the text drawn in the image."
       }
@@ -100,10 +104,10 @@
       "card": "summary_large_image",
       "title": {
         "id": "meta.twitter.title",
-        "text": "Travis Terry, Staff Software Engineer",
+        "text": "Travis Terry, Senior Full Stack Engineer",
         "src": [
-          "resume L1",
-          "resume L2"
+          "resume-nov L1",
+          "resume-nov L2"
         ]
       },
       "description": {
@@ -128,10 +132,9 @@
     },
     "title": {
       "id": "person.title",
-      "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+      "text": "Senior Full Stack Engineer",
       "src": [
-        "resume L2",
-        "decisions:Title line"
+        "resume-nov L2"
       ]
     },
     "location": {
@@ -445,10 +448,10 @@
       },
       "titleLine": {
         "id": "hero.titleLine",
-        "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "text": "Senior Full Stack Engineer | Agentic Engineering",
         "src": [
-          "resume L2",
-          "decisions:Title line"
+          "resume-nov L2",
+          "resume-nov L5"
         ]
       },
       "location": {
@@ -478,10 +481,10 @@
             "num": 15,
             "suffix": "+",
             "value": "15+",
-            "label": "years building production web applications",
-            "text": "15+ years building production web applications",
+            "label": "years shipping production systems end to end",
+            "text": "15+ years shipping production systems end to end",
             "src": [
-              "resume L6",
+              "resume-nov L4",
               "brief:HEADLINE_PROOF"
             ]
           },
@@ -504,7 +507,7 @@
             "num": 10000,
             "suffix": "",
             "value": "about 10,000",
-            "label": "monthly active users on the Vue platform I owned",
+            "label": "monthly active users on EOS One",
             "text": "about 10,000 monthly active users on EOS One",
             "src": [
               "resume L28",
@@ -582,17 +585,18 @@
       },
       "titleLine": {
         "id": "sixty.titleLine",
-        "text": "Staff Software Engineer | Agentic AI Engineering, AI Applications, and Web Platform",
+        "text": "Senior Full Stack Engineer | Agentic Engineering",
         "src": [
-          "resume L2",
-          "decisions:Title line"
+          "resume-nov L2",
+          "resume-nov L5"
         ]
       },
       "focus": {
         "id": "sixty.focus",
-        "text": "15+ years building production web applications, now focused on making AI agents do real, verified engineering and product work.",
+        "text": "15+ years shipping production systems end to end, specializing in agentic engineering with real guardrails.",
         "src": [
-          "resume L6",
+          "resume-nov L4",
+          "resume-nov L5",
           "brief:HEADLINE_PROOF"
         ]
       },
@@ -606,20 +610,20 @@
       "achievements": [
         {
           "id": "sixty.achievement.1",
-          "text": "Sole author of an agentic engineering system at Atlas UP: 30+ Claude Code skills chained into loops that took a ticket from reproduction to a verified, opened pull request.",
+          "text": "Sole author of an agentic engineering system at Atlas UP: 30+ chained Claude Code skills that took Jira tickets from reproduction through fix, verification, regression, and code review.",
           "src": [
-            "resume L21",
-            "resume L6",
-            "brief:HEADLINE_PROOF"
+            "resume-nov L16",
+            "resume-nov L18"
           ]
         },
         {
           "id": "sixty.achievement.2",
-          "text": "Used that system to clear 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back.",
+          "text": "Used that system to clear a backlog of 100+ bugs and ship about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass by code review and QA.",
           "src": [
-            "resume L23",
+            "resume-nov L18",
             "brief:HEADLINE_PROOF",
-            "decisions:Q35"
+            "decisions:Q35",
+            "decisions:Resume update"
           ]
         },
         {
@@ -631,17 +635,16 @@
         },
         {
           "id": "sixty.achievement.4",
-          "text": "Core contributor on the team that built EOS One's production MCP server, letting customers connect Claude, ChatGPT, and Grok to their data, with deletes kept out of LLM reach.",
+          "text": "Core contributor on EOS One's production MCP server, helping build the question classifier and tool layer that let customers connect Claude, ChatGPT, and Grok to their data, with destructive actions kept in the app and never exposed to LLMs.",
           "src": [
-            "resume L22",
-            "resume L10"
+            "resume-nov L23"
           ]
         },
         {
           "id": "sixty.achievement.5",
-          "text": "Owned the Vue frontend platform for EOS One, about 10,000 monthly active users; consolidated it into a single npm monorepo and maintained a 150+ component library.",
+          "text": "Owned the AI-powered Accountability Chart and V/TO builders for EOS One end to end, from Python microservices and LLM integration through the frontend; the Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
           "src": [
-            "resume L28",
+            "resume-nov L25",
             "brief:HEADLINE_PROOF"
           ]
         }
@@ -657,33 +660,65 @@
         {
           "id": "sixty.stack.agentic",
           "label": "Agentic AI",
-          "text": "MCP server development, Claude Code (custom skills, commands, autonomous loops), Cursor, verifier agents, LLM-based code review, AI-driven test execution, multi-provider model routing",
+          "text": "Claude Code custom skills and commands, Cursor, autonomous agent loops, agent workflows, tool orchestration, verifier agents, LLM code review, AI driven test execution, MCP server development, tool design, question classification and routing",
           "src": [
-            "resume L9"
+            "resume-nov L7"
+          ]
+        },
+        {
+          "id": "sixty.stack.llm",
+          "label": "LLM engineering",
+          "text": "LLM client integrations, multi provider model routing, RAG, embeddings and vector retrieval, grounded answers, prompt and context engineering, LLM moderation and prompt level safeguards",
+          "src": [
+            "resume-nov L8"
+          ]
+        },
+        {
+          "id": "sixty.stack.safety",
+          "label": "AI safety and controls",
+          "text": "Human approval gates for sensitive areas like billing and auth, risk tiered retry limits, global kill switches, destructive actions kept out of LLM reach, COPPA driven consent and moderation",
+          "src": [
+            "resume-nov L9"
           ]
         },
         {
           "id": "sixty.stack.frontend",
           "label": "Frontend",
-          "text": "Vue 2 and 3, JavaScript, HTML5, CSS3 and SCSS, Vite, npm monorepo, design tokens, accessibility, Swift (iOS)",
+          "text": "React, Next.js, TypeScript, JavaScript, Vue 3, HTML5, CSS3, SCSS, Vite, npm, 150 component design system, design tokens, accessibility, responsive layouts, Swift (iOS)",
           "src": [
-            "resume L11"
+            "resume-nov L10"
           ]
         },
         {
           "id": "sixty.stack.backend",
-          "label": "Backend",
-          "text": "C# and .NET REST APIs, SignalR, Python and FastAPI, Node.js, PostgreSQL, Redis, Cosmos DB, SQL Server",
+          "label": "Backend and data",
+          "text": "C#, .NET, REST APIs, SignalR, Python, FastAPI, Node.js, Auth0, Stripe, Redis, Cosmos DB, Postgres, SQL Server, Azure SQL, MySQL, Oracle",
           "src": [
-            "resume L12"
+            "resume-nov L11"
           ]
         },
         {
           "id": "sixty.stack.cloud",
           "label": "Cloud, CI/CD, and testing",
-          "text": "Azure DevOps Pipelines, GitHub Actions, Fly.io, Neon, Playwright, Vitest, TestRail",
+          "text": "Azure Pipelines, Azure App Service, GitHub Actions, Fly.io, Neon, Cloudflare Workers, Workers AI, Vectorize, Playwright, Vitest, TestRail, BrowserStack, Litmus, daily deploys with weekly release trains",
           "src": [
-            "resume L13"
+            "resume-nov L12"
+          ]
+        },
+        {
+          "id": "sixty.stack.integrations",
+          "label": "Integrations and platforms",
+          "text": "Jitterbit (on prem and Harmony Cloud), Salesforce, NetSuite, SuiteCommerce, WordPress, Jira and Azure DevOps APIs",
+          "src": [
+            "resume-nov L13"
+          ]
+        },
+        {
+          "id": "sixty.stack.leadership",
+          "label": "Leadership",
+          "text": "Engineering wide AI adoption, code review standards, design system governance, mentoring, people management",
+          "src": [
+            "resume-nov L14"
           ]
         }
       ],
@@ -732,9 +767,10 @@
       },
       "intro": {
         "id": "pipeline.intro",
-        "text": "At Atlas UP I was the sole author of an agentic engineering system: 30+ Claude Code skills chained into loops that took a Jira ticket from reproduction to a verified, opened pull request.",
+        "text": "At Atlas UP I was the sole author of an agentic engineering system: 30+ chained Claude Code skills that took Jira tickets from reproduction through fix, verification, regression, and code review, ending in an opened pull request.",
         "src": [
-          "resume L6",
+          "resume-nov L16",
+          "resume-nov L18",
           "resume L21"
         ]
       },
@@ -760,7 +796,15 @@
           "text": "The loop started by reproducing the ticket.",
           "src": [
             "resume L21"
-          ]
+          ],
+          "aside": {
+            "id": "pipeline.stage.reproduce.aside",
+            "label": "Related: knowledge base",
+            "text": "The agents drove the app from a persistent knowledge base I built, and a nightly consolidation process pruned contradictions and duplicate lessons learned.",
+            "src": [
+              "resume-nov L19"
+            ]
+          }
         },
         {
           "id": "pipeline.stage.fix",
@@ -793,10 +837,11 @@
           "aside": {
             "id": "pipeline.stage.regression.aside",
             "label": "Related: release regression",
-            "text": "At the release level, I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped by each release's blast radius. It cut a full regression cycle from about a week to 8 to 10 hours and removed QA as the release bottleneck.",
+            "text": "At the release level, I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped to each release's blast radius. It cut regression cycles from about a week to 8 to 12 hours and removed QA as the release bottleneck.",
             "src": [
-              "resume L26",
-              "brief:HEADLINE_PROOF"
+              "resume-nov L21",
+              "decisions:Q5",
+              "decisions:Resume update"
             ]
           }
         },
@@ -811,9 +856,9 @@
           "aside": {
             "id": "pipeline.stage.review.aside",
             "label": "Related: PR review agent",
-            "text": "I also built an autonomous pull request review agent on Azure DevOps. It reviewed open PRs at their latest commit and posted severity-ranked findings, encoding team standards so I was no longer the mandatory manual review gate.",
+            "text": "I also built an autonomous pull request review agent that scanned Azure DevOps hourly and reviewed every PR for six weeks, hundreds in total. It ranked findings by severity and posted fix suggestions directly on each PR.",
             "src": [
-              "resume L25"
+              "resume-nov L22"
             ]
           }
         },
@@ -862,11 +907,12 @@
       },
       "result": {
         "id": "pipeline.result",
-        "text": "I used the system to clear a backlog of 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted without being bounced back.",
+        "text": "I used the system to clear a backlog of 100+ bugs and ship about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass by code review and QA.",
         "src": [
-          "resume L23",
+          "resume-nov L18",
           "brief:HEADLINE_PROOF",
-          "decisions:Q35"
+          "decisions:Q35",
+          "decisions:Resume update"
         ]
       }
     },
@@ -1000,9 +1046,11 @@
       },
       "classifier": {
         "id": "mcp.classifier",
-        "text": "A question classifier routed each request to the right tool.",
+        "text": "I helped build the question classifier and tool layer. The classifier routed each request to the right tool.",
         "src": [
-          "resume L22"
+          "resume-nov L23",
+          "resume L22",
+          "decisions:Q8"
         ]
       },
       "destructive": {
@@ -1067,36 +1115,61 @@
           "ui"
         ]
       },
-      "vue": {
-        "id": "platform.vue",
-        "text": "I owned the Vue frontend platform for EOS One, an AI business operating system with about 10,000 monthly active users.",
+      "ownership": {
+        "id": "platform.ownership",
+        "text": "I built and owned the design system for EOS One, an AI business operating system, then expanded into full stack AI work, shipping LLM features used by about 10,000 monthly active users.",
         "src": [
+          "resume-nov L4",
           "resume L28",
           "brief:HEADLINE_PROOF"
         ]
       },
-      "stack": {
-        "id": "platform.stack",
-        "text": "The platform ran on Vue, C# and .NET, SignalR, Redis, Cosmos DB, and Python microservices.",
+      "aiBuilders": {
+        "id": "platform.aiBuilders",
+        "text": "At Atlas UP I owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend. The Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
         "src": [
-          "resume L28"
+          "resume-nov L16",
+          "resume-nov L25",
+          "brief:HEADLINE_PROOF"
         ]
       },
-      "monorepo": {
-        "id": "platform.monorepo",
-        "text": "I consolidated it into a single npm monorepo and maintained a 150+ component library, which I had built from the ground up, and moved roughly 80% of it to design tokens.",
+      "llmArchitecture": {
+        "id": "platform.llmArchitecture",
+        "text": "As one of three staff engineers, I co-designed the LLM and chatbot architecture, establishing the patterns for AI features across the platform.",
         "src": [
-          "resume L28",
-          "resume L34",
-          "decisions:Q38",
-          "decisions:Q39"
+          "resume-nov L24"
         ]
       },
       "library": {
         "id": "platform.library",
-        "text": "Earlier, at EOS Worldwide, I built the EOS One component library from the ground up, establishing the frontend architecture, patterns, and standards the product still runs on.",
+        "text": "At EOS Worldwide I architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on. After the acquisition I continued to own and extend it.",
         "src": [
-          "resume L34"
+          "resume-nov L29",
+          "resume-nov L30",
+          "resume-nov L28"
+        ]
+      },
+      "stack": {
+        "id": "platform.stack",
+        "text": "I contributed across a C#, .NET, SignalR, Redis, and Cosmos DB stack and Python LLM microservices.",
+        "src": [
+          "resume-nov L26"
+        ]
+      },
+      "voiceNotes": {
+        "id": "platform.voiceNotes",
+        "text": "At EOS Worldwide I built voice-activated note taking for EOS One's real-time SignalR meetings, backed by a Python microservice that recorded sessions, generated notes, emailed summaries afterward, and suggested to-dos for each team member.",
+        "src": [
+          "resume-nov L29",
+          "resume-nov L34"
+        ]
+      },
+      "testing": {
+        "id": "platform.testing",
+        "text": "At EOS Worldwide I led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage.",
+        "src": [
+          "resume-nov L29",
+          "resume-nov L35"
         ]
       },
       "shipping": {
@@ -1117,35 +1190,32 @@
       },
       "review": {
         "id": "platform.review",
-        "text": "At EOS Worldwide, as the sole senior engineer on a predominantly junior frontend team, I personally reviewed every frontend pull request and used review as the main lever for raising the team's baseline.",
+        "text": "At EOS Worldwide, as one of three senior engineers on a predominantly junior team, I personally reviewed every frontend pull request and mentored four to five junior developers who were on track for senior roles by the end of their tenure.",
         "src": [
-          "resume L35",
-          "resume L32"
+          "resume-nov L29",
+          "resume-nov L32"
         ]
       },
       "mentoring": {
         "id": "platform.mentoring",
-        "text": "After my promotion to Staff Frontend Software Engineer, Lead, I led three direct reports with one on ones and growth planning alongside hands-on delivery.",
+        "text": "After my promotion to Staff Front End Engineer there, I managed three direct reports through one on ones and growth planning while staying hands-on in delivery.",
         "src": [
-          "resume L36",
-          "resume L33",
-          "decisions:Q40"
+          "resume-nov L31"
         ]
       },
       "mentorship": {
         "id": "platform.mentorship",
-        "text": "I have a track record of mentoring engineers into independent contributors.",
+        "text": "I have a track record of mentoring junior engineers toward senior roles.",
         "src": [
-          "resume L6",
-          "resume L15"
+          "resume-nov L5"
         ]
       },
       "adoption": {
         "id": "platform.adoption",
-        "text": "At Atlas UP, I led the team's AI adoption from Cursor to Claude Code to autonomous loops. The rest of the team adopted the skills after seeing the delivery rate.",
+        "text": "At Atlas UP, I led the team's AI adoption from light Cursor use to Claude Code, prompt engineering, and ultimately autonomous agent loops and harness engineering. Teammates adopted the skills I wrote after seeing my delivery rate climb.",
         "src": [
-          "resume L27",
-          "resume L18"
+          "resume-nov L16",
+          "resume-nov L27"
         ]
       },
       "standards": {
@@ -1191,13 +1261,14 @@
       },
       "intro": {
         "id": "independent.intro",
-        "text": "I built two AI products on my own: FoundrKids, an AI maker-learning platform in pre-launch, and Pocket Chronicle, a native iOS app I shipped to the App Store and later retired.",
+        "text": "I build AI products on my own: FoundrKids, an AI and entrepreneurship learning platform in pre-launch; Pocket Chronicle, a native iOS app I shipped to the App Store and later retired; RoleHawk, a free, open source AI job search copilot; and this site, with its RAG assistant.",
         "src": [
-          "resume L56",
-          "resume L57",
-          "resume L62",
+          "resume-nov L5",
+          "resume-nov L46",
+          "resume-nov L52",
           "decisions:Q31",
-          "decisions:Q34"
+          "resume-nov L57",
+          "resume-nov L63"
         ]
       },
       "cards": [
@@ -1233,22 +1304,12 @@
           },
           "summary": {
             "id": "independent.foundrkids.summary",
-            "text": "An AI maker-learning platform for kids 7 to 15: a chat coach guides build missions while parents track safety.",
+            "text": "An AI and entrepreneurship learning platform for kids 8 to 15, where an AI coach guides kids through building missions while parents track safety.",
             "src": [
-              "resume L57"
+              "resume-nov L46"
             ]
           },
           "stats": [
-            {
-              "id": "independent.foundrkids.stat.endpoints",
-              "value": "140+",
-              "label": "API endpoints",
-              "text": "140+ API endpoints",
-              "src": [
-                "resume L58",
-                "brief:HEADLINE_PROOF"
-              ]
-            },
             {
               "id": "independent.foundrkids.stat.tests",
               "value": "about 2,500",
@@ -1263,16 +1324,16 @@
           "points": [
             {
               "id": "independent.foundrkids.build",
-              "text": "I built the full stack solo: three Vue 3 apps, a FastAPI backend with 140+ endpoints, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine.",
+              "text": "I built the full stack solo: three Vue apps, a FastAPI backend, Postgres with pgvector, Redis, and Stripe on Fly.io and Neon, plus an adaptive learning engine backed by about 2,500 tests.",
               "src": [
-                "resume L58"
+                "resume-nov L47"
               ]
             },
             {
               "id": "independent.foundrkids.safety",
-              "text": "Every model call goes through a six-layer safety pipeline: blocklist, OpenAI moderation, prompt scaffolding, the model, a streaming sentence buffer, and a PII-redacting output filter. It fails closed; critical events end the session and alert the parent.",
+              "text": "I designed a six-layer safety model for every model call: blocklist, OpenAI moderation, prompt scaffolding, the model, a streaming sentence buffer, and a PII-redacting output filter. It fails closed, ending the session and alerting the parent on critical events.",
               "src": [
-                "resume L59"
+                "resume-nov L48"
               ]
             },
             {
@@ -1311,18 +1372,18 @@
             ],
             "note": "The resume (L62) and HEADLINE_PROOF spell this with a trailing s. That is a typo; always use the singular."
           },
-          "type": {
-            "id": "independent.pocketChronicle.type",
-            "text": "Native iOS app",
+          "role": {
+            "id": "independent.pocketChronicle.role",
+            "text": "Founder and Sole Engineer",
             "src": [
-              "resume L62"
+              "resume-nov L51"
             ]
           },
           "dates": {
             "id": "independent.pocketChronicle.dates",
-            "text": "2026",
+            "text": "July 2026",
             "src": [
-              "resume L62"
+              "resume-nov L51"
             ]
           },
           "status": {
@@ -1336,10 +1397,10 @@
           },
           "summary": {
             "id": "independent.pocketChronicle.summary",
-            "text": "A family memory app I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack.",
+            "text": "A native iOS family memory app I shipped solo, from concept to the App Store in about a month, by directing AI agents outside my primary stack.",
             "src": [
-              "resume L63",
-              "decisions:Q32"
+              "resume-nov L52",
+              "resume-nov L53"
             ]
           },
           "stats": [
@@ -1355,28 +1416,28 @@
             },
             {
               "id": "independent.pocketChronicle.stat.prs",
-              "value": "200+",
+              "value": "200",
               "label": "merged PRs",
-              "text": "200+ merged PRs",
+              "text": "200 merged PRs",
               "src": [
-                "resume L65",
-                "brief:HEADLINE_PROOF"
+                "resume-nov L55",
+                "decisions:Resume update"
               ]
             }
           ],
           "points": [
             {
               "id": "independent.pocketChronicle.stack",
-              "text": "Stack: SwiftUI and SwiftData with offline-first sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models; FastAPI and async SQLAlchemy on Postgres, deployed to Fly.io.",
+              "text": "Built with SwiftUI, SwiftData with offline sync, StoreKit 2, Sign in with Apple, and on-device transcription and Foundation Models, backed by an async FastAPI and SQLAlchemy service on Postgres, deployed to Fly.io.",
               "src": [
-                "resume L64"
+                "resume-nov L54"
               ]
             },
             {
               "id": "independent.pocketChronicle.quality",
-              "text": "Quality: about 2,700 automated tests, 200+ merged PRs, and a written spec and decision log behind every change.",
+              "text": "About 2,700 automated tests and 200 merged PRs, with written specs and decision logs behind every change.",
               "src": [
-                "resume L65"
+                "resume-nov L55"
               ]
             }
           ],
@@ -1387,6 +1448,137 @@
               "href": "/work/pocket-chronicle",
               "src": [
                 "ui"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "rolehawk",
+          "name": {
+            "id": "independent.rolehawk.name",
+            "text": "RoleHawk",
+            "src": [
+              "resume-nov L56"
+            ]
+          },
+          "role": {
+            "id": "independent.rolehawk.role",
+            "text": "Creator and Sole Engineer",
+            "src": [
+              "resume-nov L56"
+            ]
+          },
+          "dates": {
+            "id": "independent.rolehawk.dates",
+            "text": "October 2026",
+            "src": [
+              "resume-nov L56"
+            ]
+          },
+          "status": {
+            "id": "independent.rolehawk.status",
+            "text": "Free and open source",
+            "src": [
+              "resume-nov L57"
+            ]
+          },
+          "summary": {
+            "id": "independent.rolehawk.summary",
+            "text": "A local-first AI job search copilot that takes users from resume to offer.",
+            "src": [
+              "resume-nov L57"
+            ]
+          },
+          "stats": [],
+          "points": [
+            {
+              "id": "independent.rolehawk.build",
+              "text": "I built the full stack solo: React 18, TypeScript, and TanStack Query on the frontend; Python FastAPI, SQLAlchemy, SQLite, and Playwright on the backend; shipped as a one-line installer for macOS, Windows, and Linux.",
+              "src": [
+                "resume-nov L58"
+              ]
+            },
+            {
+              "id": "independent.rolehawk.guardrails",
+              "text": "Anti-hallucination guardrails: tailored CVs and cover letters pull facts only from the user's profile, then a fact checker and a separate AI review verify them.",
+              "src": [
+                "resume-nov L59"
+              ]
+            },
+            {
+              "id": "independent.rolehawk.routing",
+              "text": "Models are routed by cost, with Haiku for ranking and Opus for writing, plus a monthly spend cap and cost estimates shown before each batch runs.",
+              "src": [
+                "resume-nov L60"
+              ]
+            },
+            {
+              "id": "independent.rolehawk.privacy",
+              "text": "Private by design: it runs only on localhost, keeps API keys in the OS keychain, sends no telemetry, and treats job postings as untrusted input to block prompt injection.",
+              "src": [
+                "resume-nov L61"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "site",
+          "name": {
+            "id": "independent.site.name",
+            "text": "travisjterry.dev",
+            "src": [
+              "resume-nov L62"
+            ]
+          },
+          "role": {
+            "id": "independent.site.role",
+            "text": "Personal Site",
+            "src": [
+              "resume-nov L62"
+            ]
+          },
+          "dates": {
+            "id": "independent.site.dates",
+            "text": "October 2026",
+            "src": [
+              "resume-nov L62"
+            ]
+          },
+          "status": {
+            "id": "independent.site.status",
+            "text": "Live",
+            "src": [
+              "resume-nov L62"
+            ]
+          },
+          "summary": {
+            "id": "independent.site.summary",
+            "text": "My Next.js, React, and TypeScript resume site, with a RAG assistant that answers questions about my work.",
+            "src": [
+              "resume-nov L63"
+            ]
+          },
+          "stats": [],
+          "points": [
+            {
+              "id": "independent.site.rag",
+              "text": "The Ask assistant retrieves the top 8 matches from Cloudflare Vectorize, and Claude returns structured JSON with a grounded flag, handing off to email when the sources don't support an answer.",
+              "src": [
+                "resume-nov L64"
+              ]
+            },
+            {
+              "id": "independent.site.worker",
+              "text": "A TypeScript Cloudflare Worker proxy keeps API keys out of the browser, with Turnstile, an origin allow list, rate limits, and a daily spend cap.",
+              "src": [
+                "resume-nov L65"
+              ]
+            },
+            {
+              "id": "independent.site.static",
+              "text": "It is a static Next.js 15 and React 19 export deployed to GitHub Pages with GitHub Actions, with GSAP and Lenis scroll animations, reduced-motion support, a motion pause switch, and a 100 Lighthouse accessibility score.",
+              "src": [
+                "resume-nov L66"
               ]
             }
           ]
@@ -1414,9 +1606,9 @@
           "slug": "atlas-up",
           "company": {
             "id": "career.atlasUp.company",
-            "text": "Atlas UP Inc.",
+            "text": "Atlas UP",
             "src": [
-              "resume L18"
+              "resume-nov L16"
             ]
           },
           "location": {
@@ -1439,45 +1631,51 @@
           ],
           "context": {
             "id": "career.atlasUp.context",
-            "text": "Joined through Atlas UP's acquisition of EOS One from EOS Worldwide, with continuous ownership of the product since February 2023.",
+            "text": "Joined through Atlas UP's acquisition of EOS One from EOS Worldwide; retained as one of three staff engineers as the team went from 35 to 9.",
             "src": [
-              "resume L20"
+              "resume-nov L17"
             ]
           },
           "highlights": [
             {
               "id": "career.atlasUp.h1",
-              "text": "Sole author of a 30+ skill Claude Code system that took tickets from reproduction to a verified, opened pull request.",
+              "text": "Sole author of a 30+ skill Claude Code system that took Jira tickets from reproduction through fix, verification, regression, and code review.",
               "src": [
-                "resume L6",
-                "resume L21"
+                "resume-nov L18"
               ],
               "see": "#pipeline"
             },
             {
               "id": "career.atlasUp.h2",
-              "text": "Designed the safety model: verifier agent, risk-tiered retries, human approval for billing and auth, and a global kill switch.",
+              "text": "Designed the safety model: verifier agent with fresh context, risk-tiered retries, mandatory human review for billing and auth, and a global kill switch.",
               "src": [
-                "resume L24"
+                "resume-nov L20"
               ],
               "see": "#safety"
             },
             {
               "id": "career.atlasUp.h3",
-              "text": "Core contributor on the team that built EOS One's production MCP server.",
+              "text": "Core contributor on EOS One's production MCP server, helping build the question classifier and tool layer.",
               "src": [
-                "resume L22"
+                "resume-nov L23"
               ],
               "see": "#mcp"
             },
             {
               "id": "career.atlasUp.h4",
-              "text": "Owned the Vue frontend platform for EOS One, about 10,000 monthly active users.",
+              "text": "Owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend; the Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
               "src": [
-                "resume L28",
+                "resume-nov L25",
                 "brief:HEADLINE_PROOF"
               ],
               "see": "#platform"
+            },
+            {
+              "id": "career.atlasUp.h5",
+              "text": "Continued to own and extend the EOS One component library after the acquisition.",
+              "src": [
+                "resume-nov L28"
+              ]
             }
           ]
         },
@@ -1500,54 +1698,64 @@
           "roles": [
             {
               "id": "career.eos.role.1",
-              "title": "Staff Frontend Software Engineer, Lead",
+              "title": "Staff Front End Engineer",
               "dates": "Dec 2024 to June 2025",
-              "text": "Staff Frontend Software Engineer, Lead, Dec 2024 to June 2025",
+              "text": "Staff Front End Engineer, Dec 2024 to June 2025",
               "src": [
-                "brief:CORRECTIONS",
-                "resume L33"
+                "resume-nov L29"
               ]
             },
             {
               "id": "career.eos.role.2",
-              "title": "Senior Frontend Developer",
+              "title": "Senior Front End Developer",
               "dates": "Feb 2023 to Dec 2024",
-              "text": "Senior Frontend Developer, Feb 2023 to Dec 2024",
+              "text": "Senior Front End Developer, Feb 2023 to Dec 2024",
               "src": [
-                "brief:CORRECTIONS",
-                "resume L33"
+                "resume-nov L29"
               ]
             }
           ],
           "highlights": [
             {
               "id": "career.eos.h1",
-              "text": "Built the EOS One component library from the ground up, establishing the frontend architecture, patterns, and standards the product still runs on.",
+              "text": "Architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on.",
               "src": [
-                "resume L34"
+                "resume-nov L30"
               ]
             },
             {
               "id": "career.eos.h2",
-              "text": "Promoted to Staff Frontend Software Engineer, Lead; led three direct reports with one on ones and growth planning alongside hands-on delivery.",
+              "text": "Promoted to Staff Front End Engineer; managed three direct reports through one on ones and growth planning while staying hands-on in delivery.",
               "src": [
-                "resume L36",
-                "resume L33",
-                "decisions:Q40"
+                "resume-nov L31"
               ]
             },
             {
               "id": "career.eos.h3",
-              "text": "Expanded from frontend into full-stack delivery as AI tooling matured, contributing across the C# API surface and Python services instead of handing work off.",
+              "text": "One of three senior engineers on a predominantly junior team; personally reviewed every frontend pull request and mentored four to five junior developers who were on track for senior roles by the end of their tenure.",
               "src": [
-                "resume L37"
+                "resume-nov L32"
               ]
             },
             {
               "id": "career.eos.h4",
-              "text": "Built AI-powered product features, including voice-activated note-taking and automation inside the meetings platform; added Vitest unit testing and CI/CD quality checks.",
+              "text": "Expanded from frontend into full stack delivery as AI tooling matured, contributing across C# APIs and services and building early Python microservices.",
               "src": [
-                "resume L38"
+                "resume-nov L33"
+              ]
+            },
+            {
+              "id": "career.eos.h5",
+              "text": "Built voice-activated note taking for EOS One's real-time SignalR meetings, backed by a Python microservice that recorded sessions, generated notes, emailed summaries afterward, and suggested to-dos for each team member.",
+              "src": [
+                "resume-nov L34"
+              ]
+            },
+            {
+              "id": "career.eos.h6",
+              "text": "Led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage.",
+              "src": [
+                "resume-nov L35"
               ]
             }
           ]
@@ -1589,38 +1797,37 @@
           "highlights": [
             {
               "id": "career.qualfon.h1",
-              "text": "Built and maintained roughly 15 NetSuite and SuiteCommerce B2B instances serving an estimated 100,000 users.",
+              "text": "Built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users.",
               "src": [
-                "resume L43"
+                "resume-nov L38"
               ]
             },
             {
               "id": "career.qualfon.h2",
-              "text": "Built a multi-tenant Vue and C# ecommerce platform that deployed customer-specific instances from a shared core, and led its frontend migration from Vue 2 to Vue 3.",
+              "text": "Core developer on an in-house, multi-tenant frontend and C# e-commerce platform with a shared core, migrating clients off NetSuite and building per-customer customizations.",
               "src": [
-                "resume L43",
-                "resume L44"
+                "resume-nov L39"
               ]
             },
             {
               "id": "career.qualfon.h3",
-              "text": "Led the NetSuite team with five direct reports, owning delivery, technical direction, and client-facing requirements work.",
+              "text": "Led the NetSuite team of five direct reports, owning delivery, technical direction, and client-facing requirements in partnership with product owners.",
               "src": [
-                "resume L45"
+                "resume-nov L40"
               ]
             },
             {
               "id": "career.qualfon.h4",
-              "text": "Wrote data integrations connecting on-premise Oracle databases to NetSuite, Salesforce, and internal APIs using Jitterbit.",
+              "text": "Built Jitterbit data integrations connecting on-premise Oracle and SQL Server databases with NetSuite, Salesforce, and internal APIs.",
               "src": [
-                "resume L46"
+                "resume-nov L41"
               ]
             },
             {
               "id": "career.qualfon.h5",
-              "text": "Built and analyzed performance and load tests across web and mobile applications, tracing bottlenecks from IIS servers down to slow SQL.",
+              "text": "Built and analyzed performance and load tests across web and mobile applications, tracing bottlenecks from IIS down to slow SQL queries.",
               "src": [
-                "resume L47"
+                "resume-nov L42"
               ]
             }
           ]
@@ -1629,9 +1836,9 @@
           "slug": "skbk",
           "company": {
             "id": "career.skbk.company",
-            "text": "SKBK Sotheby's International Realty",
+            "text": "Sotheby's International Realty (SKBK)",
             "src": [
-              "resume L50"
+              "resume-nov L43"
             ]
           },
           "location": {
@@ -1644,11 +1851,11 @@
           "roles": [
             {
               "id": "career.skbk.role.1",
-              "title": "Developer and Systems Operations",
+              "title": "Developer, Systems Operations",
               "dates": "June 2006 to March 2011",
-              "text": "Developer and Systems Operations, June 2006 to March 2011",
+              "text": "Developer, Systems Operations, June 2006 to March 2011",
               "src": [
-                "resume L51"
+                "resume-nov L43"
               ]
             }
           ],
@@ -1788,9 +1995,12 @@
       },
       "intro": {
         "id": "contact.intro",
-        "text": "If you're hiring for agentic AI engineering, AI applications, or web platform work, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit.",
+        "text": "If you're hiring for senior full stack engineering, especially agentic AI engineering or AI applications, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit.",
         "src": [
+          "resume-nov L2",
+          "resume-nov L5",
           "resume L2",
+          "decisions:Resume update",
           "decisions:Q44"
         ]
       },
