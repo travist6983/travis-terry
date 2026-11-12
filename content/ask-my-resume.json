@@ -108,11 +108,101 @@
         "why hire you",
         "about your experience"
       ],
-      "answer": "I'm a senior full stack engineer with 15+ years of experience shipping production systems end to end, and I specialize in agentic engineering with real guardrails. At Atlas UP I was the sole author of a 30+ skill Claude Code system that took Jira tickets from reproduction through fix, verification, regression, and code review. I also built and owned the EOS One design system, shipped LLM features used by about 10,000 monthly active users, and mentored junior engineers toward senior roles. On my own I build AI products, including FoundrKids, a child-safe learning platform in pre-launch, and RoleHawk, an open source AI job search copilot.",
+      "answer": "I'm a senior full stack engineer with 15+ years shipping production web applications. At EOS One I built the Vue 3 frontend of a real-time live meeting platform where up to 100 users shared a synchronized screen over SignalR, plus a KPI Scorecard spanning seven reporting intervals, an interactive D3 org chart, and the 150 component design system the product still runs on. At Atlas UP I also built a system of 30+ Claude Code skills that took Jira tickets from reproduction to a verified pull request. On my own I build AI products, including FoundrKids, a child-safe learning platform in pre-launch, and RoleHawk, an open source AI job search copilot.",
       "sourceSections": [
         "sixty",
         "platform",
         "independent"
+      ],
+      "approved": true
+    },
+    {
+      "id": "live-meetings",
+      "question": "Have you built real-time features?",
+      "variants": [
+        "Tell me about the live meeting platform.",
+        "Have you used SignalR?",
+        "Have you built collaborative apps?"
+      ],
+      "keywords": [
+        "real time",
+        "realtime",
+        "signalr",
+        "websocket",
+        "websockets",
+        "live meeting",
+        "live meetings",
+        "meeting platform",
+        "meetings platform",
+        "concurrent users",
+        "collaborative",
+        "collaboration",
+        "synchronized",
+        "sync",
+        "agenda",
+        "conflict resolution",
+        "reconnect"
+      ],
+      "answer": "At EOS Worldwide I built the entire Vue 3 frontend of EOS One's live meeting platform, the core of the product: up to 100 concurrent users saw the same screen in real time, with every change synchronized over SignalR. I designed a configurable agenda system with five meeting types, including a custom type that let teams assemble their own meeting from reusable agenda components. I also handled the collaboration edge cases: a conflict resolution prompt when two users edited the same data, and retry and reconnect logic for dropped or degraded connections.",
+      "sourceSections": [
+        "platform",
+        "career"
+      ],
+      "approved": true
+    },
+    {
+      "id": "scorecard",
+      "question": "What was the EOS One Scorecard?",
+      "variants": [
+        "Have you built dashboards?",
+        "Tell me about the Scorecard."
+      ],
+      "keywords": [
+        "scorecard",
+        "kpi",
+        "kpis",
+        "measurable",
+        "measurables",
+        "dashboard",
+        "dashboards",
+        "issue detection",
+        "reporting"
+      ],
+      "answer": "At EOS Worldwide I built the EOS One Scorecard in Vue 3 and contributed to its C# and .NET APIs. It tracked measurables across seven intervals from daily to annual, with at least, at most, range, and yes-or-no goals; currency, percentage, and duration formats; automatic on-track and off-track coloring; and hit rates with averages or totals per measurable. At Atlas UP I extended it with LLM issue detection: after three off-track intervals, the model checked whether a measurable was worsening or recovering to avoid duplicate issues, then compared it against related data and opened an issue with suggested fixes.",
+      "sourceSections": [
+        "platform",
+        "career"
+      ],
+      "approved": true
+    },
+    {
+      "id": "ai-builders",
+      "question": "Tell me about the Accountability Chart builder.",
+      "variants": [
+        "What AI features did you build?",
+        "What was the V/TO builder?",
+        "Have you used D3?"
+      ],
+      "keywords": [
+        "accountability chart",
+        "org chart",
+        "v to",
+        "vto",
+        "v/to",
+        "d3",
+        "ai features",
+        "ai feature",
+        "ai tool",
+        "ai tools",
+        "chat assistant",
+        "drag and drop",
+        "llm features"
+      ],
+      "answer": "At Atlas UP I built the interactive Accountability Chart builder, the most used AI tool on a platform of about 10,000 monthly active users: a Vue 3 and D3 org chart with animated drag and drop for moving seats and teams, manual entry forms, and a chat assistant that updated the chart live, animating new seats in and highlighting edited ones. I also built the V/TO builder, a guided eight-section strategic planning flow where users either filled in fields directly with LLM feedback or built each section step by step through conversation. I owned these features end to end, from Python LLM microservices through the Vue 3 UI.",
+      "sourceSections": [
+        "platform",
+        "career",
+        "sixty"
       ],
       "approved": true
     },
@@ -157,8 +247,8 @@
         "your title",
         "eos one"
       ],
-      "answer": "My most recent role was Staff Software Engineer at Atlas UP, from June 2025 to October 2026. I joined through Atlas UP's acquisition of EOS One from EOS Worldwide and was retained as one of three staff engineers as the team went from 35 to 9. There I built the agentic engineering system, the PR review agent, and the AI regression lane described on this site, and owned the AI-powered Accountability Chart and V/TO builders end to end. The Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
-      "contextAnswer": "At Atlas UP I was a Staff Software Engineer. I built the agentic engineering system, the PR review agent, and the AI regression lane described on this site, and owned the AI-powered Accountability Chart and V/TO builders end to end.",
+      "answer": "My most recent role was Staff Software Engineer at Atlas UP, from June 2025 to October 2026. I joined through Atlas UP's acquisition of EOS One from EOS Worldwide and was retained as one of three staff engineers as the team went from 35 to 9. There I built the AI-powered Accountability Chart and V/TO builders and the Scorecard's LLM issue detection, owning them end to end from Python LLM microservices through the Vue 3 UI. The Accountability Chart builder became the most used AI tool on a platform of about 10,000 monthly active users. I also built the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
+      "contextAnswer": "At Atlas UP I was a Staff Software Engineer. I built the AI-powered Accountability Chart and V/TO builders and the Scorecard's LLM issue detection, plus the agentic engineering system, the PR review agent, and the AI regression lane described on this site.",
       "sourceSections": [
         "career",
         "pipeline"
@@ -712,9 +802,10 @@
         "javascript",
         "js"
       ],
-      "answer": "Vue 3 is part of my frontend stack, along with React, Next.js, and TypeScript. For FoundrKids, my AI learning platform, I built three Vue apps.",
+      "answer": "At EOS Worldwide I built the entire Vue 3 frontend of EOS One's live meeting platform, the EOS One Scorecard, and the EOS One Vue 3 component library of about 150 components. At Atlas UP I built the Accountability Chart builder as a Vue 3 and D3 org chart. Earlier, at Qualfon, I led a multi-tenant Vue and C# e-commerce platform's frontend migration from Vue 2 to Vue 3, and for FoundrKids I built three Vue apps.",
       "sourceSections": [
-        "sixty",
+        "career",
+        "platform",
         "independent"
       ],
       "approved": true
@@ -784,7 +875,7 @@
         "eos worldwide",
         "at eos"
       ],
-      "answer": "At EOS Worldwide I architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on. I continued to own and extend it at Atlas UP after the acquisition. I also led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage. My frontend skills also cover accessibility, responsive layouts, HTML5, CSS3, SCSS, and Vite.",
+      "answer": "At EOS Worldwide I architected and built the EOS One Vue 3 component library from the ground up: about 150 components, frontend services, and a design token styling system that set the patterns the product still runs on. I continued to own and extend it and the frontend platform at Atlas UP after the acquisition. I also led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage. My frontend skills also cover D3, accessibility, responsive layouts, HTML5, CSS3, SCSS, and Vite.",
       "sourceSections": [
         "platform",
         "career",
@@ -819,7 +910,6 @@
         "apis",
         "rest api",
         "rest apis",
-        "signalr",
         "database",
         "databases",
         "sql",
@@ -835,7 +925,7 @@
         "auth0",
         "authentication"
       ],
-      "answer": "Yes. At EOS Worldwide I expanded from frontend into full stack delivery as AI tooling matured, contributing across C# APIs and services and building early Python microservices. At Atlas UP I owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend. My backend experience covers C#, .NET, REST APIs, SignalR, Python, FastAPI, Node.js, and databases including Postgres, SQL Server, Azure SQL, Cosmos DB, Redis, MySQL, and Oracle. For FoundrKids I built a FastAPI backend on Postgres with pgvector.",
+      "answer": "Yes. At EOS Worldwide I built the EOS One Scorecard in Vue 3 and contributed to its C# and .NET APIs, and backed voice-activated meeting notes with a Python service. At Atlas UP I owned the Accountability Chart and V/TO builders end to end, from Python LLM microservices through the Vue 3 UI, across a C#, .NET, SignalR, Redis, and Cosmos DB stack. My backend experience covers C#, .NET, REST APIs, SignalR, Python, FastAPI, Node.js, and databases including Postgres, pgvector, SQL Server, Azure SQL, Cosmos DB, Redis, MySQL, Oracle, and SQLite. For FoundrKids I built a FastAPI backend on Postgres with pgvector.",
       "sourceSections": [
         "career",
         "sixty",
@@ -1090,7 +1180,7 @@
         "real estate",
         "php"
       ],
-      "answer": "From April 2011 to February 2023 I was at Qualfon, where I progressed from Email Marketing Coordinator to Senior Developer. I built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users, and was a core developer on an in-house, multi-tenant frontend and C# e-commerce platform. I also built Jitterbit data integrations connecting on-premise Oracle and SQL Server databases with NetSuite, Salesforce, and internal APIs. Before that, from 2006 to 2011, I was a developer handling systems operations at Sotheby's International Realty (SKBK).",
+      "answer": "From April 2011 to February 2023 I was at Qualfon, where I progressed from Email Marketing Coordinator to Senior Developer. I built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users, and was a core developer on a multi-tenant Vue and C# e-commerce platform, where I led the frontend migration from Vue 2 to Vue 3. I also built Jitterbit data integrations connecting on-premise Oracle and SQL Server databases with NetSuite, Salesforce, and internal APIs. Before that, from 2006 to 2011, I was a developer handling systems operations at Sotheby's International Realty (SKBK).",
       "sourceSections": [
         "career"
       ],

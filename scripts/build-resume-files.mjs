@@ -52,31 +52,14 @@ const availability = t('sixty.availability');
 
 const skills = section('sixty').stack.map((s) => ({ label: s.label, text: item(s.id).text }));
 
-// Atlas UP pulls in the work the site tells across The Pipeline, Safety, MCP, and Platform sections,
-// in the November 2026 resume's bullet order. Employment bullets name no frontend framework.
-const highlights = {
-  'atlas-up': [
-    ['career.atlasUp.h1', 'sixty.achievement.2'],
-    ['pipeline.stage.reproduce.aside'],
-    ['sixty.achievement.3'],
-    ['pipeline.stage.regression.aside'],
-    ['pipeline.stage.review.aside'],
-    ['sixty.achievement.4'],
-    ['platform.llmArchitecture'],
-    ['career.atlasUp.h4'],
-    ['platform.stack'],
-    ['platform.adoption'],
-    ['career.atlasUp.h5'],
-  ],
-};
-
+// Experience follows the Career Log, which follows the Full Stack resume's bullets in order.
 const jobs = career.entries.map((e) => ({
   slug: e.slug,
   company: t(e.company.id),
   location: t(e.location.id),
   roles: e.roles.map((r) => ({ title: r.title, dates: r.dates })),
   context: e.context ? t(e.context.id) : e.progression ? t(e.progression.id) : null,
-  highlights: (highlights[e.slug] ?? e.highlights.map((h) => [h.id])).map((ids) => ids.map(t).join(' ')),
+  highlights: e.highlights.map((h) => t(h.id)),
 }));
 
 const sentence = (s) => (/[.!?]$/.test(s) ? s : `${s}.`);

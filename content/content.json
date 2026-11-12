@@ -2,7 +2,7 @@
   "_meta": {
     "status": "Phase 1 draft. Not approved. Travis reviews every string before build.",
     "drafted": "2026-10-27",
-    "sourceOfTruth": "private/source/resume-2026-11.txt (cite as resume-nov L<n>, numbered with cat -n). It supersedes private/source/resume-2026.txt (resume L<n>) where they differ; the older file stays a source for details the new resume trims.",
+    "sourceOfTruth": "private/source/resume-2026-11-fullstack.txt (the Full Stack resume of November 4, 2026; cite as resume-fs L<n>, numbered with cat -n). It supersedes private/source/resume-2026-11.txt (resume-nov L<n>) and private/source/resume-2026.txt (resume L<n>) where they differ. The older files stay sources for details the Full Stack resume trims, including the agentic work told in The Pipeline, Safety, and MCP sections.",
     "srcKeys": {
       "resume L<n>": "Line n of private/source/resume-2026.txt",
       "brief:HEADLINE_PROOF": "HEADLINE_PROOF block in private/BUILD_PROMPT.md (the only numbers allowed as counted moments)",
@@ -12,7 +12,9 @@
       "ui": "Interface label with no factual claim",
       "decisions:Q<n>": "The bullet in the 'Answers to Phase 1 questions' section of private/DECISIONS.md that answers question n of private/QUESTIONS.md",
       "resume-nov L<n>": "Line n of private/source/resume-2026-11.txt (the November 2026 resume)",
-      "decisions:Resume update": "The 'Resume update' section of private/DECISIONS.md (Travis, 2026-11-03)"
+      "decisions:Resume update": "The 'Resume update' section of private/DECISIONS.md (Travis, 2026-11-03)",
+      "resume-fs L<n>": "Line n of private/source/resume-2026-11-fullstack.txt (the Full Stack resume, November 4, 2026)",
+      "decisions:Full Stack resume": "The 'Full Stack resume' section of private/DECISIONS.md (Travis, 2026-11-11)"
     },
     "rules": [
       "Every item with confirm: true shows its confirmText ([NEEDED FROM TRAVIS: ...]) visibly, as the placeholderStyle callout, until Travis supplies the fact: in place of text when text is null, otherwise right after the text or link label. A link with confirm: true, or with a null href, renders as plain text, never as a link.",
@@ -48,15 +50,14 @@
       "text": "Travis Terry | Senior Full Stack Engineer",
       "src": [
         "resume-nov L1",
-        "resume-nov L2"
+        "resume-fs L2"
       ]
     },
     "description": {
       "id": "meta.description",
-      "text": "Senior full stack engineer with 15+ years of experience shipping production systems end to end, specializing in agentic engineering with real guardrails.",
+      "text": "Senior full stack engineer with 15+ years shipping production web applications, from Vue 3 and React front ends to C#, .NET, and Python back ends.",
       "src": [
-        "resume-nov L4",
-        "resume-nov L5",
+        "resume-fs L6",
         "brief:HEADLINE_PROOF"
       ]
     },
@@ -75,27 +76,26 @@
         "text": "Travis Terry, Senior Full Stack Engineer",
         "src": [
           "resume-nov L1",
-          "resume-nov L2"
+          "resume-fs L2"
         ]
       },
       "description": {
         "id": "meta.og.description",
-        "text": "I make AI agents do real, verified engineering work. At Atlas UP I was the sole author of a 30+ skill Claude Code system and used it to clear 100+ bugs and about 25 features in about six weeks.",
+        "text": "Senior full stack engineer. At EOS One I built the Vue 3 front end of a real-time live meeting platform where up to 100 users shared a synchronized screen over SignalR, and at Atlas UP a 30+ skill Claude Code system that cleared 100+ bugs in about six weeks.",
         "src": [
-          "resume L6",
-          "resume L18",
-          "resume L23",
+          "resume-fs L6",
+          "resume-fs L16",
+          "resume-fs L23",
           "brief:HEADLINE_PROOF"
         ]
       },
       "image": {
         "path": "/og.png",
         "id": "meta.og.imageAlt",
-        "text": "Travis Terry, Senior Full Stack Engineer | Agentic Engineering",
+        "text": "Travis Terry, Senior Full Stack Engineer | Vue 3, React, C# and .NET, Python",
         "src": [
           "resume-nov L1",
-          "resume-nov L2",
-          "resume-nov L5"
+          "resume-fs L2"
         ],
         "note": "OG image is designed in Phase 2. Alt text must match the text drawn in the image."
       }
@@ -107,16 +107,16 @@
         "text": "Travis Terry, Senior Full Stack Engineer",
         "src": [
           "resume-nov L1",
-          "resume-nov L2"
+          "resume-fs L2"
         ]
       },
       "description": {
         "id": "meta.twitter.description",
-        "text": "I make AI agents do real, verified engineering work. At Atlas UP I was the sole author of a 30+ skill Claude Code system and used it to clear 100+ bugs and about 25 features in about six weeks.",
+        "text": "Senior full stack engineer. At EOS One I built the Vue 3 front end of a real-time live meeting platform where up to 100 users shared a synchronized screen over SignalR, and at Atlas UP a 30+ skill Claude Code system that cleared 100+ bugs in about six weeks.",
         "src": [
-          "resume L6",
-          "resume L18",
-          "resume L23",
+          "resume-fs L6",
+          "resume-fs L16",
+          "resume-fs L23",
           "brief:HEADLINE_PROOF"
         ]
       }
@@ -134,7 +134,7 @@
       "id": "person.title",
       "text": "Senior Full Stack Engineer",
       "src": [
-        "resume-nov L2"
+        "resume-fs L2"
       ]
     },
     "location": {
@@ -448,10 +448,9 @@
       },
       "titleLine": {
         "id": "hero.titleLine",
-        "text": "Senior Full Stack Engineer | Agentic Engineering",
+        "text": "Senior Full Stack Engineer | Vue 3, React, C# and .NET, Python",
         "src": [
-          "resume-nov L2",
-          "resume-nov L5"
+          "resume-fs L2"
         ]
       },
       "location": {
@@ -464,12 +463,12 @@
       },
       "value": {
         "id": "hero.value",
-        "text": "I make AI agents do real, verified engineering work: at Atlas UP my loops took tickets from reproduction to an opened pull request, and billing and auth always stopped for a human.",
+        "text": "At EOS One I built the Vue 3 front end of a real-time meeting platform for up to 100 concurrent users, then the platform's most used AI tool and a 30+ skill Claude Code system that took Jira tickets to verified pull requests.",
         "src": [
-          "resume L6",
-          "resume L21",
-          "resume L24",
-          "resume L18"
+          "resume-fs L6",
+          "resume-fs L27",
+          "resume-fs L18",
+          "resume-fs L23"
         ]
       },
       "proof": {
@@ -481,10 +480,10 @@
             "num": 15,
             "suffix": "+",
             "value": "15+",
-            "label": "years shipping production systems end to end",
-            "text": "15+ years shipping production systems end to end",
+            "label": "years shipping production web applications",
+            "text": "15+ years shipping production web applications",
             "src": [
-              "resume-nov L4",
+              "resume-fs L6",
               "brief:HEADLINE_PROOF"
             ]
           },
@@ -510,6 +509,7 @@
             "label": "monthly active users on EOS One",
             "text": "about 10,000 monthly active users on EOS One",
             "src": [
+              "resume-fs L18",
               "resume L28",
               "brief:HEADLINE_PROOF"
             ]
@@ -585,18 +585,16 @@
       },
       "titleLine": {
         "id": "sixty.titleLine",
-        "text": "Senior Full Stack Engineer | Agentic Engineering",
+        "text": "Senior Full Stack Engineer | Vue 3, React, C# and .NET, Python",
         "src": [
-          "resume-nov L2",
-          "resume-nov L5"
+          "resume-fs L2"
         ]
       },
       "focus": {
         "id": "sixty.focus",
-        "text": "15+ years shipping production systems end to end, specializing in agentic engineering with real guardrails.",
+        "text": "15+ years shipping production web applications, from real-time Vue 3 front ends to C#, .NET, and Python back ends.",
         "src": [
-          "resume-nov L4",
-          "resume-nov L5",
+          "resume-fs L6",
           "brief:HEADLINE_PROOF"
         ]
       },
@@ -610,42 +608,45 @@
       "achievements": [
         {
           "id": "sixty.achievement.1",
-          "text": "Sole author of an agentic engineering system at Atlas UP: 30+ chained Claude Code skills that took Jira tickets from reproduction through fix, verification, regression, and code review.",
+          "text": "At EOS Worldwide, built the entire Vue 3 frontend of EOS One's live meeting platform, the core of the product: up to 100 concurrent users saw the same screen in real time, with every change synchronized over SignalR.",
           "src": [
-            "resume-nov L16",
-            "resume-nov L18"
+            "resume-fs L25",
+            "resume-fs L27"
           ]
         },
         {
           "id": "sixty.achievement.2",
-          "text": "Used that system to clear a backlog of 100+ bugs and ship about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass by code review and QA.",
+          "text": "Built the EOS One Scorecard in Vue 3 and contributed to its C# and .NET APIs, tracking measurables across seven intervals from daily to annual; at Atlas UP, extended it with LLM issue detection that opened issues with suggested fixes.",
           "src": [
-            "resume-nov L18",
-            "brief:HEADLINE_PROOF",
-            "decisions:Q35",
-            "decisions:Resume update"
+            "resume-fs L30",
+            "resume-fs L16",
+            "resume-fs L20"
           ]
         },
         {
           "id": "sixty.achievement.3",
-          "text": "Designed the safety model: a separate agent verified every fix with fresh context, retries were capped by risk tier, billing and auth always stopped for a human, and a global kill switch paused all loops.",
+          "text": "At Atlas UP, built the interactive Accountability Chart builder, the most used AI tool on a platform of about 10,000 monthly active users: a Vue 3 and D3 org chart with animated drag and drop and a chat assistant that updated the chart live.",
           "src": [
-            "resume L24"
+            "resume-fs L16",
+            "resume-fs L18",
+            "brief:HEADLINE_PROOF"
           ]
         },
         {
           "id": "sixty.achievement.4",
-          "text": "Core contributor on EOS One's production MCP server, helping build the question classifier and tool layer that let customers connect Claude, ChatGPT, and Grok to their data, with destructive actions kept in the app and never exposed to LLMs.",
+          "text": "Architected and built the EOS One Vue 3 component library from the ground up: about 150 components, frontend services, and a design token styling system that set the patterns the product still runs on.",
           "src": [
-            "resume-nov L23"
+            "resume-fs L31"
           ]
         },
         {
           "id": "sixty.achievement.5",
-          "text": "Owned the AI-powered Accountability Chart and V/TO builders for EOS One end to end, from Python microservices and LLM integration through the frontend; the Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
+          "text": "At Atlas UP, built a system of 30+ Claude Code skills that took Jira tickets from reproduction to a verified pull request, clearing 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass.",
           "src": [
-            "resume-nov L25",
-            "brief:HEADLINE_PROOF"
+            "resume-fs L16",
+            "resume-fs L23",
+            "brief:HEADLINE_PROOF",
+            "decisions:Q35"
           ]
         }
       ],
@@ -658,67 +659,59 @@
       },
       "stack": [
         {
-          "id": "sixty.stack.agentic",
-          "label": "Agentic AI",
-          "text": "Claude Code custom skills and commands, Cursor, autonomous agent loops, agent workflows, tool orchestration, verifier agents, LLM code review, AI driven test execution, MCP server development, tool design, question classification and routing",
-          "src": [
-            "resume-nov L7"
-          ]
-        },
-        {
-          "id": "sixty.stack.llm",
-          "label": "LLM engineering",
-          "text": "LLM client integrations, multi provider model routing, RAG, embeddings and vector retrieval, grounded answers, prompt and context engineering, LLM moderation and prompt level safeguards",
-          "src": [
-            "resume-nov L8"
-          ]
-        },
-        {
-          "id": "sixty.stack.safety",
-          "label": "AI safety and controls",
-          "text": "Human approval gates for sensitive areas like billing and auth, risk tiered retry limits, global kill switches, destructive actions kept out of LLM reach, COPPA driven consent and moderation",
-          "src": [
-            "resume-nov L9"
-          ]
-        },
-        {
           "id": "sixty.stack.frontend",
           "label": "Frontend",
-          "text": "React, Next.js, TypeScript, JavaScript, Vue 3, HTML5, CSS3, SCSS, Vite, npm, 150 component design system, design tokens, accessibility, responsive layouts, Swift (iOS)",
+          "text": "Vue 2 and 3, React, Next.js, TypeScript, JavaScript, D3, HTML5, CSS3, SCSS, Vite, npm monorepos, design systems, design tokens, accessibility, responsive layouts, animation (GSAP)",
           "src": [
-            "resume-nov L10"
+            "resume-fs L8"
           ]
         },
         {
           "id": "sixty.stack.backend",
-          "label": "Backend and data",
-          "text": "C#, .NET, REST APIs, SignalR, Python, FastAPI, Node.js, Auth0, Stripe, Redis, Cosmos DB, Postgres, SQL Server, Azure SQL, MySQL, Oracle",
+          "label": "Real time and backend",
+          "text": "SignalR, C#, .NET, REST APIs, Python, FastAPI, Node.js, Auth0, Stripe, Redis",
           "src": [
-            "resume-nov L11"
+            "resume-fs L9"
+          ]
+        },
+        {
+          "id": "sixty.stack.data",
+          "label": "Data",
+          "text": "Postgres, pgvector, SQL Server, Azure SQL, Cosmos DB, MySQL, Oracle, SQLite",
+          "src": [
+            "resume-fs L10"
           ]
         },
         {
           "id": "sixty.stack.cloud",
-          "label": "Cloud, CI/CD, and testing",
-          "text": "Azure Pipelines, Azure App Service, GitHub Actions, Fly.io, Neon, Cloudflare Workers, Workers AI, Vectorize, Playwright, Vitest, TestRail, BrowserStack, Litmus, daily deploys with weekly release trains",
+          "label": "Cloud, CI/CD, testing",
+          "text": "Azure Pipelines, Azure App Service, GitHub Actions, Fly.io, Neon, Cloudflare Workers, Vitest, Playwright, TestRail, BrowserStack",
           "src": [
-            "resume-nov L12"
+            "resume-fs L11"
+          ]
+        },
+        {
+          "id": "sixty.stack.ai",
+          "label": "AI",
+          "text": "LLM integrations, RAG, Claude Code, MCP servers, agent workflows",
+          "src": [
+            "resume-fs L12"
           ]
         },
         {
           "id": "sixty.stack.integrations",
-          "label": "Integrations and platforms",
-          "text": "Jitterbit (on prem and Harmony Cloud), Salesforce, NetSuite, SuiteCommerce, WordPress, Jira and Azure DevOps APIs",
+          "label": "Integrations",
+          "text": "NetSuite, SuiteCommerce, Salesforce, Jitterbit, WordPress, Jira and Azure DevOps APIs",
           "src": [
-            "resume-nov L13"
+            "resume-fs L13"
           ]
         },
         {
           "id": "sixty.stack.leadership",
           "label": "Leadership",
-          "text": "Engineering wide AI adoption, code review standards, design system governance, mentoring, people management",
+          "text": "Code review standards, design system governance, mentoring, people management",
           "src": [
-            "resume-nov L14"
+            "resume-fs L14"
           ]
         }
       ],
@@ -1117,20 +1110,42 @@
       },
       "ownership": {
         "id": "platform.ownership",
-        "text": "I built and owned the design system for EOS One, an AI business operating system, then expanded into full stack AI work, shipping LLM features used by about 10,000 monthly active users.",
+        "text": "For EOS One, an AI business operating system, I built the Vue 3 front end of the live meeting platform and the 150 component design system it still runs on, then the AI builders, including the most used AI tool across about 10,000 monthly active users.",
         "src": [
-          "resume-nov L4",
           "resume L28",
+          "resume-fs L6",
+          "resume-fs L18",
           "brief:HEADLINE_PROOF"
+        ]
+      },
+      "meetings": {
+        "id": "platform.meetings",
+        "text": "At EOS Worldwide I built the entire Vue 3 frontend of EOS One's live meeting platform, the core of the product: up to 100 concurrent users saw the same screen in real time, with every change synchronized over SignalR. I designed a configurable agenda system with five meeting types, including a custom type that let teams assemble their own meeting from reusable Vue 3 agenda components, and handled real-world collaboration edge cases: a conflict resolution prompt when two users edited the same data, and retry and reconnect logic for dropped or degraded connections.",
+        "src": [
+          "resume-fs L25",
+          "resume-fs L27",
+          "resume-fs L28",
+          "resume-fs L29"
+        ]
+      },
+      "scorecard": {
+        "id": "platform.scorecard",
+        "text": "At EOS Worldwide I built the EOS One Scorecard in Vue 3 and contributed to its C# and .NET APIs. It tracked measurables across seven intervals from daily to annual, with at least, at most, range, and yes-or-no goals, automatic on-track and off-track coloring, and hit rates with averages or totals. At Atlas UP I extended it with LLM issue detection: after three off-track intervals, the model checked whether a measurable was worsening or recovering, compared it against related data, and opened an issue with suggested fixes.",
+        "src": [
+          "resume-fs L25",
+          "resume-fs L30",
+          "resume-fs L16",
+          "resume-fs L20"
         ]
       },
       "aiBuilders": {
         "id": "platform.aiBuilders",
-        "text": "At Atlas UP I owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend. The Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
+        "text": "At Atlas UP I built the interactive Accountability Chart builder, the most used AI tool on the platform: a Vue 3 and D3 org chart with animated drag and drop for moving seats and teams, manual entry forms, and a chat assistant that updated the chart live, animating new seats in and highlighting edited ones. I also built the V/TO builder, a guided eight-section strategic planning flow where users either filled in fields directly with LLM feedback or built each section step by step through conversation. I owned these features end to end, from Python LLM microservices through the Vue 3 UI.",
         "src": [
-          "resume-nov L16",
-          "resume-nov L25",
-          "brief:HEADLINE_PROOF"
+          "resume-fs L16",
+          "resume-fs L18",
+          "resume-fs L19",
+          "resume-fs L21"
         ]
       },
       "llmArchitecture": {
@@ -1142,40 +1157,34 @@
       },
       "library": {
         "id": "platform.library",
-        "text": "At EOS Worldwide I architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on. After the acquisition I continued to own and extend it.",
+        "text": "At EOS Worldwide I architected and built the EOS One Vue 3 component library from the ground up: about 150 components, frontend services, and a design token styling system that set the patterns the product still runs on. After the acquisition I continued to own and extend it and the frontend platform.",
         "src": [
-          "resume-nov L29",
-          "resume-nov L30",
-          "resume-nov L28"
-        ]
-      },
-      "stack": {
-        "id": "platform.stack",
-        "text": "I contributed across a C#, .NET, SignalR, Redis, and Cosmos DB stack and Python LLM microservices.",
-        "src": [
-          "resume-nov L26"
+          "resume-fs L25",
+          "resume-fs L31",
+          "resume-fs L22"
         ]
       },
       "voiceNotes": {
         "id": "platform.voiceNotes",
-        "text": "At EOS Worldwide I built voice-activated note taking for EOS One's real-time SignalR meetings, backed by a Python microservice that recorded sessions, generated notes, emailed summaries afterward, and suggested to-dos for each team member.",
+        "text": "At EOS Worldwide I built voice-activated note taking for live meetings, backed by a Python service that recorded sessions, generated notes, emailed summaries, and suggested to-dos for each attendee.",
         "src": [
-          "resume-nov L29",
-          "resume-nov L34"
+          "resume-fs L25",
+          "resume-fs L32"
         ]
       },
       "testing": {
         "id": "platform.testing",
         "text": "At EOS Worldwide I led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage.",
         "src": [
-          "resume-nov L29",
-          "resume-nov L35"
+          "resume-fs L25",
+          "resume-fs L33"
         ]
       },
       "shipping": {
         "id": "platform.shipping",
         "text": "At Atlas UP we ran a weekly release train and used Ship/Show/Ask, so changes reached production almost daily on Azure DevOps Pipelines.",
         "src": [
+          "resume-fs L22",
           "resume L13",
           "resume L29",
           "decisions:Q37"
@@ -1608,14 +1617,14 @@
             "id": "career.atlasUp.company",
             "text": "Atlas UP",
             "src": [
-              "resume-nov L16"
+              "resume-fs L16"
             ]
           },
           "location": {
             "id": "career.atlasUp.location",
             "text": "Remote",
             "src": [
-              "resume L18"
+              "resume-fs L16"
             ]
           },
           "roles": [
@@ -1625,7 +1634,7 @@
               "dates": "June 2025 to October 2026",
               "text": "Staff Software Engineer, June 2025 to October 2026",
               "src": [
-                "resume L19"
+                "resume-fs L16"
               ]
             }
           ],
@@ -1633,49 +1642,63 @@
             "id": "career.atlasUp.context",
             "text": "Joined through Atlas UP's acquisition of EOS One from EOS Worldwide; retained as one of three staff engineers as the team went from 35 to 9.",
             "src": [
-              "resume-nov L17"
+              "resume-fs L17"
             ]
           },
           "highlights": [
             {
               "id": "career.atlasUp.h1",
-              "text": "Sole author of a 30+ skill Claude Code system that took Jira tickets from reproduction through fix, verification, regression, and code review.",
+              "text": "Built the interactive Accountability Chart builder, the most used AI tool on a platform of about 10,000 monthly active users: a Vue 3 and D3 org chart with animated drag and drop for moving seats and teams, manual entry forms, and a chat assistant that updated the chart live, animating new seats in and highlighting edited ones.",
               "src": [
-                "resume-nov L18"
+                "resume-fs L18",
+                "brief:HEADLINE_PROOF"
+              ]
+            },
+            {
+              "id": "career.atlasUp.h2",
+              "text": "Built the V/TO builder, a guided eight-section strategic planning flow where users either filled in fields directly with LLM feedback or built each section step by step through conversation.",
+              "src": [
+                "resume-fs L19"
+              ]
+            },
+            {
+              "id": "career.atlasUp.h3",
+              "text": "Extended the Scorecard with LLM issue detection: after three off-track intervals, the model checked whether a measurable was worsening or recovering to avoid duplicate issues, then compared it against related data and opened an issue with suggested fixes.",
+              "src": [
+                "resume-fs L20"
+              ]
+            },
+            {
+              "id": "career.atlasUp.h4",
+              "text": "Owned these features end to end, from Python LLM microservices through the Vue 3 UI, across a C#, .NET, SignalR, Redis, and Cosmos DB stack.",
+              "src": [
+                "resume-fs L21"
+              ]
+            },
+            {
+              "id": "career.atlasUp.h5",
+              "text": "Continued to own and extend the EOS One component library and frontend platform after the acquisition, shipping to production daily against weekly release trains.",
+              "src": [
+                "resume-fs L22"
+              ]
+            },
+            {
+              "id": "career.atlasUp.h6",
+              "text": "Built a system of 30+ Claude Code skills that took Jira tickets from reproduction to a verified pull request, clearing 100+ bugs and about 25 features in about six weeks, with roughly 95% of bug tickets accepted on first pass.",
+              "src": [
+                "resume-fs L23",
+                "brief:HEADLINE_PROOF",
+                "decisions:Q35"
               ],
               "see": "#pipeline"
             },
             {
-              "id": "career.atlasUp.h2",
-              "text": "Designed the safety model: verifier agent with fresh context, risk-tiered retries, mandatory human review for billing and auth, and a global kill switch.",
+              "id": "career.atlasUp.h7",
+              "text": "Built an AI regression lane running TestRail cases through Playwright, cutting regression cycles from about a week to 8 to 12 hours, and contributed to the production MCP server for EOS One.",
               "src": [
-                "resume-nov L20"
+                "resume-fs L24"
               ],
-              "see": "#safety"
-            },
-            {
-              "id": "career.atlasUp.h3",
-              "text": "Core contributor on EOS One's production MCP server, helping build the question classifier and tool layer.",
-              "src": [
-                "resume-nov L23"
-              ],
-              "see": "#mcp"
-            },
-            {
-              "id": "career.atlasUp.h4",
-              "text": "Owned the AI-powered Accountability Chart and V/TO builders end to end, from Python microservices and LLM integration through the frontend; the Accountability Chart builder became the platform's most used AI tool across roughly 10,000 monthly active users.",
-              "src": [
-                "resume-nov L25",
-                "brief:HEADLINE_PROOF"
-              ],
-              "see": "#platform"
-            },
-            {
-              "id": "career.atlasUp.h5",
-              "text": "Continued to own and extend the EOS One component library after the acquisition.",
-              "src": [
-                "resume-nov L28"
-              ]
+              "see": "#release"
             }
           ]
         },
@@ -1685,14 +1708,14 @@
             "id": "career.eos.company",
             "text": "EOS Worldwide",
             "src": [
-              "resume L32"
+              "resume-fs L25"
             ]
           },
           "location": {
             "id": "career.eos.location",
             "text": "Remote",
             "src": [
-              "resume L32"
+              "resume-fs L25"
             ]
           },
           "roles": [
@@ -1702,7 +1725,7 @@
               "dates": "Dec 2024 to June 2025",
               "text": "Staff Front End Engineer, Dec 2024 to June 2025",
               "src": [
-                "resume-nov L29"
+                "resume-fs L26"
               ]
             },
             {
@@ -1711,51 +1734,65 @@
               "dates": "Feb 2023 to Dec 2024",
               "text": "Senior Front End Developer, Feb 2023 to Dec 2024",
               "src": [
-                "resume-nov L29"
+                "resume-fs L26"
               ]
             }
           ],
           "highlights": [
             {
               "id": "career.eos.h1",
-              "text": "Architected and built the EOS One component library from the ground up: about 150 components, frontend services, and a design-token-based styling system that set the architecture, patterns, and standards the product still runs on.",
+              "text": "Built the entire Vue 3 frontend of EOS One's live meeting platform, the core of the product: up to 100 concurrent users seeing the same screen in real time, with every change synchronized over SignalR.",
               "src": [
-                "resume-nov L30"
+                "resume-fs L27"
               ]
             },
             {
               "id": "career.eos.h2",
-              "text": "Promoted to Staff Front End Engineer; managed three direct reports through one on ones and growth planning while staying hands-on in delivery.",
+              "text": "Designed a configurable agenda system with five meeting types, including a custom type that let teams assemble their own meeting from reusable Vue 3 agenda components.",
               "src": [
-                "resume-nov L31"
+                "resume-fs L28"
               ]
             },
             {
               "id": "career.eos.h3",
-              "text": "One of three senior engineers on a predominantly junior team; personally reviewed every frontend pull request and mentored four to five junior developers who were on track for senior roles by the end of their tenure.",
+              "text": "Handled real-world collaboration edge cases: a conflict resolution prompt when two users edited the same data, and retry and reconnect logic for dropped or degraded connections.",
               "src": [
-                "resume-nov L32"
+                "resume-fs L29"
               ]
             },
             {
               "id": "career.eos.h4",
-              "text": "Expanded from frontend into full stack delivery as AI tooling matured, contributing across C# APIs and services and building early Python microservices.",
+              "text": "Built the EOS One Scorecard in Vue 3 and contributed to its C# and .NET APIs, tracking measurables across seven intervals from daily to annual. Supported at least, at most, range, and yes-or-no goals; currency, percentage, and duration formats; automatic on-track and off-track coloring; and hit rates with averages or totals per measurable.",
               "src": [
-                "resume-nov L33"
+                "resume-fs L30"
               ]
             },
             {
               "id": "career.eos.h5",
-              "text": "Built voice-activated note taking for EOS One's real-time SignalR meetings, backed by a Python microservice that recorded sessions, generated notes, emailed summaries afterward, and suggested to-dos for each team member.",
+              "text": "Architected and built the EOS One Vue 3 component library from the ground up: about 150 components, frontend services, and a design token styling system that set the patterns the product still runs on.",
               "src": [
-                "resume-nov L34"
+                "resume-fs L31"
               ]
             },
             {
               "id": "career.eos.h6",
-              "text": "Led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% test coverage.",
+              "text": "Built voice-activated note taking for live meetings, backed by a Python service that recorded sessions, generated notes, emailed summaries, and suggested to-dos for each attendee.",
               "src": [
-                "resume-nov L35"
+                "resume-fs L32"
+              ]
+            },
+            {
+              "id": "career.eos.h7",
+              "text": "Led frontend unit testing with Vitest and CI/CD quality gates, bringing frontend services to about 85% coverage.",
+              "src": [
+                "resume-fs L33"
+              ]
+            },
+            {
+              "id": "career.eos.h8",
+              "text": "Promoted to Staff and managed three direct reports; reviewed every frontend pull request and mentored four to five junior developers toward senior roles.",
+              "src": [
+                "resume-fs L34"
               ]
             }
           ]
@@ -1766,14 +1803,14 @@
             "id": "career.qualfon.company",
             "text": "Qualfon (formerly Dialog Direct and Budco)",
             "src": [
-              "resume L40"
+              "resume-fs L35"
             ]
           },
           "location": {
             "id": "career.qualfon.location",
             "text": "Highland Park, MI",
             "src": [
-              "resume L40"
+              "resume-fs L35"
             ]
           },
           "roles": [
@@ -1783,7 +1820,7 @@
               "dates": "April 2011 to February 2023",
               "text": "Senior Developer, April 2011 to February 2023",
               "src": [
-                "resume L41"
+                "resume-fs L35"
               ]
             }
           ],
@@ -1791,43 +1828,37 @@
             "id": "career.qualfon.progression",
             "text": "Progressed from Email Marketing Coordinator to WordPress Developer, NetSuite Developer, NetSuite Team Lead, and Senior Developer.",
             "src": [
-              "resume L42"
+              "resume L42",
+              "resume-fs L36"
             ]
           },
           "highlights": [
             {
               "id": "career.qualfon.h1",
-              "text": "Built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users.",
+              "text": "Core developer on a multi-tenant Vue and C# e-commerce platform with a shared core, building per-customer customizations and migrating clients off NetSuite; led its frontend migration from Vue 2 to Vue 3.",
               "src": [
-                "resume-nov L38"
+                "resume-fs L37"
               ]
             },
             {
               "id": "career.qualfon.h2",
-              "text": "Core developer on an in-house, multi-tenant frontend and C# e-commerce platform with a shared core, migrating clients off NetSuite and building per-customer customizations.",
+              "text": "Built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users.",
               "src": [
-                "resume-nov L39"
+                "resume-fs L38"
               ]
             },
             {
               "id": "career.qualfon.h3",
-              "text": "Led the NetSuite team of five direct reports, owning delivery, technical direction, and client-facing requirements in partnership with product owners.",
+              "text": "Led the NetSuite team of five direct reports, owning delivery, technical direction, and client-facing requirements.",
               "src": [
-                "resume-nov L40"
+                "resume-fs L39"
               ]
             },
             {
               "id": "career.qualfon.h4",
-              "text": "Built Jitterbit data integrations connecting on-premise Oracle and SQL Server databases with NetSuite, Salesforce, and internal APIs.",
+              "text": "Built Jitterbit integrations connecting on-premise Oracle and SQL Server with NetSuite, Salesforce, and internal APIs, and ran performance and load testing from IIS down to slow SQL.",
               "src": [
-                "resume-nov L41"
-              ]
-            },
-            {
-              "id": "career.qualfon.h5",
-              "text": "Built and analyzed performance and load tests across web and mobile applications, tracing bottlenecks from IIS down to slow SQL queries.",
-              "src": [
-                "resume-nov L42"
+                "resume-fs L40"
               ]
             }
           ]
@@ -1838,7 +1869,7 @@
             "id": "career.skbk.company",
             "text": "Sotheby's International Realty (SKBK)",
             "src": [
-              "resume-nov L43"
+              "resume-fs L41"
             ]
           },
           "location": {
@@ -1855,7 +1886,7 @@
               "dates": "June 2006 to March 2011",
               "text": "Developer, Systems Operations, June 2006 to March 2011",
               "src": [
-                "resume-nov L43"
+                "resume-fs L41"
               ]
             }
           ],
@@ -2165,7 +2196,7 @@
       },
       "copyright": {
         "id": "footer.copyright",
-        "text": "© 2026 Travis Terry",
+        "text": "\u00a9 2026 Travis Terry",
         "src": [
           "resume L1"
         ]

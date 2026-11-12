@@ -135,22 +135,21 @@ function Hero() {
 
 /* Top-five selector metadata: stats come from the resume lines behind each achievement. */
 const TOP_META = [
-  { title: 'Agentic engineering system', stat: '30+', statLabel: 'Claude Code skills, sole author' },
-  { title: 'Six-week bug sweep', stat: '100+', statLabel: 'bugs cleared in about six weeks, roughly 95% of them accepted on first pass' },
-  { title: 'Safety model', stat: '4', statLabel: 'safeguards: verifier agent, risk-tiered retries, human stop on billing and auth, kill switch' },
-  { title: 'Production MCP server', stat: '3', statLabel: 'LLMs connected: Claude, ChatGPT, Grok' },
-  { title: 'AI builders, end to end', stat: '10,000', prefix: 'roughly', statLabel: 'monthly active users; the Accountability Chart builder became the most used AI tool' },
+  { title: 'Live meeting platform', stat: '100', prefix: 'up to', statLabel: 'concurrent users on one synchronized screen' },
+  { title: 'Scorecard', stat: '7', statLabel: 'reporting intervals, from daily to annual' },
+  { title: 'Accountability Chart builder', stat: '10,000', prefix: 'about', statLabel: 'monthly active users; the most used AI tool on the platform' },
+  { title: 'Component library', stat: '150', prefix: 'about', statLabel: 'Vue 3 components the product still runs on' },
+  { title: 'Agentic engineering system', stat: '30+', statLabel: 'Claude Code skills; 100+ bugs and about 25 features in about six weeks' },
 ];
 /* Skills tabs: the resume's skill groups (content.json sixty.stack), split into tags. */
 const STACK = [
-  { label: 'Agentic AI', items: ['Claude Code skills and commands', 'Cursor', 'Autonomous agent loops', 'Agent workflows', 'Tool orchestration', 'Verifier agents', 'LLM code review', 'AI-driven test execution', 'MCP server development', 'Tool design', 'Question classification and routing'] },
-  { label: 'LLM engineering', items: ['LLM client integrations', 'Multi-provider model routing', 'RAG', 'Embeddings and vector retrieval', 'Grounded answers', 'Prompt and context engineering', 'LLM moderation', 'Prompt-level safeguards'] },
-  { label: 'AI safety', items: ['Human approval gates for billing and auth', 'Risk-tiered retry limits', 'Global kill switches', 'Destructive actions kept out of LLM reach', 'COPPA-driven consent and moderation'] },
-  { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue 3', 'HTML5', 'CSS3', 'SCSS', 'Vite', 'npm', '150-component design system', 'Design tokens', 'Accessibility', 'Responsive layouts', 'Swift (iOS)'] },
-  { label: 'Backend and data', items: ['C#', '.NET', 'REST APIs', 'SignalR', 'Python', 'FastAPI', 'Node.js', 'Auth0', 'Stripe', 'Redis', 'Cosmos DB', 'Postgres', 'SQL Server', 'Azure SQL', 'MySQL', 'Oracle'] },
-  { label: 'Cloud, CI/CD, testing', items: ['Azure Pipelines', 'Azure App Service', 'GitHub Actions', 'Fly.io', 'Neon', 'Cloudflare Workers', 'Workers AI', 'Vectorize', 'Playwright', 'Vitest', 'TestRail', 'BrowserStack', 'Litmus', 'Daily deploys, weekly release trains'] },
-  { label: 'Integrations', items: ['Jitterbit (on prem and Harmony Cloud)', 'Salesforce', 'NetSuite', 'SuiteCommerce', 'WordPress', 'Jira and Azure DevOps APIs'] },
-  { label: 'Leadership', items: ['Engineering-wide AI adoption', 'Code review standards', 'Design system governance', 'Mentoring', 'People management'] },
+  { label: 'Frontend', items: ['Vue 2 and 3', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'D3', 'HTML5', 'CSS3', 'SCSS', 'Vite', 'npm monorepos', 'Design systems', 'Design tokens', 'Accessibility', 'Responsive layouts', 'Animation (GSAP)'] },
+  { label: 'Real time and backend', items: ['SignalR', 'C#', '.NET', 'REST APIs', 'Python', 'FastAPI', 'Node.js', 'Auth0', 'Stripe', 'Redis'] },
+  { label: 'Data', items: ['Postgres', 'pgvector', 'SQL Server', 'Azure SQL', 'Cosmos DB', 'MySQL', 'Oracle', 'SQLite'] },
+  { label: 'Cloud, CI/CD, testing', items: ['Azure Pipelines', 'Azure App Service', 'GitHub Actions', 'Fly.io', 'Neon', 'Cloudflare Workers', 'Vitest', 'Playwright', 'TestRail', 'BrowserStack'] },
+  { label: 'AI', items: ['LLM integrations', 'RAG', 'Claude Code', 'MCP servers', 'Agent workflows'] },
+  { label: 'Integrations', items: ['NetSuite', 'SuiteCommerce', 'Salesforce', 'Jitterbit', 'WordPress', 'Jira and Azure DevOps APIs'] },
+  { label: 'Leadership', items: ['Code review standards', 'Design system governance', 'Mentoring', 'People management'] },
 ];
 
 function Sixty() {
@@ -162,7 +161,7 @@ function Sixty() {
         <div className="sec__head">
           <Badge>60 sec read</Badge>
           <h2 id="sixty-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">15+ years shipping production systems end to end, specializing in agentic engineering with <span className="accent">real guardrails</span>.</p>
+          <p className="lede">15+ years shipping production web applications, from <span className="accent">real-time Vue 3 front ends</span> to C#, .NET, and Python back ends.</p>
         </div>
         <TopFive items={top} />
         <StackTabs groups={STACK} />
@@ -300,7 +299,7 @@ function Mcp() {
 
 function Platform() {
   const s = section('platform');
-  const P = [['AI features', 'aiBuilders'], ['LLM architecture', 'llmArchitecture'], ['Component library', 'library'], ['Stack', 'stack'], ['Meetings AI', 'voiceNotes'], ['Testing', 'testing'], ['Shipping', 'shipping']];
+  const P = [['Live meetings', 'meetings'], ['Scorecard', 'scorecard'], ['AI builders', 'aiBuilders'], ['Component library', 'library'], ['Meetings AI', 'voiceNotes'], ['LLM architecture', 'llmArchitecture'], ['Testing', 'testing'], ['Shipping', 'shipping']];
   const LD = [['Code review', 'review'], ['Direct reports', 'mentoring'], ['Mentorship', 'mentorship'], ['AI adoption', 'adoption'], ['Standards as code', 'standards'], ['Retention', 'retention']];
   const pick = (arr: string[][]) => arr.map(([title, k]) => ({ title, text: t(s[k]) }));
   return (
@@ -309,7 +308,7 @@ function Platform() {
         <div className="sec__head">
           <Badge>EOS One · Atlas UP</Badge>
           <h2 id="platform-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">I built and owned the design system for EOS One, an AI business operating system, then expanded into full stack AI work, shipping LLM features used by <span className="accent">about 10,000 monthly active users</span>.</p>
+          <p className="lede">For EOS One, an AI business operating system, I built the Vue 3 front end of the live meeting platform and the 150 component design system it still runs on, then the AI builders, including the most used AI tool across <span className="accent">about 10,000 monthly active users</span>.</p>
         </div>
         <div className="stat3" data-commit>
           <div className="glass statc" data-reveal>
