@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { historyState, publishCommit, published, render } from '../src/lib/logs-core.mjs';
+import { historyState, publishCommit, published, readAll, render } from '../src/lib/logs-core.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dir = path.join(root, 'logs');
@@ -28,5 +28,13 @@ for (const p of posts) for (const img of render(p, dir).images) images.add(img);
 for (const rel of images) {
   fs.mkdirSync(path.dirname(path.join(out, rel)), { recursive: true });
   fs.copyFileSync(path.join(dir, rel), path.join(out, rel));
+}
+// Drafts aren't built, but say now what would stop each one from publishing.
+for (const d of readAll(dir).filter((p) => p.draft)) {
+  try {
+    render({ ...d, draft: false }, dir);
+  } catch (e) {
+    console.warn(`build log: draft not ready to publish yet. ${e.message}`);
+  }
 }
 console.log(`build log: ${posts.length} post(s)${includeDrafts ? ' incl. drafts (dev)' : ''}, ${images.size} image(s)`);

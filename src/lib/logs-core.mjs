@@ -6,7 +6,8 @@
 // - Files are /logs/YYYY-MM-DD-slug.md. Any other .md except README.md is an error.
 // - Frontmatter has exactly: title, date, summary, tags, draft. date must match the filename.
 // - draft: true posts are dropped before anything is rendered, listed, fed or copied.
-// - A published post's H2s are, in order: The problem, What the kit did, What broke, What I changed.
+// - A published post's first four H2s are, in order: The problem, What the kit did, What broke,
+//   What I changed. More H2s may follow them (e.g. a closing "Try it").
 // - Every image needs alt text and a relative path into img/ that exists.
 // - A post's commit id is the real git commit that published it: the oldest commit that added a
 //   `draft: false` line to the file (following renames). It needs full history, not a shallow clone.
@@ -123,8 +124,8 @@ export function render(post, dir) {
     },
   });
   const html = md.parse(post.body);
-  if (!post.draft && h2s.join('|') !== SECTIONS.join('|')) {
-    problems.push(`the body's ## headings must be, in order: ${SECTIONS.join(' / ')} (found: ${h2s.join(' / ') || 'none'})`);
+  if (!post.draft && h2s.slice(0, SECTIONS.length).join('|') !== SECTIONS.join('|')) {
+    problems.push(`the body's first ## headings must be, in order: ${SECTIONS.join(' / ')} (found: ${h2s.join(' / ') || 'none'})`);
   }
   if (problems.length) throw new Error(`${post.file}:\n  - ${problems.join('\n  - ')}`);
   return { html, images };

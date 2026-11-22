@@ -44,7 +44,8 @@ renaming the file (say, to fix the date when you publish) keeps it. Until that c
 
 ## Body
 
-Use these `##` headings, in this order. `###` subheadings inside them are fine.
+Start with these four `##` headings, in this order. `###` subheadings inside them are fine, and
+more `##` sections can follow the four (a closing "Try it", say).
 
 1. `## The problem`
 2. `## What the kit did`
@@ -55,4 +56,5 @@ Don't add a `#` heading: the title comes from frontmatter. A short intro paragra
 first heading is fine. Fenced code blocks are styled but not syntax highlighted.
 
 The build checks all of this and fails with the file name and the problem, so a broken post can't
-ship. See `2026-11-22-example-post.md` for a complete example.
+ship. Drafts aren't checked as strictly, but every build prints what would stop each draft from
+publishing. See `2026-11-22-example-post.md` for a complete example.
