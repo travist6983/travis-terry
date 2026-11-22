@@ -368,6 +368,14 @@
           "src": [
             "ui"
           ]
+        },
+        {
+          "id": "header.nav.logs",
+          "text": "Build log",
+          "href": "/logs",
+          "src": [
+            "ui"
+          ]
         }
       ],
       "resumePdf": {
