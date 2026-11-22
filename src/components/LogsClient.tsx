@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { CommitJourney } from './Journeys';
+import { SmoothScroll } from './motion';
 import type { Commit, Heading, Post } from '@/lib/logs';
 
 /*
@@ -66,6 +67,16 @@ export function CodeCopy() {
 
 /* ---------- List page ---------- */
 
+/**
+ * The home page's smooth scroll, for mouse and trackpad only. Lenis leaves touch scrolling native,
+ * so on phones its code would download for nothing.
+ */
+export function PointerSmoothScroll() {
+  const [fine, setFine] = useState(false);
+  useEffect(() => setFine(window.matchMedia('(pointer: fine)').matches), []);
+  return fine ? <SmoothScroll /> : null;
+}
+
 function Sha({ commit }: { commit: Commit }) {
   if (!commit) return <span className="lsha lsha--local">uncommitted</span>;
   return (
@@ -119,7 +130,7 @@ export function LogList({ posts }: { posts: Post[] }) {
         <label htmlFor="grep" className="lsearch__label">
           <span className="lsearch__ps" aria-hidden="true">$</span>
           <span className="lsearch__cmd">git log --grep=</span>
-          <input id="grep" className="lsearch__q" type="search" placeholder="search posts" autoComplete="off" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input id="grep" className="lsearch__q" type="search" aria-label="Search posts" placeholder="search posts" autoComplete="off" value={q} onChange={(e) => setQ(e.target.value)} />
         </label>
         <div className="glass lseg" role="group" aria-label="View">
           <button type="button" className={view === 'graph' ? 'is-on' : undefined} aria-pressed={view === 'graph'} onClick={() => setView('graph')}>--graph</button>

@@ -1,5 +1,5 @@
 import { section, t } from '@/lib/content';
-import { KillSwitch } from '@/components/client';
+import { MotionToggle } from '@/components/motion';
 import type { Commit } from '@/lib/logs';
 
 /*
@@ -47,7 +47,7 @@ export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { promp
               })}
           </nav>
           <div className="nav__end">
-            <KillSwitch />
+            <MotionToggle pauseLabel={t(h.motionControl.pauseLabel)} pausedLabel={t(h.motionControl.statusPaused)} />
             <a className="btn btn--accent btn--pill" href={h.resumePdf.href}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useMotion } from './client';
+import { useMotion } from './motion';
 
 /*
  * Two scroll journeys, both "held object" scenes: the object stays at HOLD of the viewport

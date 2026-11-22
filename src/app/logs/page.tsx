@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { MotionProvider, SmoothScroll } from '@/components/client';
+import { MotionProvider } from '@/components/motion';
 import { LogsDock, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
-import { LogList } from '@/components/LogsClient';
+import { LogList, PointerSmoothScroll } from '@/components/LogsClient';
 import { posts } from '@/lib/logs';
 
 const DESCRIPTION = 'Notes from building with an agent kit: the problem, what the kit did, what broke, and what I changed.';
@@ -23,7 +23,7 @@ export default function LogsPage() {
   return (
     <MotionProvider>
       <Paper />
-      <SmoothScroll />
+      <PointerSmoothScroll />
       <div className="logs-page">
         <LogsHeader />
         <main id="main" className="wrap lpage">
