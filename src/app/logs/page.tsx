@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { MotionProvider } from '@/components/motion';
-import { LogsDock, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
+import { LogsFooter, LogsHeader, Paper, SiteDock } from '@/components/LogsChrome';
 import { LogList, PointerSmoothScroll } from '@/components/LogsClient';
 import { posts } from '@/lib/logs';
 
@@ -36,7 +36,7 @@ export default function LogsPage() {
         </main>
         <LogsFooter />
       </div>
-      <LogsDock page />
+      <SiteDock where="logs" />
     </MotionProvider>
   );
 }

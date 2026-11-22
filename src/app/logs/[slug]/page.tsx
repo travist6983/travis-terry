@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MotionProvider } from '@/components/motion';
-import { LogsDock, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
+import { LogsFooter, LogsHeader, Paper, SiteDock } from '@/components/LogsChrome';
 import { CodeCopy, CopyButton, FilesChanged, FilesChangedPhone, ReadPercent } from '@/components/LogsClient';
 import { AUTHOR, EMPTY_SLUG, gitDate, post, posts, shortSlug } from '@/lib/logs';
 
@@ -145,7 +145,7 @@ export default async function LogPost({ params }: Props) {
         </main>
         <LogsFooter />
       </div>
-      <LogsDock page={false} />
+      <SiteDock where="post" />
     </MotionProvider>
   );
 }
