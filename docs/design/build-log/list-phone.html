@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Build log list, phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#0a63c2;text-decoration:none}a:hover{color:#0959b0}
+.r{position:relative;overflow:hidden;background:#e6e9ef;color:#0c1220;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+.blob{position:absolute;border-radius:50%;pointer-events:none}
+.glass{background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(38px) saturate(190%);backdrop-filter:blur(38px) saturate(190%);border:1px solid rgba(255,255,255,.55);box-shadow:0 10px 30px rgba(12,18,32,.06)}
+.chip{flex:none;display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:22px;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.55);color:#0c1220;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px}
+.chip.on{background:#0c1220;border-color:#0c1220;color:#fff}
+.chip .n{color:#4a5366}.chip.on .n{color:rgba(255,255,255,.75)}
+.ref{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:7px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;font-weight:600}
+.ref.head{color:#0b5c25;background:rgba(48,209,88,.16);border:1px solid rgba(48,209,88,.5)}
+.ref.br{color:#4f35c9;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35)}
+.ref.init{color:#0b5c25;border:1px solid rgba(48,209,88,.6)}
+.sha{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;font-weight:600;color:#0a63c2}
+.tg{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:8px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85);font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;color:#2b3346}
+.mnav{display:flex;position:relative;top:0;z-index:20;padding:12px 16px}
+.mbar{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;height:52px;padding:0 8px 0 18px;border-radius:26px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(38px) saturate(190%);backdrop-filter:blur(38px) saturate(190%);border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 30px rgba(12,18,32,.08)}
+.mbar .who{font-weight:700;font-size:16px;letter-spacing:-0.02em;color:#0c1220}
+.prompt{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:19px;background:#0c1220;color:#e6e9ef;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;white-space:nowrap;max-width:220px;overflow:hidden}
+.prompt .ar{color:#30d158;font-weight:700}.prompt .gb{color:#8aa4ff}.prompt .br{color:#ff8a5c}
+.dock{display:flex;position:absolute;left:16px;right:16px;top:754px;z-index:30;height:74px;padding:0 6px;border-radius:28px;justify-content:space-between;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(38px) saturate(190%);backdrop-filter:blur(38px) saturate(190%);border:1px solid rgba(255,255,255,.8);box-shadow:0 18px 40px rgba(12,18,32,.16)}
+.dock .rail{position:absolute;left:12%;right:12%;top:27px;height:2px;background:rgba(12,18,32,.2)}
+.dock .rail i{position:absolute;right:0;top:0;bottom:0;width:0;background:#30d158}
+.node{position:relative;flex:1;min-width:44px;display:flex;flex-direction:column;align-items:center;gap:9px;padding-top:21px;color:#2b3346;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11px;font-weight:500;text-decoration:none}
+.node .d{width:14px;height:14px;box-sizing:border-box;border-radius:50%;background:#e6e9ef;border:3px solid #0c1220}
+.node.on{color:#0c1220;font-weight:700}
+.node.on .d{width:18px;height:18px;margin-top:-2px;background:#30d158;border:3px solid #e6e9ef;box-shadow:0 0 0 2px #30d158,0 0 16px #30d158}
+.node .hd{position:absolute;top:-12px;height:20px;padding:0 7px;border-radius:7px;background:#0c1220;color:#30d158;font-size:10px;font-weight:700;letter-spacing:.06em;line-height:20px}
+.node:hover{color:#0a63c2}
+</style>
+</helmet>
+<div class="r" style="width: 390px; min-height: 2260px">
+  <div class="blob" aria-hidden="true" style="width: 380px; height: 380px; right: -140px; top: -120px; background: #0a84ff; opacity: 0.24; filter: blur(90px)"></div>
+  <div class="blob" aria-hidden="true" style="width: 320px; height: 320px; left: -60px; top: -120px; background: #ff7a1a; opacity: 0.3; filter: blur(90px)"></div>
+  <div class="blob" aria-hidden="true" style="width: 360px; height: 360px; right: -120px; top: 1100px; background: #ff6a14; opacity: 0.26; filter: blur(90px)"></div>
+
+  <header class="mnav">
+    <div class="mbar">
+      <a class="who" href="#">Travis Terry</a>
+      <span class="prompt" aria-label="You are in ~/logs"><span class="ar" aria-hidden="true">&gt;</span>~/logs <span class="gb">git:(<span class="br">main</span>)</span></span>
+    </div>
+  </header>
+
+  <main style="position: relative; z-index: 1; padding: 24px 16px 0">
+    <span class="glass mono" style="display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px; border-radius: 14px; font-size: 12px"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 50%; background: #ff4d12"></span>git log · 5 commits</span>
+    <h1 style="margin: 14px 0 10px; font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: -0.05em">Build log</h1>
+    <p style="margin: 0; font-size: 18px; line-height: 1.4; font-weight: 500; color: #2b3346">Notes from building with an agent kit: the problem, what the kit did, what broke, and what I changed.</p>
+
+    <label class="glass mono" style="margin-top: 22px; display: flex; align-items: center; gap: 8px; height: 50px; padding: 0 14px; border-radius: 16px; font-size: 14px; color: #4a5366">
+      <span aria-hidden="true" style="color: #c2380a; font-weight: 700">$</span>
+      <span>grep</span>
+      <input type="search" placeholder="search posts" style="flex: 1; min-width: 0; height: 44px; border: 0; background: transparent; font-family: inherit; font-size: 16px; color: #0c1220; outline: none">
+    </label>
+
+    <div role="group" aria-label="Filter by tag" style="margin: 12px -16px 0; padding: 0 16px; display: flex; gap: 8px; overflow-x: auto">
+      <button type="button" class="chip on" aria-pressed="true">all <span class="n">5</span></button>
+      <button type="button" class="chip" aria-pressed="false">agent-kit <span class="n">4</span></button>
+      <button type="button" class="chip" aria-pressed="false">loops <span class="n">3</span></button>
+      <button type="button" class="chip" aria-pressed="false">claude-code <span class="n">1</span></button>
+      <button type="button" class="chip" aria-pressed="false">memory <span class="n">1</span></button>
+    </div>
+
+    <ol aria-label="Posts, newest first" style="list-style: none; margin: 28px 0 0; padding: 0">
+      <sc-for list="{{rows}}" as="p" hint-placeholder-count="5">
+        <li style="position: relative; display: grid; grid-template-columns: 46px minmax(0, 1fr); padding-bottom: 18px; min-height: {{p.minH}}">
+          <div aria-hidden="true" style="position: relative">
+            <span style="{{p.mainStyle}}"></span>
+            <sc-if value="{{p.branchStyle}}" hint-placeholder-val="{{ false }}"><span style="{{p.branchStyle}}"></span></sc-if>
+            <sc-if value="{{p.mergeCurve}}" hint-placeholder-val="{{ false }}"><svg width="46" height="50" viewBox="0 0 46 50" style="position: absolute; left: 0; top: 26px"><path d="M13 0 C13 28, 33 18, 33 50" fill="none" stroke="#7c5cff" stroke-width="2"></path></svg></sc-if>
+            <sc-if value="{{p.forkCurve}}" hint-placeholder-val="{{ false }}"><svg width="46" height="64" viewBox="0 0 46 64" style="position: absolute; left: 0; top: 26px"><path d="M33 0 C33 36, 13 24, 13 64" fill="none" stroke="#7c5cff" stroke-width="2"></path></svg></sc-if>
+            <span style="{{p.dotStyle}}"></span>
+          </div>
+          <sc-if value="{{p.isMerge}}" hint-placeholder-val="{{ false }}">
+            <div class="mono" style="padding-top: 16px; font-size: 12px; color: #4a5366; line-height: 1.6"><a class="sha" href="#">{{p.sha}}</a> merge <span class="ref br">series/defect-loop</span></div>
+          </sc-if>
+          <sc-if value="{{p.isPost}}" hint-placeholder-val="{{ true }}">
+            <article class="glass" style="border-radius: 20px; padding: 16px 16px 14px">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px">
+                <a class="sha" href="#">{{p.sha}}</a>
+                <span class="mono" style="font-size: 12px; color: #4a5366">· {{p.date}}</span>
+                <sc-for list="{{p.refs}}" as="rf" hint-placeholder-count="1"><span class="{{rf.cls}}">{{rf.label}}</span></sc-for>
+              </div>
+              <h2 style="margin: 8px 0 6px; font-size: 21px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.18"><a href="DetailMobile.dc.html" style="color: #0c1220">{{p.title}}</a></h2>
+              <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2b3346">{{p.summary}}</p>
+              <div style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+                <span style="display: flex; gap: 4px; flex-wrap: wrap"><sc-for list="{{p.tags}}" as="t" hint-placeholder-count="2"><span class="tg">{{t}}</span></sc-for></span>
+                <span class="mono" style="flex: none; font-size: 12px; color: #4a5366">{{p.mins}} min</span>
+              </div>
+            </article>
+          </sc-if>
+        </li>
+      </sc-for>
+    </ol>
+    <p class="mono" style="margin: 4px 0 0 46px; font-size: 12px; color: #4a5366">(END) · 5 of 5 commits</p>
+
+    <section class="glass" style="margin-top: 28px; border-radius: 20px; padding: 18px">
+      <h2 class="mono" style="margin: 0 0 8px; font-size: 12px; font-weight: 500; letter-spacing: .08em; color: #0a63c2">GIT PULL</h2>
+      <p style="margin: 0 0 12px; font-size: 15px; color: #2b3346">New posts land in the feed the day they merge.</p>
+      <a href="#" class="mono" style="display: inline-flex; align-items: center; height: 44px; padding: 0 14px; border-radius: 12px; background: #0c1220; color: #fff; font-size: 13px">Subscribe via RSS</a>
+    </section>
+  </main>
+
+  <footer style="position: relative; z-index: 1; padding: 32px 16px 32px">
+    <div class="glass" style="border-radius: 20px; padding: 14px 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 14px">
+      <span><b>Travis Terry</b> <span style="color: #4a5366">Build log</span></span>
+      <span style="display: flex; gap: 16px"><a href="#">Home</a><a href="#">RSS</a><a href="#">Top</a></span>
+    </div>
+  </footer>
+  <nav class="dock" aria-label="Sections">
+    <span class="rail" aria-hidden="true"></span>
+    <a class="node" href="#"><span class="d" aria-hidden="true"></span>60s</a>
+    <a class="node" href="#"><span class="d" aria-hidden="true"></span>pipeline</a>
+    <a class="node" href="#"><span class="d" aria-hidden="true"></span>career</a>
+    <a class="node" href="#"><span class="d" aria-hidden="true"></span>contact</a>
+    <a class="node on" href="#" aria-current="page"><span class="hd" aria-hidden="true">HEAD</span><span class="d" aria-hidden="true"></span>log</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2260}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var posts = [
+      { sha: 'a3f9c21', date: 'Nov 21', kind: 'post', lane: 'main', head: true, title: 'The model never changes. The loop around it does.', summary: 'Why the agents in my agent-kit are loops with a judge, a router and a memory, and five quiet failures from the first six weeks.', tags: ['agent-kit', 'loops'], mins: 9 },
+      { sha: 'e19d0b3', date: 'Nov 16', kind: 'merge', lane: 'main' },
+      { sha: '7be01d4', date: 'Nov 14', kind: 'post', lane: 'branch', part: '2/2', title: 'Evaluator first: the repro has to fail before anything gets fixed', summary: 'Why a green toast never counts as done.', tags: ['loops', 'testing'], mins: 7 },
+      { sha: '4c2e9aa', date: 'Nov 10', kind: 'post', lane: 'fork', part: '1/2', title: 'A retry has to change something', summary: 'Classify the failure first, then route it with a small tested script.', tags: ['loops'], mins: 6 },
+      { sha: '2b8f6e0', date: 'Nov 3', kind: 'post', lane: 'main', title: 'What the agent may write, and what it may only propose', summary: 'A shared brain in Postgres and pgvector, with a human blessing step.', tags: ['memory'], mins: 8 },
+      { sha: '91d4c7f', date: 'Oct 27', kind: 'post', lane: 'main', initial: true, title: 'Initial commit: why this build log exists', summary: 'The format every post follows.', tags: ['meta'], mins: 3 }
+    ];
+    var LINE = 'position:absolute;width:2px;background:rgba(12,18,32,.2);left:12px;';
+    var VLINE = 'position:absolute;width:2px;background:#7c5cff;left:32px;';
+    var rows = posts.map(function (p, i) {
+      var first = i === 0, last = i === posts.length - 1;
+      var mainStyle = LINE + 'top:' + (first ? '26px' : '0') + ';' + (last ? 'height:28px' : 'bottom:0') + ';';
+      var branchStyle = '';
+      if (p.kind === 'merge') branchStyle = VLINE + 'top:76px;bottom:0;';
+      if (p.lane === 'branch') branchStyle = VLINE + 'top:0;bottom:0;';
+      if (p.lane === 'fork') branchStyle = VLINE + 'top:0;height:26px;';
+      var br = p.lane === 'branch' || p.lane === 'fork';
+      var x = br ? 33 : 13;
+      var base = 'position:absolute;top:27px;left:' + x + 'px;transform:translate(-50%,-50%);border-radius:50%;';
+      var dot = p.head ? base + 'width:16px;height:16px;background:#30d158;border:3px solid #e6e9ef;box-shadow:0 0 0 2px #30d158,0 0 14px #30d158;'
+        : p.kind === 'merge' ? base + 'width:10px;height:10px;background:#e6e9ef;border:2px solid #4a5366;'
+        : br ? base + 'width:12px;height:12px;background:#e6e9ef;border:3px solid #7c5cff;'
+        : base + 'width:12px;height:12px;background:#e6e9ef;border:3px solid #0c1220;';
+      var refs = [];
+      if (p.head) refs.push({ cls: 'ref head', label: 'HEAD' });
+      if (br) refs.push({ cls: 'ref br', label: 'series ' + p.part });
+      if (p.initial) refs.push({ cls: 'ref init', label: 'INITIAL' });
+      return { sha: p.sha, date: p.date, title: p.title, summary: p.summary, tags: p.tags || [], mins: p.mins, refs: refs,
+        isMerge: p.kind === 'merge', isPost: p.kind === 'post', minH: p.kind === 'merge' ? '96px' : '0',
+        mainStyle: mainStyle, branchStyle: branchStyle, dotStyle: dot, mergeCurve: p.kind === 'merge', forkCurve: p.lane === 'fork' };
+    });
+    return { rows: rows };
+  }
+}
+</script>
+</body>
+</html>

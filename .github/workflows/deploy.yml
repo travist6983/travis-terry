@@ -27,6 +27,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm test
       - run: npm run build
         env:
           # Public values only; set them in repo Settings > Secrets and variables > Actions > Variables.

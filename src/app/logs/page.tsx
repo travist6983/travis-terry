@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { MotionProvider, SmoothScroll } from '@/components/client';
-import { CommitJourney } from '@/components/Journeys';
-import { CommitId, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
-import { fmtDate, posts } from '@/lib/logs';
+import { LogsDock, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
+import { LogList } from '@/components/LogsClient';
+import { posts } from '@/lib/logs';
 
 const DESCRIPTION = 'Notes from building with an agent kit: the problem, what the kit did, what broke, and what I changed.';
 
@@ -14,8 +14,9 @@ export const metadata: Metadata = {
 };
 
 /*
- * One post = one commit on the home page's git graph (CommitJourney, src/components/Journeys.tsx).
- * Each <li data-commit> becomes a dot on the main line; HEAD rides it as you scroll, newest first.
+ * The list renders on the server in full (newest first); LogList adds search, tag chips and the
+ * --graph / --oneline toggle on top. In graph view each post is one commit on the home page's git
+ * graph (CommitJourney, src/components/Journeys.tsx), with HEAD riding it as you scroll.
  */
 export default function LogsPage() {
   const list = posts();
@@ -23,36 +24,19 @@ export default function LogsPage() {
     <MotionProvider>
       <Paper />
       <SmoothScroll />
-      <LogsHeader />
-      <main id="main">
-        <div id="logs-act" className="act">
-          <CommitJourney actId="logs-act" />
-          <section id="top" className="sec logs" aria-labelledby="logs-title">
-            <div className="wrap graph-col">
-              <div className="sec__head">
-                <span className="glass badge"><span className="badge__dot" aria-hidden="true" />git log · {list.length} {list.length === 1 ? 'commit' : 'commits'}</span>
-                <h1 id="logs-title" className="h2">Build log</h1>
-                <p className="lede">{DESCRIPTION}</p>
-                <a className="mono-link" href="/logs/feed.xml">RSS: /logs/feed.xml</a>
-              </div>
-              {list.length ? (
-                <ol className="log log--posts">
-                  {list.map((p) => (
-                    <li key={p.slug} className="glass log__item logpost" data-commit>
-                      <span className="kick logpost__meta"><CommitId commit={p.commit} /> · <time dateTime={p.date}>{fmtDate(p.date)}</time></span>
-                      <h2 className="logpost__title"><a href={`/logs/${p.slug}`}>{p.title}</a></h2>
-                      <p className="logpost__sum">{p.summary}</p>
-                    </li>
-                  ))}
-                </ol>
-              ) : (
-                <p className="glass log__edu" data-commit><span className="kick">NO COMMITS YET</span> The first post is on its way.</p>
-              )}
-            </div>
+      <div className="logs-page">
+        <LogsHeader />
+        <main id="main" className="wrap lpage">
+          <section id="top" className="lhead" aria-labelledby="logs-title">
+            <span className="glass badge"><span className="badge__dot" aria-hidden="true" />git log · {list.length} {list.length === 1 ? 'commit' : 'commits'} · 1 branch</span>
+            <h1 id="logs-title" className="h2">Build log</h1>
+            <p className="lede">{DESCRIPTION}</p>
           </section>
-        </div>
-      </main>
-      <LogsFooter />
+          <LogList posts={list} />
+        </main>
+        <LogsFooter />
+      </div>
+      <LogsDock page />
     </MotionProvider>
   );
 }
