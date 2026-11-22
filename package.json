@@ -10,6 +10,7 @@
     "prebuild": "npm run resume:files && npm run logs:files",
     "build": "rm -rf dist && next build",
     "postbuild": "node scripts/check-logs.mjs",
+    "test": "node --test tests/*.test.mjs",
     "start": "npx serve dist -l 3001"
   },
   "dependencies": {

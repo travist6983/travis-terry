@@ -53,7 +53,34 @@ more `##` sections can follow the four (a closing "Try it", say).
 4. `## What I changed`
 
 Don't add a `#` heading: the title comes from frontmatter. A short intro paragraph before the
-first heading is fine. Fenced code blocks are styled but not syntax highlighted.
+first heading is fine.
+
+### Blocks the build log draws specially
+
+- **Code:** a fence's info string is `language filename`, e.g. ` ```text defect-loop.recipe `.
+  The filename goes in the card's top bar, with a Copy button. No syntax highlighting.
+- **Images:** an image on its own line becomes a figure. The caption is the image title if you
+  give one, else the alt text: `![What it shows](img/x.png "Caption")`.
+- **Failures and fixes:** a ` ```fixes ` block renders as a diff. Put it under "What I changed".
+  One row per line: `@@ label @@` plus an optional link starts a hunk, `- ` is a failure,
+  `+ ` is its fix. Bold, links and code work in a row; raw HTML shows as text. Any other line
+  fails the build.
+
+  ````md
+  ```fixes
+  @@ fix step @@ [PR 1](https://github.com/you/repo/pull/1)
+  - **A fix could hide the bug and still pass.** One sentence on what broke.
+  + **Root cause, proven.** What you changed.
+  ```
+  ````
+
+- **Closing line:** a blockquote whose first line is `$ git commit -m` becomes the dark quote
+  card. Other blockquotes stay plain.
+
+  ```md
+  > $ git commit -m
+  > The model doesn't learn anything between runs. The loop around it does.
+  ```
 
 The build checks all of this and fails with the file name and the problem, so a broken post can't
 ship. Drafts aren't checked as strictly, but every build prints what would stop each draft from
