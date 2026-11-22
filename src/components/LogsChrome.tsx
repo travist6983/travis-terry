@@ -78,22 +78,34 @@ export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { promp
 // Dock order and short labels; the targets come from the header's nav items in content.json.
 const DOCK: [string, string][] = [['sixty', '60s'], ['pipeline', 'pipeline'], ['career', 'career'], ['contact', 'contact'], ['logs', 'log']];
 
-/** Phones only: a fixed frosted dock of commit-dot links. The build log is HEAD. */
-export function LogsDock({ page }: { page: boolean }) {
+/**
+ * Phones and small tablets (<= 900px, where the header's section links are hidden): a fixed frosted
+ * dock of commit-dot links. On the build log, HEAD sits on "log". On the home page the section
+ * links are in-page and carry data-spy, so the home page's ScrollSpy moves HEAD as you scroll.
+ */
+export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' }) {
   const h = section('header');
+  const home = where === 'home';
   const href = (key: string) => {
     const n = h.nav.find((x: Any) => x.href.replace(/^[#/]/, '') === key);
     const raw: string = n?.href ?? `#${key}`;
-    return raw.startsWith('#') ? `/${raw}` : raw;
+    return raw.startsWith('#') && !home ? `/${raw}` : raw;
   };
   return (
     <nav className="ldock" aria-label="Sections">
       <span className="ldock__rail" aria-hidden="true" />
       {DOCK.map(([key, label]) => {
-        const here = key === 'logs';
+        const log = key === 'logs';
+        const here = log && !home;
         return (
-          <a key={key} href={href(key)} className={`ldock__node${here ? ' is-on' : ''}`} aria-current={here ? (page ? 'page' : 'true') : undefined}>
-            {here && <span className="ldock__hd" aria-hidden="true">HEAD</span>}
+          <a
+            key={key}
+            href={href(key)}
+            className={`ldock__node${here ? ' is-on' : ''}`}
+            aria-current={here ? (where === 'logs' ? 'page' : 'true') : undefined}
+            {...(home && !log ? { 'data-spy': key } : {})}
+          >
+            <span className="ldock__hd" aria-hidden="true">HEAD</span>
             <span className="ldock__d" aria-hidden="true" />
             {label}
           </a>
