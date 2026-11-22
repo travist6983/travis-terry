@@ -34,7 +34,7 @@ A second loop uses the same pattern to get an agent up to speed on a codebase it
 
 Around the loops sit 11 Claude Code mods. Two matter here: a run pane that shows a recipe's stages live, and an inbox for the questions a loop is blocked on.
 
-![The Mods panel with a demo defect loop paused at verify, waiting on one question](img/2026-11-21-mods-panel.png)
+![A simulated preview of the Mods panel: a demo defect loop paused at verify, waiting on one question](img/2026-11-21-mods-panel.png)
 
 ## What broke
 
