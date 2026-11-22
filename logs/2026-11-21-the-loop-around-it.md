@@ -3,7 +3,7 @@ title: "The model never changes. The loop around it does."
 date: 2026-11-21
 summary: "Why the agents in my agent-kit are loops with a judge, a router and a memory instead of one-shot prompts, and five quiet failures from the kit's first six weeks."
 tags: [agent-kit, claude-code, agents, loop-engineering]
-draft: true
+draft: false
 ---
 
 ## The problem
