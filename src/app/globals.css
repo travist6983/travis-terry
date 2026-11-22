@@ -920,3 +920,27 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
   .codecard, .commitq { background: #fff; color: #000; border: 1px solid #ccc; }
   .codecard pre, .commitq p { color: #000; }
 }
+
+/* ---------- Phones and tablets: same look, far less GPU work ----------
+   Live blur is the most expensive thing a phone's GPU draws, and its cost grows with pixel
+   density: tracing the live site showed 6-9x more compositing work with the blurs than without,
+   and real phones took seconds per page. On touch and narrow screens:
+   - the page-light blobs are radial gradients (scaled to cover the blur's spread) instead of
+     filter: blur(110-120px) on 500-620px elements;
+   - glows inside cards are gradients too;
+   - frosted glass (backdrop-filter, which re-blurs everything behind each card on every frame)
+     becomes plain translucent white, a little more opaque to keep the same separation.
+   Desktop with a mouse keeps the real blur. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .blob { filter: none; background: radial-gradient(closest-side, var(--blob-c), transparent); }
+  .blob--a { --blob-c: var(--accent); transform: scale(1.45); }
+  .blob--b { --blob-c: var(--blob-orange); transform: scale(1.45); }
+  .blob--c { --blob-c: #ff7a1a; transform: scale(1.55); }
+  .blob--d { --blob-c: var(--accent); transform: scale(1.5); }
+  .glow, .contact__card > .glow { filter: none; background: radial-gradient(closest-side, var(--glow-c, var(--accent)), transparent); }
+  .glow--orange { --glow-c: var(--blob-orange); }
+  *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  :root { --glass-bg: rgba(255, 255, 255, 0.42); --lens-bg: rgba(255, 255, 255, 0.7); }
+  /* Fixed and sticky chrome sits over moving content; without blur it has to hide what scrolls behind it */
+  .nav .glass, .nav .kill, .lbar__inner, .ldock { background: rgba(244, 246, 250, 0.95); }
+}
