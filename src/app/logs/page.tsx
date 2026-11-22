@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { MotionProvider, SmoothScroll } from '@/components/client';
 import { CommitJourney } from '@/components/Journeys';
-import { LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
+import { CommitId, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
 import { fmtDate, posts } from '@/lib/logs';
 
 const DESCRIPTION = 'Notes from building with an agent kit: the problem, what the kit did, what broke, and what I changed.';
@@ -39,7 +39,7 @@ export default function LogsPage() {
                 <ol className="log log--posts">
                   {list.map((p) => (
                     <li key={p.slug} className="glass log__item logpost" data-commit>
-                      <span className="kick"><time dateTime={p.date}>{fmtDate(p.date)}</time></span>
+                      <span className="kick logpost__meta"><CommitId commit={p.commit} /> · <time dateTime={p.date}>{fmtDate(p.date)}</time></span>
                       <h2 className="logpost__title"><a href={`/logs/${p.slug}`}>{p.title}</a></h2>
                       <p className="logpost__sum">{p.summary}</p>
                     </li>

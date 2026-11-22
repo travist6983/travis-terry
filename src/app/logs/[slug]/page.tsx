@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MotionProvider } from '@/components/client';
-import { LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
+import { CommitId, LogsFooter, LogsHeader, Paper } from '@/components/LogsChrome';
 import { EMPTY_SLUG, fmtDate, post, posts } from '@/lib/logs';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -39,7 +39,7 @@ export default async function LogPost({ params }: Props) {
           <div className="wrap wrap--narrow">
             <a className="mono-link" href="/logs">← Build log</a>
             <header className="post__head">
-              <span className="kick"><time dateTime={p.date}>{fmtDate(p.date)}</time>{p.draft ? ' · DRAFT (dev only)' : ''}</span>
+              <span className="kick logpost__meta"><CommitId commit={p.commit} /> · <time dateTime={p.date}>{fmtDate(p.date)}</time>{p.draft ? ' · DRAFT (dev only)' : ''}</span>
               <h1 id="post-title" className="h2">{p.title}</h1>
               <p className="lede">{p.summary}</p>
               {p.tags.length > 0 && (

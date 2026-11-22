@@ -8,8 +8,11 @@
 // - draft: true posts are dropped before anything is rendered, listed, fed or copied.
 // - A published post's H2s are, in order: The problem, What the kit did, What broke, What I changed.
 // - Every image needs alt text and a relative path into img/ that exists.
+// - A post's commit id is the real git commit that published it: the oldest commit that added a
+//   `draft: false` line to the file (following renames). It needs full history, not a shallow clone.
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { Marked } from 'marked';
 
 export const SECTIONS = ['The problem', 'What the kit did', 'What broke', 'What I changed'];
@@ -125,4 +128,25 @@ export function render(post, dir) {
   }
   if (problems.length) throw new Error(`${post.file}:\n  - ${problems.join('\n  - ')}`);
   return { html, images };
+}
+
+const git = (root, args) => execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+
+/** 'full', 'shallow' (history is cut off, so commit ids would be wrong), or 'none' (not a git checkout). */
+export function historyState(root) {
+  try {
+    return git(root, ['rev-parse', '--is-shallow-repository']) === 'true' ? 'shallow' : 'full';
+  } catch {
+    return 'none';
+  }
+}
+
+/** Full SHA of the commit that published `file` (relative to root), or null if that isn't committed yet. */
+export function publishCommit(root, file) {
+  try {
+    const shas = git(root, ['log', '--follow', '-G', '^draft:[[:space:]]*false', '--format=%H', '--', file]).split('\n').filter(Boolean);
+    return shas.at(-1) ?? null;
+  } catch {
+    return null;
+  }
 }

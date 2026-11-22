@@ -673,6 +673,11 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
 .logpost__title a:hover { color: var(--accent-ink); }
 .logpost__title a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } /* the whole card is the link */
 .logpost__sum { color: var(--ink-2); max-width: 680px; }
+.logpost__meta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+/* sits above the card-wide title link so it stays its own link */
+.logpost__sha { position: relative; z-index: 1; padding: 1px 7px; border-radius: 6px; background: var(--soft-bg); border: 1px solid var(--soft-edge); color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
+.logpost__sha:hover { color: var(--accent-ink); }
+.logpost__sha--local { color: var(--ink-4); font-weight: 500; border-style: dashed; }
 .post__head { display: flex; flex-direction: column; gap: 16px; margin: 28px 0 32px; }
 .post__head .tags { list-style: none; margin: 0; padding: 0; }
 .post__pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }

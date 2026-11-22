@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { published, render } from '../src/lib/logs-core.mjs';
+import { historyState, publishCommit, published, render } from '../src/lib/logs-core.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dir = path.join(root, 'logs');
@@ -15,6 +15,14 @@ const includeDrafts = process.argv.includes('--drafts');
 
 fs.rmSync(out, { recursive: true, force: true });
 const posts = published(dir, { includeDrafts });
+
+// Commit ids come from git history. In CI a shallow clone would give every post the same wrong id,
+// and a published post that isn't committed has no id at all: both fail the deploy build.
+if (process.env.CI && posts.length) {
+  const state = historyState(root);
+  if (state !== 'full') throw new Error(`build log: git history is ${state}; commit ids need a full clone (actions/checkout with fetch-depth: 0)`);
+  for (const p of posts) if (!publishCommit(root, p.file)) throw new Error(`${p.file}: no commit sets draft: false yet, so it has no commit id`);
+}
 const images = new Set();
 for (const p of posts) for (const img of render(p, dir).images) images.add(img);
 for (const rel of images) {

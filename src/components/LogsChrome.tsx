@@ -1,5 +1,6 @@
 import { section, t } from '@/lib/content';
 import { KillSwitch } from '@/components/client';
+import type { Commit } from '@/lib/logs';
 
 /*
  * Header, page light and footer for the build log pages. Same classes as the home page chrome;
@@ -72,5 +73,15 @@ export function LogsFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/** A post's real commit id, linked to the commit on GitHub. Before the post is committed (dev only) it says so. */
+export function CommitId({ commit }: { commit: Commit }) {
+  if (!commit) return <span className="logpost__sha logpost__sha--local">uncommitted</span>;
+  return (
+    <a className="logpost__sha" href={commit.url} title={`Commit ${commit.sha} on GitHub`} target="_blank" rel="noopener">
+      <span className="sr-only">Commit </span>{commit.id}
+    </a>
   );
 }
