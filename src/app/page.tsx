@@ -5,6 +5,7 @@ import { Needed } from '@/components/Needed';
 import { CommitJourney, TicketJourney } from '@/components/Journeys';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
+import { SiteDock } from '@/components/LogsChrome';
 import { McpDemo, PlatformTabs, ReleaseBar, StackTabs, TopFive, type TopItem } from '@/components/Designed';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -497,17 +498,6 @@ function Footer() {
   );
 }
 
-function MobileBar() {
-  const h = section('header');
-  return (
-    <nav className="mbar" aria-label="Quick contact">
-      <EmailLink>{t(h.mobileBar[0])}</EmailLink>
-      <a href={person.linkedin?.href} target="_blank" rel="noopener">{t(h.mobileBar[1])}</a>
-      <a href={h.mobileBar[2].href}>{t(h.mobileBar[2])}</a>
-    </nav>
-  );
-}
-
 export default function Page() {
   return (
     <MotionProvider>
@@ -541,7 +531,8 @@ export default function Page() {
         </div>
       </main>
       <Footer />
-      <MobileBar />
+      {/* Phones: the site dock (Build log included) replaces the old Email / LinkedIn / Resume bar */}
+      <SiteDock where="home" />
     </MotionProvider>
   );
 }

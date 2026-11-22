@@ -866,14 +866,19 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
 .ldock__node:hover { color: var(--accent-ink); }
 .ldock__d { width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink); }
 .ldock__node.is-on { color: var(--ink); font-weight: 700; }
+.ldock__node.is-on .ldock__hd { display: block; }
 .ldock__node.is-on .ldock__d { width: 18px; height: 18px; margin-top: -2px; background: var(--green); border: 3px solid var(--paper); box-shadow: 0 0 0 2px var(--green), 0 0 16px var(--green); }
-.ldock__hd { position: absolute; top: -12px; height: 20px; padding: 0 7px; border-radius: 7px; background: var(--ink); color: var(--green); font: 700 10px/20px var(--mono); letter-spacing: 0.06em; }
+.ldock__hd { display: none; position: absolute; top: -12px; height: 20px; padding: 0 7px; border-radius: 7px; background: var(--ink); color: var(--green); font: 700 10px/20px var(--mono); letter-spacing: 0.06em; }
 
+/* The dock covers every width where the header's section links are hidden (<= 900px) */
+@media (max-width: 900px) {
+  .ldock { display: flex; }
+  .logs-page { padding-bottom: 100px; }
+  .foot { padding-bottom: 110px; }
+}
 @media (max-width: 760px) {
   .nav--logs { display: none; }
   .lbar { display: block; }
-  .ldock { display: flex; }
-  .logs-page { padding-bottom: 100px; }
   .lpage { padding-top: 8px; }
   .lsearch { padding: 6px 6px 6px 14px; }
   .lsearch { flex-wrap: nowrap; }
