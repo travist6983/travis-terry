@@ -280,7 +280,8 @@ function buildGraph(svg: SVGSVGElement, head: HTMLDivElement) {
   };
 }
 
-export function CommitJourney() {
+/** The git graph. Home page Act 2 by default; the build log list reuses it with its own act id. */
+export function CommitJourney({ actId = 'act2' }: { actId?: string }) {
   const { on } = useMotion();
   const svg = useRef<SVGSVGElement>(null);
   const head = useRef<HTMLDivElement>(null);
@@ -288,7 +289,7 @@ export function CommitJourney() {
   if (!build.current) {
     build.current = (act) => (svg.current && head.current ? buildGraph(svg.current, head.current)(act) : null);
   }
-  useJourney('act2', on, build.current);
+  useJourney(actId, on, build.current);
   return (
     <div className="journey" aria-hidden="true">
       <svg ref={svg} className="journey__svg" />

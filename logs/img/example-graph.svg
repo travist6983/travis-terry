@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="200" viewBox="0 0 640 200">
+  <rect width="640" height="200" rx="20" fill="#ffffff"/>
+  <path d="M60 100 H580" stroke="#30d158" stroke-width="6" stroke-linecap="round"/>
+  <path d="M200 100 C230 100 230 50 260 50 H380 C410 50 410 100 440 100" fill="none" stroke="#0a84ff" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#30d158"><circle cx="60" cy="100" r="10"/><circle cx="200" cy="100" r="10"/><circle cx="440" cy="100" r="10"/><circle cx="580" cy="100" r="10"/></g>
+  <g fill="#0a84ff"><circle cx="300" cy="50" r="8"/><circle cx="350" cy="50" r="8"/></g>
+  <text x="320" y="160" font-family="ui-monospace, Menlo, monospace" font-size="16" fill="#4a5366" text-anchor="middle">example image: a branch that merged back into main</text>
+</svg>

@@ -34,7 +34,7 @@ function Cta({ item, className }: { item: Any; className: string }) {
 
 function Header() {
   const h = section('header');
-  const show = ['sixty', 'pipeline', 'career', 'contact'];
+  const show = ['sixty', 'pipeline', 'career', 'contact', 'logs'];
   return (
     <header className="nav">
       <a className="skip" href="#main">{t(h.skipLink)}</a>

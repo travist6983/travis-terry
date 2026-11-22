@@ -19,3 +19,6 @@ __pycache__/
 /public/resume.json
 /public/llms.txt
 /public/cli
+
+# Generated from logs/ by scripts/build-logs.mjs (published posts' images only)
+/public/logs/
