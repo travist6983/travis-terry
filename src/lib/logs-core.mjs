@@ -155,6 +155,34 @@ export function renderFixes(src) {
   );
 }
 
+/** Pixel size of a PNG, WebP, JPEG or SVG from its header, so figures reserve their space (no layout shift). */
+export function imageSize(file) {
+  const b = fs.readFileSync(file);
+  if (b.length > 24 && b.toString('latin1', 1, 4) === 'PNG') return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+  if (b.length > 30 && b.toString('latin1', 0, 4) === 'RIFF' && b.toString('latin1', 8, 12) === 'WEBP') {
+    const kind = b.toString('latin1', 12, 16);
+    if (kind === 'VP8X') return { width: 1 + b.readUIntLE(24, 3), height: 1 + b.readUIntLE(27, 3) };
+    if (kind === 'VP8L') {
+      const v = b.readUInt32LE(21);
+      return { width: 1 + (v & 0x3fff), height: 1 + ((v >> 14) & 0x3fff) };
+    }
+    if (kind === 'VP8 ') return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+  }
+  if (b[0] === 0xff && b[1] === 0xd8) {
+    for (let i = 2; i + 9 < b.length; ) {
+      if (b[i] !== 0xff) break;
+      const marker = b[i + 1];
+      const len = b.readUInt16BE(i + 2);
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { width: b.readUInt16BE(i + 7), height: b.readUInt16BE(i + 5) };
+      i += 2 + len;
+    }
+  }
+  const svg = b.toString('utf8', 0, Math.min(b.length, 2000));
+  const vb = /viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/.exec(svg);
+  if (vb) return { width: Math.round(+vb[1]), height: Math.round(+vb[2]) };
+  return null;
+}
+
 const slugify = (s) =>
   s
     .toLowerCase()
@@ -227,8 +255,15 @@ export function render(post, dir) {
         if (tok.tokens.length !== 1 || tok.tokens[0].type !== 'image') return false;
         const img = tok.tokens[0];
         const caption = img.title || img.text;
+        let size = null;
+        try {
+          size = imageSize(path.join(dir, path.posix.normalize(img.href)));
+        } catch {
+          /* a missing image is already a reported problem */
+        }
+        const dims = size ? ` width="${size.width}" height="${size.height}"` : '';
         return (
-          `<figure class="figure"><img src="${esc(img.href)}" alt="${esc(img.text)}" loading="lazy">` +
+          `<figure class="figure"><img src="${esc(img.href)}" alt="${esc(img.text)}"${dims} loading="lazy" decoding="async">` +
           `<figcaption${img.title ? '' : ' aria-hidden="true"'}>${esc(caption)}</figcaption></figure>\n`
         );
       },

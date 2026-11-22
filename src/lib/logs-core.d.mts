@@ -17,3 +17,4 @@ export function readingTime(body: string): number;
 export function renderFixes(src: string): string;
 export function historyState(root: string): 'full' | 'shallow' | 'none';
 export function publishCommit(root: string, file: string): string | null;
+export function imageSize(file: string): { width: number; height: number } | null;
