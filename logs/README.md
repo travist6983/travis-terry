@@ -35,6 +35,13 @@ draft: true
 They do show up under `npm run dev`, so you can preview them locally. After `npm run build`,
 `scripts/check-logs.mjs` fails the build if anything from a draft reached `dist/`.
 
+## Commit id
+
+Each post shows a short commit id linked to GitHub. It's the real commit that **published** the
+post: the first commit where the file has `draft: false`. Later edits don't change it, and
+renaming the file (say, to fix the date when you publish) keeps it. Until that commit exists,
+`npm run dev` shows "uncommitted". The deploy build fails if a published post isn't committed.
+
 ## Body
 
 Use these `##` headings, in this order. `###` subheadings inside them are fine.
