@@ -34,7 +34,7 @@ A second loop uses the same pattern to get an agent up to speed on a codebase it
 
 Around the loops sit 11 Claude Code mods. Two matter here: a run pane that shows a recipe's stages live, and an inbox for the questions a loop is blocked on.
 
-![A simulated preview of the Mods panel: a demo defect loop paused at verify, waiting on one question](img/2026-11-21-mods-panel.webp "Simulated preview, not an app capture")
+![The Mods panel in a terminal: a demo defect loop paused at verify, waiting on one question](img/2026-11-21-mods-panel.webp)
 
 ## What broke
 
@@ -72,7 +72,7 @@ None of these failed loudly, so every fix turns a quiet failure into a loud one.
 + **The oracle runs on old bash.** The sign-in check's JavaScript now sits in variables before it's quoted, so bash 3.2 leaves it alone.
 ```
 
-![Placeholder for a screenshot of the brain mod's review pane, where a proposed lesson waits to be blessed](img/2026-11-21-brain-review.webp "Placeholder: the real screenshot is coming")
+![The brain mod's review pane: four proposed lessons, each waiting for a person to approve or reject it](img/2026-11-21-brain-review.webp)
 
 Some of it is still unproven, and the kit says so. The defect loop's consumption cap is a declared limit with a tested comparator, and the limits file states plainly that it isn't an enforced gate until a runner feeds it real numbers. Every production loop stays dry run and staging only until four safety gates exist in the stack it runs against. The onboarding quiz's pass marks are starting numbers too, not measured ones.
 
