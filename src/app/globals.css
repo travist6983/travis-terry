@@ -928,7 +928,7 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
   *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
   :root { --glass-bg: rgba(255, 255, 255, 0.42); --lens-bg: rgba(255, 255, 255, 0.7); }
   /* Fixed and sticky chrome sits over moving content; without blur it has to hide what scrolls behind it */
-  .nav .glass, .lbar__inner, .ldock { background: rgba(244, 246, 250, 0.985); }
+  .nav .glass, .lbar__inner, .ldock { background: rgb(244, 246, 250); }
 }
 
 /* ======================================================================
@@ -1504,10 +1504,20 @@ html[data-motion='on'] .bbr:hover i::after, html[data-motion='on'] .bbr:focus-vi
 .bbr--ask::before { top: 22px; }
 
 /* btn/switch: tabs and toggles */
-.bsw { position: relative; display: flex; max-width: 100%; padding: 22px 5px 5px; margin-top: -17px; border-radius: 30px; overflow-x: auto; scrollbar-width: none; }
-.bsw::-webkit-scrollbar { display: none; }
-.bsw::before { content: ""; position: absolute; left: 0; right: 0; top: 17px; bottom: 0; border-radius: 30px; background: rgba(255,255,255,0.7); border: 1px solid rgba(12,18,32,0.1); pointer-events: none; }
-.bsw__thumb { position: absolute; left: 5px; top: 22px; bottom: 5px; border-radius: 25px; background: var(--ink); box-shadow: 0 8px 18px rgba(12,18,32,0.25); transition: transform 0.5s cubic-bezier(.3,1.5,.5,1), width 0.5s cubic-bezier(.3,1.5,.5,1); }
+.bsw { position: relative; display: flex; max-width: 100%; margin-top: -17px; }
+.bsw__sc { position: relative; display: flex; min-width: 0; max-width: 100%; padding: 22px 5px 5px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+.bsw__sc::-webkit-scrollbar { display: none; }
+/* Room under the thumb for its shadow (the scroller clips), pulled back so the track size is unchanged */
+.bsw__sc { padding: 22px 14px 14px; margin: 0 -9px -9px; max-width: calc(100% + 18px); }
+/* When the options overflow (phones), fade whichever end has more to scroll to */
+.bsw__sc.is-l, .bsw__sc.is-r { --fl: #000; --fr: #000; -webkit-mask-image: linear-gradient(90deg, var(--fl) 0, #000 18px, #000 calc(100% - 18px), var(--fr) 100%); mask-image: linear-gradient(90deg, var(--fl) 0, #000 18px, #000 calc(100% - 18px), var(--fr) 100%); }
+.bsw__sc.is-l { --fl: transparent; }
+.bsw__sc.is-r { --fr: transparent; }
+/* A scrolling row stays inside its track, with a shadow small enough for the clip */
+.bsw__sc.is-l, .bsw__sc.is-r { margin-left: 0; margin-right: 0; max-width: 100%; padding-left: 5px; padding-right: 5px; }
+.bsw__sc.is-l .bsw__thumb, .bsw__sc.is-r .bsw__thumb { box-shadow: 0 3px 7px rgba(12,18,32,0.22); }
+.bsw::before { content: ""; position: absolute; left: 0; right: 0; top: 17px; bottom: 9px; border-radius: 30px; background: rgba(255,255,255,0.7); border: 1px solid rgba(12,18,32,0.1); pointer-events: none; }
+.bsw__thumb { position: absolute; left: 0; top: 22px; bottom: 14px; border-radius: 25px; background: var(--ink); box-shadow: 0 8px 18px rgba(12,18,32,0.25); transition: transform 0.5s cubic-bezier(.3,1.5,.5,1), width 0.5s cubic-bezier(.3,1.5,.5,1); }
 .bsw__thumb::before { content: "HEAD"; position: absolute; left: 50%; top: -16px; transform: translateX(-50%); height: 20px; padding: 0 7px; border-radius: 7px; background: var(--ink); color: var(--green); font: 700 10px/20px var(--mono); letter-spacing: 0.06em; }
 .bsw__thumb::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
 .bsw button { position: relative; flex: none; height: 50px; padding: 0 18px 6px; border: 0; background: transparent; font: 600 14px var(--font); color: var(--ink-2); cursor: pointer; transition: color 0.3s; white-space: nowrap; }

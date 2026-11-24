@@ -185,38 +185,62 @@ export function Switch<T extends string>({
   const useIso = typeof window === 'undefined' ? useEffect : useLayoutEffect;
   useIso(() => {
     const measure = () => {
-      const el = ref.current?.querySelector<HTMLButtonElement>('button.is-on');
+      const sc = ref.current;
+      const el = sc?.querySelector<HTMLButtonElement>('button.is-on');
       if (el) setThumb({ x: el.offsetLeft, w: el.offsetWidth });
+      edges();
+    };
+    // Which ends have more options hidden past them (drives the edge fade)
+    const edges = () => {
+      const sc = ref.current;
+      if (!sc) return;
+      sc.classList.toggle('is-l', sc.scrollLeft > 1);
+      sc.classList.toggle('is-r', sc.scrollLeft + sc.clientWidth < sc.scrollWidth - 1);
     };
     measure();
     window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    ref.current?.addEventListener('scroll', edges, { passive: true });
+    const sc = ref.current;
+    return () => {
+      window.removeEventListener('resize', measure);
+      sc?.removeEventListener('scroll', edges);
+    };
   }, [value]);
-  // Keep the chosen tab in view when the row scrolls (phones)
+  // Keep the chosen option in view when the row scrolls (phones). Scrolls the row only, never the page.
   useEffect(() => {
-    ref.current?.querySelector<HTMLButtonElement>('button.is-on')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    const sc = ref.current;
+    const el = sc?.querySelector<HTMLButtonElement>('button.is-on');
+    if (!sc || !el) return;
+    const pad = 24;
+    if (el.offsetLeft - pad < sc.scrollLeft) sc.scrollTo({ left: el.offsetLeft - pad, behavior: 'smooth' });
+    else if (el.offsetLeft + el.offsetWidth + pad > sc.scrollLeft + sc.clientWidth)
+      sc.scrollTo({ left: el.offsetLeft + el.offsetWidth + pad - sc.clientWidth, behavior: 'smooth' });
   }, [value]);
+  // The track stays put while the options scroll inside it, so the outer box draws the track
+  // and the inner box scrolls (with the thumb inside, so the thumb moves with its option).
   return (
-    <div ref={ref} className={`bsw${className ? ` ${className}` : ''}`} role={tabs ? 'tablist' : 'group'} aria-label={label}>
-      <span
-        className="bsw__thumb"
-        aria-hidden="true"
-        style={thumb ? { transform: `translateX(${thumb.x - 5}px)`, width: thumb.w } : { opacity: 0 }}
-      />
-      {items.map((it) => {
-        const on = it.value === value;
-        return (
-          <button
-            key={it.value}
-            type="button"
-            className={on ? 'is-on' : undefined}
-            {...(tabs ? { role: 'tab', 'aria-selected': on } : { 'aria-pressed': on })}
-            onClick={() => onChange(it.value)}
-          >
-            {it.label}
-          </button>
-        );
-      })}
+    <div className={`bsw${className ? ` ${className}` : ''}`}>
+      <div ref={ref} className="bsw__sc" role={tabs ? 'tablist' : 'group'} aria-label={label}>
+        <span
+          className="bsw__thumb"
+          aria-hidden="true"
+          style={thumb ? { transform: `translateX(${thumb.x}px)`, width: thumb.w } : { opacity: 0 }}
+        />
+        {items.map((it) => {
+          const on = it.value === value;
+          return (
+            <button
+              key={it.value}
+              type="button"
+              className={on ? 'is-on' : undefined}
+              {...(tabs ? { role: 'tab', 'aria-selected': on } : { 'aria-pressed': on })}
+              onClick={() => onChange(it.value)}
+            >
+              {it.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
