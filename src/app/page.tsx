@@ -9,6 +9,7 @@ import { Remote } from '@/components/Remotes';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
 import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
+import { LoopBar } from '@/components/LoopBar';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -38,7 +39,6 @@ function Hero() {
   const s = section('hero');
   const term = s.term;
   const loop = s.loop;
-  const n = loop.stages.length - 1;
   return (
     <section id="top" className="hero hero3" aria-labelledby="hero-title" data-ticket="New" data-ticket-kind="bug">
       <div className="wrap">
@@ -90,27 +90,7 @@ function Hero() {
             <p className="kick">{t(loop.kicker)}</p>
             <p className="mono-sm">{t(loop.note)}</p>
           </div>
-          <ol className="loopbar__track" aria-label="Defect loop stages">
-            <li className="loopbar__line" aria-hidden="true" />
-            <li className="loopbar__fill" aria-hidden="true" />
-            {loop.stages.map((st: string, i: number) => (
-              <li
-                key={st}
-                className="loopbar__n"
-                style={{ left: `${(i / n) * 100}%` }}
-              >
-                <span className="loopbar__d" aria-hidden="true" />
-                {st}
-              </li>
-            ))}
-            <li className="loopbar__tkt" aria-hidden="true">
-              <span className="loopbar__tl">
-                <span className="loopbar__a"><b>{loop.from.flag}</b>{loop.from.text}</span>
-                <span className="loopbar__b"><b>{loop.to.flag}</b>{loop.to.text}</span>
-              </span>
-              <i /><i />
-            </li>
-          </ol>
+          <LoopBar stages={loop.stages} status={loop.status} from={loop.from} to={loop.to} />
         </div>
         <p className="fine rail__note">{t(loop.foot)}</p>
       </div>
