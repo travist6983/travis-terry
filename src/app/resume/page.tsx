@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { person, section, t } from '@/lib/content';
 import { Ask } from '@/components/Ask';
+import { Push } from '@/components/Buttons';
 import { CopyCommand, EmailLink, MotionProvider, SmoothScroll } from '@/components/client';
 import { Reveal } from '@/components/Reveal';
 import { StackTabs } from '@/components/Designed';
@@ -85,14 +86,7 @@ export default function ResumePage() {
               <p className="mono-sm" data-reveal {...rd(5)}>{t(r.location)}</p>
             </div>
             <div className="rhero__get" data-reveal {...rd(4)}>
-              <a className="btn btn--accent btn--pill" href={h.resumePdf.href}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download PDF
-              </a>
+              <Push href={h.resumePdf.href} label="Download PDF" cmd={h.resumePdf.cmd} done={h.resumePdf.done} />
               <p className="rhero__files">
                 {f.machineReadable.filter((m: Any) => m.href.startsWith('/resume')).map((m: Any) => <a key={m.id} href={m.href}>{t(m)}</a>)}
               </p>

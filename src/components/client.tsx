@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useMotion } from './motion';
+import { Clone } from './Buttons';
 import { EMAIL_DOMAIN, EMAIL_USER, section, t } from '@/lib/content';
 
 /* ---------- Motion (provider and smooth scroll live in ./motion) ---------- */
@@ -122,28 +123,13 @@ export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
 /* ---------- Footer: copy the curl command ---------- */
 
 export function CopyCommand({ command }: { command: string }) {
-  const [done, setDone] = useState(false);
   return (
     <div className="term-line">
       <code>
         <span className="term-line__ps" aria-hidden="true">$ </span>
         {command}
       </code>
-      <button
-        type="button"
-        className="btn btn--accent btn--sm"
-        onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(command);
-            setDone(true);
-            setTimeout(() => setDone(false), 1600);
-          } catch {
-            /* clipboard blocked: the command is still selectable */
-          }
-        }}
-      >
-        {done ? 'Copied' : 'Copy'}
-      </button>
+      <Clone text={command} />
     </div>
   );
 }

@@ -374,7 +374,9 @@
         "href": "/resume.pdf",
         "src": [
           "ui"
-        ]
+        ],
+        "cmd": "$ git pull resume.pdf",
+        "done": "✓ downloading"
       },
       "motionControl": {
         "pauseLabel": {
@@ -651,7 +653,9 @@
           "src": [
             "ui"
           ],
-          "href": "#log"
+          "href": "#log",
+          "cmd": "$ git pull build-log",
+          "done": "✓ up to date"
         },
         {
           "id": "hero.cta.kit",
@@ -1055,7 +1059,9 @@
           "src": [
             "ui"
           ],
-          "href": "https://github.com/travist6983/agent-kit"
+          "href": "https://github.com/travist6983/agent-kit",
+          "cmd": "$ git clone agent-kit",
+          "done": "✓ opening GitHub"
         },
         {
           "id": "kit.link.loops",
@@ -2956,7 +2962,9 @@
         "text": "Ask",
         "src": [
           "ui"
-        ]
+        ],
+        "cmd": "$ git ask",
+        "done": "✓ asking"
       },
       "sourceLabel": {
         "id": "ask.sourceLabel",

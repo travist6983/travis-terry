@@ -4,6 +4,7 @@ import { EmailLink, MotionProvider, ScrollSpy, SmoothScroll } from '@/components
 import { CommitId, Paper, SiteDock } from '@/components/LogsChrome';
 import { CommitJourney, TicketJourney } from '@/components/Journeys';
 import { Accent } from '@/components/Accent';
+import { Checkout, Cmd, Fetch, Push, RemoteOrb } from '@/components/Buttons';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
 import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -56,9 +57,9 @@ function Hero() {
             <div className="hero3__ctas">
               {s.ctas.map((c: Any) =>
                 c.kind === 'cmd' ? (
-                  <a key={c.id} className="hero3__cmd" href={c.href}><span aria-hidden="true">$</span>{t(c)}</a>
+                  <Cmd key={c.id} href={c.href} cmd={t(c).replace(/\s*→$/, '')} />
                 ) : (
-                  <a key={c.id} className="btn btn--accent btn--pill hero3__cta" href={c.href}>{t(c)}</a>
+                  <Push key={c.id} href={c.href} label={t(c)} cmd={c.cmd} done={c.done} />
                 ),
               )}
             </div>
@@ -146,9 +147,13 @@ function Kit() {
               </dl>
               <p className="kit__safety">{t(s.safety)}</p>
               <div className="kit__ctas">
-                {s.links.map((l: Any, i: number) => (
-                  <a key={l.id} className={`btn ${i === 0 ? 'btn--accent' : 'btn--onink'}`} href={l.href} {...ext}>{t(l)}</a>
-                ))}
+                {s.links.map((l: Any) =>
+                  l.cmd ? (
+                    <Push key={l.id} href={l.href} label={t(l)} cmd={l.cmd} done={l.done} />
+                  ) : (
+                    <Checkout key={l.id} href={l.href} color="#0a6fd6">{t(l)}</Checkout>
+                  ),
+                )}
               </div>
             </div>
             <figure className="kit__fig">
@@ -264,7 +269,7 @@ function BuildLog() {
             <p className="kick">{t(s.kicker)}</p>
             <h2 id="log-title" className="h2 v2__title">{t(s.title)}</h2>
           </div>
-          <a className="btn btn--glass glass" href={s.all.href}>{t(s.all)}</a>
+          <Checkout href={s.all.href}>{t(s.all)}</Checkout>
         </div>
         <div className="hposts">
           {real.map((p) => (
@@ -308,7 +313,7 @@ function Work() {
               <h3 className="work__featname">{t(f.name)}</h3>
               <p className="work__feattext">{t(f.text)}</p>
               <Chips items={f.chips} className="chip2 chip2--dark" />
-              <div><a className="btn work__featcta" href={f.cta.href} {...ext}>{t(f.cta)}</a></div>
+              <div><Fetch href={f.cta.href} ink>{t(f.cta)}</Fetch></div>
             </div>
             <div className="work__phone">
               <img src={f.image.path} alt={t(f.image)} width={f.image.width} height={f.image.height} loading="lazy" />
@@ -325,12 +330,12 @@ function Work() {
                 <h3 className="work__name">{t(w.name)}</h3>
                 <p className="work__text">{t(w.text)}</p>
                 <Chips items={w.chips} />
-                <a className="work__link" href={w.href} {...ext}>{w.domain} ↗</a>
+                <div><Fetch href={w.href}>{w.domain}</Fetch></div>
               </div>
             </article>
           ))}
         </div>
-        <p className="work__all"><a className="btn btn--pill btn--ink" href={s.all.href}>{t(s.all)}</a></p>
+        <p className="work__all"><Checkout href={s.all.href} color="#0a6fd6">{t(s.all).replace(/\s*→$/, '')}</Checkout></p>
       </div>
     </section>
   );
@@ -385,11 +390,11 @@ function OpenSource() {
   );
 }
 
-const REMOTE_STYLE: Record<string, { bg: string; fg: string; cbg: string; cfg: string; glyph: React.ReactNode }> = {
-  'contact.remote.email': { bg: '#ff8a5c', fg: '#0c1220', cbg: '#ff8a5c', cfg: '#0c1220', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg> },
-  'contact.remote.x': { bg: '#000', fg: '#fff', cbg: '#fff', cfg: '#000', glyph: 'X' },
-  'contact.remote.linkedin': { bg: '#0a66c2', fg: '#fff', cbg: '#0a66c2', cfg: '#fff', glyph: 'in' },
-  'contact.remote.github': { bg: '#f0f6fc', fg: '#24292f', cbg: '#f0f6fc', cfg: '#24292f', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg> },
+const REMOTE_STYLE: Record<string, { bg: string; fg: string; cbg: string; cfg: string; ring: string; glyph: React.ReactNode }> = {
+  'contact.remote.email': { bg: '#ff8a5c', fg: '#0c1220', cbg: '#ff8a5c', cfg: '#0c1220', ring: '#ff8a5c', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg> },
+  'contact.remote.x': { bg: '#000', fg: '#fff', cbg: '#fff', cfg: '#000', ring: '#ffffff', glyph: 'X' },
+  'contact.remote.linkedin': { bg: '#0a66c2', fg: '#fff', cbg: '#0a66c2', cfg: '#fff', ring: '#4b9be8', glyph: 'in' },
+  'contact.remote.github': { bg: '#f0f6fc', fg: '#24292f', cbg: '#f0f6fc', cfg: '#24292f', ring: '#f0f6fc', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg> },
 };
 
 function Remote({ r }: { r: Any }) {
@@ -401,9 +406,8 @@ function Remote({ r }: { r: Any }) {
         <span className="remote__n">{t(r)}</span>
         <span className="remote__u">{r.verb} · {r.detail}</span>
       </span>
-      <span className="remote__c" style={{ background: st.cbg, color: st.cfg }}>
-        <span className="remote__cl">{r.cta}</span> {r.hrefFrom === 'person.email' ? '→' : '↗'}
-      </span>
+      <span className="sr-only">{r.cta}</span>
+      <RemoteOrb arrow={r.hrefFrom === 'person.email' ? '→' : '↗'} bg={st.cbg} fg={st.cfg} ring={st.ring} />
     </>
   );
   if (r.hrefFrom === 'person.email') return <EmailLink className="remote">{inner}</EmailLink>;

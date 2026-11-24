@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Branch, Checkout, Fetch } from './Buttons';
 
 /*
  * The portfolio as `git log --graph --all`: every project forks off main into its lane (clients, apps,
@@ -36,7 +37,6 @@ const LANES: Record<Lane, { x: number; c: string }> = {
   oss: { x: 172, c: '#0a84ff' },
 };
 
-const ext = (href: string) => (/^https?:/.test(href) ? { target: '_blank', rel: 'noopener' } : {});
 
 export function PortfolioLog({ rows, labels }: { rows: Row[]; labels: Record<Lane, string> }) {
   const [f, setF] = useState<'all' | Lane>('all');
@@ -71,17 +71,16 @@ export function PortfolioLog({ rows, labels }: { rows: Row[]; labels: Record<Lan
       <div className="pf-bar">
         <div className="pf-legend" role="group" aria-label="Filter by branch">
           {keys.map((k) => (
-            <button
+            <Branch
               key={k}
-              type="button"
-              className={`pf-br${f === k ? ' is-on' : ''}`}
-              aria-pressed={f === k}
+              on={f === k}
+              color={k === 'all' ? '#0c1220' : LANES[k].c}
+              ink={k === 'clients' ? '#0c1220' : '#fff'}
+              count={rows.filter((r) => k === 'all' || r.lane === k).length}
               onClick={() => setF(k)}
             >
-              <i aria-hidden="true" style={{ background: k === 'all' ? 'var(--green)' : LANES[k].c }} />
-              {k === 'all' ? '--all' : labels[k]}{' '}
-              <span className="pf-br__n">{rows.filter((r) => k === 'all' || r.lane === k).length}</span>
-            </button>
+              {k === 'all' ? '--all' : labels[k]}
+            </Branch>
           ))}
         </div>
         <p className="pf-sum mono-sm" aria-live="polite">
@@ -136,9 +135,13 @@ export function PortfolioLog({ rows, labels }: { rows: Row[]; labels: Record<Lan
                   <p className="pf-diff">{r.diff}</p>
                   <ul className="pf-tags">{r.tags.map((tg) => <li key={tg}>{tg}</li>)}</ul>
                   <p className="pf-links">
-                    {r.links.map((l) => (
-                      <a key={l.href} className={`pf-lk${l.alt ? ' pf-lk--alt' : ''}`} href={l.href} {...ext(l.href)}>{l.label}</a>
-                    ))}
+                    {r.links.map((l) =>
+                      l.alt ? (
+                        <Checkout key={l.href} href={l.href} color={c}>{l.label}</Checkout>
+                      ) : (
+                        <Fetch key={l.href} href={l.href}>{l.label.replace(/\s*↗$/, '')}</Fetch>
+                      ),
+                    )}
                   </p>
                 </div>
               </article>
