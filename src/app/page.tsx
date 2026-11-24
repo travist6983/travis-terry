@@ -1,10 +1,9 @@
-import { content, needed, person, section, t } from '@/lib/content';
+import { content, person, section, t } from '@/lib/content';
 import { posts } from '@/lib/logs';
-import { CountUp, EmailLink, MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
+import { EmailLink, MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
 import { CommitId, Paper, SiteDock } from '@/components/LogsChrome';
 import { CommitJourney, TicketJourney } from '@/components/Journeys';
 import { Accent } from '@/components/Accent';
-import { Needed } from '@/components/Needed';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
 import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -12,7 +11,6 @@ import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
-const strip = (s: string) => s.replace(/^NEEDED FROM TRAVIS:\s*/, '');
 const ext = { target: '_blank', rel: 'noopener' } as const;
 const isExt = (href: string) => /^https?:/.test(href);
 
@@ -36,58 +34,83 @@ function CommitLine({ item, tag }: { item: Any; tag?: boolean }) {
 
 function Hero() {
   const s = section('hero');
-  const headshot = needed(person.headshot);
+  const term = s.term;
+  const loop = s.loop;
+  const n = loop.stages.length - 1;
   return (
-    <section id="top" className="hero" aria-labelledby="hero-title" data-ticket="New" data-ticket-kind="bug">
-      <div className="wrap hero__grid">
-        <div className="hero__copy">
-          <p className="hero__now">
-            <span className="pill pill--run"><span className="pill__dot" aria-hidden="true" />NOW</span>
-            {t(s.now)}
-          </p>
-          <h1 id="hero-title" className="hero__name">{t(s.h1)}</h1>
-          <p className="hero__value">{t(s.value)}</p>
-          <div className="hero__ctas">
-            {s.ctas.map((c: Any, i: number) => (
-              <a key={c.id} className={i === 0 ? 'btn btn--accent' : 'btn btn--glass glass'} href={c.href}>{t(c)}</a>
-            ))}
-          </div>
-          <p className="hero__meta mono-sm">{t(s.meta)}</p>
-        </div>
-        <div className="hero__side">
-          {headshot ? (
-            <div className="glass headshot"><Needed>{strip(headshot)}</Needed></div>
-          ) : person.headshot?.path ? (
-            <img className="glass headshot headshot--photo" src={person.headshot.path} alt={t(person.headshot)} width={200} height={200} />
-          ) : null}
-          <div className="backlog" aria-hidden="true">
-            {Array.from({ length: 6 }, (_, i) => (
-              <span
-                key={i}
-                className={`backlog__card ${i === 2 ? 'backlog__card--bug' : i > 2 ? 'backlog__card--warm' : 'glass'}`}
-                {...(i === 2 ? { 'data-ticket-start': '', 'data-route': 'el' } : {})}
-              >
-                {i === 2 ? <><b>bug</b><i /><i /></> : <><i /><i /></>}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+    <section id="top" className="hero hero3" aria-labelledby="hero-title" data-ticket="New" data-ticket-kind="bug">
       <div className="wrap">
-        <ul className="glass rail" data-reveal>
-          {s.proof.items.map((p: Any, i: number) => (
-            <li key={p.id} className="rail__item">
-              <span className="kick">0{i + 1}</span>
-              <span className="rail__num">
-                {p.prefix && <span className="pre">{p.prefix}</span>}
-                <CountUp to={p.num} suffix={p.suffix} />
-                <span className="sr-only">{p.value}</span>
+        <div className="hero3__head" data-reveal>
+          {person.headshot?.path && (
+            <img className="hero3__face" src={person.headshot.path} alt={t(person.headshot)} width={72} height={72} />
+          )}
+          <p className="hero__now">
+            <span className="pill pill--run"><span className="pill__dot" aria-hidden="true" />HEAD</span>
+            {t(s.now)} · {t(s.place)}
+          </p>
+        </div>
+        <h1 id="hero-title" className="hero3__name">{t(s.h1)}</h1>
+        <div className="hero3__grid">
+          <div className="hero__copy hero3__copy">
+            <p className="hero3__lede"><Accent item={s.value} /></p>
+            <div className="hero3__ctas">
+              {s.ctas.map((c: Any) =>
+                c.kind === 'cmd' ? (
+                  <a key={c.id} className="hero3__cmd" href={c.href}><span aria-hidden="true">$</span>{t(c)}</a>
+                ) : (
+                  <a key={c.id} className="btn btn--accent btn--pill hero3__cta" href={c.href}>{t(c)}</a>
+                ),
+              )}
+            </div>
+          </div>
+          <figure className="hero3__term" data-reveal>
+            <div className="hero3__termbar" aria-hidden="true"><i /><i /><i /><span>{t(term.title)}</span></div>
+            <pre className="hero3__pre">
+              <span className="y">HEAD</span> <span className="b">→ main</span>{'\n'}
+              <span className="m">Author:</span> {t(person.name)}{'\n'}
+              <span className="m">Date:</span>   {t(term.date)}{'\n\n'}
+              {'    '}{t(term.subject)}{'\n\n'}
+              {term.rows.map((r: Any) => (
+                <span key={r.id}>
+                  {' '}{t(r).padEnd(18)} | {String(r.value).padStart(2)} <span className="g">{'+'.repeat(r.bar)}</span>
+                  {r.note && <> <span className="m">{r.note}</span></>}
+                  {'\n'}
+                </span>
+              ))}
+            </pre>
+            <figcaption className="sr-only">
+              {term.rows.map((r: Any) => `${r.value} ${t(r).replace(/-/g, ' ')}`).join(', ')}
+            </figcaption>
+          </figure>
+        </div>
+        <div className="glass loopbar" data-reveal>
+          <div className="loopbar__head">
+            <p className="kick">{t(loop.kicker)}</p>
+            <p className="mono-sm">{t(loop.note)}</p>
+          </div>
+          <ol className="loopbar__track" aria-label="Defect loop stages">
+            <li className="loopbar__line" aria-hidden="true" />
+            <li className="loopbar__fill" aria-hidden="true" />
+            {loop.stages.map((st: string, i: number) => (
+              <li
+                key={st}
+                className="loopbar__n"
+                style={{ left: `${(i / n) * 100}%` }}
+              >
+                <span className="loopbar__d" aria-hidden="true" />
+                {st}
+              </li>
+            ))}
+            <li className="loopbar__tkt" aria-hidden="true">
+              <span className="loopbar__tl">
+                <span className="loopbar__a"><b>{loop.from.flag}</b>{loop.from.text}</span>
+                <span className="loopbar__b"><b>{loop.to.flag}</b>{loop.to.text}</span>
               </span>
-              <span className="rail__label">{p.label}</span>
+              <i /><i />
             </li>
-          ))}
-        </ul>
-        <p className="fine rail__note">{t(s.proof.context)}</p>
+          </ol>
+        </div>
+        <p className="fine rail__note">{t(loop.foot)}</p>
       </div>
       <span className="route-anchor" data-route="margin" data-route-at="bottom" />
     </section>

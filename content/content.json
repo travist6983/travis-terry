@@ -445,7 +445,7 @@
       "rail": [
         {
           "id": "header.rail.top",
-          "text": "Top",
+          "text": "top",
           "href": "#top",
           "src": [
             "ui"
@@ -461,7 +461,7 @@
         },
         {
           "id": "header.rail.pipeline",
-          "text": "Pipeline",
+          "text": "pipeline",
           "href": "#pipeline",
           "src": [
             "ui"
@@ -469,7 +469,7 @@
         },
         {
           "id": "header.rail.safety",
-          "text": "Safety",
+          "text": "safety",
           "href": "#safety",
           "src": [
             "ui"
@@ -477,7 +477,7 @@
         },
         {
           "id": "header.rail.journey",
-          "text": "Journey",
+          "text": "journey",
           "href": "#journey",
           "src": [
             "ui"
@@ -485,7 +485,7 @@
         },
         {
           "id": "header.rail.log",
-          "text": "Build log",
+          "text": "build log",
           "href": "#log",
           "src": [
             "ui"
@@ -493,7 +493,7 @@
         },
         {
           "id": "header.rail.work",
-          "text": "Work",
+          "text": "work",
           "href": "#work",
           "src": [
             "ui"
@@ -501,7 +501,7 @@
         },
         {
           "id": "header.rail.oss",
-          "text": "Open source",
+          "text": "open source",
           "href": "#oss",
           "src": [
             "ui"
@@ -509,11 +509,46 @@
         },
         {
           "id": "header.rail.contact",
-          "text": "Contact",
+          "text": "contact",
           "href": "#contact",
           "src": [
             "ui"
           ]
+        }
+      ],
+      "trail": [
+        {
+          "id": "header.trail.home",
+          "text": "home",
+          "src": [
+            "ui"
+          ],
+          "href": "/"
+        },
+        {
+          "id": "header.trail.portfolio",
+          "text": "portfolio",
+          "src": [
+            "ui"
+          ],
+          "href": "/portfolio"
+        },
+        {
+          "id": "header.trail.logs",
+          "text": "build log",
+          "src": [
+            "ui"
+          ],
+          "href": "/logs",
+          "short": "log"
+        },
+        {
+          "id": "header.trail.resume",
+          "text": "resume",
+          "src": [
+            "ui"
+          ],
+          "href": "/resume"
         }
       ]
     },
@@ -543,11 +578,12 @@
       },
       "value": {
         "id": "hero.value",
-        "text": "I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step. Now I’m pointing it at a codebase it has never seen, and writing down everything that happens.",
+        "text": "I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step. Now it’s running on a codebase it has never seen, and I’m writing down everything that happens.",
         "src": [
-          "design:v2",
+          "design:v3",
           "agent-kit README"
-        ]
+        ],
+        "accent": "agent-kit"
       },
       "proof": {
         "_note": "Exactly three, drawn only from HEADLINE_PROOF. Real HTML text first; any count-up keeps the hedge word visible at every frame.",
@@ -618,20 +654,13 @@
           "href": "#log"
         },
         {
-          "id": "hero.cta.pipeline",
-          "text": "See the pipeline",
+          "id": "hero.cta.kit",
+          "text": "cd agent-kit →",
           "src": [
             "ui"
           ],
-          "href": "#pipeline"
-        },
-        {
-          "id": "hero.cta.resume",
-          "text": "Resume",
-          "src": [
-            "ui"
-          ],
-          "href": "/resume"
+          "href": "#kit",
+          "kind": "cmd"
         }
       ],
       "sixtyLink": {
@@ -656,6 +685,127 @@
           "resume L3",
           "design:v2"
         ]
+      },
+      "place": {
+        "id": "hero.place",
+        "text": "Sterling Heights, MI",
+        "src": [
+          "resume L3"
+        ]
+      },
+      "term": {
+        "title": {
+          "id": "hero.term.title",
+          "text": "git show HEAD --stat",
+          "src": [
+            "ui"
+          ]
+        },
+        "subject": {
+          "id": "hero.term.subject",
+          "text": "Point agent-kit at a new codebase",
+          "src": [
+            "design:v3",
+            "logs:2026-11-21"
+          ]
+        },
+        "date": {
+          "id": "hero.term.date",
+          "text": "Nov 2026",
+          "src": [
+            "design:v3"
+          ]
+        },
+        "rows": [
+          {
+            "id": "hero.term.skills",
+            "text": "skills-and-recipes",
+            "src": [
+              "agent-kit README"
+            ],
+            "value": 36,
+            "bar": 12
+          },
+          {
+            "id": "hero.term.mods",
+            "text": "claude-code-mods",
+            "src": [
+              "agent-kit README"
+            ],
+            "value": 11,
+            "bar": 4
+          },
+          {
+            "id": "hero.term.gates",
+            "text": "safety-gates",
+            "src": [
+              "design:v2",
+              "resume L24"
+            ],
+            "value": 4,
+            "bar": 2
+          },
+          {
+            "id": "hero.term.years",
+            "text": "years-shipping",
+            "src": [
+              "resume-fs L6",
+              "brief:HEADLINE_PROOF"
+            ],
+            "value": 15,
+            "bar": 5
+          },
+          {
+            "id": "hero.term.log",
+            "text": "build-log",
+            "src": [
+              "design:v2"
+            ],
+            "value": 1,
+            "bar": 1,
+            "note": "every other day"
+          }
+        ]
+      },
+      "loop": {
+        "kicker": {
+          "id": "hero.loop.kicker",
+          "text": "THE DEFECT LOOP, LIVE",
+          "src": [
+            "ui"
+          ]
+        },
+        "note": {
+          "id": "hero.loop.note",
+          "text": "one ticket, backlog to pull request",
+          "src": [
+            "ui"
+          ]
+        },
+        "stages": [
+          "intake",
+          "repro",
+          "fix",
+          "verify",
+          "regress",
+          "pre-pr",
+          "ship"
+        ],
+        "from": {
+          "flag": "BUG",
+          "text": "New"
+        },
+        "to": {
+          "flag": "PR",
+          "text": "Opened"
+        },
+        "foot": {
+          "id": "hero.loop.foot",
+          "text": "Illustrative, with synthetic data. Keep scrolling to follow the ticket through each stage.",
+          "src": [
+            "ui"
+          ]
+        }
       }
     },
     {

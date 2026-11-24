@@ -38,7 +38,7 @@ export default async function LogPost({ params }: Props) {
       <Paper />
       <CodeCopy />
       <div className="logs-page">
-        <LogsHeader />
+        <LogsHeader post />
         <main id="main" className="wrap lpage">
           <nav className="pcrumb" aria-label="Breadcrumb">
             <a href="/logs" className="pcrumb__back">← git log</a>
