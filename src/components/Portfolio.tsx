@@ -8,6 +8,7 @@ import { Branch, Checkout, Fetch } from './Buttons';
  * open source), ships, and merges back. The open branch keeps a dashed lane and the glowing HEAD dot.
  * The branch buttons filter the log. Rows draw in as they scroll into view; with motion off (the kill
  * switch or reduced motion) everything is drawn from the start.
+ * Each branch path uses pathLength=1 so the dash always covers the whole curve, however far its lane.
  */
 
 export type Lane = 'clients' | 'apps' | 'oss';
@@ -43,24 +44,28 @@ export function PortfolioLog({ rows, labels }: { rows: Row[]; labels: Record<Lan
   const list = rows.filter((r) => f === 'all' || r.lane === f);
   const ref = useRef<HTMLOListElement>(null);
 
-  // Draw each row once it scrolls into view (re-run when the filter swaps rows in)
+  // Draw each row as it scrolls into view and undraw it (in reverse) when you scroll back up past it.
+  // A row that leaves off the top stays drawn; only one that drops back below the fold undraws.
+  // Position-based rather than an IntersectionObserver, so a jump (Home key, anchor) undraws too.
   useEffect(() => {
-    const els = Array.from(ref.current?.querySelectorAll<HTMLElement>('.pf-row:not(.is-in)') ?? []);
-    if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-in'));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (es) => es.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
-        }
-      }),
-      { rootMargin: '0px 0px -12% 0px' },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const els = Array.from(ref.current?.querySelectorAll<HTMLElement>('.pf-row') ?? []);
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      const line = window.innerHeight * 0.88;
+      els.forEach((el) => el.classList.toggle('is-in', el.getBoundingClientRect().top < line));
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
   }, [f]);
 
   const keys: ('all' | Lane)[] = ['all', 'clients', 'apps', 'oss'];
@@ -100,12 +105,12 @@ export function PortfolioLog({ rows, labels }: { rows: Row[]; labels: Record<Lan
               <div className="pf-graph" aria-hidden="true">
                 <span className="pf-main" />
                 <svg className="pf-svg pf-svg--fork" width="200" height="64" viewBox="0 0 200 64">
-                  <path d={`M21 0 C21 40, ${x} 24, ${x} 64`} />
+                  <path d={`M21 0 C21 40, ${x} 24, ${x} 64`} pathLength={1} />
                 </svg>
                 <span className="pf-lane" />
                 {r.state !== 'open' && (
                   <svg className="pf-svg pf-svg--merge" width="200" height="64" viewBox="0 0 200 64">
-                    <path d={`M${x} 0 C${x} 40, 21 24, 21 64`} />
+                    <path d={`M${x} 0 C${x} 40, 21 24, 21 64`} pathLength={1} />
                   </svg>
                 )}
                 <span className="pf-dot" />

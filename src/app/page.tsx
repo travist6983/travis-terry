@@ -1,10 +1,11 @@
-import { content, person, section, t } from '@/lib/content';
+import { person, section, t } from '@/lib/content';
 import { posts } from '@/lib/logs';
-import { EmailLink, MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
+import { MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
 import { CommitId, Paper, SiteDock } from '@/components/LogsChrome';
 import { CommitJourney, TicketJourney } from '@/components/Journeys';
 import { Accent } from '@/components/Accent';
-import { Checkout, Cmd, Fetch, Push, RemoteOrb } from '@/components/Buttons';
+import { Checkout, Cmd, Fetch, Push } from '@/components/Buttons';
+import { Remote } from '@/components/Remotes';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
 import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -12,8 +13,6 @@ import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
-const ext = { target: '_blank', rel: 'noopener' } as const;
-const isExt = (href: string) => /^https?:/.test(href);
 
 function Chips({ items, className = 'chip2' }: { items: string[]; className?: string }) {
   return (
@@ -24,6 +23,8 @@ function Chips({ items, className = 'chip2' }: { items: string[]; className?: st
 }
 
 /** A small mono "commit" line that marks a section on the act 2 git graph. */
+const ext = { target: '_blank', rel: 'noopener' } as const;
+
 function CommitLine({ item, tag }: { item: Any; tag?: boolean }) {
   return (
     <p className="chash" data-commit>
@@ -257,9 +258,10 @@ const shortDate = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('
 
 function BuildLog() {
   const s = section('buildlog');
-  // Real posts first (the format samples stay on /logs), then the planned ones, three in all.
-  const real = posts().filter((p) => !p.tags.includes('sample')).slice(0, 3);
-  const upcoming = s.upcoming.slice(0, Math.max(0, 3 - real.length));
+  // The newest post is featured; the next two cards are older posts, then the planned ones.
+  const [latest, ...older] = posts();
+  const rest = older.slice(0, 2);
+  const upcoming = s.upcoming.slice(0, Math.max(0, 2 - rest.length));
   return (
     <section id="log" className="sec sec--v2" aria-labelledby="log-title">
       <div className="wrap graph-col graph-col--v2">
@@ -271,12 +273,31 @@ function BuildLog() {
           </div>
           <Checkout href={s.all.href}>{t(s.all)}</Checkout>
         </div>
-        <div className="hposts">
-          {real.map((p) => (
+        <div className={`hposts${latest ? ' hposts--feat' : ''}`}>
+          {latest && (
+            <article className="glass hpost hpost--feat" data-reveal>
+              <p className="hpost__meta">
+                <span className="pill pill--run">HEAD → main</span>
+                <span className="hpost__kick">{s.latest.kicker}</span>
+                <CommitId commit={latest.commit} /> · {shortDate(latest.date)}
+              </p>
+              <h3 className="hpost__t"><a href={`/logs/${latest.slug}`}>{latest.title}</a></h3>
+              <p className="hpost__s">{latest.summary}</p>
+              {latest.tags.length > 0 && (
+                <ul className="ltags hpost__tags" aria-label="Tags">
+                  {latest.tags.map((tag) => <li key={tag} className="ltag">{tag}</li>)}
+                </ul>
+              )}
+              <div className="hpost__cta">
+                <Push href={`/logs/${latest.slug}`} label={t(s.latest)} cmd={s.latest.cmd} done={s.latest.done} />
+                <span className="hpost__foot">{latest.mins} min read</span>
+              </div>
+            </article>
+          )}
+          {rest.map((p) => (
             <article key={p.slug} className="glass hpost" data-reveal>
               <p className="hpost__meta">
                 <CommitId commit={p.commit} /> · {shortDate(p.date)}
-                {p.newest && <span className="pill pill--run">HEAD → main</span>}
               </p>
               <h3 className="hpost__t"><a href={`/logs/${p.slug}`}>{p.title}</a></h3>
               <p className="hpost__s">{p.summary}</p>
@@ -388,31 +409,6 @@ function OpenSource() {
       </div>
     </section>
   );
-}
-
-const REMOTE_STYLE: Record<string, { bg: string; fg: string; cbg: string; cfg: string; ring: string; glyph: React.ReactNode }> = {
-  'contact.remote.email': { bg: '#ff8a5c', fg: '#0c1220', cbg: '#ff8a5c', cfg: '#0c1220', ring: '#ff8a5c', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg> },
-  'contact.remote.x': { bg: '#000', fg: '#fff', cbg: '#fff', cfg: '#000', ring: '#ffffff', glyph: 'X' },
-  'contact.remote.linkedin': { bg: '#0a66c2', fg: '#fff', cbg: '#0a66c2', cfg: '#fff', ring: '#4b9be8', glyph: 'in' },
-  'contact.remote.github': { bg: '#f0f6fc', fg: '#24292f', cbg: '#f0f6fc', cfg: '#24292f', ring: '#f0f6fc', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg> },
-};
-
-function Remote({ r }: { r: Any }) {
-  const st = REMOTE_STYLE[r.id];
-  const inner = (
-    <>
-      <span className="remote__i" aria-hidden="true" style={{ background: st.bg, color: st.fg }}>{st.glyph}</span>
-      <span className="remote__b">
-        <span className="remote__n">{t(r)}</span>
-        <span className="remote__u">{r.verb} · {r.detail}</span>
-      </span>
-      <span className="sr-only">{r.cta}</span>
-      <RemoteOrb arrow={r.hrefFrom === 'person.email' ? '→' : '↗'} bg={st.cbg} fg={st.cfg} ring={st.ring} />
-    </>
-  );
-  if (r.hrefFrom === 'person.email') return <EmailLink className="remote">{inner}</EmailLink>;
-  const href = content.person[r.hrefFrom.split('.')[1]]?.href;
-  return <a className="remote" href={href} {...(isExt(href) ? ext : {})}>{inner}</a>;
 }
 
 function Contact() {

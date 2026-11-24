@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { person, section, t } from '@/lib/content';
 import { Ask } from '@/components/Ask';
+import { RemotesLight } from '@/components/Remotes';
 import { Push } from '@/components/Buttons';
-import { CopyCommand, EmailLink, MotionProvider, SmoothScroll } from '@/components/client';
+import { CopyCommand, MotionProvider, SmoothScroll } from '@/components/client';
 import { Reveal } from '@/components/Reveal';
 import { StackTabs } from '@/components/Designed';
 import { Paper, SiteDock } from '@/components/LogsChrome';
@@ -113,15 +114,12 @@ export default function ResumePage() {
 
           <aside className="rside" aria-label="Ask my resume and links" data-reveal {...rd(2)}>
             <Ask variant="side" />
-            <section className="glass rbox" aria-labelledby="elsewhere-title">
-              <h2 id="elsewhere-title" className="kick rbox__h">ELSEWHERE</h2>
-              <ul className="rbox__links">
-                <li><EmailLink>Email</EmailLink></li>
-                <li><a href={person.linkedin.href} target="_blank" rel="noopener">LinkedIn</a></li>
-                <li><a href={person.x.href} target="_blank" rel="noopener">X</a></li>
-                <li><a href={person.github.href} target="_blank" rel="noopener">GitHub</a></li>
-                <li><a href="/#work">Work and open source</a></li>
-              </ul>
+            <section className="glass rbox rbox--remotes" aria-labelledby="elsewhere-title">
+              <h2 id="elsewhere-title" className="rbox__h rbox__rh">
+                <span className="kick">{t(r.elsewhere).toUpperCase()}</span>
+                <span className="rbox__cmd" aria-hidden="true"><span className="repo__ps">$</span> {r.elsewhere.cmd}</span>
+              </h2>
+              <RemotesLight extra={{ name: t(r.portfolioRemote), sub: r.portfolioRemote.detail, href: r.portfolioRemote.href }} />
             </section>
           </aside>
         </section>
