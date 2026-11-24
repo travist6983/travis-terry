@@ -12,12 +12,21 @@ type Any = any;
 const navItem = (key: string) => section('header').nav.find((n: Any) => n.id === `header.nav.${key}`);
 
 /** Home: in-page section links with the scroll-spy lens. Resume: the same sections, linked back to the home page. */
-const NAV: Record<'home' | 'resume', string[]> = {
+type Where = 'home' | 'resume' | 'portfolio';
+
+const NAV: Record<Where, string[]> = {
   home: ['kit', 'pipeline', 'safety', 'journey', 'work', 'log'],
-  resume: ['journey', 'kit', 'work', 'oss', 'logs'],
+  resume: ['journey', 'kit', 'portfolio', 'logs'],
+  portfolio: ['kit', 'journey', 'portfolio', 'logs'],
 };
 
-export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
+const PROMPT: Record<Where, { path: string; label: string }> = {
+  home: { path: '~', label: 'You are on the home page' },
+  resume: { path: '~/resume', label: 'You are on the resume page' },
+  portfolio: { path: '~/work', label: 'You are on the portfolio page' },
+};
+
+export function SiteHeader({ where }: { where: Where }) {
   const h = section('header');
   const home = where === 'home';
   const root = home ? '#top' : '/';
@@ -31,8 +40,15 @@ export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
             {NAV[where].map((key) => {
               const n = navItem(key);
               const href: string = n.href.startsWith('#') && !home ? `/${n.href}` : n.href;
+              const here = where === 'portfolio' && key === 'portfolio';
               return (
-                <a key={key} href={href} {...(home ? { 'data-spy': n.href.slice(1) } : {})}>
+                <a
+                  key={key}
+                  href={href}
+                  className={here ? 'is-on' : undefined}
+                  aria-current={here ? 'page' : undefined}
+                  {...(home ? { 'data-spy': n.href.slice(1) } : {})}
+                >
                   {t(n)}
                 </a>
               );
@@ -40,10 +56,10 @@ export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
           </nav>
           <div className="nav__end">
             <KillSwitch />
-            {home ? (
-              <a className="btn btn--accent btn--pill" href={h.resumePage.href}>{t(h.resumePage)}</a>
-            ) : (
+            {where === 'resume' ? (
               <a className="btn btn--ink btn--pill" href={h.resumePage.href} aria-current="page">{t(h.resumePage)}</a>
+            ) : (
+              <a className="btn btn--accent btn--pill" href={h.resumePage.href}>{t(h.resumePage)}</a>
             )}
           </div>
         </div>
@@ -52,9 +68,9 @@ export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
       <header className="lbar">
         <div className="lbar__inner">
           <a className="lbar__who" href={root}>{t(h.wordmark)}</a>
-          <span className="lbar__prompt" aria-label={home ? 'You are on the home page' : 'You are on the resume page'}>
+          <span className="lbar__prompt" aria-label={PROMPT[where].label}>
             <span className="lbar__ar" aria-hidden="true">&gt;</span>
-            <span aria-hidden="true">{home ? '~' : '~/resume'}</span>
+            <span aria-hidden="true">{PROMPT[where].path}</span>
             <span className="lbar__git" aria-hidden="true">git:(<span className="lbar__ref">main</span>)</span>
           </span>
         </div>
@@ -63,7 +79,7 @@ export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
   );
 }
 
-export function SiteFooter({ where }: { where: 'home' | 'resume' }) {
+export function SiteFooter({ where }: { where: Where }) {
   const f = section('footer');
   const h = section('header');
   const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
@@ -75,10 +91,12 @@ export function SiteFooter({ where }: { where: 'home' | 'resume' }) {
       <div className="wrap foot__grid">
         <div className="glass foot__bar">
           <span className="foot__who">
-            <b>{t(person.name)}</b> <span>{where === 'home' ? t(f.tagline) : 'Resume'}</span>
+            <b>{t(person.name)}</b> <span>{where === 'home' ? t(f.tagline) : where === 'resume' ? 'Resume' : 'Portfolio'}</span>
           </span>
           <nav className="foot__nav" aria-label="Footer">
-            {where === 'home' ? <a href={h.resumePage.href}>Resume</a> : <a href="/">Home</a>}
+            {where !== 'home' && <a href="/">Home</a>}
+            {where !== 'portfolio' && <a href="/portfolio">Portfolio</a>}
+            {where !== 'resume' && <a href={h.resumePage.href}>Resume</a>}
             <a href={h.resumePdf.href}>Resume (PDF)</a>
             <a href="/logs">Build log</a>
             <a href="/logs/feed.xml">RSS</a>

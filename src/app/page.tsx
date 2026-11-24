@@ -307,6 +307,7 @@ function Work() {
             </article>
           ))}
         </div>
+        <p className="work__all"><a className="btn btn--pill btn--ink" href={s.all.href}>{t(s.all)}</a></p>
       </div>
     </section>
   );
