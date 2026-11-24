@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { section, t } from '@/lib/content';
 import { useMotion } from './client';
+import { Accent } from './Accent';
 import { BELT_END, Factory, STATION_X, beltOffset, ticketOrigin } from './Factory';
 
 const STOPS = [...STATION_X, BELT_END];
@@ -21,13 +22,12 @@ const STATUS = ['Reproduced', 'Fixed', 'Verified', 'Regression passing', 'Review
 
 export function Pipeline() {
   const s = section('pipeline');
-  const stages = s.stages as Array<{ label: string; text: string; badge?: string; aside?: { label: string; text: string } }>;
+  const stages = s.stages as Array<{ label: string; text: string; aside?: { label: string; text: string } }>;
   const { on } = useMotion();
   const [stage, setStage] = useState(stages.length - 1);
   const [pinned, setPinned] = useState(false);
   const sceneRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
-  const countRef = useRef<HTMLSpanElement>(null);
   const visRef = useRef<HTMLDivElement>(null);
   const placeTicket = (progress: number) => {
     const g = visRef.current?.querySelector<SVGGElement>('.belt-ticket');
@@ -64,7 +64,6 @@ export function Pipeline() {
           setStage(i);
           if (barRef.current) barRef.current.style.transform = `scaleX(${self.progress})`;
           placeTicket(self.progress);
-          if (countRef.current) countRef.current.textContent = self.progress > 0.97 ? '100+' : String(Math.round(self.progress * 100));
         },
       });
       kill = () => st.kill(true);
@@ -79,9 +78,9 @@ export function Pipeline() {
     <section id="pipeline" className="sec sec--dark pipeline" aria-labelledby="pipeline-title" data-ticket-away data-ticket="PR opened" data-ticket-kind="pr">
       <span className="route-anchor" data-route="gutter" data-route-at="top" />
       <div className="wrap pipeline__intro">
-        <p className="eyebrow">{t(s.kicker)}</p>
+        <span className="glass badge"><span className="badge__dot" aria-hidden="true" />{t(s.badge)}</span>
         <h2 id="pipeline-title" className="display">{t(s.title)}</h2>
-        <p className="lede">{t(s.intro)}</p>
+        <p className="lede"><Accent item={s.intro} /></p>
       </div>
 
       <div ref={sceneRef} className={`scene ${pinned ? 'scene--pinned' : 'scene--static'}`}>
@@ -93,7 +92,6 @@ export function Pipeline() {
                 <div className="stages__copy">
                   <h3 className="stages__label">{t(st.label)}</h3>
                   <p className="stages__text">{t(st.text)}</p>
-                  {st.badge && <span className="badge">{t(st.badge)}</span>}
                   {st.aside && (
                     <p className="stages__aside">
                       <b>{t(st.aside.label)}.</b> {t(st.aside.text)}
@@ -104,11 +102,6 @@ export function Pipeline() {
             ))}
           </ol>
           <div className="scene__visual" ref={visRef}>
-            <div className="hud" aria-hidden="true">
-              <span className="hud__k">bugs cleared</span>
-              <span ref={countRef} className="hud__v">100+</span>
-              <span className="hud__k">in about six weeks</span>
-            </div>
             <Factory stage={stage} />
             <p className="factory__status"><span className={`dot ${stage >= 5 ? 'dot--green' : 'dot--red'}`} aria-hidden="true" />Ticket 0001 · {STATUS[stage]}</p>
             <p className="label">{t(s.visualLabel)}</p>
@@ -117,10 +110,6 @@ export function Pipeline() {
         </div>
       </div>
 
-      <div className="wrap">
-        <p className="pipeline__result">{t(s.result)}</p>
-        <p className="fine">{t(s.visualNote)}</p>
-      </div>
       <span className="route-anchor route-anchor--end" data-route="gutter" data-route-at="bottom" />
     </section>
   );

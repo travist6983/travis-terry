@@ -1,77 +1,37 @@
 import { content, needed, person, section, t } from '@/lib/content';
-import { Ask } from '@/components/Ask';
-import { AvailableToday, CopyCommand, CountUp, EmailAddress, EmailLink, KillSwitch, MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
-import { Needed } from '@/components/Needed';
+import { posts } from '@/lib/logs';
+import { CountUp, EmailLink, MotionProvider, ScrollSpy, SmoothScroll } from '@/components/client';
+import { CommitId, Paper, SiteDock } from '@/components/LogsChrome';
 import { CommitJourney, TicketJourney } from '@/components/Journeys';
+import { Accent } from '@/components/Accent';
+import { Needed } from '@/components/Needed';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
-import { SiteDock } from '@/components/LogsChrome';
-import { McpDemo, PlatformTabs, ReleaseBar, StackTabs, TopFive, type TopItem } from '@/components/Designed';
+import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
 const strip = (s: string) => s.replace(/^NEEDED FROM TRAVIS:\s*/, '');
+const ext = { target: '_blank', rel: 'noopener' } as const;
+const isExt = (href: string) => /^https?:/.test(href);
 
-/** A CTA that is either a real link or a loud placeholder saying what is missing. */
-function Cta({ item, className }: { item: Any; className: string }) {
-  const need = needed(item);
-  if (item.hrefFrom === 'person.email') return <EmailLink className={className}>{t(item)}</EmailLink>;
-  const href = item.href ?? (item.hrefFrom ? content.person[item.hrefFrom.split('.')[1]]?.href : null);
-  if (need || !href) {
-    return (
-      <span className={`${className} is-needed`}>
-        {t(item)} <Needed inline>{strip(need ?? 'link')}</Needed>
-      </span>
-    );
-  }
-  const external = /^https?:/.test(href);
+function Chips({ items, className = 'chip2' }: { items: string[]; className?: string }) {
   return (
-    <a className={className} href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+    <ul className="chips2">
+      {items.map((c) => <li key={c} className={className}>{c}</li>)}
+    </ul>
+  );
+}
+
+/** A small mono "commit" line that marks a section on the act 2 git graph. */
+function CommitLine({ item, tag }: { item: Any; tag?: boolean }) {
+  return (
+    <p className="chash" data-commit>
+      {tag && <span className="chash__tag" data-tag aria-hidden="true" />}
       {t(item)}
-    </a>
+    </p>
   );
-}
-
-function Header() {
-  const h = section('header');
-  const show = ['sixty', 'pipeline', 'career', 'contact', 'logs'];
-  return (
-    <header className="nav">
-      <a className="skip" href="#main">{t(h.skipLink)}</a>
-      <div className="nav__inner">
-        <a className="glass pillx nav__mark" href="#top">{t(h.wordmark)}</a>
-        <nav aria-label="Sections" className="glass nav__group">
-          {h.nav
-            .filter((n: Any) => show.includes(n.href.slice(1)))
-            .map((n: Any) => (
-              <a key={n.href} href={n.href} data-spy={n.href.slice(1)}>{t(n)}</a>
-            ))}
-        </nav>
-        <div className="nav__end">
-          <KillSwitch />
-          <a className="btn btn--accent btn--pill" href={h.resumePdf.href}>
-            <DownloadIcon />
-            Resume
-          </a>
-        </div>
-      </div>
-    </header>
-  );
-}
-
-function DownloadIcon({ size = 15 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
-    </svg>
-  );
-}
-
-function Badge({ children }: { children: React.ReactNode }) {
-  return <span className="glass badge"><span className="badge__dot" aria-hidden="true" />{children}</span>;
 }
 
 function Hero() {
@@ -81,18 +41,18 @@ function Hero() {
     <section id="top" className="hero" aria-labelledby="hero-title" data-ticket="New" data-ticket-kind="bug">
       <div className="wrap hero__grid">
         <div className="hero__copy">
-          <p className="hero__title">{t(s.titleLine).replace(' | ', ' · ')}</p>
+          <p className="hero__now">
+            <span className="pill pill--run"><span className="pill__dot" aria-hidden="true" />NOW</span>
+            {t(s.now)}
+          </p>
           <h1 id="hero-title" className="hero__name">{t(s.h1)}</h1>
           <p className="hero__value">{t(s.value)}</p>
           <div className="hero__ctas">
             {s.ctas.map((c: Any, i: number) => (
-              <Cta key={c.id} item={c} className={i === 0 ? 'btn btn--accent' : 'btn btn--glass glass'} />
+              <a key={c.id} className={i === 0 ? 'btn btn--accent' : 'btn btn--glass glass'} href={c.href}>{t(c)}</a>
             ))}
           </div>
-          <p className="hero__meta">
-            <a className="link-accent" href={s.sixtyLink.href}>{t(s.sixtyLink)} ›</a>
-            <span>{t(s.location)}</span>
-          </p>
+          <p className="hero__meta mono-sm">{t(s.meta)}</p>
         </div>
         <div className="hero__side">
           {headshot ? (
@@ -104,7 +64,7 @@ function Hero() {
             {Array.from({ length: 6 }, (_, i) => (
               <span
                 key={i}
-                className={`backlog__card ${i === 2 ? 'backlog__card--bug' : 'glass'}`}
+                className={`backlog__card ${i === 2 ? 'backlog__card--bug' : i > 2 ? 'backlog__card--warm' : 'glass'}`}
                 {...(i === 2 ? { 'data-ticket-start': '', 'data-route': 'el' } : {})}
               >
                 {i === 2 ? <><b>bug</b><i /><i /></> : <><i /><i /></>}
@@ -114,7 +74,6 @@ function Hero() {
         </div>
       </div>
       <div className="wrap">
-        <span className="route-anchor" data-route="margin" data-route-at="top" />
         <ul className="glass rail" data-reveal>
           {s.proof.items.map((p: Any, i: number) => (
             <li key={p.id} className="rail__item">
@@ -128,82 +87,55 @@ function Hero() {
             </li>
           ))}
         </ul>
-        <p className="fine rail__note">{t(s.proof.context)} {t(s.visualLabel)} for all diagrams.</p>
+        <p className="fine rail__note">{t(s.proof.context)}</p>
       </div>
+      <span className="route-anchor" data-route="margin" data-route-at="bottom" />
     </section>
   );
 }
 
-/* Top-five selector metadata: stats come from the resume lines behind each achievement. */
-const TOP_META = [
-  { title: 'Live meeting platform', stat: '100', prefix: 'up to', statLabel: 'concurrent users on one synchronized screen' },
-  { title: 'Scorecard', stat: '7', statLabel: 'reporting intervals, from daily to annual' },
-  { title: 'Accountability Chart builder', stat: '10,000', prefix: 'about', statLabel: 'monthly active users; the most used AI tool on the platform' },
-  { title: 'Component library', stat: '150', prefix: 'about', statLabel: 'Vue 3 components the product still runs on' },
-  { title: 'Agentic engineering system', stat: '30+', statLabel: 'Claude Code skills; 100+ bugs and about 25 features in about six weeks' },
-];
-/* Skills tabs: the resume's skill groups (content.json sixty.stack), split into tags. */
-const STACK = [
-  { label: 'Frontend', items: ['Vue 2 and 3', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'D3', 'HTML5', 'CSS3', 'SCSS', 'Vite', 'npm monorepos', 'Design systems', 'Design tokens', 'Accessibility', 'Responsive layouts', 'Animation (GSAP)'] },
-  { label: 'Real time and backend', items: ['SignalR', 'C#', '.NET', 'REST APIs', 'Python', 'FastAPI', 'Node.js', 'Auth0', 'Stripe', 'Redis'] },
-  { label: 'Data', items: ['Postgres', 'pgvector', 'SQL Server', 'Azure SQL', 'Cosmos DB', 'MySQL', 'Oracle', 'SQLite'] },
-  { label: 'Cloud, CI/CD, testing', items: ['Azure Pipelines', 'Azure App Service', 'GitHub Actions', 'Fly.io', 'Neon', 'Cloudflare Workers', 'Vitest', 'Playwright', 'TestRail', 'BrowserStack'] },
-  { label: 'AI', items: ['LLM integrations', 'RAG', 'Claude Code', 'MCP servers', 'Agent workflows'] },
-  { label: 'Integrations', items: ['NetSuite', 'SuiteCommerce', 'Salesforce', 'Jitterbit', 'WordPress', 'Jira and Azure DevOps APIs'] },
-  { label: 'Leadership', items: ['Code review standards', 'Design system governance', 'Mentoring', 'People management'] },
-];
-
-function Sixty() {
-  const s = section('sixty');
-  const top: TopItem[] = s.achievements.map((a: Any, i: number) => ({ ...TOP_META[i], text: t(a) }));
+function Kit() {
+  const s = section('kit');
   return (
-    <section id="sixty" className="sec" aria-labelledby="sixty-title" data-route="margin" data-route-at="bottom">
+    <section id="kit" className="sec sec--tight kit" aria-labelledby="kit-title" data-ticket-away>
       <div className="wrap">
-        <div className="sec__head">
-          <Badge>60 sec read</Badge>
-          <h2 id="sixty-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">15+ years shipping production web applications, from <span className="accent">real-time Vue 3 front ends</span> to C#, .NET, and Python back ends.</p>
-        </div>
-        <TopFive items={top} />
-        <StackTabs groups={STACK} />
-        <div className="glass avail">
-          <span className="avail__dot" aria-hidden="true" />
-          <div className="avail__copy">
-            <span className="avail__h">Available now<AvailableToday /></span>
-            <span>Sterling Heights, MI. Open to remote, or on-site and hybrid in Metro Detroit.</span>
-          </div>
-          <div className="avail__ctas">
-            <a className="btn btn--accent" href={s.resumeLink.href}>{t(s.resumeLink)}</a>
-            <a className="btn btn--soft" href="https://cal.com/travis-terry-vwjxkq/30min" target="_blank" rel="noopener">Book a Call</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Release() {
-  const st = section('pipeline').stages.find((x: Any) => x.stage === 'regression');
-  return (
-    <section id="release" className="sec sec--tight release" aria-labelledby="release-title" data-ticket="Release regression" data-ticket-kind="pr">
-      <span className="route-anchor" data-route="0.9" data-route-at="top" />
-      <div className="wrap">
-        <div className="glass card-xl" data-reveal>
-          <span className="glow glow--orange" aria-hidden="true" style={{ left: -120, bottom: -200, width: 420, height: 420 }} />
-          <div className="release__grid">
-            <div className="release__copy">
-              <span className="kick">{t(st.aside.label).toUpperCase()}</span>
-              <h2 id="release-title" className="release__big">
-                <span className="release__from">about a week</span>
-                <span className="release__to">8 to 12 hours</span>
-              </h2>
+        <div className="kit__card" data-reveal>
+          <div className="kit__grid">
+            <div className="kit__copy">
+              <p className="kick kit__kick">{t(s.kicker)}</p>
+              <h2 id="kit-title" className="h2 kit__title">{t(s.title)}</h2>
+              <p className="kit__intro">{t(s.intro)}</p>
+              <p className="kit__loop">
+                {s.loop.map((step: string, i: number) => (
+                  <span key={step} className="kit__stepwrap">
+                    {i > 0 && <span className="kit__arrow" aria-hidden="true">→</span>}
+                    <span className="kit__step">{step}</span>
+                  </span>
+                ))}
+              </p>
+              <dl className="kit__stats">
+                {s.stats.map((x: Any) => (
+                  <div key={x.id} className="kit__stat">
+                    <dt>{t(x)}</dt>
+                    <dd>{x.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="kit__safety">{t(s.safety)}</p>
+              <div className="kit__ctas">
+                {s.links.map((l: Any, i: number) => (
+                  <a key={l.id} className={`btn ${i === 0 ? 'btn--accent' : 'btn--onink'}`} href={l.href} {...ext}>{t(l)}</a>
+                ))}
+              </div>
             </div>
-            <p className="release__text">{t(st.aside.text)}</p>
+            <figure className="kit__fig">
+              <img src={s.figure.path} alt={t(s.figure)} width={s.figure.width} height={s.figure.height} loading="lazy" />
+              <figcaption>{s.figure.caption}</figcaption>
+            </figure>
           </div>
-          <ReleaseBar />
         </div>
       </div>
-      <span className="route-anchor" data-route="0.9" data-route-at="bottom" />
+      <span className="route-anchor" data-route="gutter" data-route-at="bottom" />
     </section>
   );
 }
@@ -217,20 +149,21 @@ const SAFETY_UI = [
 
 function Safety() {
   const s = section('safety');
-  const ks = s.killSwitchControl;
   return (
     <section id="safety" className="sec safety" aria-labelledby="safety-title" data-ticket="At the safety gate" data-ticket-kind="pr">
+      <span className="route-anchor" data-route="0.9" data-route-at="top" />
       <div className="wrap">
         <div className="sec__head">
-          <Badge>4 safeguards</Badge>
+          <span className="glass badge"><span className="badge__dot" aria-hidden="true" />4 safeguards</span>
           <h2 id="safety-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">I designed the safety model, and <span className="accent">every automated action</span> ran inside it.</p>
+          <p className="lede"><Accent item={s.intro} /></p>
         </div>
+        <span className="route-anchor" data-route="0.9" data-route-at="top" />
         <ol className="stations">
           {s.items.map((it: Any, i: number) => {
             const ui = SAFETY_UI[i];
             return (
-              <li key={it.id} className={`station station--${i % 2 ? 'r' : 'l'}`} data-station data-route="0.5">
+              <li key={it.id} className={`station station--${i % 2 ? 'r' : 'l'}`} data-station data-route="0.5" {...(i === 3 ? { 'data-ticket': 'Approved', 'data-ticket-kind': 'pr' } : {})}>
                 <span className="station__dot" aria-hidden="true" />
                 <div className={`station__card ${i === 0 ? 'station__card--ink' : 'glass'}`} data-reveal>
                   <div className="station__top">
@@ -251,287 +184,258 @@ function Safety() {
             );
           })}
         </ol>
-        <div className="glass panel killpanel" data-reveal data-ticket="Approved" data-ticket-kind="pr">
-          <div>
-            <h3 className="h3">{t(ks.heading)}</h3>
-            <p>{t(ks.text)}</p>
-          </div>
-          <KillSwitch variant="panel" />
-        </div>
         <p className="fine">{t(s.visualNote)}</p>
-      </div>
-    </section>
-  );
-}
-
-function Mcp() {
-  const s = section('mcp');
-  const L = s.visualLabels;
-  return (
-    <section id="mcp" className="sec mcp" aria-labelledby="mcp-title" data-ticket="Routed to a safe tool" data-ticket-kind="pr">
-      <span className="route-anchor" data-route="gutter" data-route-at="top" />
-      <div className="wrap mcp__grid">
-        <div className="sec__head">
-          <Badge>EOS One · production</Badge>
-          <h2 id="mcp-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">I was a core contributor on the team that built a production MCP server for EOS One. It let customers connect <span className="accent">Claude, ChatGPT, and Grok</span> to their EOS One data.</p>
-          <div className="mcp__notes">
-            <div className="glass note-row">
-              <span className="icon-box icon-box--sm" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M16 3h5v5M8 3H3v5M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3M15 9l6-6" /></svg>
-              </span>
-              <p><b>Routing.</b> {t(s.classifier)}</p>
-            </div>
-            <div className="glass note-row">
-              <span className="icon-box icon-box--sm icon-box--danger" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-              </span>
-              <p><b>No deletes.</b> {t(s.destructive)}</p>
-            </div>
-          </div>
-        </div>
-        <McpDemo caption={`${t(L.deleteLane)}. ${t(s.visualLabel)}.`} />
       </div>
       <span className="route-anchor route-anchor--end" data-route="gutter" data-route-at="bottom" />
-      <p className="handoff wrap" aria-hidden="true"><span className="handoff__dot" /> PR merged into main</p>
+      <p className="handoff wrap" aria-hidden="true"><span className="handoff__dot" /> {t(s.handoff)}</p>
     </section>
   );
 }
 
-function Platform() {
-  const s = section('platform');
-  const P = [['Live meetings', 'meetings'], ['Scorecard', 'scorecard'], ['AI builders', 'aiBuilders'], ['Component library', 'library'], ['Meetings AI', 'voiceNotes'], ['LLM architecture', 'llmArchitecture'], ['Testing', 'testing'], ['Shipping', 'shipping']];
-  const LD = [['Code review', 'review'], ['Direct reports', 'mentoring'], ['Mentorship', 'mentorship'], ['AI adoption', 'adoption'], ['Standards as code', 'standards'], ['Retention', 'retention']];
-  const pick = (arr: string[][]) => arr.map(([title, k]) => ({ title, text: t(s[k]) }));
+const STATUS_CLS: Record<string, string> = { run: 'pill--run', next: 'pill--next', plan: 'pill--plan' };
+
+function Journey() {
+  const s = section('journey');
   return (
-    <section id="platform" className="sec platform" aria-labelledby="platform-title">
-      <div className="wrap graph-col">
-        <div className="sec__head">
-          <Badge>EOS One · Atlas UP</Badge>
-          <h2 id="platform-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">For EOS One, an AI business operating system, I built the Vue 3 front end of the live meeting platform and the 150 component design system it still runs on, then the AI builders, including the most used AI tool across <span className="accent">about 10,000 monthly active users</span>.</p>
-        </div>
-        <div className="stat3" data-commit>
-          <div className="glass statc" data-reveal>
-            <span className="glow glow--accent" aria-hidden="true" style={{ right: -90, bottom: -110, width: 260, height: 260, opacity: 0.18 }} />
-            <span className="statc__num"><span className="pre">about</span>10,000</span>
-            <span className="statc__label">monthly active users on EOS One</span>
-          </div>
-          <div className="glass statc" data-reveal>
-            <span className="statc__num"><span className="pre">about</span>150</span>
-            <span className="statc__label">components in the library I built</span>
-            <div className="comps" aria-hidden="true">{Array.from({ length: 30 }, (_, i) => <span key={i} className="on" />)}</div>
-            <span className="mono-sm">design-token-based styling system</span>
-          </div>
-          <div className="glass statc" data-reveal>
-            <span className="statc__num"><span className="mute">35</span><span className="arrow">→</span>9</span>
-            <span className="statc__label">retained as one of three staff engineers</span>
-            <div className="team" aria-hidden="true">{Array.from({ length: 35 }, (_, i) => <span key={i} className={i < 3 ? 'lead' : i < 9 ? 'on' : ''} />)}</div>
+    <section id="journey" className="sec sec--v2" aria-labelledby="journey-title">
+      <div className="wrap graph-col graph-col--v2">
+        <CommitLine item={s.commit} />
+        <p className="kick">{t(s.kicker)}</p>
+        <h2 id="journey-title" className="h2 v2__title">{t(s.title)}</h2>
+        <p className="lede v2__lede">{t(s.intro)}</p>
+        <div className="glass jstages" data-reveal>
+          <ol className="jstages__list">
+            <li className="jstages__rail" aria-hidden="true" />
+            {s.stages.map((st: Any) => (
+              <li key={st.id} className={`jstage jstage--${st.status}`}>
+                <span className="jstage__dot" aria-hidden="true" />
+                <span className={`pill ${STATUS_CLS[st.status]}`}>{s.statusLabels[st.status]}</span>
+                <h3 className="jstage__h">{st.label}</h3>
+                <p className="jstage__p">{t(st)}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="jstages__foot">
+            <span>{t(s.foot)}</span>
+            <a href={s.rss.href}>{t(s.rss)}</a>
           </div>
         </div>
-        <PlatformTabs platform={pick(P)} leadership={pick(LD)} />
-        <p className="fine">{t(s.visualNote)}</p>
       </div>
     </section>
   );
 }
 
-const BRANCH: Record<string, string> = {
-  foundrkids: 'BRANCH: OPEN · PRE-LAUNCH',
-  'pocket-chronicle': 'BRANCH: RETIRED',
-  rolehawk: 'BRANCH: OPEN · OPEN SOURCE',
-  site: 'BRANCH: OPEN · LIVE',
+const shortDate = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+function BuildLog() {
+  const s = section('buildlog');
+  // Real posts first (the format samples stay on /logs), then the planned ones, three in all.
+  const real = posts().filter((p) => !p.tags.includes('sample')).slice(0, 3);
+  const upcoming = s.upcoming.slice(0, Math.max(0, 3 - real.length));
+  return (
+    <section id="log" className="sec sec--v2" aria-labelledby="log-title">
+      <div className="wrap graph-col graph-col--v2">
+        <CommitLine item={s.commit} />
+        <div className="v2__headrow">
+          <div>
+            <p className="kick">{t(s.kicker)}</p>
+            <h2 id="log-title" className="h2 v2__title">{t(s.title)}</h2>
+          </div>
+          <a className="btn btn--glass glass" href={s.all.href}>{t(s.all)}</a>
+        </div>
+        <div className="hposts">
+          {real.map((p) => (
+            <article key={p.slug} className="glass hpost" data-reveal>
+              <p className="hpost__meta">
+                <CommitId commit={p.commit} /> · {shortDate(p.date)}
+                {p.newest && <span className="pill pill--run">HEAD → main</span>}
+              </p>
+              <h3 className="hpost__t"><a href={`/logs/${p.slug}`}>{p.title}</a></h3>
+              <p className="hpost__s">{p.summary}</p>
+              <p className="hpost__foot">{p.mins} min read · <a href={`/logs/${p.slug}`}>git show →</a></p>
+            </article>
+          ))}
+          {upcoming.map((u: Any) => (
+            <article key={u.id} className="hpost hpost--soon" data-reveal>
+              <p className="hpost__meta"><span className={`pill ${STATUS_CLS[u.status]}`}>{u.status === 'next' ? 'UPCOMING' : 'PLANNED'}</span> {u.stage}</p>
+              <h3 className="hpost__t">{t(u)}</h3>
+              <p className="hpost__s">{u.summary}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Work() {
+  const s = section('work');
+  const f = s.feature;
+  return (
+    <section id="work" className="sec sec--v2" aria-labelledby="work-title">
+      <div className="wrap graph-col graph-col--v2">
+        <CommitLine item={s.commit} />
+        <p className="kick">{t(s.kicker)}</p>
+        <h2 id="work-title" className="h2 v2__title">{t(s.title)}</h2>
+        <p className="lede v2__lede">{t(s.intro)}</p>
+        <div className="work">
+          <article className="work__feat" data-reveal>
+            <div className="work__featcopy">
+              <p className="kick work__featkick">{t(f.kicker)}</p>
+              <h3 className="work__featname">{t(f.name)}</h3>
+              <p className="work__feattext">{t(f.text)}</p>
+              <Chips items={f.chips} className="chip2 chip2--dark" />
+              <div><a className="btn work__featcta" href={f.cta.href} {...ext}>{t(f.cta)}</a></div>
+            </div>
+            <div className="work__phone">
+              <img src={f.image.path} alt={t(f.image)} width={f.image.width} height={f.image.height} loading="lazy" />
+            </div>
+          </article>
+          {s.sites.map((w: Any) => (
+            <article key={w.slug} className="glass work__card" data-reveal>
+              <div className="browser">
+                <div className="browser__bar" aria-hidden="true"><i /><i /><i /><span>{w.domain}</span></div>
+                <img src={w.image.path} alt={t(w.image)} width={w.image.width} height={w.image.height} loading="lazy" />
+              </div>
+              <div className="work__body">
+                <p className="kick">{t(w.kicker)}</p>
+                <h3 className="work__name">{t(w.name)}</h3>
+                <p className="work__text">{t(w.text)}</p>
+                <Chips items={w.chips} />
+                <a className="work__link" href={w.href} {...ext}>{w.domain} ↗</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OpenSource() {
+  const s = section('oss');
+  return (
+    <section id="oss" className="sec sec--v2" aria-labelledby="oss-title">
+      <div className="wrap graph-col graph-col--v2">
+        <CommitLine item={s.commit} />
+        <p className="kick">{t(s.kicker)}</p>
+        <h2 id="oss-title" className="h2 v2__title">{t(s.title)}</h2>
+        <p className="lede v2__lede">{t(s.intro)}</p>
+        <div className="oss">
+          {s.repos.map((r: Any) => (
+            <article key={r.slug} className="glass repo" data-reveal>
+              <div className={`repo__thumb ${r.image.fit === 'contain' ? 'repo__thumb--contain' : ''}`}>
+                <img src={r.image.path} alt={t(r.image)} width={r.image.width} height={r.image.height} loading="lazy" />
+              </div>
+              <p className="repo__row">
+                <a className="repo__path" href={`https://github.com/${r.repo}`} {...ext}>{r.repo}</a>
+                {r.pill && <span className={`pill ${STATUS_CLS[r.pillKind]}`}>{r.pill}</span>}
+              </p>
+              <h3 className="repo__name">{t(r.name)}</h3>
+              <p className="repo__text">{t(r.text)}</p>
+              <Chips items={r.chips} />
+            </article>
+          ))}
+          <article className="glass repo repo--wide" data-reveal>
+            <div className="repo__site">
+              <div className="repo__sitecopy">
+                <a className="repo__path" href={`https://github.com/${s.site.repo}`} {...ext}>{s.site.repo}</a>
+                <h3 className="repo__name">{t(s.site.name)}</h3>
+                <p className="repo__text">{t(s.site.text)}</p>
+                <Chips items={s.site.chips} />
+              </div>
+              <p className="repo__term">
+                <span className="repo__ps">$</span> {t(section('footer').curl.command)}
+                <br />
+                <span className="repo__out">{t(person.name)} · {t(person.title)}</span>
+              </p>
+            </div>
+          </article>
+          <a className="glass repo repo--more" href={s.more.href} {...ext}>
+            <span className="mono-sm">github.com/travist6983</span>
+            <span className="repo__name">{t(s.more)}</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const REMOTE_STYLE: Record<string, { bg: string; fg: string; cbg: string; cfg: string; glyph: React.ReactNode }> = {
+  'contact.remote.email': { bg: '#ff8a5c', fg: '#0c1220', cbg: '#ff8a5c', cfg: '#0c1220', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg> },
+  'contact.remote.x': { bg: '#000', fg: '#fff', cbg: '#fff', cfg: '#000', glyph: 'X' },
+  'contact.remote.linkedin': { bg: '#0a66c2', fg: '#fff', cbg: '#0a66c2', cfg: '#fff', glyph: 'in' },
+  'contact.remote.github': { bg: '#f0f6fc', fg: '#24292f', cbg: '#f0f6fc', cfg: '#24292f', glyph: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg> },
 };
 
-function Independent() {
-  const s = section('independent');
-  return (
-    <section id="independent" className="sec independent" aria-labelledby="independent-title">
-      <div className="wrap graph-col">
-        <div className="sec__head">
-          <Badge>{s.cards.length} projects, built solo</Badge>
-          <h2 id="independent-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">{t(s.intro)}</p>
-        </div>
-        <div className="projects">
-          {s.cards.map((c: Any) => {
-            const dateNeed = needed(c.dates);
-            const retired = c.slug === 'pocket-chronicle';
-            return (
-              <article key={c.slug} className={`glass project project--${c.slug}`} data-branch={retired ? 'retired' : 'open'} data-reveal>
-                <span className="glow glow--accent" aria-hidden="true" style={{ right: -100, top: -120, width: 320, height: 320, opacity: 0.14 }} />
-                <div className="project__top">
-                  <span className="kick" data-commit>{BRANCH[c.slug] ?? 'BRANCH: OPEN'}</span>
-                  <span className="kick kick--mute">{t(c.role ?? c.type)} · {t(c.dates)}</span>
-                </div>
-                {dateNeed && <Needed>{strip(dateNeed)}</Needed>}
-                <h3 className="project__name">{t(c.name)}</h3>
-                <p className="project__status"><span className={`dot ${retired ? 'dot--mute' : 'dot--green'}`} aria-hidden="true" />{t(c.status)}</p>
-                <p className="project__sum">{t(c.summary)}</p>
-                {c.stats?.length > 0 && (
-                  <div className="project__stats">
-                    {c.stats.map((x: Any) => (
-                      <div key={x.id}><span className="statc__num statc__num--sm">{x.value}</span><span className="statc__label">{x.label}</span></div>
-                    ))}
-                  </div>
-                )}
-                <ul className="notes notes--one">
-                  {(c.points ?? []).map((p: Any) => <li key={p.id} className="note" data-commit>{t(p)}</li>)}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+function Remote({ r }: { r: Any }) {
+  const st = REMOTE_STYLE[r.id];
+  const inner = (
+    <>
+      <span className="remote__i" aria-hidden="true" style={{ background: st.bg, color: st.fg }}>{st.glyph}</span>
+      <span className="remote__b">
+        <span className="remote__n">{t(r)}</span>
+        <span className="remote__u">{r.verb} · {r.detail}</span>
+      </span>
+      <span className="remote__c" style={{ background: st.cbg, color: st.cfg }}>
+        <span className="remote__cl">{r.cta}</span> {r.hrefFrom === 'person.email' ? '→' : '↗'}
+      </span>
+    </>
   );
-}
-
-function Career() {
-  const s = section('career');
-  const entries = [...s.entries].reverse();
-  return (
-    <section id="career" className="sec career" aria-labelledby="career-title">
-      <div className="wrap graph-col">
-        <div className="sec__head">
-          <Badge>2006 → 2026</Badge>
-          <h2 id="career-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">{t(s.intro)}</p>
-        </div>
-        <p className="glass log__edu" data-commit><span className="kick">INITIAL COMMIT</span> <b>{t(s.education.heading)}.</b> {t(s.education.entry)}</p>
-        <ol className="log">
-          {entries.map((e: Any) => (
-            <li key={e.slug} className="glass log__item" data-branch="merge" data-reveal>
-              <span className="kick">{e.roles[e.roles.length - 1].dates.split(' to ')[0]} → {e.roles[0].dates.split(' to ')[1]}</span>
-              <h3 className="log__co">{t(e.company)} <span className="log__loc">{t(e.location)}</span></h3>
-              <div className="log__roles">
-                {e.roles.map((r: Any) => (
-                  <p key={r.id} className="log__role"><b>{r.title}</b> <span className="mono-sm">{r.dates}</span></p>
-                ))}
-              </div>
-              {e.context && <p className="log__ctx">{t(e.context)}</p>}
-              {e.progression && <p className="log__ctx">{t(e.progression)}</p>}
-              <ul className="notes notes--one">{(e.highlights ?? []).map((h: Any) => <li key={h.id} className="note" data-commit>{t(h)}</li>)}</ul>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
+  if (r.hrefFrom === 'person.email') return <EmailLink className="remote">{inner}</EmailLink>;
+  const href = content.person[r.hrefFrom.split('.')[1]]?.href;
+  return <a className="remote" href={href} {...(isExt(href) ? ext : {})}>{inner}</a>;
 }
 
 function Contact() {
   const s = section('contact');
   return (
-    <section id="contact" className="sec contact" aria-labelledby="contact-title">
-      <div className="wrap graph-col graph-col--center">
-        <div className="glass contact__card">
-          <span className="glow glow--accent" aria-hidden="true" style={{ left: -140, top: -220, width: 520, height: 520, opacity: 0.28 }} />
-          <span className="glow glow--orange" aria-hidden="true" style={{ right: -140, bottom: -240, width: 480, height: 480, opacity: 0.3 }} />
-          <div className="contact__inner">
-            <span className="merge" data-tag aria-hidden="true">
-              <span className="merge__light" />
-              <span className="merge__text">HEAD → main · {t(s.mergedStatus)}</span>
-            </span>
-            <h2 id="contact-title" className="contact__title">{t(s.heading)}</h2>
-            <p className="lede">{t(s.intro)}</p>
-            <div className="contact__ctas">
-              {s.links.filter((l: Any) => !/github/.test(l.id)).map((l: Any, i: number) => (
-                <Cta key={l.id} item={l} className={i === 0 ? 'btn btn--accent btn--lg' : 'btn btn--soft btn--lg'} />
-              ))}
-            </div>
-            <a className="mono-link" href="https://github.com/travist6983" target="_blank" rel="noopener">github.com/travist6983</a>
-            <p className="fine"><EmailAddress /></p>
+    <section id="contact" className="sec sec--v2 contact2" aria-labelledby="contact-title">
+      <div className="wrap graph-col graph-col--v2">
+        <CommitLine item={s.commit} tag />
+        <div className="glass contact2__card" data-reveal>
+          <div className="contact2__copy">
+            <h2 id="contact-title" className="contact2__title">{t(s.heading)}</h2>
+            <p>{t(s.intro)}</p>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  const s = section('footer');
-  const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
-  const access = body(s.accessibility).replace(/email me\.?$/i, '');
-  // Until the Cloudflare Web Analytics token is set, drop the sentence that says visits are counted.
-  const privacy = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ? body(s.privacy) : body(s.privacy).replace(/\s*Visits are counted[^.]*\./, '');
-  return (
-    <footer className="foot">
-      <div className="wrap foot__grid">
-        <div className="foot__term">
-          <span className="kick foot__kick">{t(s.curl.lead).toUpperCase()}</span>
-          <CopyCommand command={t(s.curl.command)} />
-          <div className="foot__files">
-            {s.machineReadable.map((m: Any) => <a key={m.id} href={m.href}>{t(m)}</a>)}
-          </div>
-        </div>
-        <div className="glass foot__legal">
-          <div className="foot__cols">
-            <div>
-              <h3>Privacy</h3>
-              <p>{privacy}</p>
-            </div>
-            <div>
-              <h3>Accessibility</h3>
-              <p>{access}<EmailLink className="foot__mail">email me</EmailLink>.</p>
-            </div>
-          </div>
-          <div className="foot__names">
-            <h3>Names</h3>
-            <p>{t(s.disclosure)}</p>
-          </div>
-        </div>
-        <div className="glass foot__bar">
-          <span className="foot__who"><b>Travis Terry</b> <span>{t(s.copyright).replace('Travis Terry', '').trim()}</span></span>
-          <nav className="foot__nav" aria-label="Footer">
-            <EmailLink>Email</EmailLink>
-            <a href={person.linkedin?.href} target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/travist6983" target="_blank" rel="noopener">GitHub</a>
-            <a href="#top" className="foot__top">
-              Back to top
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg>
-            </a>
+          <nav className="remotes" aria-label="Contact and social links">
+            <p className="remotes__head"><span><span className="repo__ps">$</span> git remote -v</span><span>contact and socials</span></p>
+            <ul>
+              {s.remotes.map((r: Any) => <li key={r.id}><Remote r={r} /></li>)}
+            </ul>
           </nav>
         </div>
       </div>
-    </footer>
+    </section>
   );
 }
 
 export default function Page() {
   return (
     <MotionProvider>
-      <div className="paper" aria-hidden="true">
-        <span className="blob blob--a" />
-        <span className="blob blob--b" />
-        <span className="blob blob--c" />
-        <span className="blob blob--d" />
-      </div>
+      <Paper />
       <SmoothScroll />
       <ScrollSpy />
       <Reveal />
-      <Header />
+      <SiteHeader where="home" />
       <main id="main">
         <div id="act1" className="act">
           <TicketJourney />
           <Hero />
-          <Sixty />
+          <Kit />
           <Pipeline />
-          <Release />
           <Safety />
-          <Mcp />
         </div>
         <div id="act2" className="act">
           <CommitJourney />
-          <Career />
-          <Platform />
-          <Independent />
-          <Ask />
+          <Journey />
+          <BuildLog />
+          <Work />
+          <OpenSource />
           <Contact />
         </div>
       </main>
-      <Footer />
-      {/* Phones: the site dock (Build log included) replaces the old Email / LinkedIn / Resume bar */}
+      <SiteFooter where="home" />
       <SiteDock where="home" />
     </MotionProvider>
   );
