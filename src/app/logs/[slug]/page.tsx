@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { MotionProvider } from '@/components/motion';
 import { LogsFooter, LogsHeader, Paper, SiteDock } from '@/components/LogsChrome';
 import { CodeCopy, CopyButton, FilesChanged, FilesChangedPhone, ReadPercent } from '@/components/LogsClient';
-import { AUTHOR, EMPTY_SLUG, gitDate, post, posts, shortSlug } from '@/lib/logs';
+import { AUTHOR, EMPTY_SLUG, gitDate, post, posts } from '@/lib/logs';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,7 +38,7 @@ export default async function LogPost({ params }: Props) {
       <Paper />
       <CodeCopy />
       <div className="logs-page">
-        <LogsHeader prompt={{ path: `~/logs/${shortSlug(p.slug)}`, ref: p.commit?.id ?? 'uncommitted' }} />
+        <LogsHeader />
         <main id="main" className="wrap lpage">
           <nav className="pcrumb" aria-label="Breadcrumb">
             <a href="/logs" className="pcrumb__back">← git log</a>

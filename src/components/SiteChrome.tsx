@@ -1,5 +1,5 @@
 import { person, section, t } from '@/lib/content';
-import { EmailLink, KillSwitch } from '@/components/client';
+import { EmailLink } from '@/components/client';
 
 /*
  * Header and footer for the home page and the resume page (v2 design). The build log keeps its own
@@ -11,13 +11,32 @@ type Any = any;
 
 const navItem = (key: string) => section('header').nav.find((n: Any) => n.id === `header.nav.${key}`);
 
-/** Home: in-page section links with the scroll-spy lens. Resume: the same sections, linked back to the home page. */
-const NAV: Record<'home' | 'resume', string[]> = {
-  home: ['kit', 'pipeline', 'safety', 'journey', 'work', 'log'],
-  resume: ['journey', 'kit', 'work', 'oss', 'logs'],
-};
+type Where = 'home' | 'resume' | 'portfolio';
 
-export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
+/** The same three links on every page; on the home page the in-page ones carry the scroll-spy lens. */
+const NAV = ['kit', 'journey', 'logs'];
+
+/**
+ * Portfolio and Resume: the two pages every header links to at every width (the section links hide
+ * below 900px). The page you're on gets the ink style and aria-current.
+ */
+export function PageLinks({ here, size = 'nav' }: { here?: 'portfolio' | 'resume'; size?: 'nav' | 'bar' }) {
+  const h = section('header');
+  const pf = h.nav.find((n: Any) => n.id === 'header.nav.portfolio');
+  const cls = size === 'bar' ? 'lbar__btn' : 'btn btn--pill';
+  return (
+    <>
+      <a className={`${cls} ${here === 'portfolio' ? 'btn--ink' : 'btn--glass'}`} href={pf.href} {...(here === 'portfolio' ? { 'aria-current': 'page' as const } : {})}>
+        {t(pf)}
+      </a>
+      <a className={`${cls} ${here === 'resume' ? 'btn--ink' : 'btn--accent'}`} href={h.resumePage.href} {...(here === 'resume' ? { 'aria-current': 'page' as const } : {})}>
+        {t(h.resumePage)}
+      </a>
+    </>
+  );
+}
+
+export function SiteHeader({ where }: { where: Where }) {
   const h = section('header');
   const home = where === 'home';
   const root = home ? '#top' : '/';
@@ -28,42 +47,33 @@ export function SiteHeader({ where }: { where: 'home' | 'resume' }) {
         <div className="nav__inner">
           <a className="glass pillx nav__mark" href={root}>{t(h.wordmark)}</a>
           <nav aria-label="Sections" className="glass nav__group">
-            {NAV[where].map((key) => {
+            {NAV.map((key) => {
               const n = navItem(key);
               const href: string = n.href.startsWith('#') && !home ? `/${n.href}` : n.href;
               return (
-                <a key={key} href={href} {...(home ? { 'data-spy': n.href.slice(1) } : {})}>
+                <a key={key} href={href} {...(home && n.href.startsWith('#') ? { 'data-spy': n.href.slice(1) } : {})}>
                   {t(n)}
                 </a>
               );
             })}
           </nav>
           <div className="nav__end">
-            <KillSwitch />
-            {home ? (
-              <a className="btn btn--accent btn--pill" href={h.resumePage.href}>{t(h.resumePage)}</a>
-            ) : (
-              <a className="btn btn--ink btn--pill" href={h.resumePage.href} aria-current="page">{t(h.resumePage)}</a>
-            )}
+            <PageLinks here={home ? undefined : where} />
           </div>
         </div>
       </header>
-      {/* Phones (<= 760px): the sticky bar with a terminal-prompt pill, same as the build log */}
+      {/* Phones (<= 760px): a sticky bar with the wordmark and the two page links */}
       <header className="lbar">
         <div className="lbar__inner">
           <a className="lbar__who" href={root}>{t(h.wordmark)}</a>
-          <span className="lbar__prompt" aria-label={home ? 'You are on the home page' : 'You are on the resume page'}>
-            <span className="lbar__ar" aria-hidden="true">&gt;</span>
-            <span aria-hidden="true">{home ? '~' : '~/resume'}</span>
-            <span className="lbar__git" aria-hidden="true">git:(<span className="lbar__ref">main</span>)</span>
-          </span>
+          <nav className="lbar__links" aria-label="Pages"><PageLinks here={home ? undefined : where} size="bar" /></nav>
         </div>
       </header>
     </>
   );
 }
 
-export function SiteFooter({ where }: { where: 'home' | 'resume' }) {
+export function SiteFooter({ where }: { where: Where }) {
   const f = section('footer');
   const h = section('header');
   const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
@@ -75,10 +85,12 @@ export function SiteFooter({ where }: { where: 'home' | 'resume' }) {
       <div className="wrap foot__grid">
         <div className="glass foot__bar">
           <span className="foot__who">
-            <b>{t(person.name)}</b> <span>{where === 'home' ? t(f.tagline) : 'Resume'}</span>
+            <b>{t(person.name)}</b> <span>{where === 'home' ? t(f.tagline) : where === 'resume' ? 'Resume' : 'Portfolio'}</span>
           </span>
           <nav className="foot__nav" aria-label="Footer">
-            {where === 'home' ? <a href={h.resumePage.href}>Resume</a> : <a href="/">Home</a>}
+            {where !== 'home' && <a href="/">Home</a>}
+            {where !== 'portfolio' && <a href="/portfolio">Portfolio</a>}
+            {where !== 'resume' && <a href={h.resumePage.href}>Resume</a>}
             <a href={h.resumePdf.href}>Resume (PDF)</a>
             <a href="/logs">Build log</a>
             <a href="/logs/feed.xml">RSS</a>
@@ -91,5 +103,28 @@ export function SiteFooter({ where }: { where: 'home' | 'resume' }) {
         </p>
       </div>
     </footer>
+  );
+}
+
+/**
+ * Home only, wide screens: a quiet rail of commit dots on the left edge, one per section, with the
+ * one in view lit (ScrollSpy moves it via data-spy). Hover or keyboard focus opens it into a labelled
+ * list for jumping between sections.
+ */
+export function SectionRail() {
+  const items = section('header').rail;
+  return (
+    <nav className="srail" aria-label="Jump to section">
+      <ol className="srail__list">
+        {items.map((n: Any) => (
+          <li key={n.id}>
+            <a className="srail__a" href={n.href} data-spy={n.href.slice(1)}>
+              <span className="srail__d" aria-hidden="true" />
+              <span className="srail__t">{t(n)}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 }

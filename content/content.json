@@ -344,6 +344,14 @@
           "href": "#oss"
         },
         {
+          "id": "header.nav.portfolio",
+          "text": "Portfolio",
+          "src": [
+            "ui"
+          ],
+          "href": "/portfolio"
+        },
+        {
           "id": "header.nav.log",
           "text": "Build log",
           "src": [
@@ -433,7 +441,81 @@
           "ui"
         ],
         "href": "/resume"
-      }
+      },
+      "rail": [
+        {
+          "id": "header.rail.top",
+          "text": "Top",
+          "href": "#top",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.kit",
+          "text": "agent-kit",
+          "href": "#kit",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.pipeline",
+          "text": "Pipeline",
+          "href": "#pipeline",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.safety",
+          "text": "Safety",
+          "href": "#safety",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.journey",
+          "text": "Journey",
+          "href": "#journey",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.log",
+          "text": "Build log",
+          "href": "#log",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.work",
+          "text": "Work",
+          "href": "#work",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.oss",
+          "text": "Open source",
+          "href": "#oss",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.contact",
+          "text": "Contact",
+          "href": "#contact",
+          "src": [
+            "ui"
+          ]
+        }
+      ]
     },
     {
       "id": "hero",
@@ -2027,7 +2109,15 @@
             "height": 750
           }
         }
-      ]
+      ],
+      "all": {
+        "id": "work.all",
+        "text": "See every project in the portfolio →",
+        "src": [
+          "ui"
+        ],
+        "href": "/portfolio"
+      }
     },
     {
       "id": "oss",
@@ -2063,7 +2153,7 @@
         {
           "slug": "rolehawk",
           "repo": "travist6983/rolehawk",
-          "pill": "MIT · v0.2.0",
+          "pill": "MIT · v0.2.13",
           "pillKind": "run",
           "name": {
             "id": "oss.rolehawk.name",
@@ -2962,7 +3052,7 @@
       },
       "accessibility": {
         "id": "footer.accessibility",
-        "text": "Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Pause motion, or your system's reduced-motion setting, stops all animation. If something doesn't work for you, email me.",
+        "text": "Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Your system's reduced-motion setting stops all animation. If something doesn't work for you, email me.",
         "src": [
           "brief:HARD_RULE_5",
           "brief:HARD_RULE_7",
@@ -3039,6 +3129,275 @@
         ],
         "href": "/#journey"
       }
+    },
+    {
+      "id": "portfolio",
+      "kicker": {
+        "id": "portfolio.kicker",
+        "text": "PORTFOLIO",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "portfolio.title",
+        "text": "Every branch I’ve shipped.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "command": {
+        "id": "portfolio.command",
+        "text": "git log --graph --all --since=2026",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "portfolio.intro",
+        "text": "Client sites, iOS apps and open source, drawn as the history they are. Each project branches off main, ships, and merges back. One branch is still open.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "lanes": {
+        "clients": "clients",
+        "apps": "apps",
+        "oss": "open source"
+      },
+      "root": {
+        "id": "portfolio.root",
+        "text": "2006 · my first developer role",
+        "src": [
+          "resume-fs L41"
+        ]
+      },
+      "rootLink": {
+        "id": "portfolio.rootLink",
+        "text": "the full history is on the resume",
+        "src": [
+          "ui"
+        ],
+        "href": "/resume#career"
+      },
+      "projects": [
+        {
+          "slug": "agent-kit",
+          "ref": "kit",
+          "lane": "oss",
+          "branch": "oss/agent-kit",
+          "date": "Nov 2026",
+          "status": "OPEN · HEAD",
+          "state": "open",
+          "type": "feat",
+          "msg": {
+            "id": "portfolio.agent-kit.msg",
+            "text": "36 skills, a knowledge brain and a kill switch",
+            "src": [
+              "agent-kit README"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.agent-kit.diff",
+            "text": "+36 skills  +11 mods  +29 test suites",
+            "src": [
+              "agent-kit README"
+            ]
+          },
+          "head": true,
+          "chips": [
+            "Claude Code",
+            "Python",
+            "Bash",
+            "Postgres + pgvector"
+          ],
+          "links": [
+            {
+              "text": "How it works",
+              "href": "/#kit"
+            }
+          ]
+        },
+        {
+          "slug": "movement",
+          "ref": "work.feature",
+          "lane": "apps",
+          "branch": "apps/movement",
+          "date": "Nov 2026",
+          "status": "MERGED · APP STORE",
+          "state": "merged",
+          "type": "release",
+          "msg": {
+            "id": "portfolio.movement.msg",
+            "text": "Movement: Watchmaker on the App Store",
+            "src": [
+              "app-store:id6834204517"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.movement.diff",
+            "text": "+24 movements  +synthesized sound",
+            "src": [
+              "Movement docs/store/listing.md"
+            ]
+          }
+        },
+        {
+          "slug": "ross-towing",
+          "ref": "work.sites.ross-towing",
+          "lane": "clients",
+          "branch": "clients/ross-towing",
+          "date": "Nov 2026",
+          "status": "MERGED · LIVE",
+          "state": "merged",
+          "type": "feat",
+          "msg": {
+            "id": "portfolio.ross-towing.msg",
+            "text": "scroll journey down Telegraph Rd",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.ross-towing.diff",
+            "text": "+tow requests  +freight quotes  +local SEO",
+            "src": [
+              "site:rosstow.com"
+            ]
+          }
+        },
+        {
+          "slug": "proplab",
+          "ref": "oss.repos.proplab",
+          "lane": "oss",
+          "branch": "oss/proplab",
+          "date": "Nov 2026",
+          "status": "MERGED",
+          "state": "merged",
+          "type": "feat",
+          "msg": {
+            "id": "portfolio.proplab.msg",
+            "text": "distributions, not single numbers",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.proplab.diff",
+            "text": "+walk-forward backtest  +calibration",
+            "src": [
+              "github:travist6983/proplab"
+            ]
+          }
+        },
+        {
+          "slug": "rolehawk",
+          "ref": "oss.repos.rolehawk",
+          "lane": "oss",
+          "branch": "oss/rolehawk",
+          "date": "Nov 2026",
+          "status": "MERGED · v0.2.13",
+          "state": "merged",
+          "type": "release",
+          "msg": {
+            "id": "portfolio.rolehawk.msg",
+            "text": "v0.2.13, MIT licensed",
+            "src": [
+              "github:travist6983/rolehawk releases"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.rolehawk.diff",
+            "text": "+local first  +private  +MIT",
+            "src": [
+              "github:travist6983/rolehawk"
+            ]
+          }
+        },
+        {
+          "slug": "travisjterry-dev",
+          "ref": "oss.site",
+          "lane": "oss",
+          "branch": "oss/travisjterry.dev",
+          "date": "Oct 2026",
+          "status": "MERGED · LIVE",
+          "state": "merged",
+          "type": "feat",
+          "msg": {
+            "id": "portfolio.travisjterry-dev.msg",
+            "text": "fail the build on any unsourced claim",
+            "src": [
+              "README"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.travisjterry-dev.diff",
+            "text": "+RAG assistant  +curl resume  +build log",
+            "src": [
+              "README"
+            ]
+          },
+          "domain": "travisjterry.dev",
+          "image": {
+            "id": "portfolio.site.image",
+            "text": "travisjterry.dev home page: the agent-kit hero with the backlog of ticket cards",
+            "src": [
+              "ui"
+            ],
+            "path": "/work/travisjterry-dev.webp",
+            "width": 1200,
+            "height": 750
+          }
+        },
+        {
+          "slug": "a-1bracket",
+          "ref": "work.sites.a-1bracket",
+          "lane": "clients",
+          "branch": "clients/a-1-bracket",
+          "date": "Sep 2026",
+          "status": "MERGED · LIVE",
+          "state": "merged",
+          "type": "refactor",
+          "msg": {
+            "id": "portfolio.a-1bracket.msg",
+            "text": "off WordPress after ten years",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.a-1bracket.diff",
+            "text": "−WordPress  −GoDaddy  +static  +Cloudflare Worker forms",
+            "src": [
+              "a-1bracket README"
+            ]
+          }
+        },
+        {
+          "slug": "pocket-chronicle",
+          "ref": "oss.repos.pocket-chronicle",
+          "lane": "apps",
+          "branch": "apps/pocket-chronicle",
+          "date": "Sep 2026",
+          "status": "MERGED · RETIRED",
+          "state": "retired",
+          "type": "release",
+          "msg": {
+            "id": "portfolio.pocket-chronicle.msg",
+            "text": "shipped solo in about a month",
+            "src": [
+              "decisions:Independent"
+            ]
+          },
+          "diff": {
+            "id": "portfolio.pocket-chronicle.diff",
+            "text": "+about 2,700 tests  +200 merged PRs",
+            "src": [
+              "decisions:Independent"
+            ]
+          }
+        }
+      ]
     }
   ],
   "placeholderStyle": "Every confirmText renders on the page as a loud, striped yellow NEEDED FROM TRAVIS callout naming what is missing. Launch is blocked while any remain."

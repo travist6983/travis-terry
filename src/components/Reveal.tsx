@@ -8,6 +8,7 @@ import { useMotion } from './client';
  * - [data-reveal]: fades and lifts in once.
  * - .release: "about a week" strikes through as "8 to 12 hours" arrives.
  * - .contact: the PR merges and its status light turns green.
+ * - [data-scrub]: --p runs 0..1 as it scrolls through (the resume's career line draws down).
  * - page tone shifts from warm (backlog) to cool (shipped) via --tone on <html>.
  */
 export function Reveal() {
@@ -17,6 +18,7 @@ export function Reveal() {
     if (!on) {
       root.style.removeProperty('--tone');
       document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
+      document.querySelectorAll<HTMLElement>('[data-scrub]').forEach((el) => el.style.removeProperty('--p'));
       document.querySelectorAll('.release, .contact, .mcp__fig').forEach((el) => el.classList.add('is-done'));
       return;
     }
@@ -37,6 +39,15 @@ export function Reveal() {
             trigger: el,
             start: 'top 70%',
             end: 'center 45%',
+            scrub: true,
+            onUpdate: (s) => el.style.setProperty('--p', s.progress.toFixed(3)),
+          });
+        });
+        document.querySelectorAll<HTMLElement>('[data-scrub]').forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 75%',
+            end: 'bottom 70%',
             scrub: true,
             onUpdate: (s) => el.style.setProperty('--p', s.progress.toFixed(3)),
           });

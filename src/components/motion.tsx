@@ -1,76 +1,45 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 /*
- * Motion: the provider, the Pause motion switch and smooth scroll. Kept apart from client.tsx,
+ * Motion: the provider and smooth scroll. Kept apart from client.tsx,
  * which imports content.json, so pages that only need motion (the build log) don't ship the copy.
  * client.tsx re-exports these, so the home page uses the same context.
  */
 
-/* ---------- Motion kill switch ---------- */
+/* ---------- Motion: on, unless the OS asks for reduced motion ---------- */
 
-type MotionState = { on: boolean; toggle: () => void };
-const MotionCtx = createContext<MotionState>({ on: true, toggle: () => {} });
+type MotionState = { on: boolean };
+const MotionCtx = createContext<MotionState>({ on: true });
 export const useMotion = () => useContext(MotionCtx);
-
-const KEY = 'tt-motion';
-
-function readSaved(): string | null {
-  try {
-    return localStorage.getItem(KEY);
-  } catch {
-    return null;
-  }
-}
 
 export function MotionProvider({ children }: { children: React.ReactNode }) {
   const [on, setOn] = useState(true);
 
   useEffect(() => {
-    // The OS reduced-motion setting always wins (DECISIONS Q9).
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setOn(!reduced && readSaved() !== 'off');
+    // The OS reduced-motion setting always wins (DECISIONS Q9). The old Pause motion switch saved
+    // its choice under tt-motion; drop it so nobody stays paused with no switch to undo it.
+    try {
+      localStorage.removeItem('tt-motion');
+    } catch {
+      /* storage blocked */
+    }
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setOn(!mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
   }, []);
 
   useEffect(() => {
     document.documentElement.dataset.motion = on ? 'on' : 'off';
   }, [on]);
 
-  const toggle = useCallback(() => {
-    setOn((prev) => {
-      const next = !prev;
-      try {
-        localStorage.setItem(KEY, next ? 'on' : 'off');
-      } catch {
-        /* storage blocked: the choice lasts for this visit only */
-      }
-      return next;
-    });
-  }, []);
-
-  return <MotionCtx.Provider value={{ on, toggle }}>{children}</MotionCtx.Provider>;
+  return <MotionCtx.Provider value={{ on }}>{children}</MotionCtx.Provider>;
 }
 
-/** The Pause motion switch. Labels come in as props so this module never imports content.json. */
-export function MotionToggle({ variant = 'nav', pauseLabel, pausedLabel }: { variant?: 'nav' | 'panel'; pauseLabel: string; pausedLabel: string }) {
-  const { on, toggle } = useMotion();
-  return (
-    <button
-      type="button"
-      className={`kill kill--${variant} ${variant === 'nav' ? 'glass' : ''}`}
-      aria-pressed={!on}
-      onClick={toggle}
-    >
-      <span className="kill__track" aria-hidden="true">
-        <span className="kill__thumb" />
-      </span>
-      <span className="kill__label">{on ? pauseLabel : pausedLabel}</span>
-    </button>
-  );
-}
-
-/* ---------- Smooth scroll (off with the kill switch) ---------- */
+/* ---------- Smooth scroll (off with reduced motion) ---------- */
 
 export function SmoothScroll() {
   const { on } = useMotion();

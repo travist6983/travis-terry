@@ -1,5 +1,5 @@
 import { section, t } from '@/lib/content';
-import { MotionToggle } from '@/components/motion';
+import { PageLinks } from '@/components/SiteChrome';
 import type { Commit } from '@/lib/logs';
 
 /*
@@ -10,7 +10,7 @@ import type { Commit } from '@/lib/logs';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
-const SHOW = ['journey', 'kit', 'work', 'oss', 'logs'];
+const SHOW = ['kit', 'journey', 'logs'];
 
 export function Paper() {
   return (
@@ -23,10 +23,7 @@ export function Paper() {
   );
 }
 
-/** The prompt in the phone top bar: `> ~/logs git:(main)`, or a post's short slug and commit id. */
-export type Prompt = { path: string; ref: string };
-
-export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { prompt?: Prompt }) {
+export function LogsHeader() {
   const h = section('header');
   return (
     <>
@@ -47,21 +44,16 @@ export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { promp
               })}
           </nav>
           <div className="nav__end">
-            <MotionToggle pauseLabel={t(h.motionControl.pauseLabel)} pausedLabel={t(h.motionControl.statusPaused)} />
-            <a className="btn btn--accent btn--pill" href={h.resumePage.href}>{t(h.resumePage)}</a>
+            <PageLinks />
           </div>
         </div>
       </header>
-      {/* Phones (<= 760px): a sticky bar with a terminal-prompt pill instead of the header */}
+      {/* Phones (<= 760px): a sticky bar with the wordmark and the two page links */}
       <header className="lbar">
         <a className="skip" href="#main">{t(h.skipLink)}</a>
         <div className="lbar__inner">
           <a className="lbar__who" href="/">{t(h.wordmark)}</a>
-          <span className="lbar__prompt" aria-label={`You are in ${prompt.path}, ${prompt.ref}`}>
-            <span className="lbar__ar" aria-hidden="true">&gt;</span>
-            <span aria-hidden="true">{prompt.path}</span>
-            <span className="lbar__git" aria-hidden="true">git:(<span className="lbar__ref">{prompt.ref}</span>)</span>
-          </span>
+          <nav className="lbar__links" aria-label="Pages"><PageLinks size="bar" /></nav>
         </div>
       </header>
     </>
@@ -82,9 +74,10 @@ const DOCK: { key: string; label: string; href: string }[] = [
  * dock of commit-dot links. HEAD sits on the page you're on; on the home page the in-page links
  * carry data-spy, so the home page's ScrollSpy moves HEAD as you scroll.
  */
-export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' | 'resume' }) {
+export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' | 'resume' | 'portfolio' }) {
   const home = where === 'home';
-  const here = (key: string) => (key === 'logs' && (where === 'logs' || where === 'post')) || (key === 'resume' && where === 'resume');
+  const here = (key: string) =>
+    (key === 'logs' && (where === 'logs' || where === 'post')) || (key === 'resume' && where === 'resume') || (key === 'work' && where === 'portfolio');
   return (
     <nav className="ldock" aria-label="Sections">
       <span className="ldock__rail" aria-hidden="true" />
@@ -94,7 +87,7 @@ export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' | 'resume'
         return (
           <a
             key={key}
-            href={inPage && !home ? (key === 'top' ? '/' : `/${href}`) : href}
+            href={inPage && !home ? (key === 'top' ? '/' : key === 'work' ? '/portfolio' : `/${href}`) : href}
             className={`ldock__node${on ? ' is-on' : ''}`}
             aria-current={on ? (where === 'post' ? 'true' : 'page') : undefined}
             {...(home && inPage ? { 'data-spy': key } : {})}

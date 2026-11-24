@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { person, section, t } from '@/lib/content';
 import { Ask } from '@/components/Ask';
-import { CopyCommand, EmailLink, MotionProvider } from '@/components/client';
+import { CopyCommand, EmailLink, MotionProvider, SmoothScroll } from '@/components/client';
+import { Reveal } from '@/components/Reveal';
 import { StackTabs } from '@/components/Designed';
 import { Paper, SiteDock } from '@/components/LogsChrome';
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -21,12 +22,15 @@ const cap = (s: string) => (/^npm\b/.test(s) ? s : s.charAt(0).toUpperCase() + s
 /* The resume's skill groups (content.json sixty.stack), one tab each. */
 const STACK = section('sixty').stack.map((g: Any) => ({ label: g.label, items: t(g).split(', ').map(cap) }));
 
+// Stagger for the hero's entrance
+const rd = (i: number) => ({ style: { '--rd': `${i * 0.08}s` } as React.CSSProperties });
+
 function Entry({ e, first, last }: { e: Any; first: boolean; last: boolean }) {
   const loc = t(e.location);
   const note = e.context ?? e.progression;
   const bullets = e.short ?? e.highlights ?? [];
   return (
-    <li className={`rentry${first ? ' rentry--head' : ''}`}>
+    <li className={`rentry${first ? ' rentry--head' : ''}`} data-reveal>
       <span className="rentry__d" aria-hidden="true" />
       <article className="glass rentry__card">
         {(first || last || loc) && (
@@ -66,19 +70,21 @@ export default function ResumePage() {
   return (
     <MotionProvider>
       <Paper />
+      <SmoothScroll />
+      <Reveal />
       <SiteHeader where="resume" />
       <main id="main" className="rpage">
         <section id="top" className="wrap rhero" aria-labelledby="name">
-          <nav aria-label="Breadcrumb" className="rcrumb"><a href="/">~</a> / resume</nav>
+          <nav aria-label="Breadcrumb" className="rcrumb" data-reveal {...rd(0)}><a href="/">~</a> / resume</nav>
           <div className="rhero__row">
             <div className="rhero__copy">
-              <p className="kick">{t(r.kicker)}</p>
-              <h1 id="name" className="rhero__name">{t(person.name)}</h1>
-              <p className="rhero__title">{t(person.title)}</p>
-              <p className="rhero__sum">{t(r.summary)}</p>
-              <p className="mono-sm">{t(r.location)}</p>
+              <p className="kick" data-reveal {...rd(1)}>{t(r.kicker)}</p>
+              <h1 id="name" className="rhero__name" data-reveal {...rd(2)}>{t(person.name)}</h1>
+              <p className="rhero__title" data-reveal {...rd(3)}>{t(person.title)}</p>
+              <p className="rhero__sum" data-reveal {...rd(4)}>{t(r.summary)}</p>
+              <p className="mono-sm" data-reveal {...rd(5)}>{t(r.location)}</p>
             </div>
-            <div className="rhero__get">
+            <div className="rhero__get" data-reveal {...rd(4)}>
               <a className="btn btn--accent btn--pill" href={h.resumePdf.href}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -95,7 +101,7 @@ export default function ResumePage() {
           </div>
         </section>
 
-        <section className="wrap rstack" aria-label="Stack">
+        <section className="wrap rstack" aria-label="Stack" data-reveal>
           <StackTabs groups={STACK} />
         </section>
 
@@ -105,13 +111,13 @@ export default function ResumePage() {
               <h2 className="rlog__title">{t(r.logTitle)}</h2>
               <span className="mono-sm">git log --first-parent</span>
             </div>
-            <ol className="rlog__list">
+            <ol className="rlog__list" data-scrub>
               {entries.map((e: Any, i: number) => <Entry key={e.slug} e={e} first={i === 0} last={i === entries.length - 1} />)}
             </ol>
-            <p className="glass rlog__edu"><span className="kick">EDUCATION</span> {t(career.education.entry)}</p>
+            <p className="glass rlog__edu" data-reveal><span className="kick">EDUCATION</span> {t(career.education.entry)}</p>
           </div>
 
-          <aside className="rside" aria-label="Ask my resume and links">
+          <aside className="rside" aria-label="Ask my resume and links" data-reveal {...rd(2)}>
             <Ask variant="side" />
             <section className="glass rbox" aria-labelledby="elsewhere-title">
               <h2 id="elsewhere-title" className="kick rbox__h">ELSEWHERE</h2>

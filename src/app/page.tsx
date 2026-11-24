@@ -7,7 +7,7 @@ import { Accent } from '@/components/Accent';
 import { Needed } from '@/components/Needed';
 import { Pipeline } from '@/components/Pipeline';
 import { Reveal } from '@/components/Reveal';
-import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
+import { SectionRail, SiteFooter, SiteHeader } from '@/components/SiteChrome';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
@@ -307,6 +307,7 @@ function Work() {
             </article>
           ))}
         </div>
+        <p className="work__all"><a className="btn btn--pill btn--ink" href={s.all.href}>{t(s.all)}</a></p>
       </div>
     </section>
   );
@@ -418,6 +419,7 @@ export default function Page() {
       <ScrollSpy />
       <Reveal />
       <SiteHeader where="home" />
+      <SectionRail />
       <main id="main">
         <div id="act1" className="act">
           <TicketJourney />
