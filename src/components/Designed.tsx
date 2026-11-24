@@ -64,8 +64,9 @@ export function StackTabs({ groups }: { groups: { label: string; items: string[]
           ))}
         </div>
       </div>
-      <div className="tags">
-        {groups[tab].items.map((x) => <span key={x} className="tag">{x}</span>)}
+      {/* Keyed by tab so a new group's tags pop in, one after another */}
+      <div className="tags" key={tab}>
+        {groups[tab].items.map((x, i) => <span key={x} className="tag" style={{ '--i': i } as React.CSSProperties}>{x}</span>)}
       </div>
     </div>
   );

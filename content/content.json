@@ -441,7 +441,81 @@
           "ui"
         ],
         "href": "/resume"
-      }
+      },
+      "rail": [
+        {
+          "id": "header.rail.top",
+          "text": "Top",
+          "href": "#top",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.kit",
+          "text": "agent-kit",
+          "href": "#kit",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.pipeline",
+          "text": "Pipeline",
+          "href": "#pipeline",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.safety",
+          "text": "Safety",
+          "href": "#safety",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.journey",
+          "text": "Journey",
+          "href": "#journey",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.log",
+          "text": "Build log",
+          "href": "#log",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.work",
+          "text": "Work",
+          "href": "#work",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.oss",
+          "text": "Open source",
+          "href": "#oss",
+          "src": [
+            "ui"
+          ]
+        },
+        {
+          "id": "header.rail.contact",
+          "text": "Contact",
+          "href": "#contact",
+          "src": [
+            "ui"
+          ]
+        }
+      ]
     },
     {
       "id": "hero",
@@ -2978,7 +3052,7 @@
       },
       "accessibility": {
         "id": "footer.accessibility",
-        "text": "Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Pause motion, or your system's reduced-motion setting, stops all animation. If something doesn't work for you, email me.",
+        "text": "Accessibility: all content is real text in reading order and works with a keyboard and screen readers. Your system's reduced-motion setting stops all animation. If something doesn't work for you, email me.",
         "src": [
           "brief:HARD_RULE_5",
           "brief:HARD_RULE_7",

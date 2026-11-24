@@ -1,32 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MotionToggle, useMotion } from './motion';
+import { useMotion } from './motion';
 import { EMAIL_DOMAIN, EMAIL_USER, section, t } from '@/lib/content';
 
-/* ---------- Motion kill switch (provider, toggle and smooth scroll live in ./motion) ---------- */
+/* ---------- Motion (provider and smooth scroll live in ./motion) ---------- */
 
-export { MotionProvider, MotionToggle, SmoothScroll, useMotion } from './motion';
-
-export function KillSwitch({ variant = 'nav' }: { variant?: 'nav' | 'panel' }) {
-  const { on } = useMotion();
-  const mc = section('header').motionControl;
-  const button = <MotionToggle variant={variant} pauseLabel={t(mc.pauseLabel)} pausedLabel={t(mc.statusPaused)} />;
-  if (variant === 'nav') return button;
-  return (
-    <div className="killbox">
-      {button}
-      <div className="tags tags--sm">
-        {['bug loop', 'feature loop', 'regression lane'].map((l) => (
-          <span key={l} className={`tag tag--mono ${on ? 'is-run' : 'is-stop'}`}>
-            <span className="tag__dot" aria-hidden="true" />
-            {l} · {on ? 'running' : 'paused'}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+export { MotionProvider, SmoothScroll, useMotion } from './motion';
 
 /* ---------- Nav scroll spy: the lens follows the section in view ---------- */
 
