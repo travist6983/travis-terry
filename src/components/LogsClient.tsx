@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { CommitJourney } from './Journeys';
+import { Branch, CHECK_ICON_HTML, CLONE_ICON_HTML, Clone, Cmd, Switch } from './Buttons';
 import { SmoothScroll } from './motion';
 import type { Commit, Heading, Post } from '@/lib/logs';
 
@@ -22,26 +23,11 @@ async function copy(text: string) {
 }
 
 /** A Copy button that only appears once JavaScript can make it work. `text` null copies the page URL. */
-export function CopyButton({ text, label, className }: { text: string | null; label: string; className?: string }) {
+export function CopyButton({ text, label, light = true }: { text: string | null; label: string; light?: boolean }) {
   const [ready, setReady] = useState(false);
-  const [done, setDone] = useState(false);
   useEffect(() => setReady(true), []);
   if (!ready) return null;
-  return (
-    <button
-      type="button"
-      className={className}
-      onClick={async () => {
-        if (await copy(text ?? window.location.href.split('#')[0])) {
-          setDone(true);
-          setTimeout(() => setDone(false), 1600);
-        }
-      }}
-    >
-      {done ? 'Copied' : label}
-      <span className="sr-only" aria-live="polite">{done ? ' to clipboard' : ''}</span>
-    </button>
-  );
+  return <Clone text={text} label={label} light={light} />;
 }
 
 /** Wires the Copy buttons that logs-core renders into code cards (they ship hidden). */
@@ -50,11 +36,18 @@ export function CodeCopy() {
     const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-copy-code]'));
     const handlers = buttons.map((b) => {
       b.hidden = false;
+      b.classList.add('bclone', 'bclone--code');
+      const rest = () => {
+        b.classList.remove('is-ok');
+        b.innerHTML = `${CLONE_ICON_HTML}clone`;
+      };
+      rest();
       const onClick = async () => {
         const code = b.closest('figure')?.querySelector('pre')?.textContent ?? '';
         if (await copy(code)) {
-          b.textContent = 'Copied';
-          setTimeout(() => (b.textContent = 'Copy'), 1600);
+          b.classList.add('is-ok');
+          b.innerHTML = `${CHECK_ICON_HTML}cloned`;
+          setTimeout(rest, 2000);
         }
       };
       b.addEventListener('click', onClick);
@@ -132,21 +125,20 @@ export function LogList({ posts }: { posts: Post[] }) {
           <span className="lsearch__cmd">git log --grep=</span>
           <input id="grep" className="lsearch__q" type="search" aria-label="Search posts" placeholder="search posts" autoComplete="off" value={q} onChange={(e) => setQ(e.target.value)} />
         </label>
-        <div className="glass lseg" role="group" aria-label="View">
-          <button type="button" className={view === 'graph' ? 'is-on' : undefined} aria-pressed={view === 'graph'} onClick={() => setView('graph')}>--graph</button>
-          <button type="button" className={view === 'oneline' ? 'is-on' : undefined} aria-pressed={view === 'oneline'} onClick={() => setView('oneline')}>--oneline</button>
-        </div>
+        <Switch
+          className="bsw--sm"
+          label="View"
+          value={view}
+          onChange={setView}
+          items={[{ value: 'graph', label: '--graph' }, { value: 'oneline', label: '--oneline' }]}
+        />
       </div>
 
       {chips.length > 0 && (
         <div className="lchips" role="group" aria-label="Filter by tag">
-          <button type="button" className={`lchip${tag === null ? ' is-on' : ''}`} aria-pressed={tag === null} onClick={() => setTag(null)}>
-            all <span className="lchip__n">{posts.length}</span>
-          </button>
+          <Branch on={tag === null} color="#0c1220" count={posts.length} onClick={() => setTag(null)}>all</Branch>
           {chips.map(([t, n]) => (
-            <button key={t} type="button" className={`lchip${tag === t ? ' is-on' : ''}`} aria-pressed={tag === t} onClick={() => setTag(tag === t ? null : t)}>
-              {t} <span className="lchip__n">{n}</span>
-            </button>
+            <Branch key={t} on={tag === t} count={n} onClick={() => setTag(tag === t ? null : t)}>{t}</Branch>
           ))}
         </div>
       )}
@@ -186,7 +178,7 @@ export function LogList({ posts }: { posts: Post[] }) {
                               {Array.from({ length: 5 }, (_, i) => <i key={i} className={i < blocks(p.mins) ? 'on' : undefined} />)}
                             </span>
                           </span>
-                          <a href={`/logs/${p.slug}`} className="lpost__show" aria-label={`git show: read ${p.title}`}>git show →</a>
+                          <Cmd href={`/logs/${p.slug}`} cmd="git show" size="sm" className="lpost__show" label={`git show: read ${p.title}`} />
                         </div>
                       </div>
                     </li>
@@ -225,7 +217,7 @@ export function LogList({ posts }: { posts: Post[] }) {
             <p className="lcard__p">New posts land in the feed the day they merge.</p>
             <div className="lterm">
               <code><span className="lterm__ps" aria-hidden="true">$ </span>curl -sL travisjterry.dev/logs/feed.xml</code>
-              <CopyButton text="curl -sL https://travisjterry.dev/logs/feed.xml" label="Copy" className="lterm__copy" />
+              <CopyButton text="curl -sL https://travisjterry.dev/logs/feed.xml" label="clone" light={false} />
             </div>
             <a className="mono-link lcard__rss" href="/logs/feed.xml">RSS: /logs/feed.xml</a>
           </section>

@@ -3,7 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ask, content, needed, section, t } from '@/lib/content';
 import { EmailLink } from './client';
+import { Branch, PushButton, PushInner } from './Buttons';
 import { Needed } from './Needed';
+
+// Suggestion chips take the portfolio's branch colours in turn
+const CHIP_COLORS = ['#0a6fd6', '#7c5cff', '#ff6a14', '#128a37'];
 
 type Entry = {
   id: string;
@@ -225,7 +229,7 @@ export function Ask({ variant = 'section' }: { variant?: 'section' | 'side' }) {
                   {reply.kind === 'fallback' && (
                     <>
                       <p>{reply.note ? reply.note.replace(/Email me\.?$/, '').trim() : t(s.fallback).replace(/Email me\.?$/, '').trim()}</p>
-                      <EmailLink className="btn btn--accent btn--sm">Email me</EmailLink>
+                      <EmailLink className="bpush bpush--sm"><PushInner label="Email me" cmd="$ git send-email" done="✓ opening mail" /></EmailLink>
                     </>
                   )}
                 </div>
@@ -256,24 +260,24 @@ export function Ask({ variant = 'section' }: { variant?: 'section' | 'side' }) {
         placeholder={side ? 'What has he built with agents?' : t(s.placeholder)}
         autoComplete="off"
       />
-      <button type="submit" className="btn btn--accent">{t(s.submit)}</button>
+      <PushButton type="submit" size="sm" label={t(s.submit)} cmd={s.submit.cmd} done={s.submit.done} />
     </form>
   );
 
   const chips = (
     <div className={side ? 'rask__chips' : 'chips'}>
-      {suggestions.map((e) => (
-        <button
+      {suggestions.map((e, i) => (
+        <Branch
           key={e.id}
-          type="button"
-          className={side ? 'rask__chip' : 'glass chip'}
+          color={CHIP_COLORS[i % CHIP_COLORS.length]}
+          className="bbr--ask"
           onClick={() => {
             setQ(e.question);
             run(e.question);
           }}
         >
           {e.question}
-        </button>
+        </Branch>
       ))}
     </div>
   );

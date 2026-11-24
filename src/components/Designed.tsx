@@ -2,6 +2,7 @@
 
 /* Interactive pieces from the "Cool Paper Glass" design. Copy comes from content.json and the resume. */
 import { useEffect, useRef, useState } from 'react';
+import { Switch } from './Buttons';
 import { useMotion } from './client';
 
 /* ---------- 60-second version: Top five selector ---------- */
@@ -56,13 +57,13 @@ export function StackTabs({ groups }: { groups: { label: string; items: string[]
     <div className="glass panel">
       <div className="panel__head">
         <h3 className="caps">Stack</h3>
-        <div className="seg seg--flat" role="group" aria-label="Stack area">
-          {groups.map((g, i) => (
-            <button key={g.label} type="button" aria-pressed={i === tab} className={i === tab ? 'is-on' : ''} onClick={() => setTab(i)}>
-              {g.label}
-            </button>
-          ))}
-        </div>
+        <Switch
+          tabs
+          label="Stack area"
+          value={String(tab)}
+          onChange={(v) => setTab(Number(v))}
+          items={groups.map((g, i) => ({ value: String(i), label: g.label }))}
+        />
       </div>
       {/* Keyed by tab so a new group's tags pop in, one after another */}
       <div className="tags" key={tab}>

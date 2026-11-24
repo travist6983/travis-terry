@@ -4,6 +4,7 @@ import { MotionProvider } from '@/components/motion';
 import { LogsFooter, LogsHeader, Paper, SiteDock } from '@/components/LogsChrome';
 import { CodeCopy, CopyButton, FilesChanged, FilesChangedPhone, ReadPercent } from '@/components/LogsClient';
 import { AUTHOR, EMPTY_SLUG, gitDate, post, posts } from '@/lib/logs';
+import { Cmd, Fetch } from '@/components/Buttons';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -41,7 +42,7 @@ export default async function LogPost({ params }: Props) {
         <LogsHeader post />
         <main id="main" className="wrap lpage">
           <nav className="pcrumb" aria-label="Breadcrumb">
-            <a href="/logs" className="pcrumb__back">← git log</a>
+            <Cmd href="/logs" cmd="git log" size="sm" className="pcrumb__back" label="Back to all posts (git log)" />
             <span className="pcrumb__trail" aria-hidden="true">/</span>
             <span className="pcrumb__trail">logs</span>
             <span className="pcrumb__trail" aria-hidden="true">/</span>
@@ -82,8 +83,8 @@ export default async function LogPost({ params }: Props) {
                 </div>
                 {p.commit && (
                   <div className="pcommit__btns">
-                    <CopyButton text={p.commit.sha} label="Copy SHA" className="pbtn" />
-                    <a href={p.commit.url} className="pbtn pbtn--link" target="_blank" rel="noopener">View on GitHub ↗</a>
+                    <CopyButton text={p.commit.sha} label="clone SHA" />
+                    <Fetch href={p.commit.url}>View on GitHub</Fetch>
                   </div>
                 )}
               </div>
@@ -109,7 +110,7 @@ export default async function LogPost({ params }: Props) {
                   <span>Signed-off-by: {AUTHOR}</span>
                   <span className="psign__links">
                     <a href={p.editUrl} target="_blank" rel="noopener">Edit on GitHub</a>
-                    <CopyButton text={null} label="Copy link" className="psign__copy" />
+                    <CopyButton text={null} label="clone link" />
                     <a href="/logs/feed.xml">RSS</a>
                   </span>
                 </div>
