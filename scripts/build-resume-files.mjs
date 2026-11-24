@@ -270,6 +270,7 @@ const llms = [
   anchor('oss', t('oss.title'), t('oss.intro')),
   anchor('contact', 'Contact', t('contact.intro')),
   `- [Resume](${SITE}/resume): ${t('resume.summary')} Every role from 2006 to now, plus education.`,
+  `- [Portfolio](${SITE}/portfolio): ${t('portfolio.intro')}`,
   `- [Build log](${SITE}/logs): posts on building and running agent-kit, with an RSS feed`,
   '',
   '## Contact',
