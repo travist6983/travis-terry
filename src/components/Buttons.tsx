@@ -123,8 +123,12 @@ export function Cmd({ href, cmd, label, size = 'md', className }: { href: string
       {...ext(href)}
     >
       <span className="bcmd__ps" aria-hidden="true">$</span>
-      <span className="bcmd__ty">{cmd}</span>
-      <span className="bcmd__ct" aria-hidden="true" />
+      {/* The box keeps the full command's width while the text retypes inside it; if the button
+          shrank on hover it would slip out from under the pointer and flicker in and out of hover. */}
+      <span className="bcmd__box">
+        <span className="bcmd__ty">{cmd}</span>
+        <span className="bcmd__ct" aria-hidden="true" />
+      </span>
     </a>
   );
 }
