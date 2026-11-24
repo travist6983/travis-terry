@@ -10,7 +10,7 @@ import type { Commit } from '@/lib/logs';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
-const SHOW = ['sixty', 'pipeline', 'career', 'contact', 'logs'];
+const SHOW = ['journey', 'kit', 'work', 'oss', 'logs'];
 
 export function Paper() {
   return (
@@ -48,14 +48,7 @@ export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { promp
           </nav>
           <div className="nav__end">
             <MotionToggle pauseLabel={t(h.motionControl.pauseLabel)} pausedLabel={t(h.motionControl.statusPaused)} />
-            <a className="btn btn--accent btn--pill" href={h.resumePdf.href}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Resume
-            </a>
+            <a className="btn btn--accent btn--pill" href={h.resumePage.href}>{t(h.resumePage)}</a>
           </div>
         </div>
       </header>
@@ -75,35 +68,36 @@ export function LogsHeader({ prompt = { path: '~/logs', ref: 'main' } }: { promp
   );
 }
 
-// Dock order and short labels; the targets come from the header's nav items in content.json.
-const DOCK: [string, string][] = [['sixty', '60s'], ['pipeline', 'pipeline'], ['career', 'career'], ['contact', 'contact'], ['logs', 'log']];
+// Dock order, short labels and targets. In-page targets get the home page's scroll spy.
+const DOCK: { key: string; label: string; href: string }[] = [
+  { key: 'top', label: 'home', href: '#top' },
+  { key: 'kit', label: 'kit', href: '#kit' },
+  { key: 'work', label: 'work', href: '#work' },
+  { key: 'logs', label: 'log', href: '/logs' },
+  { key: 'resume', label: 'resume', href: '/resume' },
+];
 
 /**
  * Phones and small tablets (<= 900px, where the header's section links are hidden): a fixed frosted
- * dock of commit-dot links. On the build log, HEAD sits on "log". On the home page the section
- * links are in-page and carry data-spy, so the home page's ScrollSpy moves HEAD as you scroll.
+ * dock of commit-dot links. HEAD sits on the page you're on; on the home page the in-page links
+ * carry data-spy, so the home page's ScrollSpy moves HEAD as you scroll.
  */
-export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' }) {
-  const h = section('header');
+export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' | 'resume' }) {
   const home = where === 'home';
-  const href = (key: string) => {
-    const n = h.nav.find((x: Any) => x.href.replace(/^[#/]/, '') === key);
-    const raw: string = n?.href ?? `#${key}`;
-    return raw.startsWith('#') && !home ? `/${raw}` : raw;
-  };
+  const here = (key: string) => (key === 'logs' && (where === 'logs' || where === 'post')) || (key === 'resume' && where === 'resume');
   return (
     <nav className="ldock" aria-label="Sections">
       <span className="ldock__rail" aria-hidden="true" />
-      {DOCK.map(([key, label]) => {
-        const log = key === 'logs';
-        const here = log && !home;
+      {DOCK.map(({ key, label, href }) => {
+        const inPage = href.startsWith('#');
+        const on = here(key);
         return (
           <a
             key={key}
-            href={href(key)}
-            className={`ldock__node${here ? ' is-on' : ''}`}
-            aria-current={here ? (where === 'logs' ? 'page' : 'true') : undefined}
-            {...(home && !log ? { 'data-spy': key } : {})}
+            href={inPage && !home ? (key === 'top' ? '/' : `/${href}`) : href}
+            className={`ldock__node${on ? ' is-on' : ''}`}
+            aria-current={on ? (where === 'post' ? 'true' : 'page') : undefined}
+            {...(home && inPage ? { 'data-spy': key } : {})}
           >
             <span className="ldock__hd" aria-hidden="true">HEAD</span>
             <span className="ldock__d" aria-hidden="true" />

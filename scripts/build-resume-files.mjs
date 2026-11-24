@@ -48,7 +48,8 @@ const contact = [
 ];
 
 const summary = [t('meta.description'), t('independent.intro'), t('platform.mentorship')];
-const availability = t('sixty.availability');
+// Currently employed: the line that used to say "Available now" names the current role instead.
+const availability = `Now: ${t('person.title')}.`;
 
 const skills = section('sixty').stack.map((s) => ({ label: s.label, text: item(s.id).text }));
 
@@ -115,7 +116,7 @@ const md = [
   '## Experience',
   '',
   ...jobs.flatMap((j) => [
-    `### ${j.company} · ${j.location}`,
+    `### ${j.company}${j.location ? ` · ${j.location}` : ''}`,
     '',
     ...j.roles.map((r) => `**${r.title}** · ${r.dates}  `),
     ...(j.context ? ['', `_${j.context}_`] : []),
@@ -164,7 +165,7 @@ const txt = [
   '',
   ...heading('Experience'),
   ...jobs.flatMap((j) => [
-    `${j.company} | ${j.location}`,
+    `${j.company}${j.location ? ` | ${j.location}` : ''}`,
     ...j.roles.map((r) => `${r.title} | ${r.dates}`),
     ...(j.context ? [wrap(j.context)] : []),
     ...j.highlights.map((h) => bullet(h)),
@@ -261,14 +262,15 @@ const llms = [
   '',
   '## Site sections',
   '',
-  anchor('sixty', t('sixty.title'), 'summary, top five achievements, stack, and availability'),
+  anchor('kit', t('kit.title'), t('kit.intro')),
   anchor('pipeline', t('pipeline.title'), t('pipeline.intro')),
   anchor('safety', t('safety.title'), t('safety.intro')),
-  anchor('mcp', t('mcp.title'), t('mcp.intro')),
-  anchor('career', t('career.title'), 'every role from 2006 to 2026, plus education'),
-  anchor('platform', t('platform.title'), t('platform.ownership')),
-  anchor('independent', t('independent.title'), t('independent.intro')),
+  anchor('journey', t('journey.title'), t('journey.intro')),
+  anchor('work', t('work.title'), t('work.intro')),
+  anchor('oss', t('oss.title'), t('oss.intro')),
   anchor('contact', 'Contact', t('contact.intro')),
+  `- [Resume](${SITE}/resume): ${t('resume.summary')} Every role from 2006 to now, plus education.`,
+  `- [Build log](${SITE}/logs): posts on building and running agent-kit, with an RSS feed`,
   '',
   '## Contact',
   '',
@@ -311,7 +313,7 @@ const cli = [
   ...chead('Experience'),
   ...jobs.flatMap((j, i) => [
     ...(i ? [''] : []),
-    `${IN}${bold(j.company)} ${dim('·')} ${j.location}`,
+    `${IN}${bold(j.company)}${j.location ? ` ${dim('·')} ${j.location}` : ''}`,
     ...j.roles.map((r) => `${IN}${r.title} ${dim('·')} ${dim(r.dates)}`),
     ...(j.context ? [dim(cwrap(j.context))] : []),
     ...j.highlights.map(cbullet),

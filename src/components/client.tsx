@@ -40,7 +40,7 @@ export function ScrollSpy() {
       const y = window.innerHeight * 0.35;
       let cur: string | null = null;
       for (const el of targets) if (el.getBoundingClientRect().top <= y) cur = el.id;
-      links.forEach((l) => l.classList.toggle('is-on', l.dataset.spy === (cur ?? 'sixty')));
+      links.forEach((l) => l.classList.toggle('is-on', l.dataset.spy === (cur ?? 'top')));
     };
     const on = () => {
       if (!raf) raf = requestAnimationFrame(tick);

@@ -47,18 +47,18 @@
     "lang": "en",
     "title": {
       "id": "meta.title",
-      "text": "Travis Terry | Senior Full Stack Engineer",
+      "text": "Travis Terry | Head of Software Development at PrintGlobe",
       "src": [
-        "resume-nov L1",
-        "resume-fs L2"
+        "design:v2"
       ]
     },
     "description": {
       "id": "meta.description",
-      "text": "Senior full stack engineer with 15+ years shipping production web applications, from Vue 3 and React front ends to C#, .NET, and Python back ends.",
+      "text": "Head of Software Development at PrintGlobe with 15+ years shipping production web applications. I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step.",
       "src": [
-        "resume-fs L6",
-        "brief:HEADLINE_PROOF"
+        "design:v2",
+        "agent-kit README",
+        "resume-fs L6"
       ]
     },
     "canonical": {
@@ -73,20 +73,16 @@
       "url": "https://travisjterry.dev",
       "title": {
         "id": "meta.og.title",
-        "text": "Travis Terry, Senior Full Stack Engineer",
+        "text": "Travis Terry, Head of Software Development at PrintGlobe",
         "src": [
-          "resume-nov L1",
-          "resume-fs L2"
+          "design:v2"
         ]
       },
       "description": {
         "id": "meta.og.description",
-        "text": "Senior full stack engineer. At EOS One I built the Vue 3 front end of a real-time live meeting platform where up to 100 users shared a synchronized screen over SignalR, and at Atlas UP a 30+ skill Claude Code system that cleared 100+ bugs in about six weeks.",
+        "text": "I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step. Now I’m pointing it at a codebase it has never seen, and writing down everything that happens.",
         "src": [
-          "resume-fs L6",
-          "resume-fs L16",
-          "resume-fs L23",
-          "brief:HEADLINE_PROOF"
+          "design:v2"
         ]
       },
       "image": {
@@ -104,20 +100,16 @@
       "card": "summary_large_image",
       "title": {
         "id": "meta.twitter.title",
-        "text": "Travis Terry, Senior Full Stack Engineer",
+        "text": "Travis Terry, Head of Software Development at PrintGlobe",
         "src": [
-          "resume-nov L1",
-          "resume-fs L2"
+          "design:v2"
         ]
       },
       "description": {
         "id": "meta.twitter.description",
-        "text": "Senior full stack engineer. At EOS One I built the Vue 3 front end of a real-time live meeting platform where up to 100 users shared a synchronized screen over SignalR, and at Atlas UP a 30+ skill Claude Code system that cleared 100+ bugs in about six weeks.",
+        "text": "I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step. Now I’m pointing it at a codebase it has never seen, and writing down everything that happens.",
         "src": [
-          "resume-fs L6",
-          "resume-fs L16",
-          "resume-fs L23",
-          "brief:HEADLINE_PROOF"
+          "design:v2"
         ]
       }
     }
@@ -132,9 +124,9 @@
     },
     "title": {
       "id": "person.title",
-      "text": "Senior Full Stack Engineer",
+      "text": "Head of Software Development at PrintGlobe",
       "src": [
-        "resume-fs L2"
+        "design:v2"
       ]
     },
     "location": {
@@ -180,6 +172,21 @@
         "decisions:Extras"
       ],
       "note": "text is the image alt. Cropped and resized to 480px WebP with metadata stripped."
+    },
+    "employer": {
+      "id": "person.employer",
+      "text": "PrintGlobe",
+      "src": [
+        "design:v2"
+      ]
+    },
+    "x": {
+      "id": "person.x",
+      "text": "@travisintheloop",
+      "src": [
+        "design:v2"
+      ],
+      "href": "https://x.com/travisintheloop"
     }
   },
   "ticket": {
@@ -282,100 +289,75 @@
       "skipLink": {
         "id": "header.skipLink",
         "text": "Skip to content",
-        "href": "#hero",
+        "href": "#main",
         "src": [
           "ui"
         ]
       },
       "nav": [
         {
-          "id": "header.nav.sixty",
-          "text": "60-second version",
-          "href": "#sixty",
+          "id": "header.nav.kit",
+          "text": "agent-kit",
           "src": [
             "ui"
-          ]
+          ],
+          "href": "#kit"
         },
         {
           "id": "header.nav.pipeline",
           "text": "Pipeline",
-          "href": "#pipeline",
           "src": [
             "ui"
-          ]
+          ],
+          "href": "#pipeline"
         },
         {
           "id": "header.nav.safety",
           "text": "Safety",
-          "href": "#safety",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.mcp",
-          "text": "MCP",
-          "href": "#mcp",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.platform",
-          "text": "Platform",
-          "href": "#platform",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.independent",
-          "text": "Independent work",
-          "href": "#independent",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.career",
-          "text": "Career",
-          "href": "#career",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.ask",
-          "text": "Ask",
-          "href": "#ask",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "header.nav.recommendations",
-          "text": "Recommendations",
-          "href": "#recommendations",
           "src": [
             "ui"
           ],
-          "showWhen": "recommendations.enabled"
+          "href": "#safety"
         },
         {
-          "id": "header.nav.contact",
-          "text": "Contact",
-          "href": "#contact",
+          "id": "header.nav.journey",
+          "text": "Journey",
           "src": [
             "ui"
-          ]
+          ],
+          "href": "#journey"
+        },
+        {
+          "id": "header.nav.work",
+          "text": "Work",
+          "src": [
+            "ui"
+          ],
+          "href": "#work"
+        },
+        {
+          "id": "header.nav.oss",
+          "text": "Open source",
+          "src": [
+            "ui"
+          ],
+          "href": "#oss"
+        },
+        {
+          "id": "header.nav.log",
+          "text": "Build log",
+          "src": [
+            "ui"
+          ],
+          "href": "#log"
         },
         {
           "id": "header.nav.logs",
           "text": "Build log",
-          "href": "/logs",
           "src": [
             "ui"
-          ]
+          ],
+          "href": "/logs"
         }
       ],
       "resumePdf": {
@@ -443,7 +425,15 @@
             "ui"
           ]
         }
-      ]
+      ],
+      "resumePage": {
+        "id": "header.resumePage",
+        "text": "Resume",
+        "src": [
+          "ui"
+        ],
+        "href": "/resume"
+      }
     },
     {
       "id": "hero",
@@ -471,12 +461,10 @@
       },
       "value": {
         "id": "hero.value",
-        "text": "At EOS One I built the Vue 3 front end of a real-time meeting platform for up to 100 concurrent users, then the platform's most used AI tool and a 30+ skill Claude Code system that took Jira tickets to verified pull requests.",
+        "text": "I build agent-kit: Claude Code loops that take a ticket from the backlog to a reviewed pull request, with a gate between every step. Now I’m pointing it at a codebase it has never seen, and writing down everything that happens.",
         "src": [
-          "resume-fs L6",
-          "resume-fs L27",
-          "resume-fs L18",
-          "resume-fs L23"
+          "design:v2",
+          "agent-kit README"
         ]
       },
       "proof": {
@@ -484,6 +472,32 @@
         "items": [
           {
             "id": "hero.proof.1",
+            "prefix": "",
+            "num": 36,
+            "suffix": "",
+            "value": "36",
+            "label": "skills and loop recipes in agent-kit",
+            "text": "36 skills and loop recipes in agent-kit",
+            "src": [
+              "agent-kit README",
+              "logs:2026-11-21"
+            ]
+          },
+          {
+            "id": "hero.proof.2",
+            "prefix": "",
+            "num": 4,
+            "suffix": "",
+            "value": "4",
+            "label": "safety gates around every automated action",
+            "text": "4 safety gates around every automated action",
+            "src": [
+              "design:v2",
+              "resume L24"
+            ]
+          },
+          {
+            "id": "hero.proof.3",
             "prefix": "",
             "num": 15,
             "suffix": "+",
@@ -494,38 +508,11 @@
               "resume-fs L6",
               "brief:HEADLINE_PROOF"
             ]
-          },
-          {
-            "id": "hero.proof.2",
-            "prefix": "",
-            "num": 30,
-            "suffix": "+",
-            "value": "30+",
-            "label": "Claude Code skills I wrote as sole author of an agentic engineering system",
-            "text": "30+ Claude Code skills, sole author",
-            "src": [
-              "resume L21",
-              "brief:HEADLINE_PROOF"
-            ]
-          },
-          {
-            "id": "hero.proof.3",
-            "prefix": "about",
-            "num": 10000,
-            "suffix": "",
-            "value": "about 10,000",
-            "label": "monthly active users on EOS One",
-            "text": "about 10,000 monthly active users on EOS One",
-            "src": [
-              "resume-fs L18",
-              "resume L28",
-              "brief:HEADLINE_PROOF"
-            ]
           }
         ],
         "context": {
           "id": "hero.proof.context",
-          "text": "The bug, acceptance, and regression results are in The Pipeline below.",
+          "text": "Follow the ticket: it rides the pipeline below, through the safety gates, to a merged pull request.",
           "src": [
             "ui"
           ]
@@ -541,36 +528,28 @@
       },
       "ctas": [
         {
+          "id": "hero.cta.log",
+          "text": "Follow the build log",
+          "src": [
+            "ui"
+          ],
+          "href": "#log"
+        },
+        {
+          "id": "hero.cta.pipeline",
+          "text": "See the pipeline",
+          "src": [
+            "ui"
+          ],
+          "href": "#pipeline"
+        },
+        {
           "id": "hero.cta.resume",
-          "text": "Download Resume (PDF)",
-          "href": "/resume.pdf",
+          "text": "Resume",
           "src": [
             "ui"
-          ]
-        },
-        {
-          "id": "hero.cta.email",
-          "text": "Email",
-          "hrefFrom": "person.email",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "hero.cta.linkedin",
-          "text": "LinkedIn",
-          "hrefFrom": "person.linkedin",
-          "src": [
-            "ui"
-          ]
-        },
-        {
-          "id": "hero.cta.book",
-          "text": "Book a Call",
-          "href": "https://cal.com/travis-terry-vwjxkq/30min",
-          "src": [
-            "decisions:Booking"
-          ]
+          ],
+          "href": "/resume"
         }
       ],
       "sixtyLink": {
@@ -579,6 +558,21 @@
         "href": "#sixty",
         "src": [
           "ui"
+        ]
+      },
+      "now": {
+        "id": "hero.now",
+        "text": "Head of Software Development at PrintGlobe",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "meta": {
+        "id": "hero.meta",
+        "text": "Sterling Heights, MI · a new post every other day",
+        "src": [
+          "resume L3",
+          "design:v2"
         ]
       }
     },
@@ -750,6 +744,109 @@
       }
     },
     {
+      "id": "kit",
+      "kicker": {
+        "id": "kit.kicker",
+        "text": "OPEN SOURCE · FEATURED",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "kit.title",
+        "text": "agent-kit",
+        "src": [
+          "agent-kit README"
+        ]
+      },
+      "intro": {
+        "id": "kit.intro",
+        "text": "Autonomous Claude Code agents built as self-improving loops, not one-shot prompts. Point it at your repo, your issue tracker and your VCS host, and it takes a ticket to a reviewed pull request.",
+        "src": [
+          "agent-kit README"
+        ]
+      },
+      "loop": [
+        "intake",
+        "repro",
+        "fix",
+        "verify ∥ regression",
+        "pre-pr",
+        "ship",
+        "prod-verify"
+      ],
+      "stats": [
+        {
+          "id": "kit.stat.skills",
+          "text": "skills and loop recipes",
+          "src": [
+            "agent-kit README"
+          ],
+          "value": "36"
+        },
+        {
+          "id": "kit.stat.adapters",
+          "text": "vendor-neutral adapter roles",
+          "src": [
+            "agent-kit README"
+          ],
+          "value": "10"
+        },
+        {
+          "id": "kit.stat.mods",
+          "text": "Claude Code mods",
+          "src": [
+            "agent-kit README"
+          ],
+          "value": "11"
+        },
+        {
+          "id": "kit.stat.tests",
+          "text": "shell test suites",
+          "src": [
+            "agent-kit README"
+          ],
+          "value": "29"
+        }
+      ],
+      "safety": {
+        "id": "kit.safety",
+        "text": "Dry run and staging only by default · blast-radius limits · budget caps · a kill switch only a human flips",
+        "src": [
+          "agent-kit README"
+        ]
+      },
+      "links": [
+        {
+          "id": "kit.link.github",
+          "text": "View on GitHub",
+          "src": [
+            "ui"
+          ],
+          "href": "https://github.com/travist6983/agent-kit"
+        },
+        {
+          "id": "kit.link.loops",
+          "text": "Read loop-engineering.md",
+          "src": [
+            "ui"
+          ],
+          "href": "https://github.com/travist6983/agent-kit/blob/main/docs/loop-engineering.md"
+        }
+      ],
+      "figure": {
+        "id": "kit.figure",
+        "text": "The agent-kit Mods panel in Claude Code: a defect loop paused at verify, waiting on one question",
+        "src": [
+          "logs:2026-11-21"
+        ],
+        "path": "/work/mods-panel.webp",
+        "width": 622,
+        "height": 664,
+        "caption": "The Mods panel: a loop’s stages live, and the questions it’s blocked on"
+      }
+    },
+    {
       "id": "pipeline",
       "title": {
         "id": "pipeline.title",
@@ -768,12 +865,12 @@
       },
       "intro": {
         "id": "pipeline.intro",
-        "text": "At Atlas UP I was the sole author of an agentic engineering system: 30+ chained Claude Code skills that took Jira tickets from reproduction through fix, verification, regression, and code review, ending in an opened pull request.",
+        "text": "Every agent in the kit is a loop, not a prompt. The defect loop chains small, tested skills to take a ticket from the backlog to an opened pull request, with a gate between every step.",
         "src": [
-          "resume-nov L16",
-          "resume-nov L18",
-          "resume L21"
-        ]
+          "logs:2026-11-21",
+          "agent-kit README"
+        ],
+        "accent": "small, tested skills"
       },
       "visualLabel": {
         "id": "pipeline.visualLabel",
@@ -794,81 +891,72 @@
           "id": "pipeline.stage.reproduce",
           "stage": "reproduce",
           "label": "Reproduce",
-          "text": "The loop started by reproducing the ticket.",
+          "text": "The loop starts by reproducing the bug, recorded in a real browser.",
           "src": [
-            "resume L21"
+            "agent-kit README",
+            "logs:2026-11-21"
           ],
           "aside": {
             "id": "pipeline.stage.reproduce.aside",
-            "label": "Related: knowledge base",
-            "text": "The agents drove the app from a persistent knowledge base I built, and a nightly consolidation process pruned contradictions and duplicate lessons learned.",
+            "text": "Every run reads from and writes back to a shared Postgres and pgvector brain, so selectors, flaky-test history and fix patterns carry over to the next ticket.",
             "src": [
-              "resume-nov L19"
-            ]
+              "agent-kit README"
+            ],
+            "label": "The knowledge brain"
           }
         },
         {
           "id": "pipeline.stage.fix",
           "stage": "fix",
           "label": "Fix",
-          "text": "Next, the loop made the fix.",
+          "text": "Next, the loop makes the fix where the bad state starts, not where it crashes.",
           "src": [
-            "resume L21"
+            "logs:2026-11-21"
           ]
         },
         {
           "id": "pipeline.stage.verify",
           "stage": "verify",
           "label": "Verify",
-          "badge": "fresh context",
-          "text": "A separate agent, not the one that wrote the fix, verified every fix with fresh context.",
+          "text": "A separate agent, not the one that wrote the fix, verifies it with fresh context. The repro must flip from red to green.",
           "src": [
-            "resume L24",
-            "resume L21"
+            "logs:2026-11-21",
+            "resume L24"
           ]
         },
         {
           "id": "pipeline.stage.regression",
           "stage": "regression",
           "label": "Regression",
-          "text": "The change then ran through regression.",
+          "text": "Regression runs in parallel with verify.",
           "src": [
-            "resume L21"
+            "agent-kit README"
           ],
           "aside": {
             "id": "pipeline.stage.regression.aside",
-            "label": "Related: release regression",
-            "text": "At the release level, I built an AI regression lane that ran TestRail cases through Claude Code and Playwright, scoped to each release's blast radius. It cut regression cycles from about a week to 8 to 12 hours and removed QA as the release bottleneck.",
+            "text": "The regression run is scoped to what the change can touch, so it stays fast without skipping what matters.",
             "src": [
-              "resume-nov L21",
-              "decisions:Q5",
-              "decisions:Resume update"
-            ]
+              "agent-kit README"
+            ],
+            "label": "Blast radius"
           }
         },
         {
           "id": "pipeline.stage.review",
           "stage": "review",
-          "label": "Review",
-          "text": "Then came a review step.",
+          "label": "Pre-PR checks",
+          "text": "Pre-PR checks run before anything is opened. Harder defects add a code review step.",
           "src": [
-            "resume L21"
-          ],
-          "aside": {
-            "id": "pipeline.stage.review.aside",
-            "label": "Related: PR review agent",
-            "text": "I also built an autonomous pull request review agent that scanned Azure DevOps hourly and reviewed every PR for six weeks, hundreds in total. It ranked findings by severity and posted fix suggestions directly on each PR.",
-            "src": [
-              "resume-nov L22"
-            ]
-          }
+            "agent-kit README"
+          ]
         },
         {
           "id": "pipeline.stage.openedPr",
           "stage": "opened-pr",
           "label": "Opened PR",
-          "text": "The loop ended with an opened pull request that included before and after videos.",
+          "text": "The loop ends with an opened pull request with before and after videos, then prod-verify confirms the fix in production.",
           "src": [
+            "agent-kit README",
             "resume L21"
           ]
         }
@@ -915,6 +1003,13 @@
           "decisions:Q35",
           "decisions:Resume update"
         ]
+      },
+      "badge": {
+        "id": "pipeline.badge",
+        "text": "agent-kit · the defect loop",
+        "src": [
+          "agent-kit README"
+        ]
       }
     },
     {
@@ -928,11 +1023,12 @@
       },
       "intro": {
         "id": "safety.intro",
-        "text": "I designed the safety model, and every automated action ran inside it.",
+        "text": "I designed the safety model, and every automated action runs inside it.",
         "src": [
           "resume L24",
-          "resume L6"
-        ]
+          "agent-kit README"
+        ],
+        "accent": "every automated action"
       },
       "visualLabel": {
         "id": "safety.visualLabel",
@@ -943,7 +1039,7 @@
       },
       "visualNote": {
         "id": "safety.visualNote",
-        "text": "The gate, lanes, and retry meter are original drawings. No real limits, tiers, or settings are shown.",
+        "text": "The gate, lanes and retry meter are original drawings. No real limits, tiers or settings are shown.",
         "src": [
           "brief:HARD_RULE_2"
         ]
@@ -952,35 +1048,37 @@
         {
           "id": "safety.item.gates",
           "label": "Approval gates",
-          "text": "Sensitive areas such as billing and auth always stopped for a human.",
+          "text": "Sensitive areas such as billing and auth always stop for a human.",
           "src": [
             "resume L24",
-            "resume L10"
+            "agent-kit README"
           ]
         },
         {
           "id": "safety.item.retries",
           "label": "Risk-tiered retries",
-          "text": "Retries were capped by risk tier.",
+          "text": "Retries are capped by risk tier, and each one has to change something.",
           "src": [
             "resume L24",
-            "resume L10"
+            "logs:2026-11-21"
           ]
         },
         {
           "id": "safety.item.verifier",
           "label": "Verifier agent",
-          "text": "A separate agent verified every fix with fresh context.",
+          "text": "A separate agent verifies every fix with fresh context.",
           "src": [
-            "resume L24"
+            "resume L24",
+            "logs:2026-11-21"
           ]
         },
         {
           "id": "safety.item.killSwitch",
           "label": "Global kill switch",
-          "text": "A global kill switch paused all loops.",
+          "text": "One switch pauses every loop at once, and only a human can flip it.",
           "src": [
-            "resume L24"
+            "resume L24",
+            "agent-kit README"
           ]
         }
       ],
@@ -1026,6 +1124,13 @@
           "verifyIn": "Phase 5 QA"
         },
         "controlRef": "header.motionControl"
+      },
+      "handoff": {
+        "id": "safety.handoff",
+        "text": "PR merged into main",
+        "src": [
+          "ui"
+        ]
       }
     },
     {
@@ -1603,6 +1708,496 @@
       ]
     },
     {
+      "id": "journey",
+      "commit": {
+        "id": "journey.commit",
+        "text": "HEAD → main · the run starts",
+        "src": [
+          "ui"
+        ]
+      },
+      "kicker": {
+        "id": "journey.kicker",
+        "text": "THE JOURNEY",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "journey.title",
+        "text": "One kit. A codebase it has never seen.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "intro": {
+        "id": "journey.intro",
+        "text": "I just started leading software development at PrintGlobe, and I’m bringing agent-kit with me. Every stage gets written up: what the kit learned, what broke and what I changed. The posts cover the loop, not the company’s code.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "stages": [
+        {
+          "id": "journey.stage.0",
+          "text": "The onboarding loop surveys the repo, writes cited claims per area, then a blind quiz checks the map.",
+          "src": [
+            "design:v2",
+            "agent-kit README"
+          ],
+          "label": "00 · Map it",
+          "status": "run"
+        },
+        {
+          "id": "journey.stage.1",
+          "text": "The defect loop works real tickets, but every fix stops at a draft pull request.",
+          "src": [
+            "design:v2"
+          ],
+          "label": "01 · Dry run",
+          "status": "next"
+        },
+        {
+          "id": "journey.stage.2",
+          "text": "The four safety gates go into the stack before anything runs unattended.",
+          "src": [
+            "design:v2"
+          ],
+          "label": "02 · Gates",
+          "status": "plan"
+        },
+        {
+          "id": "journey.stage.3",
+          "text": "Fixes ship to staging on their own. A person still approves every merge.",
+          "src": [
+            "design:v2"
+          ],
+          "label": "03 · Staging",
+          "status": "plan"
+        },
+        {
+          "id": "journey.stage.4",
+          "text": "prod-verify confirms the fix live, under budget caps and a human kill switch.",
+          "src": [
+            "design:v2",
+            "agent-kit README"
+          ],
+          "label": "04 · Production",
+          "status": "plan"
+        }
+      ],
+      "statusLabels": {
+        "run": "IN PROGRESS",
+        "next": "NEXT",
+        "plan": "PLANNED"
+      },
+      "foot": {
+        "id": "journey.foot",
+        "text": "HEAD is at stage 00 · posted every other day",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "rss": {
+        "id": "journey.rss",
+        "text": "git pull: subscribe via RSS",
+        "src": [
+          "ui"
+        ],
+        "href": "/logs/feed.xml"
+      }
+    },
+    {
+      "id": "buildlog",
+      "commit": {
+        "id": "buildlog.commit",
+        "text": "build log",
+        "src": [
+          "ui"
+        ]
+      },
+      "kicker": {
+        "id": "buildlog.kicker",
+        "text": "BUILD LOG",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "buildlog.title",
+        "text": "git log --oneline -3",
+        "src": [
+          "ui"
+        ]
+      },
+      "all": {
+        "id": "buildlog.all",
+        "text": "All posts",
+        "src": [
+          "ui"
+        ],
+        "href": "/logs"
+      },
+      "upcoming": [
+        {
+          "id": "buildlog.upcoming.0",
+          "text": "Day 0: mapping a codebase I’ve never seen",
+          "src": [
+            "design:v2"
+          ],
+          "stage": "stage 00",
+          "status": "next",
+          "summary": "What the onboarding loop got right on the first pass, and which areas the blind quiz sent back."
+        },
+        {
+          "id": "buildlog.upcoming.1",
+          "text": "The first dry run on real tickets",
+          "src": [
+            "design:v2"
+          ],
+          "stage": "stage 01",
+          "status": "plan",
+          "summary": "The defect loop’s first week, every fix stopped at a draft pull request."
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "commit": {
+        "id": "work.commit",
+        "text": "shipped lately",
+        "src": [
+          "ui"
+        ]
+      },
+      "kicker": {
+        "id": "work.kicker",
+        "text": "WORK",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "work.title",
+        "text": "Shipped lately",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "work.intro",
+        "text": "An iOS game of my own and two client sites, each built by directing Claude Code.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "feature": {
+        "kicker": {
+          "id": "work.movement.kicker",
+          "text": "iOS GAME · APP STORE, NOV 2026",
+          "src": [
+            "app-store:id6834204517"
+          ]
+        },
+        "name": {
+          "id": "work.movement.name",
+          "text": "Movement: Watchmaker",
+          "src": [
+            "app-store:id6834204517"
+          ]
+        },
+        "text": {
+          "id": "work.movement.text",
+          "text": "Assemble a working mechanical watch by hand, part by part, then watch it run. Twenty-four movements, from a ten-step gear train to a grand complication, each unlocked by getting the one before it running.",
+          "src": [
+            "Movement docs/store/listing.md",
+            "design:v2"
+          ]
+        },
+        "chips": [
+          "SwiftUI",
+          "RealityKit",
+          "procedural meshes",
+          "synthesized sound"
+        ],
+        "cta": {
+          "id": "work.movement.cta",
+          "text": "View on the App Store",
+          "src": [
+            "ui"
+          ],
+          "href": "https://apps.apple.com/us/app/movement-watchmaker/id6834204517"
+        },
+        "image": {
+          "id": "work.movement.image",
+          "text": "Movement: a finished verge fusee movement running on the bench, step 15 of 15",
+          "src": [
+            "design:v2"
+          ],
+          "path": "/work/movement.webp",
+          "width": 600,
+          "height": 1303
+        }
+      },
+      "sites": [
+        {
+          "slug": "ross-towing",
+          "domain": "rosstow.com",
+          "href": "https://rosstow.com",
+          "kicker": {
+            "id": "work.ross.kicker",
+            "text": "CLIENT SITE · SOUTHFIELD, MI",
+            "src": [
+              "site:rosstow.com"
+            ]
+          },
+          "name": {
+            "id": "work.ross.name",
+            "text": "Ross Towing",
+            "src": [
+              "site:rosstow.com"
+            ]
+          },
+          "text": {
+            "id": "work.ross.text",
+            "text": "A family towing company since 1962. A fast static site with a scroll journey that drives a tow truck down Telegraph Rd, online tow and freight requests, an auction banner and Towbook dispatch links.",
+            "src": [
+              "site:rosstow.com",
+              "design:v2"
+            ]
+          },
+          "chips": [
+            "Vite",
+            "static HTML",
+            "GitHub Pages",
+            "local SEO"
+          ],
+          "image": {
+            "id": "work.ross.image",
+            "text": "Ross Towing home page: 24/7 towing and recovery in Southfield since 1962, with a tow truck drawn on Telegraph Rd",
+            "src": [
+              "design:v2"
+            ],
+            "path": "/work/ross-towing.webp",
+            "width": 1200,
+            "height": 750
+          }
+        },
+        {
+          "slug": "a-1bracket",
+          "domain": "a-1bracket.com",
+          "href": "https://a-1bracket.com",
+          "kicker": {
+            "id": "work.a1.kicker",
+            "text": "CLIENT SITE · A CLIENT FOR 10 YEARS",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "name": {
+            "id": "work.a1.name",
+            "text": "A-1 Bracket Group",
+            "src": [
+              "site:a-1bracket.com"
+            ]
+          },
+          "text": {
+            "id": "work.a1.text",
+            "text": "A masonry contractor since 1996. I rebuilt the site I made for them a decade ago: off WordPress and GoDaddy, onto a static site with six service pages, a filterable projects gallery and a contact form on Resend and a Cloudflare Worker.",
+            "src": [
+              "site:a-1bracket.com",
+              "a-1bracket README",
+              "design:v2"
+            ]
+          },
+          "chips": [
+            "static HTML",
+            "Cloudflare Workers",
+            "Resend",
+            "GitHub Pages"
+          ],
+          "image": {
+            "id": "work.a1.image",
+            "text": "A-1 Bracket Group home page: Brick, stucco, and stone. Built once. Built right.",
+            "src": [
+              "design:v2"
+            ],
+            "path": "/work/a-1bracket.webp",
+            "width": 1200,
+            "height": 750
+          }
+        }
+      ]
+    },
+    {
+      "id": "oss",
+      "commit": {
+        "id": "oss.commit",
+        "text": "open source",
+        "src": [
+          "ui"
+        ]
+      },
+      "kicker": {
+        "id": "oss.kicker",
+        "text": "OPEN SOURCE",
+        "src": [
+          "ui"
+        ]
+      },
+      "title": {
+        "id": "oss.title",
+        "text": "Code you can open",
+        "src": [
+          "ui"
+        ]
+      },
+      "intro": {
+        "id": "oss.intro",
+        "text": "Everything here is public on GitHub, with tests, READMEs and the decisions behind it.",
+        "src": [
+          "design:v2"
+        ]
+      },
+      "repos": [
+        {
+          "slug": "rolehawk",
+          "repo": "travist6983/rolehawk",
+          "pill": "MIT · v0.2.0",
+          "pillKind": "run",
+          "name": {
+            "id": "oss.rolehawk.name",
+            "text": "RoleHawk",
+            "src": [
+              "decisions:Independent"
+            ]
+          },
+          "text": {
+            "id": "oss.rolehawk.text",
+            "text": "A free AI job search copilot that runs on your own computer. Finds and ranks jobs, tailors your resume to each one without inventing anything, and tracks every application.",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "chips": [
+            "Python",
+            "FastAPI",
+            "React",
+            "Claude"
+          ],
+          "image": {
+            "id": "oss.rolehawk.image",
+            "text": "RoleHawk pipeline board with job applications from Saved to Offer, demo data",
+            "src": [
+              "design:v2"
+            ],
+            "path": "/work/rolehawk.webp",
+            "width": 1000,
+            "height": 625
+          }
+        },
+        {
+          "slug": "pocket-chronicle",
+          "repo": "travist6983/Project-Rascal",
+          "pill": "SHIPPED · RETIRED",
+          "pillKind": "plan",
+          "name": {
+            "id": "oss.pocket.name",
+            "text": "Pocket Chronicle",
+            "src": [
+              "decisions:Independent"
+            ]
+          },
+          "text": {
+            "id": "oss.pocket.text",
+            "text": "A native iOS family memory app I shipped solo to the App Store in about a month, then retired when it didn’t find users. About 2,700 tests and 200 merged PRs.",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "chips": [
+            "SwiftUI",
+            "SwiftData",
+            "FastAPI"
+          ],
+          "image": {
+            "id": "oss.pocket.image",
+            "text": "Pocket Chronicle Today screen with the daily question and mission",
+            "src": [
+              "design:v2"
+            ],
+            "path": "/work/pocket-chronicle.webp",
+            "width": 500,
+            "height": 1087,
+            "fit": "contain"
+          }
+        },
+        {
+          "slug": "proplab",
+          "repo": "travist6983/proplab",
+          "name": {
+            "id": "oss.proplab.name",
+            "text": "PropLab",
+            "src": [
+              "github:travist6983/proplab"
+            ]
+          },
+          "text": {
+            "id": "oss.proplab.text",
+            "text": "NFL player-prop research that projects distributions, not single numbers, then checks itself with a walk-forward backtest.",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "chips": [
+            "Python",
+            "DuckDB",
+            "statistics"
+          ],
+          "image": {
+            "id": "oss.proplab.image",
+            "text": "PropLab wide receiver board with model medians, intervals and sportsbook lines",
+            "src": [
+              "design:v2"
+            ],
+            "path": "/work/proplab.webp",
+            "width": 1000,
+            "height": 694
+          }
+        }
+      ],
+      "site": {
+        "repo": "travist6983/travis-terry",
+        "name": {
+          "id": "oss.site.name",
+          "text": "travisjterry.dev",
+          "src": [
+            "decisions:Domain"
+          ]
+        },
+        "text": {
+          "id": "oss.site.text",
+          "text": "This site. One sourced content file feeds the pages, the PDF, a JSON resume and a grounded RAG assistant, and the build fails rather than publish a claim it can’t source.",
+          "src": [
+            "README"
+          ]
+        },
+        "chips": [
+          "Next.js",
+          "Cloudflare Workers",
+          "Vectorize"
+        ]
+      },
+      "more": {
+        "id": "oss.more",
+        "text": "See everything on GitHub →",
+        "src": [
+          "ui"
+        ],
+        "href": "https://github.com/travist6983"
+      }
+    },
+    {
       "id": "career",
       "title": {
         "id": "career.title",
@@ -1619,6 +2214,43 @@
         ]
       },
       "entries": [
+        {
+          "slug": "printglobe",
+          "current": true,
+          "company": {
+            "id": "career.printglobe.company",
+            "text": "PrintGlobe",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "location": {
+            "id": "career.printglobe.location",
+            "text": "",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "roles": [
+            {
+              "id": "career.printglobe.role.1",
+              "title": "Head of Software Development",
+              "dates": "November 2026 to Present",
+              "text": "Head of Software Development, November 2026 to Present",
+              "src": [
+                "design:v2"
+              ]
+            }
+          ],
+          "context": {
+            "id": "career.printglobe.context",
+            "text": "Leading software development, and bringing agent-kit to a codebase it has never seen.",
+            "src": [
+              "design:v2"
+            ]
+          },
+          "highlights": []
+        },
         {
           "slug": "atlas-up",
           "company": {
@@ -1707,6 +2339,38 @@
                 "resume-fs L24"
               ],
               "see": "#release"
+            }
+          ],
+          "short": [
+            {
+              "id": "career.atlas-up.short.1",
+              "text": "Built a system of 30+ Claude Code skills that took Jira tickets from reproduction to a verified pull request, clearing 100+ bugs and about 25 features in about six weeks.",
+              "src": [
+                "resume-fs L23",
+                "brief:HEADLINE_PROOF"
+              ]
+            },
+            {
+              "id": "career.atlas-up.short.2",
+              "text": "Built the interactive Accountability Chart builder, the most used AI tool on a platform of about 10,000 monthly active users.",
+              "src": [
+                "resume-fs L18",
+                "brief:HEADLINE_PROOF"
+              ]
+            },
+            {
+              "id": "career.atlas-up.short.3",
+              "text": "Built an AI regression lane running TestRail cases through Playwright, cutting regression cycles from about a week to 8 to 12 hours.",
+              "src": [
+                "resume-fs L24"
+              ]
+            },
+            {
+              "id": "career.atlas-up.short.4",
+              "text": "Owned features end to end, from Python LLM microservices through the Vue 3 UI, across C#, .NET, SignalR, Redis and Cosmos DB.",
+              "src": [
+                "resume-fs L21"
+              ]
             }
           ]
         },
@@ -1803,6 +2467,36 @@
                 "resume-fs L34"
               ]
             }
+          ],
+          "short": [
+            {
+              "id": "career.eos-worldwide.short.1",
+              "text": "Built the entire Vue 3 frontend of EOS One’s live meeting platform: up to 100 concurrent users on the same screen in real time.",
+              "src": [
+                "resume-fs L27"
+              ]
+            },
+            {
+              "id": "career.eos-worldwide.short.2",
+              "text": "Architected the EOS One Vue 3 component library from the ground up: about 150 components and a design token system.",
+              "src": [
+                "resume-fs L31"
+              ]
+            },
+            {
+              "id": "career.eos-worldwide.short.3",
+              "text": "Built the Scorecard in Vue 3 and contributed to its C# and .NET APIs, tracking measurables across seven intervals.",
+              "src": [
+                "resume-fs L30"
+              ]
+            },
+            {
+              "id": "career.eos-worldwide.short.4",
+              "text": "Promoted to Staff with three direct reports; reviewed every frontend pull request and mentored juniors toward senior roles.",
+              "src": [
+                "resume-fs L34"
+              ]
+            }
           ]
         },
         {
@@ -1869,6 +2563,29 @@
                 "resume-fs L40"
               ]
             }
+          ],
+          "short": [
+            {
+              "id": "career.qualfon.short.1",
+              "text": "Core developer on a multi-tenant Vue and C# e-commerce platform, migrating clients off NetSuite.",
+              "src": [
+                "resume-fs L37"
+              ]
+            },
+            {
+              "id": "career.qualfon.short.2",
+              "text": "Built and maintained about 15 NetSuite SuiteCommerce B2B instances serving 100,000+ users.",
+              "src": [
+                "resume-fs L38"
+              ]
+            },
+            {
+              "id": "career.qualfon.short.3",
+              "text": "Led the NetSuite team of five direct reports.",
+              "src": [
+                "resume-fs L39"
+              ]
+            }
           ]
         },
         {
@@ -1911,6 +2628,15 @@
               "text": "Handled SEO, analytics, and all company IT assets including Windows Server, Exchange, and network hardware.",
               "src": [
                 "resume L53"
+              ]
+            }
+          ],
+          "short": [
+            {
+              "id": "career.skbk.short.1",
+              "text": "Maintained the public website and MLS listing feeds, and built agent intranet tools in PHP and MySQL.",
+              "src": [
+                "resume L52"
               ]
             }
           ]
@@ -2027,20 +2753,16 @@
       "id": "contact",
       "heading": {
         "id": "contact.heading",
-        "text": "Ready for review.",
+        "text": "Follow along, or compare notes.",
         "src": [
-          "ui"
+          "design:v2"
         ]
       },
       "intro": {
         "id": "contact.intro",
-        "text": "If you're hiring for senior full stack engineering, especially agentic AI engineering or AI applications, I'd like to talk. I work remotely, or on-site and hybrid in Metro Detroit.",
+        "text": "A new post lands every other day, and I share each one on X and LinkedIn. If you’re building with agents too, I’m always up for talking loops, gates and what breaks.",
         "src": [
-          "resume-nov L2",
-          "resume-nov L5",
-          "resume L2",
-          "decisions:Resume update",
-          "decisions:Q44"
+          "design:v2"
         ]
       },
       "links": [
@@ -2111,7 +2833,60 @@
           "ui"
         ],
         "note": "Label on the illustrative PR card only. It is the site's story ending, not a claim about the Atlas UP system."
-      }
+      },
+      "commit": {
+        "id": "contact.commit",
+        "text": "remotes",
+        "src": [
+          "ui"
+        ]
+      },
+      "remotes": [
+        {
+          "id": "contact.remote.email",
+          "text": "Email",
+          "src": [
+            "ui"
+          ],
+          "hrefFrom": "person.email",
+          "verb": "push",
+          "detail": "I read everything",
+          "cta": "Write me"
+        },
+        {
+          "id": "contact.remote.x",
+          "text": "X",
+          "src": [
+            "design:v2"
+          ],
+          "hrefFrom": "person.x",
+          "verb": "fetch",
+          "detail": "@travisintheloop",
+          "cta": "Follow"
+        },
+        {
+          "id": "contact.remote.linkedin",
+          "text": "LinkedIn",
+          "src": [
+            "resume L3"
+          ],
+          "hrefFrom": "person.linkedin",
+          "verb": "fetch",
+          "detail": "linkedin.com/in/travisjterry",
+          "cta": "Connect"
+        },
+        {
+          "id": "contact.remote.github",
+          "text": "GitHub",
+          "src": [
+            "decisions:Extras"
+          ],
+          "hrefFrom": "person.github",
+          "verb": "fetch",
+          "detail": "github.com/travist6983",
+          "cta": "Browse code"
+        }
+      ]
     },
     {
       "id": "footer",
@@ -2204,10 +2979,65 @@
       },
       "copyright": {
         "id": "footer.copyright",
-        "text": "\u00a9 2026 Travis Terry",
+        "text": "© 2026 Travis Terry",
         "src": [
           "resume L1"
         ]
+      },
+      "tagline": {
+        "id": "footer.tagline",
+        "text": "Head of Software Development at PrintGlobe",
+        "src": [
+          "design:v2"
+        ]
+      }
+    },
+    {
+      "id": "resume",
+      "kicker": {
+        "id": "resume.kicker",
+        "text": "RESUME",
+        "src": [
+          "ui"
+        ]
+      },
+      "summary": {
+        "id": "resume.summary",
+        "text": "15+ years shipping production web applications, from real-time Vue 3 front ends to C#, .NET and Python back ends. Lately I build agent loops with real guardrails.",
+        "src": [
+          "resume-fs L6",
+          "brief:HEADLINE_PROOF",
+          "agent-kit README"
+        ]
+      },
+      "location": {
+        "id": "resume.location",
+        "text": "Sterling Heights, MI",
+        "src": [
+          "resume L3"
+        ]
+      },
+      "logTitle": {
+        "id": "resume.logTitle",
+        "text": "Career log",
+        "src": [
+          "ui"
+        ]
+      },
+      "askIntro": {
+        "id": "resume.askIntro",
+        "text": "Answers come only from approved sources, and each one shows its source.",
+        "src": [
+          "ui"
+        ]
+      },
+      "journeyLink": {
+        "id": "resume.journeyLink",
+        "text": "Follow the journey",
+        "src": [
+          "ui"
+        ],
+        "href": "/#journey"
       }
     }
   ],

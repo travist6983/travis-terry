@@ -83,7 +83,12 @@ function classify(question: string): Result {
   return { entry: best };
 }
 
-export function Ask() {
+// Where an answer's source lives now: the career log moved to /resume; the home page keeps the agent-kit story.
+const HOME = ['kit', 'pipeline', 'safety', 'journey', 'work', 'oss', 'contact'];
+const srcHref = (id: string) => (HOME.includes(id) ? `/#${id}` : '/resume#career');
+
+export function Ask({ variant = 'section' }: { variant?: 'section' | 'side' }) {
+  const side = variant === 'side';
   const s = section('ask');
   const [q, setQ] = useState('');
   const [asked, setAsked] = useState<string | null>(null);
@@ -93,7 +98,7 @@ export function Ask() {
   const inputRef = useRef<HTMLInputElement>(null);
   const widgetId = useRef<string | null>(null);
   const pending = needed(s.approvalStatus);
-  const suggestions: Entry[] = ask.entries.filter((e: Entry) => !e.fallbackOnly).slice(0, 6);
+  const suggestions: Entry[] = ask.entries.filter((e: Entry) => !e.fallbackOnly).slice(0, side ? 2 : 6);
   const sectionTitle = (id: string) => t(content.sections.find((x: { id: string }) => x.id === id)?.title) || id;
   const live = Boolean(API && SITE_KEY);
 
@@ -163,42 +168,7 @@ export function Ask() {
     }
   }
 
-  return (
-    <section id="ask" className="sec ask" aria-labelledby="ask-title">
-      <div className="wrap wrap--narrow">
-        <div className="sec__head">
-          <span className="glass badge"><span className="badge__dot" aria-hidden="true" />Claude · grounded in my resume</span>
-          <h2 id="ask-title" className="h2">{t(s.title)}</h2>
-          <p className="lede">{t(s.intro)}</p>
-          <p className="fine">{t(s.classifierLine)}</p>
-        </div>
-        {pending && <Needed>{pending.replace(/^NEEDED FROM TRAVIS:\s*/, '')}</Needed>}
-
-        <div className="glass chat">
-          <span className="glow glow--accent" aria-hidden="true" style={{ right: -100, top: -140, width: 320, height: 320, opacity: 0.16 }} />
-          <form
-            className="chat__form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (q.trim()) run(q.trim());
-            }}
-          >
-            <label htmlFor="ask-input" className="chat__prompt">
-              <span className="sr-only">{t(s.inputLabel)}</span>
-              <span aria-hidden="true">$ ask</span>
-            </label>
-            <input
-              id="ask-input"
-              ref={inputRef}
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              onFocus={prepare}
-              maxLength={300}
-              placeholder={t(s.placeholder)}
-              autoComplete="off"
-            />
-            <button type="submit" className="btn btn--accent">{t(s.submit)}</button>
-          </form>
+  const chatOutEl = (
           <div className="chat__out" aria-live="polite">
             {!reply && <div className="chat__empty">Pick a question below, or type your own.</div>}
             {reply && asked && (
@@ -211,7 +181,7 @@ export function Ask() {
                       <p>{reply.entry.answer}</p>
                       <div className="srcs">
                         <span className="kick kick--mute">SOURCE:</span>
-                        <a href={`#${reply.entry.sourceSection}`}>{sectionTitle(reply.entry.sourceSection)}</a>
+                        <a href={srcHref(reply.entry.sourceSection)}>{sectionTitle(reply.entry.sourceSection)}</a>
                       </div>
                     </>
                   )}
@@ -222,7 +192,7 @@ export function Ask() {
                         <span className="kick kick--mute">SOURCES:</span>
                         {reply.sources.map((src) => {
                           const label = src.title.replace(/^(Q&A|Project|Career|Interview): /, '');
-                          if (!src.quote) return <a key={src.id} href={`#${src.section}`}>{label}</a>;
+                          if (!src.quote) return <a key={src.id} href={srcHref(src.section)}>{label}</a>;
                           const on = openSrc === src.id;
                           return (
                             <button
@@ -244,7 +214,7 @@ export function Ask() {
                             <blockquote>{src.quote}</blockquote>
                             <figcaption>
                               <span className="kick kick--mute">FROM {src.title.replace(/^(Q&A|Project|Career|Interview): /, '').toUpperCase()}</span>
-                              <a href={`#${src.section}`}>Go to section</a>
+                              <a href={srcHref(src.section)}>Go to section</a>
                             </figcaption>
                           </figure>
                         ) : null,
@@ -262,23 +232,83 @@ export function Ask() {
               </>
             )}
           </div>
+  );
+
+  const form = (
+    <form
+      className={side ? 'rask__form' : 'chat__form'}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (q.trim()) run(q.trim());
+      }}
+    >
+      <label htmlFor="ask-input" className={side ? 'sr-only' : 'chat__prompt'}>
+        <span className="sr-only">{t(s.inputLabel)}</span>
+        {!side && <span aria-hidden="true">$ ask</span>}
+      </label>
+      <input
+        id="ask-input"
+        ref={inputRef}
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        onFocus={prepare}
+        maxLength={300}
+        placeholder={side ? 'What has he built with agents?' : t(s.placeholder)}
+        autoComplete="off"
+      />
+      <button type="submit" className="btn btn--accent">{t(s.submit)}</button>
+    </form>
+  );
+
+  const chips = (
+    <div className={side ? 'rask__chips' : 'chips'}>
+      {suggestions.map((e) => (
+        <button
+          key={e.id}
+          type="button"
+          className={side ? 'rask__chip' : 'glass chip'}
+          onClick={() => {
+            setQ(e.question);
+            run(e.question);
+          }}
+        >
+          {e.question}
+        </button>
+      ))}
+    </div>
+  );
+
+  if (side) {
+    return (
+      <section id="ask" className="glass rbox rbox--ask" aria-labelledby="ask-title">
+        <h2 id="ask-title" className="kick rbox__h">ASK MY RESUME</h2>
+        <p className="rbox__p">{t(section('resume').askIntro)}</p>
+        {form}
+        {chips}
+        <div ref={widgetEl} className="turnstile" />
+        <div className={`rask__out${reply ? ' is-on' : ''}`}>{chatOutEl}</div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="ask" className="sec ask" aria-labelledby="ask-title">
+      <div className="wrap wrap--narrow">
+        <div className="sec__head">
+          <span className="glass badge"><span className="badge__dot" aria-hidden="true" />Claude · grounded in my resume</span>
+          <h2 id="ask-title" className="h2">{t(s.title)}</h2>
+          <p className="lede">{t(s.intro)}</p>
+          <p className="fine">{t(s.classifierLine)}</p>
+        </div>
+        {pending && <Needed>{pending.replace(/^NEEDED FROM TRAVIS:\s*/, '')}</Needed>}
+
+        <div className="glass chat">
+          <span className="glow glow--accent" aria-hidden="true" style={{ right: -100, top: -140, width: 320, height: 320, opacity: 0.16 }} />
+          {form}
+          {chatOutEl}
         </div>
         <div ref={widgetEl} className="turnstile" />
-        <div className="chips">
-          {suggestions.map((e) => (
-            <button
-              key={e.id}
-              type="button"
-              className="glass chip"
-              onClick={() => {
-                setQ(e.question);
-                run(e.question);
-              }}
-            >
-              {e.question}
-            </button>
-          ))}
-        </div>
+        {chips}
         {live && <p className="fine">Rate limited and checked for bots by Cloudflare Turnstile. If the AI is unavailable, my approved answers fill in.</p>}
       </div>
     </section>
