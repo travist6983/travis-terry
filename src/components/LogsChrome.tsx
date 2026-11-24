@@ -1,16 +1,13 @@
-import { section, t } from '@/lib/content';
-import { PageLinks } from '@/components/SiteChrome';
+import { t } from '@/lib/content';
+import { SiteHeader, nodeKey, trail, type Where } from '@/components/SiteChrome';
 import type { Commit } from '@/lib/logs';
 
 /*
- * Header, page light and footer for the build log pages. Same classes as the home page chrome;
- * the home page's in-page anchors point back to the home page from here.
+ * Page light, dock and footer shared by every page, plus the build log's header and footer.
  */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
-
-const SHOW = ['kit', 'journey', 'logs'];
 
 export function Paper() {
   return (
@@ -23,78 +20,33 @@ export function Paper() {
   );
 }
 
-export function LogsHeader() {
-  const h = section('header');
-  return (
-    <>
-      <header className="nav nav--logs">
-        <a className="skip" href="#main">{t(h.skipLink)}</a>
-        <div className="nav__inner">
-          <a className="glass pillx nav__mark" href="/">{t(h.wordmark)}</a>
-          <nav aria-label="Sections" className="glass nav__group">
-            {h.nav
-              .filter((n: Any) => SHOW.includes(n.href.replace(/^[#/]/, '')))
-              .map((n: Any) => {
-                const here = n.href === '/logs';
-                return (
-                  <a key={n.href} href={n.href.startsWith('#') ? `/${n.href}` : n.href} className={here ? 'is-on' : undefined} aria-current={here ? 'page' : undefined}>
-                    {t(n)}
-                  </a>
-                );
-              })}
-          </nav>
-          <div className="nav__end">
-            <PageLinks />
-          </div>
-        </div>
-      </header>
-      {/* Phones (<= 760px): a sticky bar with the wordmark and the two page links */}
-      <header className="lbar">
-        <a className="skip" href="#main">{t(h.skipLink)}</a>
-        <div className="lbar__inner">
-          <a className="lbar__who" href="/">{t(h.wordmark)}</a>
-          <nav className="lbar__links" aria-label="Pages"><PageLinks size="bar" /></nav>
-        </div>
-      </header>
-    </>
-  );
+/** The build log uses the site header, with HEAD on the build log node. */
+export function LogsHeader({ post = false }: { post?: boolean }) {
+  return <SiteHeader where={post ? 'post' : 'logs'} />;
 }
 
-// Dock order, short labels and targets. In-page targets get the home page's scroll spy.
-const DOCK: { key: string; label: string; href: string }[] = [
-  { key: 'top', label: 'home', href: '#top' },
-  { key: 'kit', label: 'kit', href: '#kit' },
-  { key: 'work', label: 'work', href: '#work' },
-  { key: 'logs', label: 'log', href: '/logs' },
-  { key: 'resume', label: 'resume', href: '/resume' },
-];
-
 /**
- * Phones and small tablets (<= 900px, where the header's section links are hidden): a fixed frosted
- * dock of commit-dot links. HEAD sits on the page you're on; on the home page the in-page links
- * carry data-spy, so the home page's ScrollSpy moves HEAD as you scroll.
+ * Phones and small tablets: a fixed frosted dock with the header's four page nodes. HEAD sits on the
+ * page you're on.
  */
-export function SiteDock({ where }: { where: 'home' | 'logs' | 'post' | 'resume' | 'portfolio' }) {
-  const home = where === 'home';
-  const here = (key: string) =>
-    (key === 'logs' && (where === 'logs' || where === 'post')) || (key === 'resume' && where === 'resume') || (key === 'work' && where === 'portfolio');
+export function SiteDock({ where }: { where: Where }) {
+  const here = where === 'post' ? 'logs' : where;
   return (
-    <nav className="ldock" aria-label="Sections">
+    <nav className="ldock" aria-label="Pages">
       <span className="ldock__rail" aria-hidden="true" />
-      {DOCK.map(({ key, label, href }) => {
-        const inPage = href.startsWith('#');
-        const on = here(key);
+      {trail().map((n: Any) => {
+        const key = nodeKey(n);
+        const on = key === here;
         return (
           <a
-            key={key}
-            href={inPage && !home ? (key === 'top' ? '/' : key === 'work' ? '/portfolio' : `/${href}`) : href}
+            key={n.id}
+            href={on && where === 'home' ? '#top' : n.href}
             className={`ldock__node${on ? ' is-on' : ''}`}
             aria-current={on ? (where === 'post' ? 'true' : 'page') : undefined}
-            {...(home && inPage ? { 'data-spy': key } : {})}
           >
             <span className="ldock__hd" aria-hidden="true">HEAD</span>
             <span className="ldock__d" aria-hidden="true" />
-            {label}
+            {n.short ?? t(n)}
           </a>
         );
       })}
@@ -110,6 +62,8 @@ export function LogsFooter() {
           <span className="foot__who"><b>Travis Terry</b> <span>Build log</span></span>
           <nav className="foot__nav" aria-label="Footer">
             <a href="/">Home</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/resume">Resume</a>
             <a href="/logs">All posts</a>
             <a href="/logs/feed.xml">RSS feed</a>
             <a href="#top" className="foot__top">Back to top</a>

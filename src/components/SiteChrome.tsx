@@ -2,78 +2,72 @@ import { person, section, t } from '@/lib/content';
 import { EmailLink } from '@/components/client';
 
 /*
- * Header and footer for the home page and the resume page (v2 design). The build log keeps its own
- * header (LogsChrome); all three share the dock.
+ * Header, footer and the home page's section rail. Every page (home, portfolio, resume, build log)
+ * uses the same header; LogsChrome holds the shared dock.
  */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 
-const navItem = (key: string) => section('header').nav.find((n: Any) => n.id === `header.nav.${key}`);
+/** Which page you're on. The build log index and its posts both sit on the build log node. */
+export type Where = 'home' | 'portfolio' | 'logs' | 'post' | 'resume';
 
-type Where = 'home' | 'resume' | 'portfolio';
+const NODE: Record<Where, string> = { home: 'home', portfolio: 'portfolio', logs: 'logs', post: 'logs', resume: 'resume' };
+const PATH: Record<Where, string> = { home: '~', portfolio: '~/work', logs: '~/logs', post: '~/logs', resume: '~/resume' };
 
-/** The same three links on every page; on the home page the in-page ones carry the scroll-spy lens. */
-const NAV = ['kit', 'journey', 'logs'];
+/** The four pages, as commit nodes on one line, in the header (and the phone dock). */
+export const trail = (): Any[] => section('header').trail;
+export const nodeKey = (n: Any) => n.id.replace('header.trail.', '');
 
 /**
- * Portfolio and Resume: the two pages every header links to at every width (the section links hide
- * below 900px). The page you're on gets the ink style and aria-current.
+ * The header on every page (v3 design): one centred glass bar with the name over a terminal prompt
+ * (`~/resume git:(main)`), then the pages as commit nodes on a line. HEAD sits on the page you're on.
+ * Phones (<= 760px) get a slim bar with the name and prompt; the dock carries the same four nodes.
  */
-export function PageLinks({ here, size = 'nav' }: { here?: 'portfolio' | 'resume'; size?: 'nav' | 'bar' }) {
+export function SiteHeader({ where, path }: { where: Where; path?: string }) {
   const h = section('header');
-  const pf = h.nav.find((n: Any) => n.id === 'header.nav.portfolio');
-  const cls = size === 'bar' ? 'lbar__btn' : 'btn btn--pill';
-  return (
-    <>
-      <a className={`${cls} ${here === 'portfolio' ? 'btn--ink' : 'btn--glass'}`} href={pf.href} {...(here === 'portfolio' ? { 'aria-current': 'page' as const } : {})}>
-        {t(pf)}
-      </a>
-      <a className={`${cls} ${here === 'resume' ? 'btn--ink' : 'btn--accent'}`} href={h.resumePage.href} {...(here === 'resume' ? { 'aria-current': 'page' as const } : {})}>
-        {t(h.resumePage)}
-      </a>
-    </>
-  );
-}
-
-export function SiteHeader({ where }: { where: Where }) {
-  const h = section('header');
-  const home = where === 'home';
-  const root = home ? '#top' : '/';
+  const here = NODE[where];
+  const prompt = path ?? PATH[where];
+  const root = where === 'home' ? '#top' : '/';
   return (
     <>
       <header className="nav">
         <a className="skip" href="#main">{t(h.skipLink)}</a>
-        <div className="nav__inner">
-          <a className="glass pillx nav__mark" href={root}>{t(h.wordmark)}</a>
-          <nav aria-label="Sections" className="glass nav__group">
-            {NAV.map((key) => {
-              const n = navItem(key);
-              const href: string = n.href.startsWith('#') && !home ? `/${n.href}` : n.href;
+        <div className="glass topbar">
+          <a className="topbar__who" href={root}>
+            {t(h.wordmark)}
+            <small aria-hidden="true">{prompt} git:(<b>main</b>)</small>
+          </a>
+          <nav className="trail" aria-label="Pages">
+            <span className="trail__line" aria-hidden="true" />
+            {trail().map((n: Any) => {
+              const on = nodeKey(n) === here;
               return (
-                <a key={key} href={href} {...(home && n.href.startsWith('#') ? { 'data-spy': n.href.slice(1) } : {})}>
+                <a key={n.id} className={`trail__n${on ? ' is-on' : ''}`} href={on && where === 'home' ? '#top' : n.href} {...(on ? { 'aria-current': 'page' as const } : {})}>
+                  {on && <span className="trail__hd" aria-hidden="true">HEAD</span>}
+                  <span className="trail__d" aria-hidden="true" />
                   {t(n)}
                 </a>
               );
             })}
           </nav>
-          <div className="nav__end">
-            <PageLinks here={home ? undefined : where} />
-          </div>
         </div>
       </header>
-      {/* Phones (<= 760px): a sticky bar with the wordmark and the two page links */}
       <header className="lbar">
         <div className="lbar__inner">
           <a className="lbar__who" href={root}>{t(h.wordmark)}</a>
-          <nav className="lbar__links" aria-label="Pages"><PageLinks here={home ? undefined : where} size="bar" /></nav>
+          <span className="lbar__prompt" aria-hidden="true">
+            <span className="lbar__ar">&gt;</span>
+            <span>{prompt}</span>
+            <span className="lbar__git">git:(<span className="lbar__ref">main</span>)</span>
+          </span>
         </div>
       </header>
     </>
   );
 }
 
-export function SiteFooter({ where }: { where: Where }) {
+export function SiteFooter({ where }: { where: 'home' | 'portfolio' | 'resume' }) {
   const f = section('footer');
   const h = section('header');
   const body = (x: Any) => t(x).replace(/^(Privacy|Accessibility):\s*(.)/, (_m: string, _h: string, c: string) => c.toUpperCase());
