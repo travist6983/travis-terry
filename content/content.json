@@ -1208,6 +1208,18 @@
           ]
         }
       ],
+      "scenes": {
+        "_note": "Generic labels for the illustrative scenes only. Synthetic: no real tickets, code, tool names or data.",
+        "console": "defect loop · ticket 0001",
+        "status": ["Reproduced", "Fixed", "Verified", "Regression passing", "Reviewed", "PR opened"],
+        "gate": "gate",
+        "reproduce": { "rec": "REC", "url": "app.example", "toast": "Something went wrong", "result": "repro recorded · fails" },
+        "fix": { "trace": "call trace", "origin": "bad state starts here", "crash": "crashes here", "file": "fix.diff", "patch": "fixed at the origin" },
+        "verify": { "a1": "agent 1 · wrote the fix", "a2": "agent 2 · fresh context", "wall": "no shared context", "replay": "replaying the repro", "red": "repro fails", "green": "repro passes" },
+        "regression": { "verify": "verify", "regression": "regression", "parallel": "in parallel", "changed": "the change", "in": "in the blast radius", "out": "out of reach", "done": "scoped run passing" },
+        "review": { "check": "pre-PR check", "review": "code review", "reviewTag": "harder defects", "ready": "clear to open" },
+        "pr": { "open": "Open", "before": "before", "after": "after", "prod": "prod-verify · confirmed in production" }
+      },
       "visualLabels": {
         "_note": "Generic labels for the illustrative visual only. No real ticket titles, tool names, or data.",
         "ticketFlag": {
