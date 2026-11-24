@@ -795,6 +795,15 @@
           "pre-pr",
           "ship"
         ],
+        "status": [
+          "New",
+          "Reproduced",
+          "Patched",
+          "Verified",
+          "No regressions",
+          "Checks green",
+          "Opened"
+        ],
         "from": {
           "flag": "BUG",
           "text": "New"
