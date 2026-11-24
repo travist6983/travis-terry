@@ -928,6 +928,7 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
   *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
   :root { --glass-bg: rgba(255, 255, 255, 0.42); --lens-bg: rgba(255, 255, 255, 0.7); }
   /* Fixed and sticky chrome sits over moving content; without blur it has to hide what scrolls behind it */
+  .nav .glass, .lbar__inner, .ldock { background: rgba(244, 246, 250, 0.985); }
 }
 
 /* ======================================================================
@@ -1566,4 +1567,16 @@ html[data-motion='off'] .remote:hover .rorb__a2 { transform: translate(-40px, 40
   .bsw button { padding: 0 14px 6px; font-size: 13px; }
   .rorb__b { width: 40px; height: 40px; font-size: 16px; }
   .rorb__ring { inset: -5px; width: 50px; height: 50px; }
+}
+
+/* ========== Phone pass (Nov 2026) ========== */
+/* Buttons never shrink inside scrolling rows (the build log tags, the stack switch) */
+.bbr, .bco, .bpush, .bcmd, .bclone, .bfetch { flex-shrink: 0; }
+.bbr--ask { flex-shrink: 1; }
+@media (max-width: 760px) {
+  /* The portfolio command fits one line */
+  .pf-hero__cmd { font-size: 12.5px; }
+  /* Build log search: the field gets the full row, the view switch sits under it */
+  .lsearch { flex-wrap: wrap; row-gap: 4px; }
+  .lsearch__label { flex: 1 1 100%; }
 }
