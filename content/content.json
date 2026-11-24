@@ -2076,6 +2076,16 @@
         ],
         "href": "/logs"
       },
+      "latest": {
+        "id": "buildlog.latest",
+        "text": "Read the latest",
+        "src": [
+          "ui"
+        ],
+        "kicker": "Latest post",
+        "cmd": "$ git show HEAD",
+        "done": "✓ checked out"
+      },
       "upcoming": [
         {
           "id": "buildlog.upcoming.0",
@@ -3286,6 +3296,23 @@
           "ui"
         ],
         "href": "/#journey"
+      },
+      "elsewhere": {
+        "id": "resume.elsewhere",
+        "text": "Elsewhere",
+        "src": [
+          "ui"
+        ],
+        "cmd": "git remote -v"
+      },
+      "portfolioRemote": {
+        "id": "resume.portfolioRemote",
+        "text": "Portfolio",
+        "src": [
+          "ui"
+        ],
+        "href": "/portfolio",
+        "detail": "checkout · every project as a git graph"
       }
     },
     {
