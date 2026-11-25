@@ -28,12 +28,12 @@ const STACK = section('sixty').stack.map((g: Any) => ({ label: g.label, items: t
 // Stagger for the hero's entrance
 const rd = (i: number) => ({ style: { '--rd': `${i * 0.08}s` } as React.CSSProperties });
 
-function Entry({ e, first, last }: { e: Any; first: boolean; last: boolean }) {
+function Entry({ e, first, last, at }: { e: Any; first: boolean; last: boolean; at: number }) {
   const loc = t(e.location);
   const note = e.context ?? e.progression;
   const bullets = e.short ?? e.highlights ?? [];
   return (
-    <li className={`rentry${first ? ' rentry--head' : ''}`} data-reveal>
+    <li className={`rentry${first ? ' rentry--head' : ''}`} data-reveal style={{ '--at': at } as React.CSSProperties}>
       <span className="rentry__d" aria-hidden="true" />
       <article className="glass rentry__card">
         {(first || last || loc) && (
@@ -108,7 +108,7 @@ export default function ResumePage() {
               <span className="mono-sm">git log --first-parent</span>
             </div>
             <ol className="rlog__list">
-              {entries.map((e: Any, i: number) => <Entry key={e.slug} e={e} first={i === 0} last={i === entries.length - 1} />)}
+              {entries.map((e: Any, i: number) => <Entry key={e.slug} e={e} first={i === 0} last={i === entries.length - 1} at={entries.length > 1 ? i / (entries.length - 1) : 0} />)}
               <CareerHead />
             </ol>
             <p className="glass rlog__edu" data-reveal><span className="kick">EDUCATION</span> {t(career.education.entry)}</p>
