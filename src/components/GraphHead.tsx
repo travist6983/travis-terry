@@ -59,24 +59,45 @@ export function CareerHead() {
   useEffect(() => {
     const head = ref.current;
     const list = head?.parentElement;
-    if (!head || !list || !on) return;
+    if (!head || !list) return;
     const entries = Array.from(list.querySelectorAll<HTMLElement>('.rentry'));
+    const last = entries[entries.length - 1];
+    if (!last) return;
+    // A commit dot is centred DOT px below its entry's top. The line runs from the first dot to the
+    // last one (--tail is how far above the list's bottom it stops), so HEAD ends on the initial commit.
+    const DOT = 34;
+    const tail = () => {
+      const bottom = last.offsetTop + DOT;
+      list.style.setProperty('--tail', `${list.offsetHeight - bottom}px`);
+      return bottom;
+    };
+    if (!on) {
+      const ro = new ResizeObserver(tail);
+      ro.observe(list);
+      tail();
+      return () => ro.disconnect();
+    }
     list.classList.add('is-live');
     const stop = onScrollFrame(() => {
-      // The line runs from 28px below the list's top to 40px above its bottom (see .rlog__list::before).
       const top = 28;
-      const bottom = list.offsetHeight - 40;
+      const bottom = tail();
       const y = clamp(holdLine() - list.getBoundingClientRect().top, top, bottom);
       list.style.setProperty('--p', ((y - top) / (bottom - top)).toFixed(4));
       head.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
-      // An entry's dot is centred 34px below its top.
-      entries.forEach((e) => e.classList.toggle('is-on', e.offsetTop + 26 <= y));
+      // A dot lights as HEAD's edge touches it; the entry HEAD is passing is the current one.
+      let cur = entries[0];
+      for (const e of entries) {
+        const lit = e.offsetTop + DOT - 8 <= y;
+        e.classList.toggle('is-on', lit);
+        if (lit) cur = e;
+      }
+      for (const e of entries) e.classList.toggle('is-cur', e === cur);
     });
     return () => {
       stop();
       list.classList.remove('is-live');
       list.style.removeProperty('--p');
-      entries.forEach((e) => e.classList.remove('is-on'));
+      entries.forEach((e) => e.classList.remove('is-on', 'is-cur'));
     };
   }, [on]);
   return (
