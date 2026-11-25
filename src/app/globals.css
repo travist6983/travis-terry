@@ -1289,7 +1289,7 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
 .rlog__list::before { content: ''; position: absolute; left: 9px; top: 28px; bottom: 40px; width: 2px; background: rgba(12,18,32,0.2); }
 .rentry { position: relative; padding: 0 0 22px 40px; }
 .rentry__d { position: absolute; left: 2px; top: 26px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink); }
-.rentry--head .rentry__d { left: 0; top: 24px; width: 20px; height: 20px; background: var(--green); border: 4px solid var(--paper); box-shadow: 0 0 0 2px var(--green), 0 0 18px var(--green); }
+.rlog__list:not(.is-live) .rentry--head .rentry__d { left: 0; top: 24px; width: 20px; height: 20px; background: var(--green); border: 4px solid var(--paper); box-shadow: 0 0 0 2px var(--green), 0 0 18px var(--green); }
 .rentry__card { padding: 24px 26px; border-radius: 22px; }
 .rentry--head .rentry__card { background: rgba(255,255,255,0.42); }
 .rentry__top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
@@ -1400,33 +1400,32 @@ html[data-motion='on'] .pf-typed { width: 0; border-right: 2px solid var(--green
 .pf-br.is-on .pf-br__n { color: rgba(255,255,255,0.75); }
 .pf-sum { margin: 0; font-size: 13px; }
 
-.pf-log { list-style: none; margin: 36px 0 0; padding: 0; }
+.pf-log { position: relative; list-style: none; margin: 36px 0 0; padding: 0; }
 .pf-row { position: relative; display: grid; grid-template-columns: 200px minmax(0, 1fr); min-height: 300px; }
 .pf-graph { position: relative; }
 .pf-main { position: absolute; left: 21px; top: 0; bottom: 0; width: 2px; background: rgba(12,18,32,0.22); }
 .pf-svg { position: absolute; left: 0; overflow: visible; }
 .pf-svg--fork { top: 0; }
 .pf-svg--merge { bottom: 0; }
+.pf-svg .pf-track { stroke: rgba(12,18,32,0.22); stroke-width: 2; stroke-dasharray: none; }
 .pf-svg path { fill: none; stroke: var(--c); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
-.pf-lane { position: absolute; left: calc(var(--x) - 1px); width: 2.5px; top: 64px; bottom: 64px; background: var(--c); transform-origin: top; }
-.pf-row--open .pf-lane { bottom: 0; background: repeating-linear-gradient(180deg, var(--c) 0 8px, transparent 8px 14px); }
+.pf-lane { position: absolute; left: calc(var(--x) - 1px); width: 2.5px; top: 64px; bottom: 64px; background: rgba(12,18,32,0.22); }
+.pf-lane i { position: absolute; inset: 0; background: var(--c); transform-origin: top; }
+.pf-row--open .pf-lane { bottom: 0; background: repeating-linear-gradient(180deg, rgba(12,18,32,0.22) 0 8px, transparent 8px 14px); }
+.pf-row--open .pf-lane i { background: repeating-linear-gradient(180deg, var(--c) 0 8px, transparent 8px 14px); }
 .pf-dot { position: absolute; left: var(--x); top: 96px; width: 18px; height: 18px; margin-left: -8px; box-sizing: border-box; border-radius: 50%; background: var(--paper); border: 3.5px solid var(--c); }
-.pf-row--head .pf-dot { width: 22px; height: 22px; margin-left: -10px; top: 94px; background: var(--green); border: 4px solid var(--paper); box-shadow: 0 0 0 2.5px var(--green), 0 0 20px var(--green); }
+.pf-log:not(.is-live) .pf-row--head .pf-dot { width: 22px; height: 22px; margin-left: -10px; top: 94px; background: var(--green); border: 4px solid var(--paper); box-shadow: 0 0 0 2.5px var(--green), 0 0 20px var(--green); }
 
-/* Draw-in, only while motion is on */
-/* Drawing in (rows gain .is-in): fork, card, lane, dot, merge. Undrawing (scrolling back up, .is-in
-   removed) runs the same steps in reverse: merge, dot, lane, card, fork. A transition takes the delay
-   of the state it is heading to, so the base rules hold the reverse delays and .is-in the forward ones. */
-html[data-motion='on'] .pf-svg path { stroke-dashoffset: 1; transition: stroke-dashoffset 0.45s ease-in 0.75s; }
-html[data-motion='on'] .pf-svg--merge path { transition-delay: 0s; }
-html[data-motion='on'] .pf-dot { transform: scale(0); transition: transform 0.3s ease-in 0.15s; }
-html[data-motion='on'] .pf-lane { transform: scaleY(0); transition: transform 0.45s ease-in 0.35s; }
-html[data-motion='on'] .pf-card { opacity: 0; transform: translateX(-24px); transition: opacity 0.4s ease-in 0.45s, transform 0.4s ease-in 0.45s, box-shadow 0.25s; }
-html[data-motion='on'] .pf-row.is-in .pf-svg path { stroke-dashoffset: 0; transition: stroke-dashoffset 0.6s ease-out 0s; }
-html[data-motion='on'] .pf-row.is-in .pf-svg--merge path { transition-delay: 1.1s; }
-html[data-motion='on'] .pf-row.is-in .pf-lane { transform: none; transition: transform 0.6s ease-out 0.5s; }
-html[data-motion='on'] .pf-row.is-in .pf-dot { transform: none; transition: transform 0.45s cubic-bezier(.3,1.6,.5,1) 0.7s; }
-html[data-motion='on'] .pf-row.is-in .pf-card { opacity: 1; transform: none; transition: opacity 0.6s cubic-bezier(.2,.8,.2,1) 0.3s, transform 0.6s cubic-bezier(.2,.8,.2,1) 0.3s, box-shadow 0.25s; }
+/* Live (Portfolio.tsx adds .is-live while motion is on): the graph is coloured as far as HEAD has
+   travelled. --fk, --ln and --mg are how much of a row's fork, lane and merge HEAD has covered. */
+.pf-log.is-live .pf-svg--fork path:not(.pf-track) { stroke-dashoffset: calc(1 - var(--fk, 0)); opacity: min(1, calc(var(--fk, 0) * 60)); }
+.pf-log.is-live .pf-svg--merge path:not(.pf-track) { stroke-dashoffset: calc(1 - var(--mg, 0)); opacity: min(1, calc(var(--mg, 0) * 60)); }
+.pf-log.is-live .pf-lane i { clip-path: inset(0 0 calc((1 - var(--ln, 0)) * 100%) 0); }
+.pf-log.is-live .pf-dot { border-color: rgba(12,18,32,0.3); transform: scale(0.75); transition: transform 0.3s cubic-bezier(.3,1.6,.5,1), border-color 0.2s; }
+.pf-log.is-live .pf-row.is-on .pf-dot { border-color: var(--c); transform: none; }
+.pf-log.is-live .pf-card { transition: opacity 0.5s cubic-bezier(.2,.8,.2,1), transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s; }
+.pf-log.is-live .pf-row:not(.is-in) .pf-card { opacity: 0; transform: translateX(-24px); }
+.pf-log.is-live .pf-row.is-cur .pf-card { box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--c) 55%, transparent), 0 18px 40px rgba(12,18,32,0.1); }
 
 .pf-card { margin: 28px 0 30px; border-radius: 26px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
 .pf-card:hover { box-shadow: 0 24px 50px rgba(12,18,32,0.14); }
@@ -1481,10 +1480,6 @@ html[data-motion='on'] .pf-row.is-in .pf-card { opacity: 1; transform: none; tra
   .pf-lane { left: 9px; top: 0; bottom: 0; }
   .pf-row--open .pf-lane { bottom: 0; }
   .pf-dot, .pf-row--head .pf-dot { left: 10px; top: 44px; }
-  html[data-motion='on'] .pf-lane { transition-delay: 0.15s; }
-  html[data-motion='on'] .pf-dot { transition-delay: 0s; }
-  html[data-motion='on'] .pf-row.is-in .pf-lane { transition-delay: 0s; }
-  html[data-motion='on'] .pf-row.is-in .pf-dot { transition-delay: 0.3s; }
   .pf-card { margin: 18px 0 22px; }
   .pf-body { padding: 20px; }
   .pf-root i { left: 2px; }
@@ -1492,17 +1487,23 @@ html[data-motion='on'] .pf-row.is-in .pf-card { opacity: 1; transform: none; tra
 
 /* ========== Resume: motion ========== */
 .rlog__list::after { content: ''; position: absolute; left: 9px; top: 28px; bottom: 40px; width: 2px; background: linear-gradient(180deg, var(--green), var(--accent)); transform-origin: top; }
-html[data-motion='on'] .rlog__list::after { transform: scaleY(var(--p, 0)); }
+/* Live (GraphHead.tsx adds .is-live while motion is on): the fill, HEAD and the commit dots all follow the scroll. */
+.rlog__list.is-live::after { transform: scaleY(var(--p, 0)); }
 html[data-motion='on'] .rentry[data-reveal] { transform: translateX(-32px); }
 html[data-motion='on'] .rentry[data-reveal].is-in { transform: none; }
-html[data-motion='on'] .rentry .rentry__d { transform: scale(0); transition: transform 0.45s cubic-bezier(.3,1.6,.5,1) 0.35s; }
-html[data-motion='on'] .rentry.is-in .rentry__d { transform: none; }
-html[data-motion='on'] .rentry--head .rentry__d { animation: headpulse 2.4s ease-in-out 1.2s infinite; }
+.rlog__list.is-live .rentry__d { border-color: rgba(12,18,32,0.3); transform: scale(0.7); transition: transform 0.3s cubic-bezier(.3,1.6,.5,1), border-color 0.2s; }
+.rlog__list.is-live .rentry.is-on .rentry__d { border-color: var(--ink); transform: none; }
+html[data-motion='on'] .rlog__list:not(.is-live) .rentry--head .rentry__d { animation: headpulse 2.4s ease-in-out 1.2s infinite; }
 @keyframes headpulse { 50% { box-shadow: 0 0 0 5px rgba(48,209,88,0.35), 0 0 26px var(--green); } }
+/* The travelling HEAD dot, shared by the resume line and the portfolio graph. */
+.ghead { display: none; position: absolute; left: 0; top: 0; z-index: 3; width: 0; height: 0; list-style: none; pointer-events: none; will-change: transform; }
+.is-live > .ghead { display: block; }
+.rlog__list > .ghead { left: 10px; }
 html[data-motion='on'] .rstack .tag { animation: tagpop 0.35s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i, 0) * 28ms); }
 @keyframes tagpop { from { opacity: 0; transform: translateY(6px) scale(0.94); } }
 @media (max-width: 760px) {
   .rlog__list::after { left: 7px; }
+  .rlog__list > .ghead { left: 8px; }
 }
 
 /* ========== v3: the header on every page ========== */

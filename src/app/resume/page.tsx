@@ -5,6 +5,7 @@ import { RemotesLight } from '@/components/Remotes';
 import { Push } from '@/components/Buttons';
 import { CopyCommand, MotionProvider, SmoothScroll } from '@/components/client';
 import { Reveal } from '@/components/Reveal';
+import { CareerHead } from '@/components/GraphHead';
 import { StackTabs } from '@/components/Designed';
 import { Paper, SiteDock } from '@/components/LogsChrome';
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -106,8 +107,9 @@ export default function ResumePage() {
               <h2 className="rlog__title">{t(r.logTitle)}</h2>
               <span className="mono-sm">git log --first-parent</span>
             </div>
-            <ol className="rlog__list" data-scrub>
+            <ol className="rlog__list">
               {entries.map((e: Any, i: number) => <Entry key={e.slug} e={e} first={i === 0} last={i === entries.length - 1} />)}
+              <CareerHead />
             </ol>
             <p className="glass rlog__edu" data-reveal><span className="kick">EDUCATION</span> {t(career.education.entry)}</p>
           </div>
